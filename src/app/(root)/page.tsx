@@ -27,7 +27,7 @@ export default function Home() {
 
 			<VideoReel />
 			<WhyUs />
-			<section className="dashed dashed-t">
+			<section className="dashed dashed-t overflow-hidden">
 				<div className="dashed dashed-x container max-w-7xl flex-col items-center justify-center pt-12 sm:pt-16 md:pt-20">
 					<div className="mx-auto flex max-w-3xl flex-col items-center justify-center gap-3 text-center">
 						<Badge variant="secondary">Products</Badge>
@@ -45,19 +45,19 @@ export default function Home() {
 							const Icon = product.icon!;
 							return (
 								<div
-									className="relative flex flex-col items-center rounded-t-xl px-9 py-6 text-card transition-transform hover:-translate-y-4 data-[product=crm]:bg-yellow-300/80 data-[product=tap]:bg-blue-500 data-[product=crm]:text-foreground"
+									className="relative flex translate-y-12 flex-col items-center rounded-t-xl px-9 pt-6 pb-12 text-card transition-transform hover:translate-y-0 data-[product=crm]:bg-yellow-300/80 data-[product=tap]:bg-blue-500 data-[product=crm]:text-foreground"
 									data-product={product.id}
 									key={product.id}
 								>
 									<Icon />
-									<h3>{product.title}</h3>
+									<h3 className="font-bold text-2xl">{product.title}</h3>
 
 									<p>{product.description}</p>
 								</div>
 							);
 						})}
-						<div className="relative rounded-t-xl bg-card p-6 px-9 py-6 transition-transform hover:-translate-y-4">
-							Coming Soon
+						<div className="relative translate-y-12 rounded-t-xl bg-card p-6 px-9 pt-6 pb-12 transition-transform hover:translate-y-0">
+							<span className="font-bold text-2xl">Coming Soon</span>
 						</div>
 					</div>
 				</div>

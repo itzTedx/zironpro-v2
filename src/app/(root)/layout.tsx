@@ -62,9 +62,15 @@ export default function RootLayout({
 			<head>
 				<meta content="Ziron Media" name="apple-mobile-web-app-title" />
 				<Script
-					data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ?? "469aba3d-49c8-4e9e-9732-396c34a105da"}
+					data-website-id={
+						process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ??
+						"469aba3d-49c8-4e9e-9732-396c34a105da"
+					}
 					defer
-					src={process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL ?? "https://analytics.alliedgulf.me/script.js"}
+					src={
+						process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL ??
+						"https://analytics.alliedgulf.me/script.js"
+					}
 				/>
 			</head>
 			<Providers>
@@ -76,6 +82,12 @@ export default function RootLayout({
 						mono.variable
 					)}
 				>
+					{/* <div className="container pointer-events-none fixed inset-0 z-50 flex h-full justify-between px-20">
+						<div className="flex w-full justify-between">
+							<div className="h-full w-px bg-border/80" />
+							<div className="h-full w-px bg-border/80" />
+						</div>
+					</div> */}
 					<Navbar />
 
 					{children}
