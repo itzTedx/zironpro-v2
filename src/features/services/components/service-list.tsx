@@ -2,14 +2,6 @@ import { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-	PreviewLinkCard,
-	PreviewLinkCardImage,
-	PreviewLinkCardPopup,
-	PreviewLinkCardPortal,
-	PreviewLinkCardPositioner,
-	PreviewLinkCardTrigger,
-} from "@/components/primitives/preview-link-card";
 import { Noise } from "@/components/shared/noise";
 
 import { SERVICES } from "@/features/services/constant";
@@ -27,7 +19,7 @@ export const ServiceList = ({
 				title={service.title}
 			/>
 			<div className="relative h-fit overflow-hidden">
-				<div className="transition-transform duration-300 ease-out md:group-hover:-translate-y-full">
+				<div className="transition-transform duration-300 ease-out">
 					<span className="text-2xl text-muted">
 						0{service.id}
 						<span className="font-bold text-primary">.</span>
@@ -35,56 +27,28 @@ export const ServiceList = ({
 					<h3 className="font-medium text-2xl tracking-tight md:text-3xl">
 						{service.title}
 					</h3>
+					<div className="relative aspect-5/3 overflow-hidden rounded-xl">
+						<Noise />
+						<Image
+							alt=""
+							className="object-cover transition-transform group-hover:scale-110"
+							fill
+							src={service.image}
+						/>
+					</div>
 					<p className="hidden text-balance text-muted-foreground opacity-0 md:block">
 						{service.description}
 					</p>
 				</div>
-				<div className="absolute top-0 hidden translate-y-[150%] transition-transform duration-300 ease-out md:block md:group-hover:translate-y-0">
-					<h3 className="font-medium text-2xl tracking-tight md:text-3xl">
-						{service.title}
-					</h3>
-					<p className="text-balance text-muted-foreground">
-						{service.description}
-					</p>
-				</div>
-				<p className="mt-2 text-balance text-muted-foreground md:hidden">
-					{service.description}
-				</p>
 			</div>
 
 			<ul className="relative isolate z-10 h-fit space-y-3">
 				{service.lists.map((list) => (
 					<li className="text-lg" key={list.title}>
-						<PreviewLinkCard
-							followCursor="x"
-							href={`/services/${service.slug}/${list.slug}` as Route}
-							src={list.image}
-						>
-							<PreviewLinkCardTrigger
-								className="tracking-tight transition-colors duration-300 ease-out hover:text-brand-secondary"
-								delay={100}
-							>
-								{list.title}
-							</PreviewLinkCardTrigger>
-							<PreviewLinkCardPortal>
-								<PreviewLinkCardPositioner side="inline-end">
-									<PreviewLinkCardPopup
-										className="overflow-hidden rounded-lg"
-										href={`/services/${service.slug}/${list.slug}` as Route}
-									>
-										<PreviewLinkCardImage alt={service.alt} />
-									</PreviewLinkCardPopup>
-								</PreviewLinkCardPositioner>
-							</PreviewLinkCardPortal>
-						</PreviewLinkCard>
+						{list.title}
 					</li>
 				))}
 			</ul>
-
-			<div className="relative aspect-5/3 overflow-hidden rounded-xl transition-transform group-hover:scale-110">
-				<Noise />
-				<Image alt="" className="object-cover" fill src={service.image} />
-			</div>
 		</div>
 	);
 };
@@ -94,7 +58,7 @@ export const ServicesLists = () => {
 		<ul className="relative z-10">
 			{SERVICES.map((service) => (
 				<li
-					className="group dashed dashed-t relative px-6 py-10 transition-all hover:bg-card hover:pb-14 md:px-0"
+					className="group dashed dashed-t relative px-6 py-10 transition-all md:px-0"
 					key={service.id}
 				>
 					<ServiceList service={service} />

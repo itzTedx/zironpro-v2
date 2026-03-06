@@ -21,8 +21,8 @@ function NavigationMenu({
 		>
 			{children}
 			<NavigationMenuPositioner
-				align="start"
-				alignOffset={-15}
+				align="center"
+				alignOffset={150}
 				positionMethod="fixed"
 				sticky={true}
 			/>

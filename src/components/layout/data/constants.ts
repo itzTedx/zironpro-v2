@@ -47,6 +47,7 @@ export const NAV_LINKS: NavLink[] = [
 			title: ser.title,
 			image: ser.image,
 			icon: ser.icon,
+			lists: ser.lists ? [...ser.lists] : undefined,
 		})),
 	},
 	{

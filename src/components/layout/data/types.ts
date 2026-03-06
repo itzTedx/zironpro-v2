@@ -16,6 +16,12 @@ export type Submenu = {
 	href: Route;
 	image?: string;
 	badge?: string;
+	lists?: {
+		title: string;
+		slug: string;
+		image: string;
+		description: string;
+	}[];
 };
 
 export type ServiceType = {

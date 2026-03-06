@@ -46,7 +46,7 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 	}, [hoveredIdx, hoveredIndex]);
 
 	return (
-		<div className="grid h-fit w-2xl grid-cols-2 gap-4">
+		<div className="grid h-fit w-3xl grid-cols-2 gap-4">
 			<ul className="space-y-1.5">
 				{submenu.map((sub) => {
 					const Icon = sub.icon!;

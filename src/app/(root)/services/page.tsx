@@ -1,10 +1,11 @@
 import Link from "next/link";
 
-import { ServicesStickyCards } from "@/components/layout/sticky-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import { IconArrowRightTag } from "@/assets/icons/arrow";
+
+import { ServicesLists } from "@/features/services/components/service-list";
 
 export default function ServicesPage() {
 	return (
@@ -70,8 +71,8 @@ export default function ServicesPage() {
 				</div>
 			</section>
 			<section className="dashed dashed-t relative">
-				{/* <ServicesLists /> */}
-				<ServicesStickyCards />
+				<ServicesLists />
+				{/* <ServicesStickyCards /> */}
 
 				<div className="dashed dashed-y">
 					<div className="dashed dashed-x container flex max-w-7xl items-center justify-center py-12">
