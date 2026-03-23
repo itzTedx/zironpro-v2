@@ -29,7 +29,7 @@ export const Feedback = () => {
 
 	return (
 		<section className="dashed dashed-t relative pb-8">
-			<div className="relative z-50 w-full space-y-4 [--slide-height:100%] [--slide-size:80%] [--slide-spacing:0.5rem] md:[--slide-size:30%] md:[--slide-spacing:1rem]">
+			<div className="relative z-50 w-full space-y-4 [--slide-height:100%] [--slide-size:80%] [--slide-spacing:0.5rem] md:[--slide-size:30%] md:[--slide-spacing:1rem] 2xl:[--slide-size:25%]">
 				<div className="overflow-hidden pt-8 pb-4" ref={emblaRef}>
 					<div className="flex touch-pan-y touch-pinch-zoom">
 						{FEEDBACK_ITEMS.map((item, index) => {

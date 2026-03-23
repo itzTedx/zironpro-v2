@@ -60,7 +60,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-	"group/navigation-menu-trigger relative z-999 inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 font-display font-semibold text-base text-primary-foreground outline-none transition-all hover:bg-primary-secondary hover:text-white focus:bg-primary-secondary focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-open:bg-primary-secondary data-popup-open:bg-primary-secondary data-open:text-white data-popup-open:text-white data-open:focus:bg-primary-secondary data-open:focus:text-white data-open:hover:bg-primary-secondary data-popup-open:hover:bg-primary-secondary data-open:hover:text-white data-popup-open:hover:text-white"
+	"group/navigation-menu-trigger relative z-999 inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 font-display font-medium text-primary-foreground text-sm outline-none transition-all hover:bg-primary-secondary hover:text-white focus:bg-primary-secondary focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-open:bg-primary-secondary data-popup-open:bg-primary-secondary data-open:text-white data-popup-open:text-white data-open:focus:bg-primary-secondary data-open:focus:text-white data-open:hover:bg-primary-secondary data-popup-open:hover:bg-primary-secondary data-open:hover:text-white data-popup-open:hover:text-white"
 );
 
 function NavigationMenuTrigger({

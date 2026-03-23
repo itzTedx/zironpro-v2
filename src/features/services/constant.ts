@@ -9,9 +9,10 @@ export const SERVICES = [
 	{
 		id: 1,
 		slug: "branding",
+		color: "text-green-500",
 		icon: IconTarget,
 		title: "Brand Strategy",
-		alt: "Brand strategy services—logo design, visual identity, and brand guidelines",
+		alt: "Logo design, visual identity, and brand guidelines",
 		description:
 			"Building strong, memorable brands through strategy, identity design, and consistent visual systems.",
 		image: "/images/services/logo-design.jpg",
@@ -52,10 +53,11 @@ export const SERVICES = [
 		id: 2,
 		slug: "websites",
 		icon: IconDesktopPoint,
+		color: "text-blue-500",
 		title: "Websites",
 		description:
 			"Designing and developing fast, scalable, and conversion-focused websites that grow with your business.",
-		alt: "Website design and development-fast, scalable, conversion-focused sites",
+		alt: "Fast, scalable, conversion-focused sites",
 		image: "/images/services/web-dev.webp",
 		lists: [
 			{
@@ -88,10 +90,11 @@ export const SERVICES = [
 		id: 3,
 		slug: "marketing",
 		icon: IconSpeaker,
+		color: "text-yellow-500",
 		title: "Digital Marketing",
 		description:
 			"Driving visibility, engagement, and leads through data-driven digital marketing strategies.",
-		alt: "Digital marketing services—SEO, social media, content, and paid ads",
+		alt: "SEO, social media, content, and paid ads",
 		image: "/images/services/social.jpg",
 		lists: [
 			{
@@ -118,10 +121,11 @@ export const SERVICES = [
 		id: 4,
 		slug: "printing",
 		icon: IconPrinter,
+		color: "text-purple-500",
 		title: "Printing & Corporate Gifts",
 		description:
 			"High-quality printing and branded merchandise that enhance visibility and leave a lasting impression.",
-		alt: "Printing and corporate gifts—branded merchandise and marketing collateral",
+		alt: "Branded merchandise and marketing collateral",
 		image: "/images/services/corporate-gifts.webp",
 		lists: [
 			{
@@ -160,10 +164,11 @@ export const SERVICES = [
 		id: 5,
 		slug: "motion",
 		icon: IconPlay,
+		color: "text-orange-500",
 		title: "Motion Design & Video",
 		description:
 			"Bringing stories to life through engaging motion graphics and impactful video content.",
-		alt: "Motion design—explainer videos, motion graphics, and brand videos",
+		alt: "Explainer videos, motion graphics, and brand videos",
 		image: "/images/services/motion.webp",
 		lists: [
 			{
@@ -190,10 +195,11 @@ export const SERVICES = [
 		id: 6,
 		slug: "full-stack",
 		icon: IconCog,
+		color: "text-red-500",
 		title: "Full-stack Marketing",
 		description:
 			"End-to-end marketing solutions that align strategy, content, and execution for scalable growth.",
-		alt: "Full‑stack marketing—end‑to‑end strategy, content, and campaign execution",
+		alt: "End‑to‑end strategy, content, and campaign execution",
 		image: "/images/services/full-stack.webp",
 		lists: [
 			{

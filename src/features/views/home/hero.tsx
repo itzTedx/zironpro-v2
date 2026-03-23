@@ -5,9 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import { IconArrowRightTag } from "@/assets/icons/arrow";
-import { IconPlay } from "@/assets/icons/play";
 
-import { Feedback } from "./feedback";
+import { Featured } from "./featured";
 
 export const Hero = () => {
 	// const bg = "bg-[radial-gradient(ellipse_400%_240%_at_50%_100%,#fff,#fff_10%,15%,#c7c5fd_16%,rgba(154,103,250,.6)_17%,21%,#264cab_28%,35%,#00031d_45%,#00031d)]"
@@ -41,7 +40,7 @@ export const Hero = () => {
 
 					<div className="relative z-99 flex w-full items-center gap-4 md:w-auto">
 						<Button
-							className="group w-full flex-1 justify-between gap-2 md:w-60"
+							className="group w-full flex-1 justify-between gap-2 md:w-48"
 							data-umami-event="Hero - Get started"
 							render={<Link href="/services" />}
 							size="lg"
@@ -55,14 +54,14 @@ export const Hero = () => {
 							<IconArrowRightTag className="size-5 transition-transform duration-300 ease-in group-hover:translate-x-1" />
 						</Button>
 						<Button
-							className="group justify-between md:w-52"
+							className="group text-card hover:text-brand-900"
 							data-umami-event="Hero - See us in action"
 							render={<Link href="/our-works" />}
 							size="lg"
 							variant="outline"
 						>
 							<span>See us in action</span>
-							<IconPlay className="hidden size-5 transition-transform duration-300 ease-in group-hover:translate-x-1 md:inline" />
+							{/* <IconPlay className="hidden size-5 transition-transform duration-300 ease-in group-hover:translate-x-1 md:inline" /> */}
 						</Button>
 					</div>
 				</div>
@@ -88,7 +87,7 @@ export const Hero = () => {
 						</li>
 						</ul> */}
 			</div>
-			<Feedback />
+			<Featured />
 		</section>
 	);
 };

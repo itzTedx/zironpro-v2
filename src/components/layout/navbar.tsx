@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { IconCaretRight } from "@/assets/icons/caret";
 import { Logo } from "@/assets/logo";
@@ -25,13 +26,17 @@ import { ProductsNavbar } from "./ui/products-navbar";
 import { ServicesNavbar } from "./ui/services-navbar";
 
 export const Navbar = () => {
+	const router = usePathname();
 	const isScrolled = useIsScrolled(80);
+
+	const homepage = router === "/";
 
 	return (
 		<header
 			className={cn(
 				"fixed top-0 z-999 w-full py-2.5 transition-[background-color_backdrop-filter] duration-300",
-				isScrolled ? "bg-gray-1500/85 backdrop-blur-xl" : ""
+				isScrolled ? "bg-gray-1500/85 backdrop-blur-xl" : "",
+				!homepage && "bg-gray-1500/85 backdrop-blur-xl"
 			)}
 		>
 			<div className="container mx-auto flex max-w-7xl items-center justify-between gap-4">

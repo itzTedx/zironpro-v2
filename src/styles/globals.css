@@ -15,7 +15,7 @@
 
 	--color-primary: var(--brand-500);
 	--color-primary-foreground: var(--brand-100);
-	--color-primary-secondary: var(--brand-400);
+	--color-primary-secondary: --alpha(var(--brand-200) / 0.6);
 
 	--color-brand-secondary: var(--brand-secondary);
 	--color-brand-secondary-400: var(--brand-secondary-400);

@@ -8,17 +8,38 @@ import Link from "next/link";
 
 import { AnimatePresence, motion } from "motion/react";
 
+import { IconArrowRight } from "@/assets/icons/arrow";
+
 import { cn } from "@/lib/utils";
 
 import { Submenu } from "../data/types";
 
 export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
-	const [hoveredIdx, setHoveredIdx] = useState<string | null>(null);
+	const firstSubmenuId = submenu[0]?.id ?? null;
+	const [hoveredIdx, setHoveredIdx] = useState<string | null>(firstSubmenuId);
+	const [hoveredListPreview, setHoveredListPreview] = useState<{
+		image: string;
+		title: string;
+	} | null>(null);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 
 	const hoveredIndex = hoveredIdx
 		? submenu.findIndex((menu) => menu.id === hoveredIdx)
 		: -1;
+	const hoveredSubmenu = hoveredIdx
+		? submenu.find((menu) => menu.id === hoveredIdx)
+		: null;
+	const hoveredSubmenuBasePath = hoveredSubmenu?.href?.replace(/\/$/, "");
+	const previewImageSrc =
+		hoveredListPreview?.image ||
+		hoveredSubmenu?.image ||
+		"/images/services/logo-design.jpg";
+	const previewImageAlt =
+		hoveredListPreview?.title || hoveredSubmenu?.title || "Service";
+
+	useEffect(() => {
+		setHoveredListPreview(null);
+	}, [hoveredSubmenu?.id]);
 
 	// Scroll to the hovered image
 	useEffect(() => {
@@ -46,8 +67,8 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 	}, [hoveredIdx, hoveredIndex]);
 
 	return (
-		<div className="grid h-fit w-3xl grid-cols-2 gap-4">
-			<ul className="space-y-1.5">
+		<div className="grid h-fit w-4xl grid-cols-[1fr_0.75fr_1fr] gap-2">
+			<ul className="space-y-1">
 				{submenu.map((sub) => {
 					const Icon = sub.icon!;
 					return (
@@ -55,21 +76,29 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 							className="relative"
 							key={sub.id}
 							onMouseEnter={() => setHoveredIdx(sub.id)}
-							onMouseLeave={() => setHoveredIdx(null)}
 						>
 							<Link
 								className="group relative z-10 flex items-center gap-2 rounded-xl p-1"
 								href={sub.href as Route}
 							>
-								<div className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-background">
-									<Icon className="size-8 text-muted transition-colors duration-300 group-hover:text-primary" />
+								<div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-input bg-floating">
+									<Icon
+										className={cn(
+											"size-5 transition-colors duration-300 group-hover:text-primary",
+											sub.color
+										)}
+									/>
 								</div>
 								<div className="space-y-1">
-									<p className="font-medium text-lg leading-none">
+									<p className="font-medium text-base leading-none">
 										{sub.title}
 									</p>
+									<span className="line-clamp-1 text-muted-foreground text-xs">
+										{sub.alt}
+									</span>
 								</div>
 							</Link>
+
 							<AnimatePresence>
 								{hoveredIdx === sub.id && (
 									<motion.span
@@ -93,36 +122,68 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 					);
 				})}
 			</ul>
-			<div className="relative isolate">
-				{/* Scrollable container with all images stacked */}
-				<div
-					className="h-[416px] space-y-3 overflow-hidden overflow-y-scroll rounded-xl [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-					ref={scrollContainerRef}
-					style={{ scrollSnapType: "y mandatory" }}
-				>
-					{submenu.map((sub) => (
-						<div
-							className="relative aspect-4/3 shrink-0 overflow-hidden rounded-xl shadow-sm"
-							key={sub.id}
-							style={{ scrollSnapAlign: "start" }}
+			<div className="rounded-xl bg-gray-100/60 px-4 py-2">
+				<AnimatePresence mode="wait">
+					{hoveredSubmenu && (
+						<motion.ul
+							animate={{ opacity: 1, y: 0 }}
+							className="divide-y divide-gray-300/30"
+							exit={{ opacity: 0, y: -6 }}
+							initial={{ opacity: 0, y: 6 }}
+							key={hoveredSubmenu.id}
+							transition={{ duration: 0.12, ease: "easeOut" }}
 						>
-							<Image
-								alt={sub.title}
-								className={cn("object-cover")}
-								fill
-								src={sub.image || "/images/services/logo-design.jpg"}
-							/>
-							{/* Title and description overlay */}
-							<div className="absolute inset-x-0 bottom-0 z-30 flex flex-col justify-end p-6">
-								<h2 className="font-medium text-2xl text-card tracking-tight">
-									{sub.title}
-								</h2>
-								<p className="text-muted text-xs">{sub.description}</p>
-							</div>
-							<div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-1/2 bg-linear-to-t from-foreground to-transparent" />
-						</div>
-					))}
-				</div>
+							{hoveredSubmenu.lists?.map((list, index) => (
+								<motion.li
+									animate={{ opacity: 1, x: 0 }}
+									exit={{ opacity: 0, x: 2 }}
+									initial={{ opacity: 0, x: 6 }}
+									key={list.title}
+									onMouseEnter={() =>
+										setHoveredListPreview({
+											image: list.image,
+											title: list.title,
+										})
+									}
+									onMouseLeave={() => setHoveredListPreview(null)}
+									transition={{
+										duration: 0.16,
+										ease: "easeOut",
+										delay: index * 0.045,
+									}}
+								>
+									<Link
+										className="group flex items-center justify-between py-2 text-sm"
+										href={`${hoveredSubmenuBasePath}/${list.slug}` as Route}
+									>
+										{list.title}
+										<IconArrowRight className="size-3 text-gray-300 transition-colors duration-300 group-hover:text-gray-500" />
+									</Link>
+								</motion.li>
+							))}
+						</motion.ul>
+					)}
+				</AnimatePresence>
+			</div>
+			<div className="relative isolate size-full overflow-hidden rounded-xl">
+				<AnimatePresence mode="wait">
+					<motion.div
+						animate={{ opacity: 1, scale: 1 }}
+						className="absolute inset-0"
+						exit={{ opacity: 0, scale: 1.02 }}
+						initial={{ opacity: 0, scale: 0.98 }}
+						key={previewImageSrc}
+						transition={{ duration: 0.2, ease: "easeOut" }}
+					>
+						<Image
+							alt={previewImageAlt}
+							className="object-cover"
+							fill
+							src={previewImageSrc}
+						/>
+						<p className="relative z-10">{hoveredListPreview?.title}</p>
+					</motion.div>
+				</AnimatePresence>
 			</div>
 		</div>
 	);

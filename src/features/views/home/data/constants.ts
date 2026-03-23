@@ -1,3 +1,5 @@
+import { IconCheckmark } from "@/assets/icons/check";
+
 import {
 	BrandServed,
 	Experience,
@@ -24,5 +26,64 @@ export const ACHIEVEMENTS = [
 		title: "100,000+ Growth for Brands",
 		description: "Through smarter processes and scalable solutions",
 		card: Growth,
+	},
+];
+
+export const FEATURED_ITEMS = [
+	{
+		id: 1,
+		title: "Digital Marketing",
+		alt: "Digital Marketing for your goals.",
+		image: "/images/direct.jpg",
+		icon: IconCheckmark,
+	},
+	{
+		id: 2,
+		title: "Digital Marketing",
+		alt: "Digital Marketing for your goals.",
+		image: "/images/maxline.jpg",
+		icon: IconCheckmark,
+	},
+	{
+		id: 3,
+		title: "Digital Marketing",
+		alt: "Digital Marketing for your goals.",
+		image: "/images/qordx.jpg",
+		icon: IconCheckmark,
+	},
+	{
+		id: 4,
+		title: "Digital Marketing",
+		alt: "Digital Marketing for your goals.",
+		image: "/images/direct.jpg",
+		icon: IconCheckmark,
+	},
+	{
+		id: 5,
+		title: "Digital Marketing",
+		alt: "Digital Marketing for your goals.",
+		image: "/images/direct.jpg",
+		icon: IconCheckmark,
+	},
+	{
+		id: 6,
+		title: "Digital Marketing",
+		alt: "Digital Marketing for your goals.",
+		image: "/images/direct.jpg",
+		icon: IconCheckmark,
+	},
+	{
+		id: 7,
+		title: "Digital Marketing",
+		alt: "Digital Marketing for your goals.",
+		image: "/images/direct.jpg",
+		icon: IconCheckmark,
+	},
+	{
+		id: 8,
+		title: "Digital Marketing",
+		alt: "Digital Marketing for your goals.",
+		image: "/images/direct.jpg",
+		icon: IconCheckmark,
 	},
 ];
