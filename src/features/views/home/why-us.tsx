@@ -10,7 +10,7 @@ import {
 
 import { IconCheck } from "@/assets/icons/check";
 import { IconX } from "@/assets/icons/x";
-import { Logo, Wordmark } from "@/assets/logo";
+import { Logo } from "@/assets/logo";
 
 import { cn } from "@/lib/utils";
 
@@ -97,7 +97,7 @@ export const WhyUs = () => {
 				<div className="sr-only mb-3 grid grid-cols-4 gap-6 md:not-sr-only">
 					<div />
 					<div>
-						<Wordmark />
+						<Logo className="h-5 w-auto" />
 					</div>
 					<p className="text-muted-foreground text-xs sm:text-base">
 						In-House Team
@@ -113,7 +113,7 @@ export const WhyUs = () => {
 							<TableRow className="pb-6">
 								<TableHead className="w-[290px] opacity-0">Feature</TableHead>
 								<TableHead className="flex w-[180px] items-center justify-center">
-									<Logo className="size-7" />
+									<Logo className="h-4 w-auto" />
 								</TableHead>
 								<TableHead className="w-[180px]">In-House Team</TableHead>
 								<TableHead className="w-[180px]">Other Agencies</TableHead>
