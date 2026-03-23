@@ -25,7 +25,7 @@ export const Achievements = () => {
 					const AchievementCard = ach.card;
 					return (
 						<Card
-							className="rounded-[calc(var(--radius-5xl)+calc(var(--spacing)*1))] transition-transform [corner-shape:squircle] hover:-translate-y-3"
+							className="squircle rounded-[calc(var(--radius-5xl)+calc(var(--spacing)*1))] transition-transform hover:-translate-y-3"
 							key={`card-${ach.id}`}
 						>
 							<CardContent>

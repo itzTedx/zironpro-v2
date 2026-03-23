@@ -3,9 +3,11 @@
 import Link from "next/link";
 
 import { IconCaretRight } from "@/assets/icons/caret";
-import { Logo, Wordmark } from "@/assets/logo";
+import { Logo } from "@/assets/logo";
 
-import { Noise } from "../shared/noise";
+import { useIsScrolled } from "@/hooks/use-is-scrolled";
+import { cn } from "@/lib/utils";
+
 import { Button } from "../ui/button";
 import {
 	NavigationMenu,
@@ -23,16 +25,23 @@ import { ProductsNavbar } from "./ui/products-navbar";
 import { ServicesNavbar } from "./ui/services-navbar";
 
 export const Navbar = () => {
+	const isScrolled = useIsScrolled(80);
+
 	return (
-		<header className="sticky top-0 z-999 bg-primary/85 py-2.5 backdrop-blur-xl">
+		<header
+			className={cn(
+				"fixed top-0 z-999 w-full py-2.5 transition-[background-color_backdrop-filter] duration-300",
+				isScrolled ? "bg-gray-1500/85 backdrop-blur-xl" : ""
+			)}
+		>
 			<div className="container mx-auto flex max-w-7xl items-center justify-between gap-4">
 				<div className="flex items-center gap-9">
 					<Link
-						className="flex items-center gap-2 transition-[filter] duration-300 hover:brightness-135"
+						className="relative z-50 flex items-center gap-2 transition-[filter] duration-300 hover:brightness-135"
 						href="/"
 					>
-						<Logo className="size-10" />
-						<Wordmark className="mt-1 h-4 w-fit text-white md:h-5" isMono />
+						<Logo className="h-6 w-auto md:h-7" />
+						{/* <Wordmark className="mt-1 h-4 w-fit text-white md:h-5" isMono /> */}
 					</Link>
 					<NavigationMenu className="hidden md:flex">
 						<NavigationMenuList>
@@ -83,23 +92,20 @@ export const Navbar = () => {
 				</div>
 				<div className="flex items-center gap-2">
 					<Button
-						asChild
-						className="bg-floating text-primary"
+						className="flex-row"
 						data-umami-event="Signup button"
 						id="signup-button"
-						variant="secondary"
+						render={<Link href="/contact" />}
 					>
-						<Link href="/contact">
-							<span className="hidden md:inline">Start a project</span>
-							<span className="md:hidden">Contact</span>
-							<IconCaretRight className="hidden transition-transform duration-200 ease-in group-hover/button:translate-x-1 md:block" />
-						</Link>
+						<span className="hidden md:inline">Start a project</span>
+						<span className="md:hidden">Contact</span>
+						<IconCaretRight className="hidden transition-transform duration-200 ease-in group-hover/button:translate-x-1 md:block" />
 					</Button>
 					<MobileNav />
 				</div>
 			</div>
 
-			<Noise className="opacity-40" />
+			{/* <Noise className="opacity-40" /> */}
 		</header>
 	);
 };

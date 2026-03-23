@@ -21,10 +21,12 @@ export const Services = () => {
 			{/* <ServicesLists /> */}
 
 			<div className="flex items-center justify-center pb-9 md:py-12">
-				<Button asChild data-umami-event="Home - Build your vision" variant="secondary">
-					<Link href="/services">
-						Build your vision with us <IconArrowRightTag />
-					</Link>
+				<Button
+					data-umami-event="Home - Build your vision"
+					render={<Link href="/services" />}
+					variant="secondary"
+				>
+					Build your vision with us <IconArrowRightTag />
 				</Button>
 			</div>
 			<div className="absolute inset-x-0 top-0 -z-10 h-1/4 bg-linear-180 from-white" />

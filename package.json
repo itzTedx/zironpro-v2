@@ -26,7 +26,7 @@
 		"maplibre-gl": "^5.16.0",
 		"media-chrome": "^4.17.2",
 		"motion": "latest",
-		"next": "16.1.6",
+		"next": "16.2.1",
 		"next-mdx-remote": "^6.0.0",
 		"next-themes": "^0.4.6",
 		"react": "19.2.3",

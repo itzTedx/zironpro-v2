@@ -1,78 +1,99 @@
 "use client";
 
+import type * as React from "react";
+
+import { mergeProps } from "@base-ui/react/merge-props";
+import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
-import { HTMLMotionProps, motion } from "motion/react";
+
+import { Spinner } from "@/components/ui/spinner";
 
 import { cn } from "@/lib/utils";
 
-import { Slot, WithAsChild } from "../primitives/slot";
-
-const buttonVariants = cva(
-	"group/button inline-flex shrink-0 cursor-pointer select-none items-center justify-center whitespace-nowrap rounded-lg border border-transparent bg-clip-padding font-display font-semibold text-sm outline-none transition-[box-shadow,color,background-color,border-color,outline-color,text-decoration-color,fill,stroke] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+export const buttonVariants = cva(
+	"relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-shadow before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-lg)-1px)] pointer-coarse:after:absolute pointer-coarse:after:size-full pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-64 data-loading:select-none data-loading:text-transparent sm:text-sm [&_svg:not([class*='opacity-'])]:opacity-80 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 	{
+		defaultVariants: {
+			size: "default",
+			variant: "default",
+		},
 		variants: {
+			size: {
+				default: "h-9 px-[calc(--spacing(3)-1px)]",
+				icon: "size-9 sm:size-8",
+				"icon-lg": "size-10 sm:size-9",
+				"icon-sm": "size-8 sm:size-7",
+				"icon-xl":
+					"size-11 sm:size-10 [&_svg:not([class*='size-'])]:size-5 sm:[&_svg:not([class*='size-'])]:size-4.5",
+				"icon-xs":
+					"size-7 rounded-md before:rounded-[calc(var(--radius-md)-1px)] sm:size-6 not-in-data-[slot=input-group]:[&_svg:not([class*='size-'])]:size-4 sm:not-in-data-[slot=input-group]:[&_svg:not([class*='size-'])]:size-3.5",
+				lg: "h-10 px-[calc(--spacing(3.5)-1px)] sm:h-9",
+				sm: "h-8 gap-1.5 px-[calc(--spacing(2.5)-1px)] sm:h-7",
+				xl: "h-11 px-[calc(--spacing(4)-1px)] text-lg sm:h-10 sm:text-base [&_svg:not([class*='size-'])]:size-5 sm:[&_svg:not([class*='size-'])]:size-4.5",
+				xs: "h-7 gap-1 rounded-md px-[calc(--spacing(2)-1px)] text-sm before:rounded-[calc(var(--radius-md)-1px)] sm:h-6 sm:text-xs [&_svg:not([class*='size-'])]:size-4 sm:[&_svg:not([class*='size-'])]:size-3.5",
+			},
 			variant: {
 				default:
-					"relative bg-primary text-white shadow-button-primary after:absolute after:inset-0 after:z-10 after:bg-linear-to-b after:from-white/15 hover:brightness-120",
-				outline:
-					"border-border bg-surface hover:border-white hover:bg-white hover:shadow-sm aria-expanded:bg-muted aria-expanded:text-foreground",
-				secondary:
-					"bg-secondary text-secondary-foreground shadow-sm aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
-				ghost:
-					"hover:bg-muted/30 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
+					"not-disabled:inset-shadow-[0_1px_--theme(--color-white/16%)] border-transparent bg-primary text-brand-950 shadow-primary/24 shadow-xs hover:bg-primary hover:text-brand-950 data-pressed:bg-primary/90 *:data-[slot=button-loading-indicator]:text-primary-foreground [:active,[data-pressed]]:inset-shadow-[0_1px_--theme(--color-black/8%)] [:disabled,:active,[data-pressed]]:shadow-none",
 				destructive:
-					"bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 dark:hover:bg-destructive/30",
-				link: "relative text-primary underline-offset-4 before:pointer-events-none before:absolute before:top-[1.5em] before:left-0 before:h-[0.05em] before:w-full before:origin-right before:scale-x-0 before:bg-current before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.4,0,0.2,1)] before:content-[''] hover:underline hover:before:origin-left hover:before:scale-x-100",
+					"not-disabled:inset-shadow-[0_1px_--theme(--color-white/16%)] border-destructive bg-destructive text-white shadow-destructive/24 shadow-xs hover:bg-destructive/90 data-pressed:bg-destructive/90 *:data-[slot=button-loading-indicator]:text-white [:active,[data-pressed]]:inset-shadow-[0_1px_--theme(--color-black/8%)] [:disabled,:active,[data-pressed]]:shadow-none",
+				"destructive-outline":
+					"border-input bg-popover not-dark:bg-clip-padding text-destructive-foreground shadow-xs/5 not-disabled:not-active:not-data-pressed:before:shadow-[0_1px_--theme(--color-black/4%)] hover:border-destructive/32 hover:bg-destructive/4 data-pressed:border-destructive/32 data-pressed:bg-destructive/4 *:data-[slot=button-loading-indicator]:text-foreground dark:bg-input/32 dark:not-disabled:before:shadow-[0_-1px_--theme(--color-white/2%)] dark:not-disabled:not-active:not-data-pressed:before:shadow-[0_-1px_--theme(--color-white/6%)] [:disabled,:active,[data-pressed]]:shadow-none",
+				ghost:
+					"border-transparent text-foreground hover:bg-accent data-pressed:bg-accent *:data-[slot=button-loading-indicator]:text-foreground",
+				link: "border-transparent text-foreground underline-offset-4 hover:underline data-pressed:underline *:data-[slot=button-loading-indicator]:text-foreground",
+				outline:
+					"border-input bg-popover not-dark:bg-clip-padding text-foreground shadow-xs/5 not-disabled:not-active:not-data-pressed:before:shadow-[0_1px_--theme(--color-black/4%)] hover:bg-accent/50 data-pressed:bg-accent/50 *:data-[slot=button-loading-indicator]:text-foreground dark:bg-input/32 dark:data-pressed:bg-input/64 dark:hover:bg-input/64 dark:not-disabled:before:shadow-[0_-1px_--theme(--color-white/2%)] dark:not-disabled:not-active:not-data-pressed:before:shadow-[0_-1px_--theme(--color-white/6%)] [:disabled,:active,[data-pressed]]:shadow-none",
+				secondary:
+					"border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/90 data-pressed:bg-secondary/90 *:data-[slot=button-loading-indicator]:text-secondary-foreground [:active,[data-pressed]]:bg-secondary/80",
 			},
-			size: {
-				default:
-					"h-10 gap-1.5 px-4 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-				xs: "h-6 gap-1 in-data-[slot=button-group]:rounded-lg rounded-[min(var(--radius-md),10px)] px-2 text-xs has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-				sm: "h-7 gap-1 in-data-[slot=button-group]:rounded-lg rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-				lg: "h-11 gap-1.5 px-5 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
-				icon: "size-10",
-				"icon-xs":
-					"size-6 in-data-[slot=button-group]:rounded-lg rounded-[min(var(--radius-md),10px)] [&_svg:not([class*='size-'])]:size-3",
-				"icon-sm":
-					"size-8 in-data-[slot=button-group]:rounded-lg rounded-[min(var(--radius-md),12px)]",
-				"icon-lg": "size-9",
-			},
-		},
-		defaultVariants: {
-			variant: "default",
-			size: "default",
 		},
 	}
 );
 
-type ButtonProps = WithAsChild<
-	HTMLMotionProps<"button"> & {
-		hoverScale?: number;
-		tapScale?: number;
-	}
-> &
-	VariantProps<typeof buttonVariants>;
-
-function Button({
-	className,
-	variant = "default",
-	size = "default",
-	hoverScale = 1.05,
-	tapScale = 0.95,
-	asChild,
-	...props
-}: ButtonProps) {
-	const Component = asChild ? Slot : motion.button;
-
-	return (
-		<Component
-			className={cn(buttonVariants({ variant, size, className }))}
-			data-slot="button"
-			whileHover={{ scale: hoverScale }}
-			whileTap={{ scale: tapScale }}
-			{...props}
-		/>
-	);
+export interface ButtonProps extends useRender.ComponentProps<"button"> {
+	variant?: VariantProps<typeof buttonVariants>["variant"];
+	size?: VariantProps<typeof buttonVariants>["size"];
+	loading?: boolean;
 }
 
-export { Button, buttonVariants, type ButtonProps };
+export function Button({
+	className,
+	variant,
+	size,
+	render,
+	children,
+	loading = false,
+	disabled: disabledProp,
+	...props
+}: ButtonProps): React.ReactElement {
+	const isDisabled: boolean = Boolean(loading || disabledProp);
+	const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>["type"] =
+		render ? undefined : "button";
+
+	const defaultProps = {
+		children: (
+			<>
+				{children}
+				{loading && (
+					<Spinner
+						className="pointer-events-none absolute"
+						data-slot="button-loading-indicator"
+					/>
+				)}
+			</>
+		),
+		className: cn(buttonVariants({ className, size, variant })),
+		"aria-disabled": loading || undefined,
+		"data-loading": loading ? "" : undefined,
+		"data-slot": "button",
+		disabled: isDisabled,
+		type: typeValue,
+	};
+
+	return useRender({
+		defaultTagName: "button",
+		props: mergeProps<"button">(defaultProps, props),
+		render,
+	});
+}

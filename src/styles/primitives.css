@@ -122,8 +122,8 @@
 	background:
 		repeating-linear-gradient(
 			to right,
-			var(--color-strong) 0,
-			var(--color-strong) 6px,
+			var(--color-dashed) 0,
+			var(--color-dashed) 6px,
 			transparent 6px,
 			transparent 12px
 		)
@@ -131,24 +131,24 @@
 		/* bottom */
 		repeating-linear-gradient(
 			to right,
-			var(--color-strong) 0,
-			var(--color-strong) 6px,
+			var(--color-dashed) 0,
+			var(--color-dashed) 6px,
 			transparent 6px,
 			transparent 12px
 		) bottom / 100% calc(var(--dash-bottom) * 1px) no-repeat,
 		/* left */
 		repeating-linear-gradient(
 			to bottom,
-			var(--color-strong) 0,
-			var(--color-strong) 6px,
+			var(--color-dashed) 0,
+			var(--color-dashed) 6px,
 			transparent 6px,
 			transparent 12px
 		) left / calc(var(--dash-left) * 1px) 100% no-repeat,
 		/* right */
 		repeating-linear-gradient(
 			to bottom,
-			var(--color-strong) 0,
-			var(--color-strong) 6px,
+			var(--color-dashed) 0,
+			var(--color-dashed) 6px,
 			transparent 6px,
 			transparent 12px
 		) right / calc(var(--dash-right) * 1px) 100% no-repeat;
@@ -228,8 +228,8 @@
 @utility stripe {
 	background: repeating-linear-gradient(
 		45deg,
-		var(--color-strong) 0,
-		var(--color-strong) 2px,
+		var(--color-dashed) 0,
+		var(--color-dashed) 2px,
 		transparent 2px,
 		transparent 10px
 	);

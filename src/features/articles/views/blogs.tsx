@@ -16,14 +16,12 @@ export const Blogs = () => {
 					Marketing Insights & Resources
 				</h2>
 				<Button
-					asChild
 					className="group w-40 justify-between bg-foreground shadow-button-neutral"
 					data-umami-event="Home - More blogs"
+					render={<Link href="/blogs" />}
 				>
-					<Link href="/blogs">
-						More blogs{" "}
-						<IconArrowRightTag className="size-5 transition-transform duration-300 ease-in group-hover:translate-x-1" />
-					</Link>
+					More blogs{" "}
+					<IconArrowRightTag className="size-5 transition-transform duration-300 ease-in group-hover:translate-x-1" />
 				</Button>
 			</header>
 

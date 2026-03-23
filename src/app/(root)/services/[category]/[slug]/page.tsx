@@ -76,6 +76,7 @@ export default async function ServicePage({
 							alt={service.metadata.title}
 							className="pointer-events-none object-cover"
 							fill
+							sizes="(max-width: 1280px) 100vw, 1280px"
 							src={service.metadata.image}
 						/>
 					</div>
@@ -107,6 +108,8 @@ export default async function ServicePage({
 						FaqContent,
 						Image: (props) => (
 							<Image
+								height={1000}
+								width={1000}
 								{...props}
 								className={cn(
 									"rounded-2xl transition-transform hover:-translate-y-2",

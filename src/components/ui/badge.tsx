@@ -14,12 +14,12 @@ const badgeVariants = cva(
 		variants: {
 			size: {
 				default:
-					"h-7 min-w-6 px-[calc(--spacing(3.5)-1px)] text-sm shadow-sm sm:h-8 sm:min-w-9 sm:text-sm",
+					"h-7 min-w-6 px-[calc(--spacing(3.5)-1px)] text-xs shadow-sm sm:h-8 sm:min-w-9 sm:text-sm",
 				lg: "h-8 min-w-8 px-[calc(--spacing(4)-1px)] text-base sm:h-9 sm:min-w-9 sm:text-base",
 				sm: "h-5 w-fit min-w-5 px-[calc(--spacing(2)-1px)] text-xs sm:text-[.625rem]",
 			},
 			variant: {
-				default: "bg-white text-black [button,a&]:hover:bg-primary/90",
+				default: "bg-gray-1500 text-card [button,a&]:hover:bg-primary/90",
 				destructive:
 					"bg-destructive text-white [button,a&]:hover:bg-destructive/90",
 				error:

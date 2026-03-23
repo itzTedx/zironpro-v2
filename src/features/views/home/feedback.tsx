@@ -20,7 +20,7 @@ import { FEEDBACK_ITEMS } from "./data/feedbacks";
 export const Feedback = () => {
 	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
 		Autoplay({
-			delay: 2000,
+			delay: 3000,
 		}),
 
 		WheelGesturesPlugin(),

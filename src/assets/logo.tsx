@@ -5,6 +5,134 @@ export const Logo = (props: SVGProps) => {
 		<svg
 			{...props}
 			fill="none"
+			height="67"
+			viewBox="0 0 406 67"
+			width="406"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				d="M14 46.0001H41.9V54.5001H0V46.0001L24.9 21.1L27 19.3H0.399994V10.8H41.1V19.3L16.2 44.2001L14 46.0001Z"
+				fill="url(#paint0_linear_747_1357)"
+			/>
+			<path
+				d="M49.8 54.5001V10.8H60.7V54.5001H49.8Z"
+				fill="url(#paint1_linear_747_1357)"
+			/>
+			<path
+				d="M101.6 54.5001L91.3 40.3H82.2V54.5001H71.3V10.8H92.2C105.2 10.8 112.5 16.4001 112.5 25.7001V25.8C112.5 32.5 108.7 37.1001 101.8 39.2001L113.8 54.6H101.6V54.5001ZM82.2 19.2001V32.3H92.2C98 32.3 101.6 30.5001 101.6 25.7001V25.6C101.6 21 98 19.1 92.2 19.1H82.2V19.2001Z"
+				fill="url(#paint2_linear_747_1357)"
+			/>
+			<path
+				d="M144.3 10C160.6 10 170.5 19.3 170.5 32.6V32.7C170.5 46 160.6 55.3 144.3 55.3H144.2C127.9 55.3 118 46 118 32.7V32.6C118 19.4 127.9 10 144.3 10ZM144.3 46.5C153.8 46.5 159.6 40.8 159.6 32.6V32.5C159.6 24.4 153.8 18.7 144.3 18.7H144.2C134.7 18.7 128.9 24.4 128.9 32.5V32.6C128.9 40.8 134.7 46.5 144.3 46.5Z"
+				fill="url(#paint3_linear_747_1357)"
+			/>
+			<path
+				d="M212.4 10.8H223V54.5001H213.4L188.8 26.8V54.5001H178.2V10.8H187.8L212.4 38.6V10.8Z"
+				fill="url(#paint4_linear_747_1357)"
+			/>
+			<path
+				d="M391.9 65.1H247.6C241 65.1 235.6 59.7 235.6 53.1V13.5C235.6 6.9 241 1.5 247.6 1.5H391.9C398.5 1.5 403.9 6.9 403.9 13.5V53.2C403.9 59.7 398.5 65.1 391.9 65.1Z"
+				fill="#070808"
+			/>
+			<path
+				d="M394.9 66.1H244.6C239 66.1 234.4 61.5 234.4 55.9V10.2C234.4 4.60001 239 0 244.6 0H394.9C400.5 0 405.1 4.60001 405.1 10.2V55.9C405.1 61.6 400.6 66.1 394.9 66.1ZM244.6 3C240.6 3 237.3 6.29999 237.3 10.3V56C237.3 60 240.6 63.3 244.6 63.3H394.9C398.9 63.3 402.2 60 402.2 56V10.3C402.2 6.29999 398.9 3 394.9 3H244.6Z"
+				fill="url(#paint5_linear_747_1357)"
+			/>
+			<path
+				d="M269.1 11.3999C282.6 11.3999 289.7 16.7999 289.7 26.8999V26.9999C289.7 37.0999 282.6 42.4999 269.1 42.4999H260.3V53.6999H249.8V11.3999H269.1ZM279.1 26.8999C279.1 22.0999 275.7 19.8999 269.1 19.8999H260.3V33.8999H269.1C275.7 33.8999 279.1 31.8999 279.1 26.8999Z"
+				fill="white"
+			/>
+			<path
+				d="M326 53.6999L316 39.9999H307.2V53.6999H296.7V11.3999H316.9C329.5 11.3999 336.6 16.7999 336.6 25.7999V25.8999C336.6 32.3999 333 36.7999 326.2 38.8999L337.8 53.7999H326V53.6999ZM307.2 19.4999V32.1999H316.9C322.5 32.1999 326 30.3999 326 25.7999V25.6999C326 21.1999 322.5 19.3999 316.9 19.3999H307.2V19.4999Z"
+				fill="white"
+			/>
+			<path
+				d="M367.3 10.7C383 10.7 392.7 19.6999 392.7 32.4999V32.5999C392.7 45.3999 383.1 54.4999 367.3 54.4999H367.2C351.5 54.4999 341.8 45.4999 341.8 32.5999V32.4999C341.9 19.6999 351.5 10.7 367.3 10.7ZM367.3 45.9999C376.5 45.9999 382.1 40.3999 382.1 32.5999V32.4999C382.1 24.6999 376.5 19.0999 367.3 19.0999H367.2C358 19.0999 352.4 24.6999 352.4 32.4999V32.5999C352.4 40.3999 358.1 45.9999 367.3 45.9999Z"
+				fill="white"
+			/>
+			<defs>
+				<linearGradient
+					gradientUnits="userSpaceOnUse"
+					id="paint0_linear_747_1357"
+					x1="19.7738"
+					x2="21.3058"
+					y1="12.5333"
+					y2="57.725"
+				>
+					<stop offset="1.38522e-07" stopColor="#E5C27A" />
+					<stop offset="0.5056" stopColor="#C9A86A" />
+					<stop offset="1" stopColor="#A67C2E" />
+				</linearGradient>
+				<linearGradient
+					gradientUnits="userSpaceOnUse"
+					id="paint1_linear_747_1357"
+					x1="54.5018"
+					x2="56.0337"
+					y1="11.3561"
+					y2="56.5477"
+				>
+					<stop offset="1.38522e-07" stopColor="#E5C27A" />
+					<stop offset="0.5056" stopColor="#C9A86A" />
+					<stop offset="1" stopColor="#A67C2E" />
+				</linearGradient>
+				<linearGradient
+					gradientUnits="userSpaceOnUse"
+					id="paint2_linear_747_1357"
+					x1="90.9862"
+					x2="92.5181"
+					y1="10.1021"
+					y2="55.2936"
+				>
+					<stop offset="1.38522e-07" stopColor="#E5C27A" />
+					<stop offset="0.5056" stopColor="#C9A86A" />
+					<stop offset="1" stopColor="#A67C2E" />
+				</linearGradient>
+				<linearGradient
+					gradientUnits="userSpaceOnUse"
+					id="paint3_linear_747_1357"
+					x1="143.396"
+					x2="144.929"
+					y1="8.3428"
+					y2="53.5717"
+				>
+					<stop offset="1.38522e-07" stopColor="#E5C27A" />
+					<stop offset="0.5056" stopColor="#C9A86A" />
+					<stop offset="1" stopColor="#A67C2E" />
+				</linearGradient>
+				<linearGradient
+					gradientUnits="userSpaceOnUse"
+					id="paint4_linear_747_1357"
+					x1="199.657"
+					x2="201.189"
+					y1="6.43565"
+					y2="51.6201"
+				>
+					<stop offset="1.38522e-07" stopColor="#E5C27A" />
+					<stop offset="0.5056" stopColor="#C9A86A" />
+					<stop offset="1" stopColor="#A67C2E" />
+				</linearGradient>
+				<linearGradient
+					gradientUnits="userSpaceOnUse"
+					id="paint5_linear_747_1357"
+					x1="319.009"
+					x2="320.541"
+					y1="-0.5094"
+					y2="66.3842"
+				>
+					<stop offset="2.13112e-07" stopColor="#E5C27A" />
+					<stop offset="0.5056" stopColor="#C9A86A" />
+					<stop offset="1" stopColor="#A67C2E" />
+				</linearGradient>
+			</defs>
+		</svg>
+	);
+};
+
+export const OldLogo = (props: SVGProps) => {
+	return (
+		<svg
+			{...props}
+			fill="none"
 			height="42"
 			viewBox="0 0 49 42"
 			width="49"

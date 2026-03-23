@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 
 import { Blogs } from "@/features/articles/views/blogs";
 import { Achievements } from "@/features/views/home/achievements";
-import { Feedback } from "@/features/views/home/feedback";
 import { Hero } from "@/features/views/home/hero";
 import { Services } from "@/features/views/home/services";
 import { VideoReel } from "@/features/views/home/video-reel";
@@ -19,7 +18,7 @@ export default function Home() {
 	return (
 		<main>
 			<Hero />
-			<Feedback />
+			{/* <Feedback /> */}
 
 			<Achievements />
 
