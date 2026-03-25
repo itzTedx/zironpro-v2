@@ -29,7 +29,7 @@ export const Header = ({
 					children ? "sm:justify-between" : "sm:justify-center"
 				)}
 			>
-				<div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+				<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
 					<h2 className="font-display font-semibold text-4xl text-gray-1000 leading-[0.9] tracking-tighter sm:text-5xl lg:text-6xl xl:text-7xl">
 						{title}
 					</h2>

@@ -1,6 +1,6 @@
-import { IconCog } from "@/assets/icons/cog";
 import { IconDesktopPoint } from "@/assets/icons/desktop";
 import { IconPlay } from "@/assets/icons/play";
+import { IconPointer } from "@/assets/icons/pointer";
 import { IconPrinter } from "@/assets/icons/printer";
 import { IconSpeaker } from "@/assets/icons/speaker";
 import { IconTarget } from "@/assets/icons/target";
@@ -199,7 +199,7 @@ export const SERVICES = [
 	{
 		id: 6,
 		slug: "full-stack",
-		icon: IconCog,
+		icon: IconPointer,
 		color: "text-red-500",
 		bg: "/images/services/bg/bg-full-stack.png",
 		title: "Full-stack Marketing",

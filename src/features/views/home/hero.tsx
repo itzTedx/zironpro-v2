@@ -26,7 +26,7 @@ export const Hero = () => {
 						<div className="size-1.5 rounded-full bg-violet-500" /> Ready to grow?
 						We’re ready to go
 					</Badge> */}
-					<h2 className="text-center font-black font-display text-4xl text-primary uppercase md:text-6xl lg:text-7xl">
+					<h2 className="text-center font-black font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
 						Turn your brand into a revenue machine
 					</h2>
 					<p className="text-balance text-center font-medium text-muted leading-relaxed sm:text-lg md:text-xl">
