@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -11,6 +12,7 @@ import { Button } from "@/components/ui/button";
 
 import { IconArrowRightTag } from "@/assets/icons/arrow";
 
+import { siteConfig } from "@/data/site-config";
 import { getServiceBySlug } from "@/features/services/actions/query";
 import { Card } from "@/features/services/components/card";
 import { Faq, FaqContent } from "@/features/services/components/faq";
@@ -37,6 +39,50 @@ export async function generateStaticParams() {
 	});
 
 	return params;
+}
+
+export async function generateMetadata({
+	params,
+}: PageProps<"/services/[category]/[slug]">): Promise<Metadata> {
+	const { category, slug } = await params;
+	const service = getServiceBySlug(category, slug);
+
+	if (!service) {
+		return {
+			title: "Service Not Found",
+		};
+	}
+
+	const metaTitle = service.metadata.meta?.title;
+	const metaDescription = service.metadata.meta?.description;
+
+	const title =
+		metaTitle ?? `${service.metadata.title} - ${siteConfig.shortName}`;
+	const description = metaDescription ?? service.metadata.description;
+	const canonicalPath = `/services/${category}/${slug}`;
+
+	return {
+		title,
+		description,
+		alternates: {
+			canonical: canonicalPath,
+		},
+		openGraph: {
+			title,
+			description,
+			url: `${siteConfig.url}${canonicalPath}`,
+			images: [service.metadata.image],
+			type: "website",
+			siteName: siteConfig.title,
+		},
+		twitter: {
+			card: "summary_large_image",
+			title,
+			description,
+			images: [service.metadata.image],
+			creator: "@",
+		},
+	};
 }
 
 export default async function ServicePage({

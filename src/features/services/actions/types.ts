@@ -4,4 +4,8 @@ export type ServiceMetadata = {
 	image: string;
 	slug: string;
 	category: string;
+	meta?: {
+		title: string;
+		description: string;
+	};
 };
