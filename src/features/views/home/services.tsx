@@ -39,7 +39,7 @@ export const Services = () => {
 					</Button>
 					<Button
 						data-umami-event="Home - Build your vision"
-						render={<Link href="/contact" />}
+						render={<Link href="/services" />}
 						variant="ghost"
 					>
 						Explore our services
@@ -58,13 +58,20 @@ export const Services = () => {
 			</div>
 			{/* <ServicesStickyCards /> */}
 			{/* <ServicesLists /> */}
-			<div className="dashed dashed-b-0 container flex max-w-7xl items-center gap-3 py-12">
-				<h4 className="text-center font-medium text-2xl">
-					Ready to take your business to the next level?
-				</h4>
-				<Button render={<Link href="/contact" />} variant="secondary">
-					Build your vision with us <IconArrowRightTag />
-				</Button>
+			<div className="relative overflow-hidden bg-gray-1400">
+				<div className="dashed dashed-b-0 container flex max-w-7xl items-center justify-center gap-6 py-12">
+					<h4 className="text-center font-medium text-3xl text-muted">
+						Ready to take your business to the next level?
+					</h4>
+					<Button
+						className="gap-4"
+						render={<Link href="/contact" />}
+						size="xl"
+						variant="secondary"
+					>
+						Build your vision with us <IconArrowRightTag />
+					</Button>
+				</div>
 			</div>
 			<div className="absolute inset-x-0 top-0 -z-10 h-1/4 bg-linear-180 from-white" />
 			<div className="absolute inset-x-0 bottom-0 -z-10 h-1/4 bg-linear-0 from-white" />

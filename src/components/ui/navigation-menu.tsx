@@ -60,7 +60,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-	"group/navigation-menu-trigger relative z-999 inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 font-display font-medium text-primary-foreground text-sm outline-none transition-all hover:bg-primary-secondary hover:text-white focus:bg-primary-secondary focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-open:bg-primary-secondary data-popup-open:bg-primary-secondary data-open:text-white data-popup-open:text-white data-open:focus:bg-primary-secondary data-open:focus:text-white data-open:hover:bg-primary-secondary data-popup-open:hover:bg-primary-secondary data-open:hover:text-white data-popup-open:hover:text-white"
+	"group/navigation-menu-trigger relative z-999 inline-flex h-9 w-max items-center justify-center rounded-lg px-2.5 py-1.5 font-display font-medium text-primary-foreground text-sm outline-none transition-all hover:text-primary focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-open:text-primary data-popup-open:text-primary data-open:focus:text-primary data-open:hover:text-primary data-popup-open:hover:text-primary"
 );
 
 function NavigationMenuTrigger({
@@ -135,7 +135,7 @@ function NavigationMenuLink({
 	return (
 		<NavigationMenuPrimitive.Link
 			className={cn(
-				"flex items-center gap-2 in-data-[slot=navigation-menu-content]:rounded-xl rounded-xl p-2 text-sm outline-none transition-all hover:bg-muted focus:bg-muted focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 data-active:bg-muted/50 data-active:focus:bg-muted data-active:hover:bg-muted [&_svg:not([class*='size-'])]:size-4",
+				"flex items-center gap-2 in-data-[slot=navigation-menu-content]:rounded-xl rounded-xl p-2 text-sm outline-none transition-all hover:text-primary focus:text-primary focus-visible:outline-1 focus-visible:ring-[3px] focus-visible:ring-ring/50 data-active:text-primary data-active:focus:text-primary data-active:hover:text-primary [&_svg:not([class*='size-'])]:size-4",
 				className
 			)}
 			data-slot="navigation-menu-link"

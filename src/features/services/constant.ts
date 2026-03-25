@@ -12,7 +12,7 @@ export const SERVICES = [
 		color: "text-green-500",
 		bg: "/images/services/bg/bg-branding.png",
 		icon: IconTarget,
-		title: "Brand Strategy",
+		title: "Branding",
 		alt: "Logo design, visual identity, and brand guidelines",
 		description:
 			"Building strong, memorable brands through strategy, identity design, and consistent visual systems.",

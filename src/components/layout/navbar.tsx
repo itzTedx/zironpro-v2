@@ -29,7 +29,7 @@ export const Navbar = () => {
 	const router = usePathname();
 	const isScrolled = useIsScrolled(80);
 
-	const homepage = router === "/";
+	const homepage = router === "/" || router === "/services";
 
 	return (
 		<header

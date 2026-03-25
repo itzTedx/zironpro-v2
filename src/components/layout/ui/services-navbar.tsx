@@ -17,9 +17,11 @@ import { Submenu } from "../data/types";
 export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 	const firstSubmenuId = submenu[0]?.id ?? null;
 	const [hoveredIdx, setHoveredIdx] = useState<string | null>(firstSubmenuId);
+	const [hoveredListSlug, setHoveredListSlug] = useState<string | null>(null);
 	const [hoveredListPreview, setHoveredListPreview] = useState<{
 		image: string;
 		title: string;
+		description: string;
 	} | null>(null);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -39,6 +41,7 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 
 	useEffect(() => {
 		setHoveredListPreview(null);
+		setHoveredListSlug(null);
 	}, [hoveredSubmenu?.id]);
 
 	// Scroll to the hovered image
@@ -81,13 +84,8 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 								className="group relative z-10 flex items-center gap-2 rounded-xl p-1"
 								href={sub.href as Route}
 							>
-								<div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-input bg-floating">
-									<Icon
-										className={cn(
-											"size-5 transition-colors duration-300 group-hover:text-primary",
-											sub.color
-										)}
-									/>
+								<div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-input bg-floating">
+									<Icon className={cn("size-6", sub.color)} />
 								</div>
 								<div className="space-y-1">
 									<p className="font-medium text-base leading-none">
@@ -143,6 +141,7 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 										setHoveredListPreview({
 											image: list.image,
 											title: list.title,
+											description: list.description,
 										})
 									}
 									onMouseLeave={() => setHoveredListPreview(null)}
@@ -153,11 +152,21 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 									}}
 								>
 									<Link
-										className="group flex items-center justify-between py-2 text-sm"
+										className={cn(
+											"group flex items-center justify-between py-2 font-medium text-sm transition-colors",
+											hoveredListSlug === list.slug && hoveredSubmenu.color
+										)}
 										href={`${hoveredSubmenuBasePath}/${list.slug}` as Route}
+										onMouseEnter={() => setHoveredListSlug(list.slug)}
+										onMouseLeave={() => setHoveredListSlug(null)}
 									>
 										{list.title}
-										<IconArrowRight className="size-3 text-gray-300 transition-colors duration-300 group-hover:text-gray-500" />
+										<IconArrowRight
+											className={cn(
+												"size-3 text-gray-300 transition-colors duration-300",
+												hoveredListSlug === list.slug && hoveredSubmenu.color
+											)}
+										/>
 									</Link>
 								</motion.li>
 							))}
@@ -182,7 +191,25 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 							sizes="(max-width: 1280px) 30vw, 400px"
 							src={previewImageSrc}
 						/>
-						<p className="relative z-10">{hoveredListPreview?.title}</p>
+						<AnimatePresence>
+							{hoveredListPreview && (
+								<motion.div
+									animate={{ opacity: 1 }}
+									className="relative z-10 flex h-full w-full flex-col justify-end bg-linear-to-t from-card/90 p-6"
+									exit={{ opacity: 0 }}
+									initial={{ opacity: 0 }}
+									key={hoveredListPreview.title}
+									transition={{ duration: 0.16, ease: "easeOut" }}
+								>
+									<p className="font-medium text-foreground text-xl">
+										{hoveredListPreview.title}
+									</p>
+									<p className="text-muted-foreground text-sm">
+										{hoveredListPreview.description}
+									</p>
+								</motion.div>
+							)}
+						</AnimatePresence>
 					</motion.div>
 				</AnimatePresence>
 			</div>
