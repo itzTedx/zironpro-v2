@@ -19,13 +19,13 @@ import { SERVICES } from "@/features/services/constant";
 
 export default function WorksPage() {
 	return (
-		<main>
-			<header className="dashed dashed-x container mx-auto grid max-w-7xl grid-cols-2 gap-12 py-12">
-				<h1 className="font-semibold text-7xl text-primary">
+		<main className="pt-14">
+			<header className="dashed dashed-x container mx-auto grid max-w-7xl gap-6 py-9 sm:py-12 md:grid-cols-2 md:gap-12 md:py-16">
+				<h1 className="font-semibold text-4xl text-primary md:text-7xl">
 					A closer look at our recent work.
 				</h1>
 				<div className="space-y-3">
-					<p className="text-muted-foreground text-xl">
+					<p className="text-lg text-muted-foreground md:text-xl">
 						Here’s a look at what we’ve been building with our clients. Every
 						project is different, but what stays the same is the craft, speed,
 						and thinking process behind it.

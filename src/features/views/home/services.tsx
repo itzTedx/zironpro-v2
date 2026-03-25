@@ -51,7 +51,10 @@ export const Services = () => {
 			</Header>
 
 			<div className="dashed-b-0 dashed container grid max-w-7xl gap-4 py-12 md:grid-cols-3 md:py-16 lg:py-20">
-				<div className="overflow-hidden rounded-2xl bg-orange-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg">
+				<Link
+					className="overflow-hidden rounded-2xl bg-orange-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg"
+					href="/services/branding"
+				>
 					<div className="space-y-3 p-9">
 						<div className="flex items-center gap-3">
 							<div className="squircle flex size-10 items-center justify-center rounded-2xl bg-orange-100">
@@ -70,9 +73,12 @@ export const Services = () => {
 						src="/images/bento/branding.webp"
 						width={800}
 					/>
-				</div>
+				</Link>
 
-				<div className="overflow-hidden rounded-2xl bg-green-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg">
+				<Link
+					className="overflow-hidden rounded-2xl bg-green-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg"
+					href="/services/websites"
+				>
 					<div className="space-y-3 p-9">
 						<div className="flex items-center gap-3">
 							<div className="squircle flex size-10 items-center justify-center rounded-2xl bg-green-100">
@@ -91,9 +97,12 @@ export const Services = () => {
 						src="/images/bento/web-dev-design.webp"
 						width={800}
 					/>
-				</div>
+				</Link>
 
-				<div className="overflow-hidden rounded-2xl bg-fuchsia-50 shadow-md transition-[box-shadow_scale] hover:scale-102 hover:shadow-lg">
+				<Link
+					className="overflow-hidden rounded-2xl bg-fuchsia-50 shadow-md transition-[box-shadow_scale] hover:scale-102 hover:shadow-lg"
+					href="/services/marketing"
+				>
 					<div className="space-y-3 p-9">
 						<div className="flex items-center gap-3">
 							<div className="squircle flex size-10 items-center justify-center rounded-2xl bg-fuchsia-100">
@@ -112,9 +121,12 @@ export const Services = () => {
 						src="/images/bento/social-media-creatives.webp"
 						width={800}
 					/>
-				</div>
+				</Link>
 
-				<div className="overflow-hidden rounded-2xl bg-cyan-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg">
+				<Link
+					className="overflow-hidden rounded-2xl bg-cyan-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg"
+					href="/services/printing"
+				>
 					<div className="space-y-3 p-9">
 						<div className="flex items-center gap-3">
 							<div className="squircle flex size-10 items-center justify-center rounded-2xl bg-cyan-100">
@@ -135,9 +147,12 @@ export const Services = () => {
 						src="/images/bento/paid-ads.webp"
 						width={800}
 					/>
-				</div>
+				</Link>
 
-				<div className="overflow-hidden rounded-2xl bg-blue-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg">
+				<Link
+					className="overflow-hidden rounded-2xl bg-blue-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg"
+					href="/services/motion"
+				>
 					<div className="space-y-3 p-9">
 						<div className="flex items-center gap-3">
 							<div className="squircle flex size-10 items-center justify-center rounded-2xl bg-blue-100">
@@ -156,9 +171,12 @@ export const Services = () => {
 						src="/images/bento/paid-ads.webp"
 						width={800}
 					/>
-				</div>
+				</Link>
 
-				<div className="overflow-hidden rounded-2xl bg-purple-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg">
+				<Link
+					className="overflow-hidden rounded-2xl bg-purple-50 shadow-md transition-[box-shadow_translate] hover:scale-102 hover:shadow-lg"
+					href="/services/full-stack"
+				>
 					<div className="space-y-3 p-9">
 						<div className="flex items-center gap-3">
 							<div className="squircle flex size-10 items-center justify-center rounded-2xl bg-purple-100">
@@ -177,7 +195,7 @@ export const Services = () => {
 						src="/images/bento/conversion.webp"
 						width={800}
 					/>
-				</div>
+				</Link>
 			</div>
 
 			<div className="dashed container max-w-7xl py-12 md:py-16 lg:py-20">
@@ -198,7 +216,7 @@ export const Services = () => {
 			{/* <ServicesStickyCards /> */}
 			{/* <ServicesLists /> */}
 			<div className="relative overflow-hidden bg-[radial-gradient(ellipse_at_bottom,var(--color-brand-950)_0%,#000_100%)]">
-				<div className="dashed dashed-b-0 container relative z-10 flex max-w-7xl items-center justify-center gap-6 py-12">
+				<div className="dashed dashed-b-0 container relative z-10 flex max-w-7xl flex-col items-center justify-center gap-6 py-12 md:flex-row md:flex-row">
 					<h4 className="text-center font-medium text-3xl text-muted">
 						Ready to take your business to the next level?
 					</h4>

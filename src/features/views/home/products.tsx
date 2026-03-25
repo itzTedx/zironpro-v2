@@ -26,7 +26,7 @@ export const Products = () => {
 						const Icon = product.icon!;
 						return (
 							<div
-								className="relative flex min-w-3xs translate-y-10 flex-col items-center rounded-t-xl px-9 pt-6 pb-12 text-card transition-transform hover:translate-y-0 data-[product=crm]:bg-yellow-300/80 data-[product=tap]:bg-blue-500 data-[product=crm]:text-foreground"
+								className="relative flex translate-y-10 flex-col items-center rounded-t-xl px-9 pt-6 pb-12 text-card transition-transform hover:translate-y-0 data-[product=crm]:bg-yellow-300/80 data-[product=tap]:bg-blue-500 data-[product=crm]:text-foreground md:min-w-3xs"
 								data-product={product.id}
 								key={product.id}
 							>
@@ -42,7 +42,7 @@ export const Products = () => {
 								<Icon />
 								<h3 className="font-bold text-2xl">{product.title}</h3>
 
-								<p>{product.description}</p>
+								<p className="text-sm">{product.description}</p>
 							</div>
 						);
 					})}

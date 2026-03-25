@@ -90,15 +90,13 @@ export function MobileNav() {
 				</nav>
 				<DrawerFooter>
 					<Button
-						asChild
 						data-umami-event="Mobile nav - Start a project"
+						render={<Link href="/contact" />}
 						size="lg"
 						variant="default"
 					>
-						<Link href="/contact">
-							Start a project
-							<IconCaretRight className="hidden md:block" />
-						</Link>
+						Start a project
+						<IconCaretRight className="hidden md:block" />
 					</Button>
 				</DrawerFooter>
 			</DrawerContent>

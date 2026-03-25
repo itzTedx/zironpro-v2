@@ -25,7 +25,7 @@ export const Header = ({
 		>
 			<div
 				className={cn(
-					"container flex flex-col sm:flex-row sm:items-center",
+					"container flex flex-col gap-4 sm:flex-row sm:items-center",
 					children ? "sm:justify-between" : "sm:justify-center"
 				)}
 			>

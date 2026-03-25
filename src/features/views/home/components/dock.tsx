@@ -45,14 +45,9 @@ export function DockIcon({
 
 	return (
 		<>
-			{/* <style jsx>
-				{`
-          
-        `}
-			</style> */}
 			<li
 				className={cn(
-					"icon group/li flex h-(--icon-size) w-(--icon-size) cursor-pointer items-center justify-center px-[calc(var(--icon-size)*0.075)] hover:-mt-[calc(var(--icon-size)/2)] hover:h-[calc(var(--icon-size)*1.5)] hover:w-[calc(var(--icon-size)*1.5)] [&_img]:object-contain",
+					"icon group/li flex w-(--icon-size) cursor-pointer items-center justify-center px-[calc(var(--icon-size)*0.075)] hover:-mt-[calc(var(--icon-size)/2)] hover:h-[calc(var(--icon-size)*1.5)] hover:w-[calc(var(--icon-size)*1.5)] md:h-(--icon-size) [&_img]:object-contain",
 					className
 				)}
 				onMouseMove={handleIconHover}
@@ -89,7 +84,7 @@ export function Dock({
 	className,
 	children,
 	maxAdditionalSize = 5,
-	iconSize = 72,
+	iconSize = 52,
 }: DockProps) {
 	const dockRef = useRef<HTMLDivElement | null>(null);
 
@@ -121,7 +116,7 @@ export function Dock({
 		<nav aria-label="Main Dock" ref={dockRef} role="navigation">
 			<ul
 				className={cn(
-					"flex items-center rounded-xl border border-gray-100 bg-linear-to-t from-neutral-50 to-white p-1",
+					"flex items-center rounded-xl border border-gray-100 bg-linear-to-t from-gray-50 to-white p-1",
 					className
 				)}
 			>
