@@ -31,20 +31,18 @@ export default function WorksPage() {
 						and thinking process behind it.
 					</p>
 					<Button
-						asChild
 						className="group w-full flex-1 justify-between gap-2 md:w-60"
 						data-umami-event="Our works - Get started"
+						render={<Link href="/services" />}
 						size="lg"
 					>
-						<Link href="/services">
-							<span>
-								Get started{" "}
-								<span className="hidden font-normal text-primary-secondary md:inline">
-									- it’s free
-								</span>
+						<span>
+							Get started{" "}
+							<span className="hidden font-normal text-primary-secondary md:inline">
+								- it’s free
 							</span>
-							<IconArrowRightTag className="size-5 transition-transform duration-300 ease-in group-hover:translate-x-1" />
-						</Link>
+						</span>
+						<IconArrowRightTag className="size-5 transition-transform duration-300 ease-in group-hover:translate-x-1" />
 					</Button>
 				</div>
 			</header>
@@ -72,8 +70,8 @@ export default function WorksPage() {
 										className="transition-colors duration-300 md:hidden"
 										render={
 											<Link
-												href="/services/websites"
 												data-umami-event="Our works - Website Design & Dev"
+												href="/services/websites"
 											/>
 										}
 										variant="ghost"
@@ -90,8 +88,8 @@ export default function WorksPage() {
 										className="hidden transition-colors duration-300 md:inline-flex"
 										render={
 											<Link
-												href="/services/websites"
 												data-umami-event="Our works - Website Design & Dev"
+												href="/services/websites"
 											/>
 										}
 										variant="ghost"
@@ -110,7 +108,13 @@ export default function WorksPage() {
 
 							<FramePanel>
 								<div className="relative aspect-video w-full overflow-hidden rounded-xl">
-									<Image alt="" fill src="/images/works/direct-ls.webp" />
+									<Image
+										alt=""
+										className="object-cover"
+										fill
+										sizes="(max-width: 1280px) 100vw, 1280px"
+										src="/images/works/direct-ls.webp"
+									/>
 								</div>
 							</FramePanel>
 							<FrameFooter className="px-1.5 py-2">

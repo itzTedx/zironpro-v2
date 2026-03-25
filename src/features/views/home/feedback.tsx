@@ -73,6 +73,7 @@ export const Feedback = () => {
 														alt="Background sky blue gradient"
 														className="object-cover opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
 														fill
+														sizes="(max-width: 768px) 80vw, 30vw"
 														src={item.gradientImage}
 													/>
 												</div>

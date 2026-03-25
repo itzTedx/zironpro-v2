@@ -10,6 +10,7 @@ export const SERVICES = [
 		id: 1,
 		slug: "branding",
 		color: "text-green-500",
+		bg: "/images/services/bg/bg-branding.png",
 		icon: IconTarget,
 		title: "Brand Strategy",
 		alt: "Logo design, visual identity, and brand guidelines",
@@ -54,6 +55,7 @@ export const SERVICES = [
 		slug: "websites",
 		icon: IconDesktopPoint,
 		color: "text-blue-500",
+		bg: "/images/services/bg/bg-websites.png",
 		title: "Websites",
 		description:
 			"Designing and developing fast, scalable, and conversion-focused websites that grow with your business.",
@@ -91,6 +93,7 @@ export const SERVICES = [
 		slug: "marketing",
 		icon: IconSpeaker,
 		color: "text-yellow-500",
+		bg: "/images/services/bg/bg-marketing.png",
 		title: "Digital Marketing",
 		description:
 			"Driving visibility, engagement, and leads through data-driven digital marketing strategies.",
@@ -122,6 +125,7 @@ export const SERVICES = [
 		slug: "printing",
 		icon: IconPrinter,
 		color: "text-purple-500",
+		bg: "/images/services/bg/bg-printing.png",
 		title: "Printing & Corporate Gifts",
 		description:
 			"High-quality printing and branded merchandise that enhance visibility and leave a lasting impression.",
@@ -165,6 +169,7 @@ export const SERVICES = [
 		slug: "motion",
 		icon: IconPlay,
 		color: "text-orange-500",
+		bg: "/images/services/bg/bg-motion.png",
 		title: "Motion Design & Video",
 		description:
 			"Bringing stories to life through engaging motion graphics and impactful video content.",
@@ -196,6 +201,7 @@ export const SERVICES = [
 		slug: "full-stack",
 		icon: IconCog,
 		color: "text-red-500",
+		bg: "/images/services/bg/bg-full-stack.png",
 		title: "Full-stack Marketing",
 		description:
 			"End-to-end marketing solutions that align strategy, content, and execution for scalable growth.",

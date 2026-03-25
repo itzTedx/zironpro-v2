@@ -47,7 +47,7 @@ const StickyCard = ({
 			ref={container}
 		>
 			<motion.div
-				className="squircle relative grid origin-top gap-6 overflow-hidden rounded-5xl bg-card p-6 shadow-sm md:w-7xl md:grid-cols-2 md:p-9"
+				className="squircle relative grid origin-top transform-gpu gap-6 overflow-hidden rounded-5xl bg-card p-6 shadow-sm md:w-7xl md:grid-cols-2 md:p-9"
 				style={{
 					scale,
 					top: `calc(-12vh + ${i * 20 + 300}px)`,
@@ -109,7 +109,13 @@ const StickyCard = ({
 					href={`/services/${slug}` as Route}
 				>
 					<Noise />
-					<Image alt={title} className="object-cover" fill src={image} />
+					<Image
+						alt={title}
+						className="object-cover"
+						fill
+						sizes="(max-width: 768px) 100vw, 35vw"
+						src={image}
+					/>
 				</Link>
 				{/* <div className="absolute inset-x-0 top-0 z-10 h-1/2 bg-linear-to-b from-foreground" /> */}
 			</motion.div>

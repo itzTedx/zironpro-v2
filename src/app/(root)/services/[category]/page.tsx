@@ -75,22 +75,20 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 	return (
 		<main>
 			<section className="dashed dashed-b relative">
-				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-12 md:py-16">
+				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-12 md:py-16 md:pt-24">
 					<div className="container grid grid-cols-2 gap-6">
 						<div>
 							<Button
-								asChild
 								className="flex w-fit gap-2"
 								data-umami-event="Services category - Back to services"
+								render={<Link href="/services" />}
 								variant="ghost"
 							>
-								<Link href="/services">
-									<IconArrowLeft
-										aria-hidden="true"
-										className="transition-transform group-hover/button:-translate-x-1"
-									/>
-									Back to Services
-								</Link>
+								<IconArrowLeft
+									aria-hidden="true"
+									className="transition-transform group-hover/button:-translate-x-1"
+								/>
+								Back to Services
 							</Button>
 
 							<h1 className="max-w-5xl font-bold font-display text-4xl text-primary uppercase md:text-6xl lg:text-8xl">
@@ -106,6 +104,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 								alt={service.title}
 								className="object-cover"
 								fill
+								sizes="(max-width: 768px) 100vw, 50vw"
 								src={service.image}
 							/>
 						</div>

@@ -7,11 +7,12 @@ import { BreakpointIndicator } from "@/components/layout/breakpoint-indicator";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { Providers } from "@/components/providers";
-import { Video } from "@/components/ui/video-player";
+import { AiChatWidget } from "@/components/shared/ai-chat-widget";
 
 import { inter, interTight, mono } from "@/assets/fonts";
 
 import { siteConfig } from "@/data/site-config";
+import { Video } from "@/features/views/home/video";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -75,6 +76,7 @@ export default function RootLayout({
 					<Suspense>
 						<Video />
 					</Suspense>
+					<AiChatWidget />
 					<Footer />
 					<BreakpointIndicator />
 				</body>

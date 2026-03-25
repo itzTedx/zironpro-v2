@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { LogoMono, Wordmark } from "@/assets/logo";
+import { Logo, Wordmark } from "@/assets/logo";
 
 import { cn } from "@/lib/utils";
 
@@ -20,7 +20,7 @@ export const Footer = () => {
 				<div className="squircle relative isolate flex flex-col justify-between gap-4 overflow-hidden rounded-5xl bg-linear-[180deg,#B362FF_-8.23%,#401CD8_44.8%,#1A1162_100%] p-12 shadow-sm">
 					<Noise className="opacity-50" />
 					<Link data-umami-event="Footer - Logo" href="/">
-						<LogoMono className="h-10 w-fit text-white" />
+						<Logo className="h-10 w-fit text-white" />
 					</Link>
 					<div className="space-y-8">
 						<h4 className="text-balance font-display font-medium text-2xl text-background leading-snug">
@@ -71,8 +71,10 @@ export const Footer = () => {
 								<li key={partner.title}>
 									<Image
 										alt={partner.alt}
+										className="h-8 w-auto object-contain"
 										height={30}
 										src={partner.src}
+										style={{ width: "auto" }}
 										width={80}
 									/>
 								</li>
@@ -87,10 +89,7 @@ export const Footer = () => {
 						<p className="w-full">
 							© {currentYear} Ziron Media. All rights reserved.
 						</p>
-						<Link
-							data-umami-event="Footer - Wordmark"
-							href="/"
-						>
+						<Link data-umami-event="Footer - Wordmark" href="/">
 							<Wordmark
 								className="shrink-0 text-foreground transition-colors duration-300 ease-out hover:text-brand-secondary"
 								isMono

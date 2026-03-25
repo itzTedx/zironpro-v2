@@ -1,3 +1,4 @@
+import { Header } from "@/components/shared/header";
 import {
 	Card,
 	CardContent,
@@ -11,15 +12,20 @@ import { ACHIEVEMENTS } from "./data/constants";
 export const Achievements = () => {
 	return (
 		<section className="dashed dashed-y">
-			<header className="dashed dashed-t-0 mx-auto max-w-7xl p-6 text-center md:p-14">
+			<Header
+				description="Curious about what we've accomplished? Let our track record speak for
+					itself."
+				title="Our Achievements"
+			/>
+			{/* <header className="dashed dashed-t-0 mx-auto max-w-7xl p-6 text-center md:p-14">
 				<h2 className="font-display font-semibold text-4xl text-primary tracking-tight md:text-6xl">
-					Our Achievement
+					Our Achievements
 				</h2>
 				<p className="text-">
 					Curious about what we've accomplished? Let our track record speak for
 					itself.
 				</p>
-			</header>
+			</header> */}
 			<div className="dashed dashed-t-0 mx-auto grid max-w-7xl grid-cols-1 gap-4 p-6 sm:grid-cols-2 md:p-14 lg:grid-cols-3">
 				{ACHIEVEMENTS.map((ach) => {
 					const AchievementCard = ach.card;

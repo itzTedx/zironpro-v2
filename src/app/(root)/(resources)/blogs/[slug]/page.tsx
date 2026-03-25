@@ -76,6 +76,7 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 								alt={blog.metadata.title}
 								className="object-cover"
 								fill
+								sizes="(max-width: 1280px) 100vw, 1280px"
 								src={blog.metadata.image}
 							/>
 						</div>

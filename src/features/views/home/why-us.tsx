@@ -1,3 +1,4 @@
+import { Header } from "@/components/shared/header";
 import { Frame } from "@/components/ui/frame";
 import {
 	Table,
@@ -84,7 +85,11 @@ const features = [
 export const WhyUs = () => {
 	return (
 		<section className="dashed dashed-b-0 mx-auto max-w-7xl p-px">
-			<header className="dashed dashed-b space-y-1.5 p-9 text-center md:space-y-3 md:p-14">
+			<Header
+				description="Check out what Ziron Media offers vs employees and other agencies. It’s quite a lot!"
+				title="Why choose us"
+			/>
+			{/* <header className="dashed dashed-b space-y-1.5 p-9 text-center md:space-y-3 md:p-14">
 				<h2 className="font-display font-semibold text-3xl text-primary tracking-tight md:text-6xl">
 					Why Choose Ziron Media
 				</h2>
@@ -92,7 +97,7 @@ export const WhyUs = () => {
 					Check out what Ziron Media offers vs employees and other agencies.
 					It’s quite a lot!
 				</p>
-			</header>
+			</header> */}
 			<div className="mx-auto max-w-6xl px-4 py-9 md:px-0 md:py-14">
 				<div className="sr-only mb-3 grid grid-cols-4 gap-6 md:not-sr-only">
 					<div />

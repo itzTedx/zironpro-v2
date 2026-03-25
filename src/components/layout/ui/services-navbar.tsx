@@ -179,6 +179,7 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 							alt={previewImageAlt}
 							className="object-cover"
 							fill
+							sizes="(max-width: 1280px) 30vw, 400px"
 							src={previewImageSrc}
 						/>
 						<p className="relative z-10">{hoveredListPreview?.title}</p>

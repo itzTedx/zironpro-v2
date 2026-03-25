@@ -37,6 +37,7 @@ export const BlogCard = ({
 					alt={blog.title}
 					className="object-cover transition-[scale] group-hover/blog:scale-105"
 					fill
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 400px"
 					src={blog.image}
 				/>
 			</div>

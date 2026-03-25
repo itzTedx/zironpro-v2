@@ -2,7 +2,6 @@ import Image from "next/image";
 
 import { LogoItem } from "@/components/shared/logo-timeline";
 import { Noise } from "@/components/shared/noise";
-import Integrations from "@/components/ui/integrations";
 
 import { IconPlay } from "@/assets/icons/play";
 
@@ -59,7 +58,8 @@ export const Experience = () => {
 	return (
 		<Card>
 			<Noise className="opacity-20" />
-			<div className="absolute top-12 left-1/2 z-20 -translate-x-1/2 transition-transform group-hover/card:-translate-y-6 group-hover/card:scale-90">
+
+			{/* <div className="absolute top-12 left-1/2 z-20 -translate-x-1/2 transition-transform group-hover/card:-translate-y-6 group-hover/card:scale-90">
 				<svg
 					className="text-muted-foreground/60 transition-colors group-hover/card:text-muted-foreground/40"
 					fill="none"
@@ -77,7 +77,7 @@ export const Experience = () => {
 
 			<div className="absolute -inset-1 z-10 opacity-10 transition-[opacity,z-index] group-hover/card:z-50 group-hover/card:opacity-100">
 				<Integrations />
-			</div>
+			</div> */}
 			<div className="pointer-events-none absolute inset-0 bg-linear-0 from-fuchsia-300 to-fuchsia-100 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
 		</Card>
 	);

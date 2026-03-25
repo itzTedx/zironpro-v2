@@ -33,6 +33,7 @@ export const ServiceList = ({
 							alt=""
 							className="object-cover transition-transform group-hover:scale-110"
 							fill
+							sizes="(max-width: 768px) 100vw, 33vw"
 							src={service.image}
 						/>
 					</div>
