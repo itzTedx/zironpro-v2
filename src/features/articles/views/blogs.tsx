@@ -16,9 +16,9 @@ export const Blogs = () => {
 					Marketing Insights & Resources
 				</h2>
 				<Button
-					className="group w-40 justify-between bg-foreground shadow-button-neutral"
-					data-umami-event="Home - More blogs"
+					className="group w-40 justify-between"
 					render={<Link href="/blogs" />}
+					variant="secondary"
 				>
 					More blogs{" "}
 					<IconArrowRightTag className="size-5 transition-transform duration-300 ease-in group-hover:translate-x-1" />

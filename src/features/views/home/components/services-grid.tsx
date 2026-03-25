@@ -16,14 +16,14 @@ export const WebDevelopmentGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group relative transform-gpu overflow-hidden rounded-2xl bg-floating p-6 md:col-span-2 md:min-h-0 md:p-14",
+				"group relative transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:col-span-2 md:min-h-0 md:p-14",
 				className
 			)}
 		>
 			<div className="relative z-10 mt-52 flex max-w-xs flex-col justify-center gap-2 md:mt-0 md:justify-start md:gap-4">
 				<IconDesktopPoint />
-				<h3 className="font-medium text-3xl text-grad">Web Development</h3>
-				<p>
+				<h3 className="font-medium text-3xl">Web Development</h3>
+				<p className="text-balance text-lg text-muted">
 					Transform concepts into high-performance experiences. Engineering
 					fast, scalable, and conversion-focused websites that grow with your
 					business.
@@ -46,14 +46,14 @@ export const BrandingGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group transform-gpu-blur relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-gray-1400 p-6 text-card md:row-span-2 md:min-h-0 md:p-14",
+				"group transform-gpu-blur relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:row-span-2 md:min-h-0 md:p-14",
 				className
 			)}
 		>
 			<div className="relative z-10 flex h-full flex-col gap-2 md:gap-4">
 				<IconPaint />
 				<h3 className="font-medium text-3xl">Branding</h3>
-				<p className="text-muted/80">
+				<p className="text-balance text-lg text-muted">
 					We build strategic brand identities designed to secure a premium
 					market position.
 				</p>
@@ -176,11 +176,11 @@ export const AllServicesGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group relative flex min-h-100 transform-gpu flex-col gap-9 overflow-hidden rounded-2xl bg-floating p-6 md:row-span-2 md:min-h-0 md:gap-12 md:p-9",
+				"group relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:row-span-2 md:min-h-0 md:p-9",
 				className
 			)}
 		>
-			<div className="mask-y-from-80% absolute inset-x-0 bottom-0 hidden h-[300px] w-full md:block">
+			<div className="mask-y-from-80% absolute inset-x-0 bottom-0 z-10 hidden h-[390px] w-full md:block">
 				<AnimatedList
 					columnGap={100}
 					formationDuration={1}
@@ -193,7 +193,7 @@ export const AllServicesGrid = ({ className }: { className?: string }) => {
 					))}
 				</AnimatedList>
 			</div>
-			<div className="flex flex-wrap items-center justify-center gap-4">
+			<div className="relative z-20 mb-6 flex flex-wrap items-center justify-center gap-4">
 				{[
 					"Web design",
 					"Logos",
@@ -209,23 +209,26 @@ export const AllServicesGrid = ({ className }: { className?: string }) => {
 						key={service}
 						render={
 							<Link
-								className="hover:bg-gray-1400 hover:text-card"
+								className="hover:text-card"
 								href={`/services/${service.toLowerCase()}`}
 							/>
 						}
 						size="sm"
-						variant="outline"
+						variant="secondary"
 					>
 						{service}
 					</Button>
 				))}
 			</div>
-			<div className="relative z-10 flex max-w-xs flex-col justify-center gap-2 text-center md:mt-0 md:justify-start md:gap-4">
+			<div className="relative z-10 flex max-w-xs flex-col justify-center gap-2 text-center md:mt-0 md:justify-start md:gap-3">
 				<h3 className="font-medium text-2xl">
 					Websites, logos, social media, printing & more...
 				</h3>
-				<p>All the things you need under one roof.</p>
+				<p className="text-balance text-lg text-muted">
+					All the things you need under one roof.
+				</p>
 			</div>
+			<div className="absolute -bottom-32 left-1/2 size-72 -translate-x-1/2 rounded-full bg-primary/40 blur-3xl blur-gpu" />
 		</div>
 	);
 };
@@ -234,7 +237,7 @@ export const LogoGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group transform-gpu-blur relative flex aspect-square min-h-63 items-center justify-center overflow-hidden rounded-2xl bg-gray-1400 p-6 text-center md:min-h-0 md:p-14",
+				"group transform-gpu-blur relative flex aspect-square min-h-63 items-center justify-center overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-center md:min-h-0 md:p-14",
 				className
 			)}
 		>
@@ -257,14 +260,14 @@ export const MotionGraphicsGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-card p-6 md:col-span-1 md:min-h-0 md:p-14 lg:col-span-2",
+				"group relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:col-span-1 md:min-h-0 md:p-14 lg:col-span-2",
 				className
 			)}
 		>
-			<div className="relative z-10 flex h-full flex-col gap-2 md:gap-4">
+			<div className="relative z-20 flex h-full max-w-2xs flex-col gap-2 md:gap-4">
 				<IconDesktopPoint />
-				<h3 className="font-medium text-3xl text-grad">Motion Graphics</h3>
-				<p>
+				<h3 className="font-medium text-3xl">Motion Graphics</h3>
+				<p className="text-balance text-lg text-muted">
 					We build cinematic 3D assets designed to give your brand a premium
 					feel.
 				</p>
@@ -296,7 +299,8 @@ type NotificationProps = {
 };
 export function Notification({ notification }: NotificationProps) {
 	return (
-		<div className="flex w-full max-w-[290px] items-center justify-between gap-4 rounded-2xl border border-neutral-50 bg-white p-3.5 shadow-neutral-200 shadow-xl">
+		<div className="flex w-full max-w-[290px] items-center justify-between gap-4 rounded-2xl border border-dashed bg-gray-1200 p-3.5 shadow-xl">
+			{/** biome-ignore lint/performance/noImgElement: TODO: Replace with next/image */}
 			<img
 				alt={notification.name}
 				className="h-10 w-10"

@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { EmblaCarouselType } from "embla-carousel";
-import Autoplay from "embla-carousel-autoplay";
+import Autoplay, { AutoplayOptionsType } from "embla-carousel-autoplay";
 import useEmblaCarousel, {
 	type UseEmblaCarouselType,
 } from "embla-carousel-react";
@@ -26,6 +26,8 @@ type CarouselProps = {
 	plugins?: CarouselPlugin;
 	orientation?: "horizontal" | "vertical";
 	setApi?: (api: CarouselApi) => void;
+
+	autoplayOptions?: AutoplayOptionsType;
 };
 
 type CarouselContextProps = {
@@ -132,6 +134,9 @@ function Carousel({
 	setApi,
 	plugins,
 	className,
+	autoplayOptions = {
+		delay: 2000,
+	},
 	children,
 	...props
 }: React.ComponentProps<"div"> & CarouselProps) {
@@ -142,7 +147,8 @@ function Carousel({
 		},
 		[
 			Autoplay({
-				delay: 2000,
+				delay: autoplayOptions.delay,
+				...autoplayOptions,
 			}),
 
 			WheelGesturesPlugin(),
@@ -273,7 +279,7 @@ function CarouselPrevious({
 	return (
 		<Button
 			className={cn(
-				"absolute touch-manipulation rounded-full",
+				"absolute touch-manipulation",
 				orientation === "horizontal"
 					? "top-1/2 -left-12 -translate-y-1/2"
 					: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -305,7 +311,7 @@ function CarouselNext({
 	return (
 		<Button
 			className={cn(
-				"absolute touch-manipulation rounded-full",
+				"absolute touch-manipulation",
 				orientation === "horizontal"
 					? "top-1/2 -right-12 -translate-y-1/2"
 					: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",

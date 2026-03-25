@@ -58,7 +58,14 @@ export const Services = () => {
 			</div>
 			{/* <ServicesStickyCards /> */}
 			{/* <ServicesLists /> */}
-
+			<div className="dashed dashed-b-0 container flex max-w-7xl items-center gap-3 py-12">
+				<h4 className="text-center font-medium text-2xl">
+					Ready to take your business to the next level?
+				</h4>
+				<Button render={<Link href="/contact" />} variant="secondary">
+					Build your vision with us <IconArrowRightTag />
+				</Button>
+			</div>
 			<div className="absolute inset-x-0 top-0 -z-10 h-1/4 bg-linear-180 from-white" />
 			<div className="absolute inset-x-0 bottom-0 -z-10 h-1/4 bg-linear-0 from-white" />
 		</section>

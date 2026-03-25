@@ -25,7 +25,7 @@ export const PRODUCTS: Submenu[] = [
 		id: "crm",
 		icon: IconNfc,
 		title: "Ziron CRM",
-		description: "Tap. Scan. Connect.",
+		description: "Scan. Lead. Manage.",
 		badge: "Coming soon",
 		href: "/",
 	},

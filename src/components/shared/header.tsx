@@ -5,6 +5,7 @@ interface HeaderProps {
 	description: string;
 	className?: string;
 	children?: React.ReactNode;
+	isBorderless?: boolean;
 }
 
 export const Header = ({
@@ -12,11 +13,13 @@ export const Header = ({
 	description,
 	className,
 	children,
+	isBorderless = false,
 }: HeaderProps) => {
 	return (
 		<header
 			className={cn(
-				"dashed dashed-x container flex w-full max-w-7xl flex-col gap-4 px-6 py-12 sm:flex-row sm:items-center md:px-0",
+				"flex w-full flex-col gap-4 px-6 py-12 sm:flex-row sm:items-center md:px-0",
+				!isBorderless && "dashed dashed-x container max-w-7xl",
 				className
 			)}
 		>

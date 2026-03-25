@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { Noise } from "@/components/shared/noise";
 import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
 } from "@/components/ui/carousel";
 
 import { SERVICES } from "@/features/services/constant";
@@ -15,6 +18,10 @@ import { cn } from "@/lib/utils";
 export const ServicesCarousel = () => {
 	return (
 		<Carousel
+			autoplayOptions={{
+				delay: 3000,
+				stopOnMouseEnter: true,
+			}}
 			className="w-full"
 			opts={{
 				align: "start",
@@ -26,7 +33,7 @@ export const ServicesCarousel = () => {
 						className="basis-1/2 md:basis-1/3 lg:basis-1/5"
 						key={service.id}
 					>
-						<div>
+						<Link className="group" href={`/services/${service.slug}`}>
 							<div
 								className={cn(
 									"relative flex aspect-square items-center justify-center overflow-hidden rounded-xl"
@@ -34,7 +41,7 @@ export const ServicesCarousel = () => {
 							>
 								<Image
 									alt={service.title}
-									className="object-cover"
+									className="object-cover transition-transform duration-500 ease-out group-hover:scale-125"
 									fill
 									src={service.bg}
 								/>
@@ -45,10 +52,20 @@ export const ServicesCarousel = () => {
 							<p className="line-clamp-2 text-muted-foreground text-sm">
 								{service.description}
 							</p>
-						</div>
+						</Link>
 					</CarouselItem>
 				))}
 			</CarouselContent>
+			<div className="mt-4 flex items-center justify-center gap-4">
+				<CarouselPrevious
+					className="relative left-0 translate-y-0 bg-card"
+					size="icon-lg"
+				/>
+				<CarouselNext
+					className="relative right-0 translate-y-0 bg-card"
+					size="icon-lg"
+				/>
+			</div>
 		</Carousel>
 	);
 };

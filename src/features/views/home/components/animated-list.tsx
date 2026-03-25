@@ -59,6 +59,9 @@ function InternalAnimatedListItem({
 	const lastItemOffset = (listLength - 1) * columnGap;
 	const isLastItem = index === listLength - 1;
 
+	// Step 1: Each item has 2 visual states:
+	// - initial: stacked cards (slightly scaled and partially hidden)
+	// - column: full vertical list used before the list scrolls down
 	const itemVariants = {
 		initial: {
 			scale: 1 + index * scaleFactor,
@@ -77,6 +80,8 @@ function InternalAnimatedListItem({
 			? "initial"
 			: "column";
 
+	// Step 2: Reset uses spring for a snappy "return to stack";
+	// all other transitions use a timed easing curve.
 	const getTransition = () => {
 		if (animationPhase === "resetting") {
 			return {
@@ -89,6 +94,8 @@ function InternalAnimatedListItem({
 	};
 
 	const handleAnimationComplete = (definition: string) => {
+		// Step 3: When the last item finishes forming the column,
+		// notify parent so the container can start scrolling down.
 		if (
 			isLastItem &&
 			definition === "column" &&
@@ -130,6 +137,8 @@ export function AnimatedList({
 	const itemResetSpringDamping = 20;
 	const visibleItemsCountValue = 4;
 
+	// Main state machine that drives the loop:
+	// idle -> forming_column -> scrolling_down -> resetting -> idle
 	const [animationPhase, setAnimationPhase] = useState<AnimationPhase>("idle");
 	const listControls = useAnimationControls();
 	const childrenArray = useMemo(
@@ -142,6 +151,7 @@ export function AnimatedList({
 	useEffect(() => {
 		let timer: NodeJS.Timeout;
 		if (animationPhase === "idle") {
+			// Step 0: Wait briefly, then begin the "form column" phase.
 			timer = setTimeout(
 				() => {
 					setAnimationPhase("forming_column");
@@ -152,6 +162,7 @@ export function AnimatedList({
 		return () => clearTimeout(timer);
 	}, [animationPhase, loopPauseDurationValue, initialDelayValue]);
 
+	// Step 4: Phase transitions triggered after specific animations complete.
 	const handleFormationComplete = () => {
 		if (animationPhase === "forming_column")
 			setAnimationPhase("scrolling_down");
@@ -165,6 +176,7 @@ export function AnimatedList({
 
 	useEffect(() => {
 		if (animationPhase === "scrolling_down") {
+			// Step 5: Move the full list downward by its total height.
 			listControls.start({
 				y: totalHeight,
 				transition: {
@@ -173,6 +185,7 @@ export function AnimatedList({
 				},
 			});
 		} else if (animationPhase === "resetting") {
+			// Step 6: Snap the container back to the top with spring motion.
 			listControls.start({
 				y: 0,
 				transition: {
@@ -194,6 +207,7 @@ export function AnimatedList({
 	]);
 
 	const handleListAnimationComplete = (definition: { y?: number }) => {
+		// Step 7: Container animation completion advances the state machine.
 		if (definition.y === totalHeight && animationPhase === "scrolling_down") {
 			handleScrollDownComplete();
 		} else if (definition.y === 0 && animationPhase === "resetting") {
