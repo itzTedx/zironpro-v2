@@ -16,14 +16,14 @@ export const Header = ({
 	return (
 		<header
 			className={cn(
-				"dashed dashed-x container flex w-full max-w-7xl items-center gap-4 px-6 py-12 md:px-0",
+				"dashed dashed-x container flex w-full max-w-7xl flex-col gap-4 px-6 py-12 sm:flex-row sm:items-center md:px-0",
 				className
 			)}
 		>
 			<div
 				className={cn(
-					"container flex items-center",
-					children ? "justify-between" : "justify-center"
+					"container flex flex-col sm:flex-row sm:items-center",
+					children ? "sm:justify-between" : "sm:justify-center"
 				)}
 			>
 				<div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">

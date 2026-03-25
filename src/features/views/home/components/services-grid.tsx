@@ -46,11 +46,11 @@ export const BrandingGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-gray-1400 text-card md:row-span-2 md:min-h-0",
+				"group transform-gpu-blur relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-gray-1400 p-6 text-card md:row-span-2 md:min-h-0 md:p-14",
 				className
 			)}
 		>
-			<div className="relative z-10 mt-52 flex max-w-xs flex-col justify-center gap-2 p-6 md:mt-0 md:justify-start md:gap-4 md:p-14">
+			<div className="relative z-10 flex h-full flex-col gap-2 md:gap-4">
 				<IconPaint />
 				<h3 className="font-medium text-3xl">Branding</h3>
 				<p className="text-muted/80">
@@ -94,7 +94,7 @@ export const BrandingGrid = ({ className }: { className?: string }) => {
 				</div>
 			</div>
 
-			<div className="pointer-events-none absolute bottom-0 left-1/2 size-100 -translate-x-1/2 rounded-full bg-primary/60 blur-[120px] blur-min" />
+			<div className="pointer-events-none absolute -bottom-12 left-1/2 size-100 -translate-x-1/2 rounded-full bg-primary/40 blur-[120px] blur-min md:bottom-0" />
 		</div>
 	);
 };
@@ -180,7 +180,7 @@ export const AllServicesGrid = ({ className }: { className?: string }) => {
 				className
 			)}
 		>
-			<div className="mask-y-from-80% absolute inset-x-0 bottom-0 h-[300px] w-full">
+			<div className="mask-y-from-80% absolute inset-x-0 bottom-0 hidden h-[300px] w-full md:block">
 				<AnimatedList
 					columnGap={100}
 					formationDuration={1}
@@ -261,7 +261,7 @@ export const MotionGraphicsGrid = ({ className }: { className?: string }) => {
 				className
 			)}
 		>
-			<div className="relative z-10 mt-52 flex max-w-xs flex-col justify-center gap-2 md:mt-0 md:justify-start md:gap-4">
+			<div className="relative z-10 flex h-full flex-col gap-2 md:gap-4">
 				<IconDesktopPoint />
 				<h3 className="font-medium text-3xl text-grad">Motion Graphics</h3>
 				<p>
@@ -279,7 +279,7 @@ export const MotionGraphicsGrid = ({ className }: { className?: string }) => {
 					width={2000}
 				/>
 			</div>
-			<div className="pointer-events-none absolute -right-24 -bottom-60 size-120 rounded-full bg-primary/70 blur-[100px] blur-gpu" />
+			<div className="pointer-events-none absolute -right-24 -bottom-60 size-120 rounded-full bg-primary/40 blur-[100px] blur-gpu" />
 		</div>
 	);
 };

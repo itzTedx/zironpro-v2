@@ -11,8 +11,8 @@ export default function ServicesPage() {
 	return (
 		<main>
 			<section className="dashed dashed-b relative">
-				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-12 md:py-16">
-					<div className="container space-y-4">
+				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-16 md:py-20">
+					<div className="container space-y-4 py-12">
 						<h1 className="max-w-5xl font-black font-display text-4xl text-primary uppercase md:text-6xl lg:text-7xl">
 							Delivering results is really all that matters.
 						</h1>
@@ -24,24 +24,24 @@ export default function ServicesPage() {
 					</div>
 				</header>
 			</section>
-			<section className="bg-card py-24">
-				<div className="mx-auto grid max-w-7xl grid-cols-12 gap-6">
-					<div className="col-span-5 space-y-3">
+			<section className="bg-card px-4 py-12 sm:px-6 md:py-16 lg:px-8 lg:py-24">
+				<div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-12 md:gap-8 lg:gap-10">
+					<div className="space-y-3 md:col-span-5">
 						<Badge>
 							<div className="size-1.5 rounded-full bg-brand-secondary" /> What
 							we do
 						</Badge>
-						<h2 className="font-semibold text-5xl tracking-tight">
+						<h2 className="text-balance font-semibold text-3xl tracking-tight sm:text-4xl md:text-5xl">
 							We turn <span className="text-primary">first impressions</span>{" "}
 							into lasting engagement
 						</h2>
 					</div>
-					<div className="col-span-7 space-y-3">
-						<h3 className="font-medium text-lg">
+					<div className="space-y-4 md:col-span-7 md:space-y-3">
+						<h3 className="text-balance font-medium text-base sm:text-lg">
 							Your brand isn’t experienced in pieces — it’s experienced as a
 							whole.
 						</h3>
-						<div className="grid grid-cols-2 gap-6 text-muted-foreground [&_p_span]:text-foreground">
+						<div className="grid grid-cols-1 gap-4 text-muted-foreground sm:grid-cols-2 sm:gap-5 md:gap-6 [&_p_span]:text-foreground">
 							<p>
 								Our process blends{" "}
 								<span>
@@ -77,15 +77,13 @@ export default function ServicesPage() {
 				<div className="dashed dashed-y">
 					<div className="dashed dashed-x container flex max-w-7xl items-center justify-center py-12">
 						<Button
-							asChild
 							className="text-muted-foreground"
 							data-umami-event="Services - Build your vision"
+							render={<Link href="/contact" />}
 							size="lg"
 							variant="secondary"
 						>
-							<Link href="/contact">
-								Build your vision with us <IconArrowRightTag />
-							</Link>
+							Build your vision with us <IconArrowRightTag />
 						</Button>
 					</div>
 				</div>

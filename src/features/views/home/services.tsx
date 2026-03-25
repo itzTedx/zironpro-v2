@@ -29,7 +29,7 @@ export const Services = () => {
 				description="We help you achieve more at every stage of business growth."
 				title="Services"
 			>
-				<div className="flex items-center justify-center gap-4">
+				<div className="flex items-center gap-4 sm:justify-center">
 					<Button
 						data-umami-event="Home - Build your vision"
 						render={<Link href="/contact" />}
@@ -49,7 +49,7 @@ export const Services = () => {
 			<div className="dashed container max-w-7xl py-12 md:py-16 lg:py-20">
 				<ServicesCarousel />
 			</div>
-			<div className="dashed-x dashed container grid max-w-7xl grid-cols-3 gap-4 py-12 md:py-16 lg:py-20">
+			<div className="dashed-x dashed container grid max-w-7xl gap-4 py-12 md:grid-cols-3 md:py-16 lg:py-20">
 				<WebDevelopmentGrid />
 				<BrandingGrid />
 				<AllServicesGrid />
