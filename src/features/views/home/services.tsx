@@ -216,7 +216,7 @@ export const Services = () => {
 			{/* <ServicesStickyCards /> */}
 			{/* <ServicesLists /> */}
 			<div className="relative overflow-hidden bg-[radial-gradient(ellipse_at_bottom,var(--color-brand-950)_0%,#000_100%)]">
-				<div className="dashed dashed-b-0 container relative z-10 flex max-w-7xl flex-col items-center justify-center gap-6 py-12 md:flex-row md:flex-row">
+				<div className="dashed dashed-b-0 container relative z-10 flex max-w-7xl flex-col items-center justify-center gap-6 py-12 md:flex-row">
 					<h4 className="text-center font-medium text-3xl text-muted">
 						Ready to take your business to the next level?
 					</h4>
