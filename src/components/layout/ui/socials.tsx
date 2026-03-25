@@ -10,7 +10,7 @@ export const Socials = ({
 }: React.ComponentProps<"div">) => {
 	return (
 		<div className="space-y-3" {...props}>
-			<p className={cn("font-medium text-brand-200", className)}>
+			<p className={cn("font-medium text-brand-50", className)}>
 				Stay Connected
 			</p>
 			<ul className="flex items-center gap-4">

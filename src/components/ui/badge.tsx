@@ -28,7 +28,7 @@ const badgeVariants = cva(
 				outline:
 					"border-primary text-primary [button,a&]:hover:bg-accent/50 dark:[button,a&]:hover:bg-input/48",
 				ghost:
-					"bg-gray-300 text-muted-foreground shadow-none [button,a&]:hover:bg-gray-400/80 [button,a&]:hover:text-foreground",
+					"bg-gray-100/50 text-foreground shadow-none backdrop-blur-sm [button,a&]:hover:bg-gray-400/80 [button,a&]:hover:text-foreground",
 				secondary: "bg-surface text-foreground [button,a&]:hover:bg-surface/90",
 				success: "bg-success/8 text-success-foreground dark:bg-success/16",
 				warning: "bg-warning/8 text-warning-foreground dark:bg-warning/16",

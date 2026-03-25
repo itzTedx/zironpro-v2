@@ -132,7 +132,7 @@
 	--muted-foreground: oklch(0.553 0.013 58.071);
 
 	--accent: oklch(0.97 0.001 106.424);
-	--accent-foreground: oklch(0.216 0.006 56.043);
+	--accent-foreground: oklch(34.303% 0.00541 55.984);
 
 	--border: oklch(0.923 0.003 48.717);
 	--input: var(--gray-100);

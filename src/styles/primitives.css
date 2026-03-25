@@ -234,3 +234,27 @@
 		transparent 10px
 	);
 }
+
+.icon:hover + .icon {
+	width: calc(var(--icon-size) * 1.33 + var(--dock-offset-right, 0px));
+	height: calc(var(--icon-size) * 1.33 + var(--dock-offset-right, 0px));
+	margin-top: calc(var(--icon-size) * -0.33 + var(--dock-offset-right, 0) * -1);
+}
+
+.icon:hover + .icon + .icon {
+	width: calc(var(--icon-size) * 1.17 + var(--dock-offset-right, 0px));
+	height: calc(var(--icon-size) * 1.17 + var(--dock-offset-right, 0px));
+	margin-top: calc(var(--icon-size) * -0.17 + var(--dock-offset-right, 0) * -1);
+}
+
+.icon:has(+ .icon:hover) {
+	width: calc(var(--icon-size) * 1.33 + var(--dock-offset-left, 0px));
+	height: calc(var(--icon-size) * 1.33 + var(--dock-offset-left, 0px));
+	margin-top: calc(var(--icon-size) * -0.33 + var(--dock-offset-left, 0) * -1);
+}
+
+.icon:has(+ .icon + .icon:hover) {
+	width: calc(var(--icon-size) * 1.17 + var(--dock-offset-left, 0px));
+	height: calc(var(--icon-size) * 1.17 + var(--dock-offset-left, 0px));
+	margin-top: calc(var(--icon-size) * -0.17 + var(--dock-offset-left, 0) * -1);
+}

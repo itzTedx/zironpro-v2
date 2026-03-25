@@ -16,7 +16,7 @@ export const WebDevelopmentGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group relative transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:col-span-2 md:min-h-0 md:p-14",
+				"group relative inset-shadow-[0_2px_--theme(--color-white/36%)] transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:col-span-2 md:min-h-0 md:p-14",
 				className
 			)}
 		>
@@ -46,7 +46,7 @@ export const BrandingGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group transform-gpu-blur relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:row-span-2 md:min-h-0 md:p-14",
+				"group transform-gpu-blur relative inset-shadow-[0_2px_--theme(--color-white/36%)] min-h-100 transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:row-span-2 md:min-h-0 md:p-14",
 				className
 			)}
 		>
@@ -176,7 +176,7 @@ export const AllServicesGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:row-span-2 md:min-h-0 md:p-9",
+				"group relative inset-shadow-[0_2px_--theme(--color-white/36%)] min-h-100 transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:row-span-2 md:min-h-0 md:p-9",
 				className
 			)}
 		>
@@ -237,7 +237,7 @@ export const LogoGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group transform-gpu-blur relative flex aspect-square min-h-63 items-center justify-center overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-center md:min-h-0 md:p-14",
+				"group transform-gpu-blur relative inset-shadow-[0_2px_--theme(--color-white/36%)] flex aspect-square min-h-63 items-center justify-center overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-center md:min-h-0 md:p-14",
 				className
 			)}
 		>
@@ -260,7 +260,7 @@ export const MotionGraphicsGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
-				"group relative min-h-100 transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:col-span-1 md:min-h-0 md:p-14 lg:col-span-2",
+				"group relative inset-shadow-[0_2px_--theme(--color-white/36%)] min-h-100 transform-gpu overflow-hidden rounded-2xl bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1300 bg-size-[16px_16px] p-6 text-card md:col-span-1 md:min-h-0 md:p-14 lg:col-span-2",
 				className
 			)}
 		>

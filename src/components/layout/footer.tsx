@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Logo, Wordmark } from "@/assets/logo";
+import { Logo, LogoMono } from "@/assets/logo";
 
 import { cn } from "@/lib/utils";
 
@@ -15,9 +15,9 @@ const currentYear = new Date().getFullYear();
 
 export const Footer = () => {
 	return (
-		<footer className="relative pt-12">
-			<section className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-4 px-6 md:px-0 lg:grid-cols-[1fr_2fr]">
-				<div className="squircle relative isolate flex flex-col justify-between gap-4 overflow-hidden rounded-5xl bg-linear-[180deg,#B362FF_-8.23%,#401CD8_44.8%,#1A1162_100%] p-12 shadow-sm">
+		<footer className="relative bg-gray-1300">
+			<section className="dashed dashed-x PY-6 relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-4 px-6 md:px-0 md:py-12 lg:grid-cols-[1fr_2fr]">
+				<div className="squircle relative inset-shadow-[0_3px_--theme(--color-white/36%)] isolate flex flex-col justify-between gap-4 overflow-hidden rounded-5xl bg-linear-[180deg,#B362FF_-8.23%,#401CD8_44.8%,#1A1162_100%] p-12 shadow-sm">
 					<Noise className="opacity-50" />
 					<Link data-umami-event="Footer - Logo" href="/">
 						<Logo className="h-10 w-fit text-white" />
@@ -41,13 +41,13 @@ export const Footer = () => {
 									<li className="space-y-5">
 										<h5 className="font-mono text-muted-foreground text-xs tracking-tight">
 											{l.section}
-											<span className="font-bold text-brand-secondary">.</span>
+											<span className="font-bold text-primary">.</span>
 										</h5>
 										<ul className="space-y-4 font-medium">
 											{l.links.map((link) => (
 												<li key={link.label}>
 													<Link
-														className="relative text-primary transition-colors duration-300 ease-out before:pointer-events-none before:absolute before:top-[1.3em] before:left-0 before:h-[0.05em] before:w-full before:origin-right before:scale-x-0 before:bg-current before:transition-transform before:duration-300 before:ease-in-out before:content-[''] hover:text-brand-secondary hover:before:origin-left hover:before:scale-x-100"
+														className="relative text-foreground transition-colors duration-300 ease-out before:pointer-events-none before:absolute before:top-[1.3em] before:left-0 before:h-[0.05em] before:w-full before:origin-right before:scale-x-0 before:bg-current before:transition-transform before:duration-300 before:ease-in-out before:content-[''] hover:text-primary hover:before:origin-left hover:before:scale-x-100"
 														data-umami-event={`Footer - ${link.label}`}
 														href={link.href}
 													>
@@ -83,25 +83,22 @@ export const Footer = () => {
 					</div>
 				</div>
 			</section>
-			<section className="dashed dashed-y relative z-10 mt-9 md:mt-12">
+			<section className="dashed dashed-y relative z-10">
 				<div className="dashed dashed-x mx-auto max-w-7xl p-px">
-					<div className="flex flex-col items-center justify-between gap-4 bg-surface px-6 py-6 text-center md:flex-row md:gap-8 md:py-9 md:text-left">
-						<p className="w-full">
+					<div className="flex flex-col items-center justify-between gap-4 bg-gray-1200 px-6 py-6 text-center md:flex-row md:gap-8 md:py-9 md:text-left">
+						<p className="w-full text-muted-foreground">
 							© {currentYear} Ziron Media. All rights reserved.
 						</p>
 						<Link data-umami-event="Footer - Wordmark" href="/">
-							<Wordmark
-								className="shrink-0 text-foreground transition-colors duration-300 ease-out hover:text-brand-secondary"
-								isMono
-							/>
+							<LogoMono className="h-6 w-auto shrink-0 text-background/20 transition-colors duration-300 ease-out hover:text-primary" />
 						</Link>
 
-						<ul className="flex w-full flex-wrap items-center justify-center gap-4 md:justify-end">
+						<ul className="flex w-full flex-wrap items-center justify-center gap-4 text-muted md:justify-end">
 							{FOOTER_META.map((meta) => (
 								<li key={meta.label}>
 									<Link
 										className={cn(
-											"relative transition-colors duration-300 ease-out hover:text-brand-secondary",
+											"relative transition-colors duration-300 ease-out hover:text-primary",
 											"before:pointer-events-none before:absolute before:top-[1.5em] before:left-0 before:h-[0.05em] before:w-full before:bg-current before:content-['']",
 											"before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
 											"hover:before:origin-left hover:before:scale-x-100"
