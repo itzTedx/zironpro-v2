@@ -47,7 +47,6 @@ export const metadata: Metadata = {
 		"msvalidate.01": "A8C503B4FF428B289DA437C18B34BBE3",
 	},
 };
-
 export const viewport: Viewport = {
 	themeColor: "#401CD8",
 };
