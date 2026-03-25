@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 import { SERVICES } from "@/features/services/constant";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const baseURL = process.env.BASE_URL || "https://zironmedia.com";
+	const baseURL = process.env.BASE_URL || "https://zironpro.ae";
 
 	const services = SERVICES;
 

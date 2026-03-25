@@ -89,8 +89,8 @@ export const NAV_LINKS: NavLink[] = [
 export const CONTACT = [
 	{
 		label: "Email",
-		href: "mailto:info@zironmedia.com",
-		value: "info@zironmedia.com",
+		href: "mailto:info@zironpro.ae",
+		value: "info@zironpro.ae",
 	},
 	{
 		label: "Phone",
@@ -194,17 +194,17 @@ export const PARTNERS = [
 export const SOCIALS: Social[] = [
 	{
 		label: "Linkedin",
-		href: "https://www.linkedin.com/company/ziron-media",
+		href: "https://www.linkedin.com/company/zironpro",
 		icon: IconSocialLinkedIn,
 	},
 	{
 		label: "Instagram",
-		href: "https://www.instagram.com/ziron_media/",
+		href: "https://www.instagram.com/zironpro/",
 		icon: IconSocialInstagram,
 	},
 	{
 		label: "Facebook",
-		href: "https://www.facebook.com/zironmedia",
+		href: "https://www.facebook.com/zironpro",
 		icon: IconSocialFacebook,
 	},
 	{

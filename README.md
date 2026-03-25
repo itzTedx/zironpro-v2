@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZironPro Website
+
+Official marketing website for **ZironPro**, built with Next.js App Router, TypeScript, Tailwind CSS, and MDX content.
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Biome (formatting + linting)
 
 ## Getting Started
 
-First, run the development server:
+### 1) Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2) Run development server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create a `.env.local` file in the project root:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+BASE_URL=http://localhost:3000
+GOOGLE_GENERATIVE_AI_API_KEY=your_key_here
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Notes:
+- `BASE_URL` is used for metadata and sitemap URLs.
+- `GOOGLE_GENERATIVE_AI_API_KEY` is required for the AI chat features.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm dev      # Start local dev server
+pnpm build    # Create production build
+pnpm start    # Start production server
+pnpm lint     # Run Biome checks (with write)
+pnpm format   # Format code with Biome
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```text
+src/
+  app/          # Next.js routes and layouts
+  components/   # Shared UI/layout components
+  data/         # Site configuration and constants
+  features/     # Feature modules (contact, services, etc.)
+  content/      # MDX content (blogs/services)
+```
+
+## Deployment
+
+Deploy with any Node-compatible host (Vercel recommended for easiest Next.js setup).
