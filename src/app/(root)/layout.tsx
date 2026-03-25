@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL(siteConfig.url),
 
 	verification: {
-		google: "H82IdVplopSwcjY_hXhk8ggR9RwBclOsumEZDHP-c6E",
+		google: "dzIViUIENzLsewEaXsHL9bvl5Is7CucMXMDlZT92HEI",
 	},
 	other: {
 		"msvalidate.01": "A8C503B4FF428B289DA437C18B34BBE3",
