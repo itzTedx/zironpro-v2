@@ -34,9 +34,9 @@ export async function generateMetadata({
 	const blog = getBlogBySlug(slug);
 
 	return createPageMetadata({
-		title: `${blog.metadata.title} | ZironPro UAE`,
+		title: `${blog.metadata.meta.title} | ZironPro UAE`,
 		description:
-			`${blog.metadata.description} Insights for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
+			`${blog.metadata.meta.description} Insights for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
 		path: `/blogs/${blog.metadata.slug}`,
 		image: blog.metadata.image,
 		type: "article",
@@ -50,8 +50,8 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 	const blog = getBlogBySlug(slug);
 	const canonicalPath = `/blogs/${blog.metadata.slug}`;
 	const webPageSchema = buildWebPageSchema(
-		`${blog.metadata.title} | ZironPro UAE`,
-		`${blog.metadata.description} Insights for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
+		`${blog.metadata.meta.title} | ZironPro UAE`,
+		`${blog.metadata.meta.description} Insights for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
 		canonicalPath
 	);
 	const breadcrumbSchema = buildBreadcrumbSchema([
@@ -60,8 +60,8 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 		{ name: blog.metadata.title, path: canonicalPath },
 	]);
 	const articleSchema = buildArticleSchema({
-		title: blog.metadata.title,
-		description: blog.metadata.description,
+		title: blog.metadata.meta.title,
+		description: blog.metadata.meta.description,
 		path: canonicalPath,
 		image: blog.metadata.image,
 		datePublished: blog.metadata.date,
@@ -71,8 +71,8 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 	const faqSchema = hasFaq
 		? buildFaqSchema([
 				{
-					question: `What does ${blog.metadata.title} cover?`,
-					answer: blog.metadata.description,
+					question: `What does ${blog.metadata.meta.title} cover?`,
+					answer: blog.metadata.meta.description,
 				},
 		  ])
 		: null;

@@ -9,6 +9,8 @@ import { BlogCard } from "../components/blog-card";
 
 export const Blogs = () => {
 	const blogs = getBlogs();
+	console.log(blogs);
+
 	return (
 		<section className="dashed dashed-y relative py-9 md:py-14">
 			<header className="mx-auto mb-6 flex max-w-7xl flex-col gap-3 px-6 md:mb-14 md:flex-row md:items-center md:justify-between md:px-0">
@@ -26,8 +28,8 @@ export const Blogs = () => {
 			</header>
 
 			<div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-3 md:px-0">
-				{blogs.map((article, i) => (
-					<BlogCard blog={article} index={i} key={article.slug} />
+				{blogs.map((article) => (
+					<BlogCard blog={article} key={article.slug} />
 				))}
 			</div>
 

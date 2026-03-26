@@ -8,10 +8,33 @@ import { root } from "@/lib/root-mdx";
 
 import { Blog, BlogMetadata } from "./types";
 
+type ParsedBlogFrontmatter = Omit<BlogMetadata, "slug"> & {
+	meta?: {
+		title?: string;
+		description?: string;
+	};
+};
+
+function normalizeBlogMetadata(
+	data: ParsedBlogFrontmatter,
+	slug: string
+): BlogMetadata {
+	return {
+		...data,
+		meta: {
+			title: data.meta?.title ?? data.title,
+			description: data.meta?.description ?? data.description,
+		},
+		slug,
+	};
+}
+
 export function getBlogs(limit?: number): BlogMetadata[] {
 	const files = fs.readdirSync(root("blogs"));
 
-	let products = files.map((file) => getBlogMetadata(file));
+	let products = files
+		.map((file) => getBlogMetadata(file))
+		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 	if (limit) {
 		return products.slice(0, limit);
@@ -35,10 +58,8 @@ export function getBlogBySlug(slug: string): Blog {
 		const filePath = path.join(root("blogs"), `${slug}.mdx`);
 		const fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
 		const { data, content } = matter(fileContent);
-
-		const metadata = data as BlogMetadata;
-
-		return { metadata: { ...metadata, slug }, content };
+		const metadata = normalizeBlogMetadata(data as ParsedBlogFrontmatter, slug);
+		return { metadata, content };
 	} catch {
 		return notFound();
 	}
@@ -53,8 +74,5 @@ export function getBlogMetadata(
 
 	const fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
 	const { data } = matter(fileContent);
-
-	const metadata = data as BlogMetadata;
-
-	return { ...metadata, slug };
+	return normalizeBlogMetadata(data as ParsedBlogFrontmatter, slug);
 }

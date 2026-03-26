@@ -11,12 +11,17 @@ import { BlogCard } from "@/features/articles/components/blog-card";
 import { buildBreadcrumbSchema, buildWebPageSchema, createPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
+	const blogs = getBlogs();
+	const keywords = Array.from(
+		new Set(blogs.flatMap((blog) => [blog.meta.title, ...blog.tags]))
+	).slice(0, 12);
+
 	return createPageMetadata({
 		title: `SEO & Growth Blogs in Dubai, UAE | ${siteConfig.shortName}`,
 		description:
 			"Read SEO, web design, and digital growth insights from ZironPro to help businesses in Dubai, Abu Dhabi, Sharjah, and the UAE convert more traffic.",
 		path: "/blogs",
-		keywords: ["SEO blogs UAE", "digital marketing insights Dubai", "web growth articles Abu Dhabi"],
+		keywords,
 	});
 }
 

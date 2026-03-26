@@ -34,15 +34,20 @@ export const Services = () => {
 			>
 				<div className="flex items-center gap-4 sm:justify-center">
 					<Button
-						data-umami-event="Home - Build your vision"
-						render={<Link href="/contact" />}
+						render={
+							<Link data-umami-event="Home - Work with us" href="/contact" />
+						}
 						variant="secondary"
 					>
 						Work with us <IconArrowRightTag />
 					</Button>
 					<Button
-						data-umami-event="Home - Build your vision"
-						render={<Link href="/services" />}
+						render={
+							<Link
+								data-umami-event="Home - Explore our services"
+								href="/services"
+							/>
+						}
 						variant="ghost"
 					>
 						Explore our services
@@ -221,8 +226,7 @@ export const Services = () => {
 						Ready to take your business to the next level?
 					</h4>
 					<Button
-						className="gap-4"
-						render={<Link href="/contact" />}
+						render={<Link className="gap-4" href="/contact" />}
 						size="xl"
 						variant="secondary"
 					>
