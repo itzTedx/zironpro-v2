@@ -17,8 +17,10 @@ import {
 
 import { ADDRESS, OFFICE_HOURS } from "@/data/constant";
 import { ContactForm } from "@/features/contact/contact-form";
+import { ContactFaqs } from "@/features/contact/views/contact-faqs";
 import { ContactHeader } from "@/features/contact/views/contact-header";
 import { HowWeHelp } from "@/features/contact/views/how-we-help";
+import { LocationMap } from "@/features/contact/views/map";
 import {
 	buildBreadcrumbSchema,
 	buildWebPageSchema,
@@ -111,6 +113,8 @@ export default function ContactPage() {
 			</section>
 
 			<HowWeHelp />
+			<ContactFaqs />
+			<LocationMap />
 		</main>
 	);
 }

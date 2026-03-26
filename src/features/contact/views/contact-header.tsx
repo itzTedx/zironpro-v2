@@ -18,7 +18,7 @@ export const ContactHeader = () => {
 					<span>
 						new launch, refreshing your brand, scaling your marketing,
 					</span>{" "}
-					or bringing your ideas to life across digital and print —{" "}
+					or bringing your ideas to life across digital and print -{" "}
 					<span>we’re ready.</span>
 				</p>
 				<p className="text-balance text-muted-foreground text-sm">

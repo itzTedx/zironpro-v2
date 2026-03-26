@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { BreakpointIndicator } from "@/components/layout/breakpoint-indicator";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
+import { WhatsappPopover } from "@/components/layout/whatsapp";
 import { Providers } from "@/components/providers";
 import { AiChatWidget } from "@/components/shared/ai-chat-widget";
 
@@ -68,7 +69,7 @@ export default function RootLayout({
 					)}
 				>
 					<Navbar />
-
+					<WhatsappPopover />
 					{children}
 					<Script id="schema-organization" type="application/ld+json">
 						{JSON.stringify(organizationSchema)}

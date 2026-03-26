@@ -64,6 +64,7 @@
 	--shadow-button-primary: var(--button-primary);
 	--shadow-button-neutral: var(--button-neutral);
 	--shadow-sm: var(--shadow-sm);
+	/* --shadow-md: var(--shadow-md); */
 	--shadow-lg: var(--shadow-lg);
 	--shadow-dark: var(--shadow-dark);
 

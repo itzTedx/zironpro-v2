@@ -16,7 +16,7 @@ const currentYear = new Date().getFullYear();
 export const Footer = () => {
 	return (
 		<footer className="relative bg-gray-1300 max-sm:pb-12">
-			<section className="dashed dashed-x relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-4 px-6 py-6 md:px-0 md:py-12 lg:grid-cols-[1fr_2fr]">
+			<section className="dashed dashed-x relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-4 px-6 py-6 md:px-px md:py-12 lg:grid-cols-[1fr_2fr]">
 				<div className="squircle relative inset-shadow-[0_3px_--theme(--color-white/36%)] isolate flex flex-col justify-between gap-4 overflow-hidden rounded-5xl bg-linear-[180deg,#B362FF_-8.23%,#401CD8_44.8%,#1A1162_100%] p-12 shadow-sm">
 					<Noise className="opacity-50" />
 					<Link data-umami-event="Footer - Logo" href="/">
