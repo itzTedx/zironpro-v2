@@ -24,7 +24,7 @@ export const Featured = () => {
 						<CarouselItem className="basis-1/2 py-9 lg:basis-1/6" key={item.id}>
 							<div className="relative aspect-3/4 overflow-hidden rounded-2xl bg-surface transition-[translate_box-shadow] ease-out hover:-translate-y-4 hover:shadow-lg">
 								<div className="relative z-20 flex items-center gap-2 p-4">
-									<item.icon />
+									<item.icon className="text-primary" />
 									<h2>{item.title}</h2>
 								</div>
 								<Image
