@@ -174,7 +174,7 @@ export default async function ServicePage({
 					</div>
 					<div className="relative mt-9 aspect-video overflow-hidden rounded-3xl">
 						<Image
-							alt={service.metadata.title}
+							alt={`${service.metadata.title} service hero by Ziron Media`}
 							className="pointer-events-none object-cover"
 							fill
 							priority

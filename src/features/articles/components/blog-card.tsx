@@ -24,7 +24,7 @@ export const BlogCard = ({ blog }: { blog: BlogMetadata }) => {
 			<div className={cn("relative aspect-5/4 overflow-hidden rounded-2xl")}>
 				<Noise />
 				<Image
-					alt={blog.title}
+					alt={`${blog.title} blog cover by Ziron Media`}
 					className="object-cover transition-[scale] group-hover/blog:scale-105"
 					fill
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 400px"

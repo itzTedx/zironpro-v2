@@ -39,7 +39,7 @@ export const Cta = ({ title, description, buttonText }: CtaProps) => {
 				<div className="absolute left-1/2 z-10 aspect-7/3 w-[80%] -translate-x-1/2 rounded-[calc(var(--radius-3xl)+calc(var(--spacing)*1.5)-1px)] border border-card/20 bg-card/10 p-1.5 md:w-[85%] md:p-2.5 2xl:w-[50%]">
 					<div className="relative aspect-5/3 overflow-hidden rounded-2xl">
 						<Image
-							alt=""
+							alt="Logo design showcase by Ziron Media"
 							className="object-cover"
 							fill
 							sizes="(max-width: 1536px) 85vw, 50vw"

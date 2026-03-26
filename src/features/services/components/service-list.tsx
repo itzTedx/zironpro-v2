@@ -90,7 +90,7 @@ export const ServiceList = ({
 								transition={{ duration: 0.32, ease: "easeOut" }}
 							>
 								<Image
-									alt=""
+									alt={`Preview image for ${service.title} by Ziron Media`}
 									className="object-cover"
 									fill
 									priority={false}

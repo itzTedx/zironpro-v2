@@ -152,7 +152,7 @@ export default function WorksPage() {
 							<FramePanel>
 								<div className="relative aspect-video w-full overflow-hidden rounded-xl">
 									<Image
-										alt=""
+										alt="Direct Logic Systems website project by Ziron Media in Dubai"
 										className="object-cover"
 										fill
 										sizes="(max-width: 1280px) 100vw, 1280px"

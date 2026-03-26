@@ -28,7 +28,7 @@ export const Featured = () => {
 									<h2>{item.title}</h2>
 								</div>
 								<Image
-									alt={item.title}
+									alt={`${item.title} featured work by Ziron Media`}
 									className="object-cover"
 									fill
 									sizes="(max-width: 1024px) 50vw, 17vw"

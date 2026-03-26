@@ -37,7 +37,7 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 		hoveredSubmenu?.image ||
 		"/images/services/logo-design.jpg";
 	const previewImageAlt =
-		hoveredListPreview?.title || hoveredSubmenu?.title || "Service";
+		(hoveredListPreview?.title || hoveredSubmenu?.title || "Service") + " by Ziron Media";
 
 	useEffect(() => {
 		setHoveredListPreview(null);

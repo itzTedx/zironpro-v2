@@ -72,6 +72,7 @@ function PhoneInput({
 					className
 				)}
 				countrySelectComponent={CountrySelect}
+				defaultCountry="AE"
 				flagComponent={FlagComponent}
 				inputComponent={InputComponent}
 				onChange={(value) => onChange?.(value || ("" as BasePhoneInput.Value))}
@@ -144,7 +145,7 @@ function CountrySelect({
 				render={
 					<Button
 						className={cn(
-							"flex gap-1 rounded-s-lg rounded-e-none border-e-0 px-2.5 py-0 leading-none hover:bg-transparent focus:z-10 data-pressed:bg-transparent",
+							"flex gap-1 rounded-s-lg rounded-e-none border-border/80 border-e-0 bg-input px-2.5 py-0 leading-none hover:border-primary hover:bg-input/60 focus:z-10 data-pressed:bg-transparent",
 							disabled && "opacity-50"
 						)}
 						disabled={disabled}

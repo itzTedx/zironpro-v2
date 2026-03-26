@@ -40,7 +40,7 @@ export const ServicesCarousel = () => {
 								)}
 							>
 								<Image
-									alt={service.title}
+									alt={`${service.title} service visual by Ziron Media`}
 									className="object-cover transition-transform duration-500 ease-out group-hover:scale-125"
 									fill
 									src={service.bg}

@@ -31,7 +31,7 @@ export const WebDevelopmentGrid = ({ className }: { className?: string }) => {
 				<Link href="/services/websites/design-and-dev">See more</Link>
 			</div>
 			<Image
-				alt="Web Development"
+				alt="Web development service interface by Ziron Media"
 				className="pointer-events-none absolute top-4 left-1/2 z-10 w-11/12 -translate-x-1/2 transform-gpu select-none overflow-hidden rounded-2xl object-cover opacity-60 transition-transform duration-700 group-hover:scale-105 sm:h-64 sm:w-auto md:top-[-6%] md:right-[-12%] md:h-75 md:translate-x-0 md:opacity-100"
 				height={1435}
 				src="/images/services/web-dev.webp"
@@ -63,28 +63,28 @@ export const BrandingGrid = ({ className }: { className?: string }) => {
 				<div className="mask-x-from-80%">
 					<Marquee className="[--duration:20s]" repeat={10}>
 						<Image
-							alt="blocks"
+							alt="Brand pattern block by Ziron Media"
 							className="pointer-events-none size-20 md:size-26"
 							height={150}
 							src="images/services/blocks.svg"
 							width={150}
 						/>
 						<Image
-							alt="blocks"
+							alt="Typography sample block by Ziron Media"
 							className="pointer-events-none size-20 md:size-26"
 							height={150}
 							src="images/services/typography.svg"
 							width={150}
 						/>
 						<Image
-							alt="blocks"
+							alt="Logo sample block by Ziron Media"
 							className="pointer-events-none size-20 md:size-26"
 							height={150}
 							src="images/services/logo.svg"
 							width={150}
 						/>
 						<Image
-							alt="blocks"
+							alt="Logo variation sample by Ziron Media"
 							className="pointer-events-none size-20 md:size-26"
 							height={150}
 							src="images/services/logo-variants.svg"
@@ -275,7 +275,7 @@ export const MotionGraphicsGrid = ({ className }: { className?: string }) => {
 			</div>
 			<div className="pointer-events-none inset-y-0 -right-8 z-10 -mb-6 select-none md:absolute md:h-full md:w-2/3">
 				<Image
-					alt="Web Development"
+					alt="Motion software interface by Ziron Media"
 					className="h-full scale-110 transform-gpu object-contain opacity-100 transition-transform duration-700 group-hover:scale-125 md:scale-120"
 					height={1435}
 					src="/images/services/motion-software.webp"
@@ -301,7 +301,7 @@ export function Notification({ notification }: NotificationProps) {
 	return (
 		<div className="flex w-full max-w-[290px] items-center justify-between gap-4 rounded-2xl border border-dashed bg-gray-1200 p-3.5 shadow-xl">
 			<Image
-				alt={notification.name}
+				alt={`${notification.name} notification icon by Ziron Media`}
 				className="h-10 w-10"
 				height={40}
 				loader={({ src }) => src}

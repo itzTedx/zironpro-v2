@@ -11,17 +11,21 @@ import { WhyUs } from "@/features/views/home/why-us";
 import { buildWebPageSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-	title: "Digital Marketing Agency in Dubai, UAE | ZironPro",
+	title: "UAE's Digital Marketing Agency | ZironPro",
 	description:
-		"Scale faster with a Dubai digital marketing agency delivering SEO, web design, branding, and performance growth across Abu Dhabi, Sharjah, and the UAE.",
+		"Scale faster with a UAE's best digital marketing agency delivering SEO, web design, branding, and performance growth across Abu Dhabi, Sharjah, and the UAE.",
 	path: "/",
-	keywords: ["digital marketing agency UAE", "SEO in Dubai", "web design Abu Dhabi"],
+	keywords: [
+		"digital marketing agency UAE",
+		"SEO in Dubai",
+		"web design Abu Dhabi",
+	],
 });
 
 export default function Home() {
 	const webPageSchema = buildWebPageSchema(
-		"Digital Marketing Agency in Dubai, UAE | ZironPro",
-		"Scale faster with a Dubai digital marketing agency delivering SEO, web design, branding, and performance growth across Abu Dhabi, Sharjah, and the UAE.",
+		"UAE's Digital Marketing Agency | ZironPro",
+		"Scale faster with a UAE's best digital marketing agency delivering SEO, web design, branding, and performance growth across Abu Dhabi, Sharjah, and the UAE.",
 		"/"
 	);
 

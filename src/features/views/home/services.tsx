@@ -73,7 +73,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Static and video ads"
+						alt="Branding service showcase by Ziron Media"
 						height={720}
 						src="/images/bento/branding.webp"
 						width={800}
@@ -97,7 +97,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Static and video ads"
+						alt="Web design and development service showcase by Ziron Media"
 						height={720}
 						src="/images/bento/web-dev-design.webp"
 						width={800}
@@ -121,7 +121,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Static and video ads"
+						alt="Digital marketing campaign creatives by Ziron Media"
 						height={720}
 						src="/images/bento/social-media-creatives.webp"
 						width={800}
@@ -147,7 +147,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Static and video ads"
+						alt="Printing and corporate gifts showcase by Ziron Media"
 						height={720}
 						src="/images/bento/paid-ads.webp"
 						width={800}
@@ -166,12 +166,12 @@ export const Services = () => {
 							<h3 className="font-medium text-xl">Motion Design & Video</h3>
 						</div>
 						<p className="text-muted-foreground">
-							Scroll-stopping ad creatives engineered for performance and rapid
-							testing built to drive consistent sales.
+							High-impact explainer videos, brand films, and motion graphics
+							that bring your UAE brand story to life.
 						</p>
 					</div>
 					<Image
-						alt="Static and video ads"
+						alt="Motion design and video service showcase by Ziron Media"
 						height={720}
 						src="/images/bento/paid-ads.webp"
 						width={800}
@@ -195,7 +195,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Static and video ads"
+						alt="Conversion optimization service showcase by Ziron Media"
 						height={720}
 						src="/images/bento/conversion.webp"
 						width={800}

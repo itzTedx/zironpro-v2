@@ -14,7 +14,7 @@ export const VideoReel = () => {
 				<div className="squircle relative max-w-5xl overflow-hidden rounded-5xl shadow-lg">
 					<Noise />
 					<Image
-						alt="Social media reel previews showcasing Ziron Media’s creative work"
+						alt="Social media reel previews by Ziron Media in Dubai"
 						height={576}
 						src="/images/reel.png"
 						width={1024}

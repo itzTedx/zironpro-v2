@@ -40,13 +40,20 @@ function FieldLegend({
 	);
 }
 
-function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
+function FieldGroup({
+	className,
+	orientation = "vertical",
+	...props
+}: React.ComponentProps<"div"> & {
+	orientation?: "vertical" | "horizontal";
+}) {
 	return (
 		<div
 			className={cn(
-				"group/field-group @container/field-group flex w-full flex-col gap-5 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4",
+				"group/field-group @container/field-group flex w-full gap-5 data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4",
 				className
 			)}
+			data-orientation={orientation}
 			data-slot="field-group"
 			{...props}
 		/>

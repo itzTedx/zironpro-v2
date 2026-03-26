@@ -29,7 +29,7 @@ export const BrandServed = () => {
 		<Card>
 			<Noise />
 			<Image
-				alt="Website redesign for Direct Logic Systems by Ziron Media"
+				alt="Website redesign for Direct Logic Systems by Ziron Media in Dubai"
 				className="absolute top-14 left-1/2 z-30 -translate-x-1/2 rounded-lg border-4 border-floating object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:-translate-y-20 group-hover/card:scale-75"
 				height={280}
 				src="/images/direct.jpg"
@@ -37,7 +37,7 @@ export const BrandServed = () => {
 			/>
 
 			<Image
-				alt="Website redesign for Maxline Global Logistics by Ziron Media"
+				alt="Website redesign for Maxline Global Logistics by Ziron Media in Dubai"
 				className="absolute top-14 left-1/2 z-20 -translate-x-1/2 -rotate-3 rounded-lg border-4 border-floating object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:-translate-x-[calc(50%+5rem)] group-hover/card:-translate-y-20 group-hover/card:scale-60"
 				height={280}
 				src="/images/maxline.jpg"
@@ -45,14 +45,14 @@ export const BrandServed = () => {
 			/>
 
 			<Image
-				alt="Website design and development for Qordz by Ziron Media"
+				alt="Website design and development for Qordz by Ziron Media in Dubai"
 				className="absolute top-14 left-1/2 z-10 -translate-x-1/2 rotate-3 rounded-lg border-4 border-floating object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:translate-x-[calc(-50%+5rem)] group-hover/card:-translate-y-20 group-hover/card:scale-60"
 				height={280}
 				src="/images/qordx.jpg"
 				width={290}
 			/>
 
-			<Image alt="" fill src="/images/bg-grad-1.webp" />
+			<Image alt="Blue gradient background texture by Ziron Media" fill src="/images/bg-grad-1.webp" />
 			{/* <div className="pointer-events-none absolute inset-0 bg-linear-0 from-brand-300 to-brand-100 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" /> */}
 		</Card>
 	);
@@ -113,7 +113,7 @@ export const Experience = () => {
 				<div className="relative z-50 flex size-20 items-center justify-center overflow-hidden rounded-lg shadow-lg transition-transform duration-500 ease-out group-hover/card:scale-125">
 					<Logo className="relative z-200 h-auto w-16" />
 					<Image
-						alt="Experience"
+						alt="Experience badge background by Ziron Media"
 						className="object-cover"
 						fill
 						src="/images/icon-box.png"
@@ -143,7 +143,7 @@ export const Experience = () => {
 					</Marquee>
 				</div>
 			</div>
-			<Image alt="" fill src="/images/bg-grad-2.webp" />
+			<Image alt="Purple gradient background texture by Ziron Media" fill src="/images/bg-grad-2.webp" />
 			{/* <div className="pointer-events-none absolute inset-0 bg-linear-0 from-fuchsia-300 to-fuchsia-100 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" /> */}
 		</Card>
 	);
@@ -158,7 +158,7 @@ export const Growth = () => {
 			</p>
 			<GrowthChart />
 
-			<Image alt="" fill src="/images/bg-grad-3.webp" />
+			<Image alt="Green gradient background texture by Ziron Media" fill src="/images/bg-grad-3.webp" />
 			{/* <div className="pointer-events-none absolute inset-0 bg-linear-0 from-green-300 to-green-50 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" /> */}
 		</Card>
 	);

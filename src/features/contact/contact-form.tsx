@@ -8,27 +8,48 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
+import {
+	Select,
+	SelectItem,
+	SelectPopup,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { LoadingSwap } from "@/components/ui/loading-swap";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
 
 import { IconArrowRightTag } from "@/assets/icons/arrow";
+
+import { SERVICES } from "@/features/services/constant";
 
 import { submitContactForm } from "./actions";
 import { ContactType, contactFormSchema } from "./actions/schema";
 import { ContactFormField } from "./components/controller";
 
+const SERVICE_ITEMS: { label: string; value: string }[] = [
+	...SERVICES.map((service) => ({
+		label: service.title,
+		value: service.title,
+	})),
+	{
+		label: "Not sure yet, let's talk",
+		value: "Not sure yet, let's talk",
+	},
+];
+
 export function ContactForm() {
 	const [isPending, startTransition] = useTransition();
 
-	const form = useForm<ContactType>({
+	const form = useForm<ContactType, unknown, ContactType>({
 		resolver: zodResolver(contactFormSchema),
 		defaultValues: {
 			name: "",
 			email: "",
 			phone: "",
-			subject: "",
+			service: "",
 			message: "",
 		},
 	});
@@ -47,7 +68,7 @@ export function ContactForm() {
 					? (window as Window & { umami?: Umami }).umami
 					: undefined;
 			if (umami) {
-				umami.identify(data.email, { name: data.name, subject: data.subject });
+				umami.identify(data.email, { name: data.name, service: data.service ?? "" });
 				umami.track("Signup button", {
 					email: data.email,
 					id:
@@ -76,62 +97,78 @@ export function ContactForm() {
 							autoComplete="name"
 							disabled={disabled}
 							id={id}
-							placeholder="John Doe"
+							placeholder="Ahmed Rashid"
 						/>
 					)}
 				/>
-				<ContactFormField
-					control={form.control}
-					disabled={isPending}
-					id="contact-form-email"
-					isRequired
-					label="Email Address"
-					name="email"
-					renderControl={({ field, fieldState, disabled, id }) => (
-						<Input
-							{...field}
-							aria-invalid={fieldState.invalid}
-							autoComplete="email"
-							disabled={disabled}
-							id={id}
-							placeholder="john@example.com"
-							type="email"
-						/>
-					)}
-				/>
-				<ContactFormField
-					control={form.control}
-					disabled={isPending}
-					id="contact-form-phone"
-					label="Phone Number"
-					name="phone"
-					renderControl={({ field, fieldState, disabled, id }) => (
-						<Input
-							{...field}
-							aria-invalid={fieldState.invalid}
-							autoComplete="tel"
-							disabled={disabled}
-							id={id}
-							placeholder="+971 58 171 1486"
-							type="tel"
-						/>
-					)}
-				/>
+				<FieldGroup orientation="horizontal">
+					<ContactFormField
+						control={form.control}
+						disabled={isPending}
+						id="contact-form-email"
+						isRequired
+						label="Email Address"
+						name="email"
+						renderControl={({ field, fieldState, disabled, id }) => (
+							<Input
+								{...field}
+								aria-invalid={fieldState.invalid}
+								autoComplete="email"
+								disabled={disabled}
+								id={id}
+								placeholder="your@company.com"
+								type="email"
+							/>
+						)}
+					/>
+					<ContactFormField
+						control={form.control}
+						disabled={isPending}
+						id="contact-form-phone"
+						label="Phone Number"
+						name="phone"
+						renderControl={({ field, fieldState, disabled, id }) => (
+							<PhoneInput
+								{...field}
+								aria-invalid={fieldState.invalid}
+								autoComplete="tel"
+								disabled={disabled}
+								id={id}
+								placeholder="+971 58 171 1486"
+								type="tel"
+							/>
+						)}
+					/>
+				</FieldGroup>
 				<ContactFormField
 					control={form.control}
 					disabled={isPending}
 					id="contact-form-subject"
 					isRequired
-					label="Subject"
-					name="subject"
+					label="What service are you interested in?"
+					name="service"
 					renderControl={({ field, fieldState, disabled, id }) => (
-						<Input
-							{...field}
-							aria-invalid={fieldState.invalid}
-							disabled={disabled}
-							id={id}
-							placeholder="How can we help you?"
-						/>
+						<Select
+							aria-label="Select a service"
+							items={SERVICE_ITEMS}
+							onValueChange={(value) => field.onChange(value ?? "")}
+							value={field.value}
+						>
+							<SelectTrigger
+								aria-invalid={fieldState.invalid}
+								disabled={disabled}
+								id={id}
+							>
+								<SelectValue>How can we help you?</SelectValue>
+							</SelectTrigger>
+							<SelectPopup>
+								{SERVICE_ITEMS.map((item) => (
+									<SelectItem key={item.value} value={item.value}>
+										{item.label}
+									</SelectItem>
+								))}
+							</SelectPopup>
+						</Select>
 					)}
 				/>
 				<ContactFormField

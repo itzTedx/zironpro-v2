@@ -94,7 +94,9 @@ const StickyCard = ({
 												className="overflow-hidden rounded-lg"
 												href={`/services/${service.slug}/${list.slug}` as Route}
 											>
-												<PreviewLinkCardImage alt={service.alt} />
+												<PreviewLinkCardImage
+													alt={`Service preview card for ${list.title} by Ziron Pro`}
+												/>
 											</PreviewLinkCardPopup>
 										</PreviewLinkCardPositioner>
 									</PreviewLinkCardPortal>
@@ -110,7 +112,7 @@ const StickyCard = ({
 				>
 					<Noise />
 					<Image
-						alt={title}
+						alt={`${title} service visual by Ziron Media`}
 						className="object-cover"
 						fill
 						sizes="(max-width: 768px) 100vw, 35vw"

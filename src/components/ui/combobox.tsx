@@ -118,6 +118,7 @@ function ComboboxContent({
 						className
 					)}
 					data-chips={!!anchor}
+					data-scroll-locked
 					data-slot="combobox-content"
 					{...props}
 				/>

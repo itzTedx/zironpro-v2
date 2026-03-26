@@ -70,7 +70,7 @@ export const HowWeHelp = () => {
 																	`/services/${service.slug}/${list.slug}` as Route
 																}
 															>
-																<PreviewLinkCardImage alt="Preview link card content" />
+																<PreviewLinkCardImage alt={`Service preview card for ${list.title} by Ziron Media`} />
 															</PreviewLinkCardPopup>
 														</PreviewLinkCardPositioner>
 													</PreviewLinkCardPortal>
