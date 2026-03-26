@@ -8,8 +8,7 @@ import { getBlogs } from "../actions/query";
 import { BlogCard } from "../components/blog-card";
 
 export const Blogs = () => {
-	const blogs = getBlogs();
-	console.log(blogs);
+	const blogs = getBlogs(8);
 
 	return (
 		<section className="dashed dashed-y relative py-9 md:py-14">
@@ -27,7 +26,7 @@ export const Blogs = () => {
 				</Button>
 			</header>
 
-			<div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-3 md:px-0">
+			<div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-4 md:px-0">
 				{blogs.map((article) => (
 					<BlogCard blog={article} key={article.slug} />
 				))}

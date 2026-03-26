@@ -26,7 +26,7 @@ type CarouselProps = {
 	plugins?: CarouselPlugin;
 	orientation?: "horizontal" | "vertical";
 	setApi?: (api: CarouselApi) => void;
-
+	autoplay?: boolean;
 	autoplayOptions?: AutoplayOptionsType;
 };
 
@@ -134,6 +134,7 @@ function Carousel({
 	setApi,
 	plugins,
 	className,
+	autoplay = true,
 	autoplayOptions = {
 		delay: 2000,
 	},
@@ -146,10 +147,14 @@ function Carousel({
 			axis: orientation === "horizontal" ? "x" : "y",
 		},
 		[
-			Autoplay({
-				delay: autoplayOptions.delay,
-				...autoplayOptions,
-			}),
+			...(autoplay
+				? [
+						Autoplay({
+					delay: autoplayOptions.delay,
+					...autoplayOptions,
+						}),
+				  ]
+				: []),
 
 			WheelGesturesPlugin(),
 			...(plugins || []),
