@@ -214,6 +214,7 @@ const Map = forwardRef<MapRef, MapProps>(function Map(
 	}, []);
 
 	// Initialize the map
+	// biome-ignore lint/correctness/useExhaustiveDependencies: dependencies intentionally omitted due to MapLibreGL imperative side effects and React ref usage
 	useEffect(() => {
 		if (!containerRef.current) return;
 
@@ -356,7 +357,7 @@ type MapMarkerProps = {
 	longitude: number;
 	/** Latitude coordinate for marker position */
 	latitude: number;
-	/** Marker subcomponents (MarkerContent, MarkerPopup, MarkerTooltip, MarkerLabel) */
+	/** Marker sub components (MarkerContent, MarkerPopup, MarkerTooltip, MarkerLabel) */
 	children: ReactNode;
 	/** Callback when marker is clicked */
 	onClick?: (e: MouseEvent) => void;
@@ -404,6 +405,7 @@ function MapMarker({
 		onDragEnd,
 	};
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Dependencies intentionally omitted due to imperative construction of MapLibreGL.Marker and non-serializable refs. Marker lifecycle and event handlers are managed outside React's scope.
 	const marker = useMemo(() => {
 		const markerInstance = new MapLibreGL.Marker({
 			...markerOptions,
@@ -447,6 +449,7 @@ function MapMarker({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Marker instance and event handler references are intentionally stable and not included in dependencies due to MapLibreGL's imperative setup and non-serializable references. Marker lifecycle is managed manually.
 	useEffect(() => {
 		if (!map) return;
 
@@ -538,6 +541,7 @@ function MarkerPopup({
 	const container = useMemo(() => document.createElement("div"), []);
 	const prevPopupOptions = useRef(popupOptions);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: no need to memoize
 	const popup = useMemo(() => {
 		const popupInstance = new MapLibreGL.Popup({
 			offset: 16,
@@ -551,6 +555,7 @@ function MarkerPopup({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Marker instance and event handler references are intentionally stable and not included in dependencies due to MapLibreGL's imperative setup and non-serializable references. Marker lifecycle is managed manually.
 	useEffect(() => {
 		if (!map) return;
 
@@ -618,6 +623,7 @@ function MarkerTooltip({
 	const container = useMemo(() => document.createElement("div"), []);
 	const prevTooltipOptions = useRef(popupOptions);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: MarkerTooltip's dependencies (marker, map, container, popupOptions) are intentionally omitted This is because MapLibreGL's marker and popup management is done imperatively outside React's reconciliation, and event handler registration must remain stable across renders for correct marker tooltip lifecycle.
 	const tooltip = useMemo(() => {
 		const tooltipInstance = new MapLibreGL.Popup({
 			offset: 16,

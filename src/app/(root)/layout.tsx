@@ -34,6 +34,10 @@ export const metadata: Metadata = {
 	...baseMetadata,
 	authors: [{ name: siteConfig.shortName, url: siteConfig.url }],
 	creator: siteConfig.shortName,
+	robots: {
+		"max-image-preview": "large",
+		"max-snippet": -1,
+	},
 	metadataBase: new URL(siteConfig.url),
 	verification: {
 		google: "dzIViUIENzLsewEaXsHL9bvl5Is7CucMXMDlZT92HEI",

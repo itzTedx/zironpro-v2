@@ -218,7 +218,6 @@ export const Services = () => {
 				<LogoGrid />
 				<MotionGraphicsGrid />
 			</div> */}
-			{/* <ServicesStickyCards /> */}
 			{/* <ServicesLists /> */}
 			<div className="relative overflow-hidden bg-[radial-gradient(ellipse_at_bottom,var(--color-brand-950)_0%,#000_100%)]">
 				<div className="dashed dashed-b-0 container relative z-10 flex max-w-7xl flex-col items-center justify-center gap-6 py-12 md:flex-row">

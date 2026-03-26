@@ -124,7 +124,6 @@ export default function ServicesPage() {
 			</section>
 			<section className="dashed dashed-t relative">
 				<ServicesLists />
-				{/* <ServicesStickyCards /> */}
 
 				<div className="dashed dashed-y">
 					<div className="dashed dashed-x container flex max-w-7xl items-center justify-center py-12">
