@@ -319,3 +319,24 @@
 		@apply hidden!;
 	}
 }
+
+@layer utilities {
+	.debug,
+	.debug * {
+		outline: 1px solid rgb(255 0 0 / 0.5);
+		outline-offset: -1px;
+	}
+
+	.debug,
+	.debug * {
+		background-color: rgb(0 153 255 / 0.02);
+	}
+
+	.debug * * {
+		background-color: rgb(255 153 0 / 0.04);
+	}
+
+	.debug * * * {
+		background-color: rgb(0 200 120 / 0.05);
+	}
+}

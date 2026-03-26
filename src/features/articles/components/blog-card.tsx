@@ -12,7 +12,7 @@ export const BlogCard = ({ blog }: { blog: BlogMetadata }) => {
 	return (
 		<div
 			className={cn(
-				"group/blog relative rounded-[calc(var(--radius-2xl)+calc(var(--spacing)*1.5))] bg-card p-1.5 shadow-md transition-[box-shadow,translate] hover:-translate-y-4 hover:shadow-lg"
+				"group/blog relative min-w-0 rounded-[calc(var(--radius-2xl)+calc(var(--spacing)*1.5))] bg-card p-1.5 shadow-md transition-[box-shadow,translate] hover:-translate-y-4 hover:shadow-lg"
 			)}
 		>
 			<Link
@@ -31,10 +31,9 @@ export const BlogCard = ({ blog }: { blog: BlogMetadata }) => {
 					src={blog.image}
 				/>
 			</div>
-			<div className="space-y-2 p-3">
-				<div className="flex flex-wrap gap-2">
-					{blog.tags && <TagsCarousel tags={blog.tags} />}
-				</div>
+			<div className="flex w-full min-w-0 flex-col space-y-2 p-3">
+				{blog.tags && <TagsCarousel tags={blog.tags} />}
+
 				<h3 className="line-clamp-2 font-medium text-lg tracking-tight transition-colors group-hover/blog:text-primary md:text-xl">
 					{blog.title}
 				</h3>

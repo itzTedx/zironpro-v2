@@ -10,7 +10,7 @@ import {
 export const TagsCarousel = ({ tags }: { tags: string[] }) => {
 	return (
 		<Carousel
-			className="z-40 w-full cursor-pointer"
+			className="z-40 w-full min-w-0 cursor-pointer overflow-hidden"
 			opts={{
 				align: "start",
 				dragFree: true,
