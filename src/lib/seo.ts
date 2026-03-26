@@ -117,7 +117,10 @@ export function createPageMetadata({
 	};
 }
 
-export function makeUaeTitle(service: string, city: "Abu Dhabi" | "Dubai" | "Sharjah"): string {
+export function makeUaeTitle(
+	service: string,
+	city: "Abu Dhabi" | "Dubai" | "Sharjah"
+): string {
 	return `${service} in ${city}, UAE | ${siteConfig.shortName}`;
 }
 
@@ -205,7 +208,9 @@ export function buildWebPageSchema(
 	};
 }
 
-export function buildBreadcrumbSchema(items: BreadcrumbItem[]): Record<string, unknown> {
+export function buildBreadcrumbSchema(
+	items: BreadcrumbItem[]
+): Record<string, unknown> {
 	return {
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
@@ -234,7 +239,11 @@ export function buildServiceSchema({
 		name,
 		description: safeTrim(description),
 		url: absoluteUrl(path),
-		image: image ? (image.startsWith("http") ? image : absoluteUrl(image)) : undefined,
+		image: image
+			? image.startsWith("http")
+				? image
+				: absoluteUrl(image)
+			: undefined,
 		provider: {
 			"@type": "Organization",
 			name: siteConfig.shortName,
@@ -260,7 +269,11 @@ export function buildArticleSchema({
 		"@type": "Article",
 		headline: title,
 		description: safeTrim(description),
-		image: image ? (image.startsWith("http") ? image : absoluteUrl(image)) : undefined,
+		image: image
+			? image.startsWith("http")
+				? image
+				: absoluteUrl(image)
+			: undefined,
 		datePublished,
 		dateModified: datePublished,
 		author: {

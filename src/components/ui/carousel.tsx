@@ -150,10 +150,10 @@ function Carousel({
 			...(autoplay
 				? [
 						Autoplay({
-					delay: autoplayOptions.delay,
-					...autoplayOptions,
+							delay: autoplayOptions.delay,
+							...autoplayOptions,
 						}),
-				  ]
+					]
 				: []),
 
 			WheelGesturesPlugin(),

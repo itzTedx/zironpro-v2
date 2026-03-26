@@ -193,7 +193,9 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 															`/services/${service.slug}/${list.slug}` as Route
 														}
 													>
-														<PreviewLinkCardImage alt={`Service preview card for ${list.title} by Ziron Media`} />
+														<PreviewLinkCardImage
+															alt={`Service preview card for ${list.title} by Ziron Media`}
+														/>
 													</PreviewLinkCardPopup>
 												</PreviewLinkCardPositioner>
 											</PreviewLinkCardPortal>

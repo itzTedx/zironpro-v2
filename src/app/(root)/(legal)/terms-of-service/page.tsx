@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
-import { buildBreadcrumbSchema, buildWebPageSchema, createPageMetadata } from "@/lib/seo";
+import {
+	buildBreadcrumbSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+} from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
 	title: "Terms of Service | ZironPro Dubai, UAE",
@@ -43,16 +47,22 @@ export default function TermsOfServicePage() {
 			<section className="space-y-4 text-muted-foreground">
 				<h2 className="font-medium text-2xl text-primary">Service scope</h2>
 				<p>
-					Project scope, milestones, and delivery timelines are agreed in writing
-					before work begins.
+					Project scope, milestones, and delivery timelines are agreed in
+					writing before work begins.
 				</p>
-				<h2 className="font-medium text-2xl text-primary">Payment and approvals</h2>
+				<h2 className="font-medium text-2xl text-primary">
+					Payment and approvals
+				</h2>
 				<p>
 					Payments, revisions, and approvals follow your signed proposal and
 					project agreement.
 				</p>
 				<p>
-					For clarifications, please <Link className="text-primary underline" href="/contact">contact us</Link>.
+					For clarifications, please{" "}
+					<Link className="text-primary underline" href="/contact">
+						contact us
+					</Link>
+					.
 				</p>
 			</section>
 		</main>

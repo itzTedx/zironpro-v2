@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -22,7 +22,7 @@ export const Video = () => {
 					observer.disconnect();
 				}
 			},
-			{ rootMargin: "200px" },
+			{ rootMargin: "200px" }
 		);
 
 		observer.observe(element);

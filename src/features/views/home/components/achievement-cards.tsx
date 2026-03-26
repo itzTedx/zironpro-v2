@@ -52,7 +52,11 @@ export const BrandServed = () => {
 				width={290}
 			/>
 
-			<Image alt="Blue gradient background texture by Ziron Media" fill src="/images/bg-grad-1.webp" />
+			<Image
+				alt="Blue gradient background texture by Ziron Media"
+				fill
+				src="/images/bg-grad-1.webp"
+			/>
 			{/* <div className="pointer-events-none absolute inset-0 bg-linear-0 from-brand-300 to-brand-100 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" /> */}
 		</Card>
 	);
@@ -143,7 +147,11 @@ export const Experience = () => {
 					</Marquee>
 				</div>
 			</div>
-			<Image alt="Purple gradient background texture by Ziron Media" fill src="/images/bg-grad-2.webp" />
+			<Image
+				alt="Purple gradient background texture by Ziron Media"
+				fill
+				src="/images/bg-grad-2.webp"
+			/>
 			{/* <div className="pointer-events-none absolute inset-0 bg-linear-0 from-fuchsia-300 to-fuchsia-100 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" /> */}
 		</Card>
 	);
@@ -158,7 +166,11 @@ export const Growth = () => {
 			</p>
 			<GrowthChart />
 
-			<Image alt="Green gradient background texture by Ziron Media" fill src="/images/bg-grad-3.webp" />
+			<Image
+				alt="Green gradient background texture by Ziron Media"
+				fill
+				src="/images/bg-grad-3.webp"
+			/>
 			{/* <div className="pointer-events-none absolute inset-0 bg-linear-0 from-green-300 to-green-50 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" /> */}
 		</Card>
 	);

@@ -2,14 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
-import { buildBreadcrumbSchema, buildWebPageSchema, createPageMetadata } from "@/lib/seo";
+import {
+	buildBreadcrumbSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+} from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
 	title: "Privacy Policy | ZironPro Dubai, UAE",
 	description:
 		"Read the ZironPro privacy policy for how we collect, use, and protect client data for marketing and website projects in Dubai and across the UAE.",
 	path: "/privacy-policy",
-	keywords: ["privacy policy agency UAE", "data policy Dubai", "ZironPro privacy"],
+	keywords: [
+		"privacy policy agency UAE",
+		"data policy Dubai",
+		"ZironPro privacy",
+	],
 });
 
 export default function PrivacyPage() {
@@ -43,8 +51,8 @@ export default function PrivacyPage() {
 			<section className="space-y-4 text-muted-foreground">
 				<h2 className="font-medium text-2xl text-primary">Data we collect</h2>
 				<p>
-					We collect only the information needed to respond to inquiries, deliver
-					projects, and improve website performance.
+					We collect only the information needed to respond to inquiries,
+					deliver projects, and improve website performance.
 				</p>
 				<h2 className="font-medium text-2xl text-primary">How we use data</h2>
 				<p>
@@ -52,7 +60,11 @@ export default function PrivacyPage() {
 					not sell personal data.
 				</p>
 				<p>
-					Questions? Visit <Link className="text-primary underline" href="/contact">contact</Link>.
+					Questions? Visit{" "}
+					<Link className="text-primary underline" href="/contact">
+						contact
+					</Link>
+					.
 				</p>
 			</section>
 		</main>

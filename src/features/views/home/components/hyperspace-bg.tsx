@@ -48,6 +48,7 @@ export function HyperspaceBackground({
 	const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 	const [r, g, b] = hexToRgb(starColor);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Not needed
 	React.useEffect(() => {
 		if (typeof window === "undefined") return;
 
@@ -172,7 +173,7 @@ export function HyperspaceBackground({
 			cancelAnimationFrame(animationFrameId);
 			window.removeEventListener("resize", debouncedResize);
 		};
-	}, [starTrailOpacity, starSpeed, starColor, starSize]);
+	}, [starTrailOpacity, starSpeed, starSize]);
 
 	return (
 		<div className={cn("absolute inset-0 h-full w-full", className)} {...props}>

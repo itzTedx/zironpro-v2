@@ -36,15 +36,15 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 		hoveredListPreview?.image ||
 		hoveredSubmenu?.image ||
 		"/images/services/logo-design.jpg";
-	const previewImageAlt =
-		(hoveredListPreview?.title || hoveredSubmenu?.title || "Service") + " by Ziron Media";
+	const previewImageAlt = `${hoveredListPreview?.title || hoveredSubmenu?.title || "Service"} by Ziron Media`;
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Not needed
 	useEffect(() => {
 		setHoveredListPreview(null);
 		setHoveredListSlug(null);
 	}, [hoveredSubmenu?.id]);
 
-	// Scroll to the hovered image
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Not needed
 	useEffect(() => {
 		if (hoveredIndex >= 0 && scrollContainerRef.current) {
 			const container = scrollContainerRef.current;

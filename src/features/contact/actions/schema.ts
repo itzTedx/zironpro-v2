@@ -24,11 +24,15 @@ export const contactFormSchema = z.object({
 		)
 		.optional()
 		.or(z.literal("")),
-	service: z.string().trim().refine(
-		(value) =>
-			value === "" || SERVICE_OPTIONS.some((serviceOption) => serviceOption === value),
-		"Please select a valid service."
-	),
+	service: z
+		.string()
+		.trim()
+		.refine(
+			(value) =>
+				value === "" ||
+				SERVICE_OPTIONS.some((serviceOption) => serviceOption === value),
+			"Please select a valid service."
+		),
 	message: z
 		.string()
 		.trim()

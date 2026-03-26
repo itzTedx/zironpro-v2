@@ -8,6 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
+import { FieldGroup } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { LoadingSwap } from "@/components/ui/loading-swap";
+import { PhoneInput } from "@/components/ui/phone-input";
 import {
 	Select,
 	SelectItem,
@@ -15,10 +19,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { FieldGroup } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { LoadingSwap } from "@/components/ui/loading-swap";
-import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
 
 import { IconArrowRightTag } from "@/assets/icons/arrow";
@@ -68,7 +68,10 @@ export function ContactForm() {
 					? (window as Window & { umami?: Umami }).umami
 					: undefined;
 			if (umami) {
-				umami.identify(data.email, { name: data.name, service: data.service ?? "" });
+				umami.identify(data.email, {
+					name: data.name,
+					service: data.service ?? "",
+				});
 				umami.track("Signup button", {
 					email: data.email,
 					id:

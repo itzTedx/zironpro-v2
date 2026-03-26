@@ -35,8 +35,7 @@ export async function generateMetadata({
 
 	return createPageMetadata({
 		title: `${blog.metadata.meta.title} | ZironPro UAE`,
-		description:
-			`${blog.metadata.meta.description} Insights for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
+		description: `${blog.metadata.meta.description} Insights for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
 		path: `/blogs/${blog.metadata.slug}`,
 		image: blog.metadata.image,
 		type: "article",
@@ -74,7 +73,7 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 					question: `What does ${blog.metadata.meta.title} cover?`,
 					answer: blog.metadata.meta.description,
 				},
-		  ])
+			])
 		: null;
 
 	return (

@@ -2,14 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
-import { buildBreadcrumbSchema, buildWebPageSchema, createPageMetadata } from "@/lib/seo";
+import {
+	buildBreadcrumbSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+} from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
 	title: "About ZironPro Digital Agency in Dubai, UAE",
 	description:
 		"Learn how ZironPro helps businesses in Dubai, Abu Dhabi, and Sharjah grow through integrated branding, websites, SEO, and conversion-focused marketing.",
 	path: "/about",
-	keywords: ["about ZironPro", "digital agency in Dubai", "marketing company UAE"],
+	keywords: [
+		"about ZironPro",
+		"digital agency in Dubai",
+		"marketing company UAE",
+	],
 });
 
 export default function AboutPage() {
@@ -45,17 +53,23 @@ export default function AboutPage() {
 					<h2 className="font-medium text-2xl text-primary">What we do</h2>
 					<p className="text-muted-foreground">
 						Our team combines strategy, design, development, and marketing to
-						build high-performing digital experiences for businesses in Abu Dhabi,
-						Dubai, and Sharjah.
+						build high-performing digital experiences for businesses in Abu
+						Dhabi, Dubai, and Sharjah.
 					</p>
 				</div>
 				<div className="space-y-3">
 					<h2 className="font-medium text-2xl text-primary">How we work</h2>
 					<p className="text-muted-foreground">
 						Every project starts with clear goals and ends with conversion-ready
-						execution. Explore our <Link className="text-primary underline" href="/services">services</Link> or{" "}
-						<Link className="text-primary underline" href="/contact">contact us</Link> to
-						start.
+						execution. Explore our{" "}
+						<Link className="text-primary underline" href="/services">
+							services
+						</Link>{" "}
+						or{" "}
+						<Link className="text-primary underline" href="/contact">
+							contact us
+						</Link>{" "}
+						to start.
 					</p>
 				</div>
 			</section>

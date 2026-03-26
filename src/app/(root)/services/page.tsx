@@ -21,7 +21,11 @@ export const metadata: Metadata = createPageMetadata({
 	description:
 		"Explore branding, websites, SEO, social media, printing, and growth services delivered by ZironPro for businesses in Dubai, Abu Dhabi, Sharjah, and the UAE.",
 	path: "/services",
-	keywords: ["digital services UAE", "web design services Dubai", "branding Abu Dhabi"],
+	keywords: [
+		"digital services UAE",
+		"web design services Dubai",
+		"branding Abu Dhabi",
+	],
 });
 
 export default function ServicesPage() {
