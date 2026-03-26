@@ -300,11 +300,14 @@ type NotificationProps = {
 export function Notification({ notification }: NotificationProps) {
 	return (
 		<div className="flex w-full max-w-[290px] items-center justify-between gap-4 rounded-2xl border border-dashed bg-gray-1200 p-3.5 shadow-xl">
-			{/** biome-ignore lint/performance/noImgElement: TODO: Replace with next/image */}
-			<img
+			<Image
 				alt={notification.name}
 				className="h-10 w-10"
+				height={40}
+				loader={({ src }) => src}
 				src={notification.icon}
+				unoptimized
+				width={40}
 			/>
 			<div className="flex w-full flex-col">
 				<div className="flex w-full items-start justify-between">

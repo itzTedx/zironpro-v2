@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import * as React from "react";
 import { useRef } from "react";
 
@@ -65,11 +66,12 @@ export function DockIcon({
 						{name}
 					</span>
 					{src ? (
-						// biome-ignore lint/performance/noImgElement: TODO: Replace with next/image
-						<img
+						<Image
 							alt={name}
 							className="h-full w-full rounded-[inherit]"
+							height={iconSize ?? 52}
 							src={src}
+							width={iconSize ?? 52}
 						/>
 					) : (
 						children

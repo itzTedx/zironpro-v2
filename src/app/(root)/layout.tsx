@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "@/styles/globals.css";
 
 import { Suspense } from "react";
@@ -13,33 +14,26 @@ import { inter, interTight, mono } from "@/assets/fonts";
 
 import { siteConfig } from "@/data/site-config";
 import { Video } from "@/features/views/home/video";
+import {
+	buildLocalBusinessSchema,
+	buildOrganizationSchema,
+	buildWebsiteSchema,
+	createPageMetadata,
+} from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
+const baseMetadata = createPageMetadata({
 	title: siteConfig.title,
 	description: siteConfig.description,
-	authors: [{ name: siteConfig.shortName, url: siteConfig.url }],
-	keywords: siteConfig.keywords,
-	creator: siteConfig.shortName,
-	openGraph: {
-		type: "website",
-		locale: "en_AE",
-		alternateLocale: "en_US",
-		url: siteConfig.url,
-		title: siteConfig.title,
-		description: siteConfig.description,
-		siteName: siteConfig.title,
-		images: [siteConfig.ogImage],
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: siteConfig.title,
-		description: siteConfig.description,
-		images: [siteConfig.ogImage],
-		creator: "@",
-	},
-	metadataBase: new URL(siteConfig.url),
+	path: "/",
+	keywords: siteConfig.keywords.split(",").map((keyword) => keyword.trim()),
+});
 
+export const metadata: Metadata = {
+	...baseMetadata,
+	authors: [{ name: siteConfig.shortName, url: siteConfig.url }],
+	creator: siteConfig.shortName,
+	metadataBase: new URL(siteConfig.url),
 	verification: {
 		google: "dzIViUIENzLsewEaXsHL9bvl5Is7CucMXMDlZT92HEI",
 	},
@@ -55,6 +49,10 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const organizationSchema = buildOrganizationSchema();
+	const websiteSchema = buildWebsiteSchema();
+	const localBusinessSchema = buildLocalBusinessSchema();
+
 	return (
 		<html lang="en">
 			<head>
@@ -72,6 +70,15 @@ export default function RootLayout({
 					<Navbar />
 
 					{children}
+					<Script id="schema-organization" type="application/ld+json">
+						{JSON.stringify(organizationSchema)}
+					</Script>
+					<Script id="schema-website" type="application/ld+json">
+						{JSON.stringify(websiteSchema)}
+					</Script>
+					<Script id="schema-local-business" type="application/ld+json">
+						{JSON.stringify(localBusinessSchema)}
+					</Script>
 					<Suspense>
 						<Video />
 					</Suspense>

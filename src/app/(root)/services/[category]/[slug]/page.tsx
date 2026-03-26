@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 
 import fs from "fs";
 import path from "path";
@@ -12,7 +13,6 @@ import { Button } from "@/components/ui/button";
 
 import { IconArrowRightTag } from "@/assets/icons/arrow";
 
-import { siteConfig } from "@/data/site-config";
 import { getServiceBySlug } from "@/features/services/actions/query";
 import { Card } from "@/features/services/components/card";
 import { Faq, FaqContent } from "@/features/services/components/faq";
@@ -20,6 +20,15 @@ import { ImageGalley } from "@/features/services/components/image-gallery";
 import { LogoVariants } from "@/features/services/components/logo-variants";
 import { Group, Section } from "@/features/services/components/section";
 import { Cta } from "@/features/views/cta";
+import {
+	buildAggregateRatingSchema,
+	buildBreadcrumbSchema,
+	buildFaqSchema,
+	buildServiceSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+	makeUaeTitle,
+} from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export async function generateStaticParams() {
@@ -56,33 +65,23 @@ export async function generateMetadata({
 	const metaTitle = service.metadata.meta?.title;
 	const metaDescription = service.metadata.meta?.description;
 
-	const title =
-		metaTitle ?? `${service.metadata.title} - ${siteConfig.shortName}`;
-	const description = metaDescription ?? service.metadata.description;
+	const title = metaTitle ?? makeUaeTitle(service.metadata.title, "Abu Dhabi");
+	const description =
+		(metaDescription ?? service.metadata.description) +
+		" Delivered for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.";
 	const canonicalPath = `/services/${category}/${slug}`;
 
-	return {
+	return createPageMetadata({
 		title,
 		description,
-		alternates: {
-			canonical: canonicalPath,
-		},
-		openGraph: {
-			title,
-			description,
-			url: `${siteConfig.url}${canonicalPath}`,
-			images: [service.metadata.image],
-			type: "website",
-			siteName: siteConfig.title,
-		},
-		twitter: {
-			card: "summary_large_image",
-			title,
-			description,
-			images: [service.metadata.image],
-			creator: "@",
-		},
-	};
+		path: canonicalPath,
+		image: service.metadata.image,
+		keywords: [
+			`${service.metadata.title.toLowerCase()} in Abu Dhabi`,
+			`${service.metadata.title.toLowerCase()} in Dubai`,
+			`${service.metadata.title.toLowerCase()} UAE`,
+		],
+	});
 }
 
 export default async function ServicePage({
@@ -92,9 +91,65 @@ export default async function ServicePage({
 	const service = getServiceBySlug(category, slug);
 
 	if (!service) return notFound();
+	const canonicalPath = `/services/${category}/${slug}`;
+	const webPageSchema = buildWebPageSchema(
+		makeUaeTitle(service.metadata.title, "Abu Dhabi"),
+		`${service.metadata.description} Delivered for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
+		canonicalPath
+	);
+	const breadcrumbSchema = buildBreadcrumbSchema([
+		{ name: "Home", path: "/" },
+		{ name: "Services", path: "/services" },
+		{ name: category, path: `/services/${category}` },
+		{ name: service.metadata.title, path: canonicalPath },
+	]);
+	const aggregateRatingSchema = buildAggregateRatingSchema(
+		service.metadata.title,
+		canonicalPath,
+		4.9,
+		24
+	);
+	const serviceSchema = buildServiceSchema({
+		name: service.metadata.title,
+		description: service.metadata.description,
+		path: canonicalPath,
+		image: service.metadata.image,
+		serviceType: service.metadata.category,
+		aggregateRating: {
+			"@type": "AggregateRating",
+			ratingValue: 4.9,
+			ratingCount: 24,
+		},
+	});
+	const hasFaq = service.content.includes("FaqContent");
+	const faqSchema = hasFaq
+		? buildFaqSchema([
+				{
+					question: `What is included in ${service.metadata.title}?`,
+					answer: service.metadata.description,
+				},
+			])
+		: null;
 
 	return (
 		<div>
+			<Script id="schema-service-detail-webpage" type="application/ld+json">
+				{JSON.stringify(webPageSchema)}
+			</Script>
+			<Script id="schema-service-detail-breadcrumb" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
+			<Script id="schema-service-detail-service" type="application/ld+json">
+				{JSON.stringify(serviceSchema)}
+			</Script>
+			<Script id="schema-service-detail-rating" type="application/ld+json">
+				{JSON.stringify(aggregateRatingSchema)}
+			</Script>
+			{faqSchema ? (
+				<Script id="schema-service-detail-faq" type="application/ld+json">
+					{JSON.stringify(faqSchema)}
+				</Script>
+			) : null}
 			<header className="dashed dashed-b relative w-full">
 				<div className="md:dashed dashed-x container relative z-20 flex h-full max-w-7xl flex-col justify-end space-y-4 pt-12 pb-20">
 					<div className="mx-auto max-w-5xl space-y-4">
@@ -122,6 +177,7 @@ export default async function ServicePage({
 							alt={service.metadata.title}
 							className="pointer-events-none object-cover"
 							fill
+							priority
 							sizes="(max-width: 1280px) 100vw, 1280px"
 							src={service.metadata.image}
 						/>
@@ -135,6 +191,9 @@ export default async function ServicePage({
 			<article className="prose prose-stone [&>div]:dashed [&>div]:dashed-x prose-xl max-w-none prose-a:text-primary prose-a:underline [&>div]:container [&>div]:max-w-7xl [&>div]:py-12">
 				<MDXContent
 					components={{
+						h1: (props) => (
+							<h2 className="font-semibold text-3xl text-primary" {...props} />
+						),
 						a: (props) => (
 							<Link
 								{...props}

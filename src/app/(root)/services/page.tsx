@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,10 +9,50 @@ import { IconArrowRightTag } from "@/assets/icons/arrow";
 import { IconGear } from "@/assets/icons/gear";
 
 import { ServicesLists } from "@/features/services/components/service-list";
+import {
+	buildBreadcrumbSchema,
+	buildServiceSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+} from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+	title: "Digital Services in Abu Dhabi, Dubai, UAE | ZironPro",
+	description:
+		"Explore branding, websites, SEO, social media, printing, and growth services delivered by ZironPro for businesses in Dubai, Abu Dhabi, Sharjah, and the UAE.",
+	path: "/services",
+	keywords: ["digital services UAE", "web design services Dubai", "branding Abu Dhabi"],
+});
 
 export default function ServicesPage() {
+	const webPageSchema = buildWebPageSchema(
+		"Digital Services in Abu Dhabi, Dubai, UAE | ZironPro",
+		"Explore branding, websites, SEO, social media, printing, and growth services delivered by ZironPro for businesses in Dubai, Abu Dhabi, Sharjah, and the UAE.",
+		"/services"
+	);
+	const breadcrumbSchema = buildBreadcrumbSchema([
+		{ name: "Home", path: "/" },
+		{ name: "Services", path: "/services" },
+	]);
+	const serviceSchema = buildServiceSchema({
+		name: "Integrated Digital Services",
+		description:
+			"Branding, web design, development, SEO, and growth marketing services for UAE businesses.",
+		path: "/services",
+		serviceType: "Digital marketing and web services",
+	});
+
 	return (
 		<main>
+			<Script id="schema-services-webpage" type="application/ld+json">
+				{JSON.stringify(webPageSchema)}
+			</Script>
+			<Script id="schema-services-breadcrumb" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
+			<Script id="schema-services-service" type="application/ld+json">
+				{JSON.stringify(serviceSchema)}
+			</Script>
 			<section className="relative bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1400 bg-size-[16px_16px]">
 				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-16 md:py-20">
 					<div className="mx-auto max-w-5xl space-y-4 py-12 text-center">

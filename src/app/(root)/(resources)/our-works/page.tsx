@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,10 +18,51 @@ import { IconArrowRightTag } from "@/assets/icons/arrow";
 import { IconShapes } from "@/assets/icons/shapes";
 
 import { SERVICES } from "@/features/services/constant";
+import {
+	buildBreadcrumbSchema,
+	buildReviewSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+} from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+	title: "Our Work Portfolio in Dubai, UAE | ZironPro",
+	description:
+		"See recent branding, website, and marketing projects delivered by ZironPro for clients across Dubai, Abu Dhabi, Sharjah, and the UAE.",
+	path: "/our-works",
+	keywords: ["portfolio agency Dubai", "web design case studies UAE", "branding projects Abu Dhabi"],
+});
 
 export default function WorksPage() {
+	const webPageSchema = buildWebPageSchema(
+		"Our Work Portfolio in Dubai, UAE | ZironPro",
+		"See recent branding, website, and marketing projects delivered by ZironPro for clients across Dubai, Abu Dhabi, Sharjah, and the UAE.",
+		"/our-works"
+	);
+	const breadcrumbSchema = buildBreadcrumbSchema([
+		{ name: "Home", path: "/" },
+		{ name: "Our Works", path: "/our-works" },
+	]);
+	const reviewSchema = buildReviewSchema({
+		authorName: "Direct LS",
+		reviewBody:
+			"Ziron Media delivered a modern, fast, and professional website that reflects our brand and made the process smooth.",
+		reviewRatingValue: 5,
+		itemName: "Website Design and Development Service",
+		itemPath: "/services/websites",
+	});
+
 	return (
 		<main className="pt-14">
+			<Script id="schema-works-webpage" type="application/ld+json">
+				{JSON.stringify(webPageSchema)}
+			</Script>
+			<Script id="schema-works-breadcrumb" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
+			<Script id="schema-works-review" type="application/ld+json">
+				{JSON.stringify(reviewSchema)}
+			</Script>
 			<header className="dashed dashed-x container mx-auto grid max-w-7xl gap-6 py-9 sm:py-12 md:grid-cols-2 md:gap-12 md:py-16">
 				<h1 className="font-semibold text-4xl text-primary md:text-7xl">
 					A closer look at our recent work.

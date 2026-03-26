@@ -2,6 +2,7 @@ import type { Metadata, Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 
 import {
 	PreviewLinkCard,
@@ -20,6 +21,13 @@ import { siteConfig } from "@/data/site-config";
 import { findServiceBySlug } from "@/features/services/actions/query";
 import { SERVICES } from "@/features/services/constant";
 import { Cta } from "@/features/views/cta";
+import {
+	buildBreadcrumbSchema,
+	buildServiceSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+	makeUaeTitle,
+} from "@/lib/seo";
 
 type PageProps = {
 	params: Promise<{ category: string }>;
@@ -44,24 +52,19 @@ export async function generateMetadata({
 	}
 
 	const title = `${service.title} - ${siteConfig.shortName}`;
-	const description = service.description;
+	const description = `${service.description} We serve businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`;
 
-	return {
-		title,
+	return createPageMetadata({
+		title: makeUaeTitle(service.title, "Dubai") || title,
 		description,
-		openGraph: {
-			title,
-			description,
-			images: [service.image],
-			type: "website",
-		},
-		twitter: {
-			card: "summary_large_image",
-			title,
-			description,
-			images: [service.image],
-		},
-	};
+		path: `/services/${service.slug}`,
+		image: service.image,
+		keywords: [
+			`${service.title.toLowerCase()} in Dubai`,
+			`${service.title.toLowerCase()} in Abu Dhabi`,
+			`${service.title.toLowerCase()} UAE`,
+		],
+	});
 }
 
 export default async function ServiceCategoryPage({ params }: PageProps) {
@@ -71,9 +74,39 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 	if (!service) {
 		notFound();
 	}
+	const canonicalPath = `/services/${service.slug}`;
+	const webPageSchema = buildWebPageSchema(
+		makeUaeTitle(service.title, "Dubai"),
+		`${service.description} We serve businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
+		canonicalPath
+	);
+	const breadcrumbSchema = buildBreadcrumbSchema([
+		{ name: "Home", path: "/" },
+		{ name: "Services", path: "/services" },
+		{ name: service.title, path: canonicalPath },
+	]);
+	const serviceSchema = buildServiceSchema({
+		name: service.title,
+		description: service.description,
+		path: canonicalPath,
+		image: service.image,
+		serviceType: service.title,
+	});
 
 	return (
 		<main>
+			<Script id="schema-service-category-webpage" type="application/ld+json">
+				{JSON.stringify(webPageSchema)}
+			</Script>
+			<Script
+				id="schema-service-category-breadcrumb"
+				type="application/ld+json"
+			>
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
+			<Script id="schema-service-category-service" type="application/ld+json">
+				{JSON.stringify(serviceSchema)}
+			</Script>
 			<section className="dashed dashed-b relative">
 				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-12 md:py-16 md:pt-24">
 					<div className="container grid grid-cols-2 gap-6">
@@ -104,6 +137,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 								alt={service.title}
 								className="object-cover"
 								fill
+								priority
 								sizes="(max-width: 768px) 100vw, 50vw"
 								src={service.image}
 							/>

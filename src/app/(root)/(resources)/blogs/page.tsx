@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -7,42 +8,38 @@ import { IconCalender } from "@/assets/icons/calender";
 import { siteConfig } from "@/data/site-config";
 import { getBlogs } from "@/features/articles/actions/query";
 import { BlogCard } from "@/features/articles/components/blog-card";
+import { buildBreadcrumbSchema, buildWebPageSchema, createPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
-	const title = `Blogs - ${siteConfig.shortName}`;
-
-	return {
-		title,
+	return createPageMetadata({
+		title: `SEO & Growth Blogs in Dubai, UAE | ${siteConfig.shortName}`,
 		description:
-			"Explore marketing insights, web development resources, and strategies designed to help your brand grow.",
-		alternates: {
-			canonical: "/blogs",
-		},
-		openGraph: {
-			title,
-			description:
-				"Explore marketing insights, web development resources, and strategies designed to help your brand grow.",
-			url: `${siteConfig.url}/blogs`,
-			images: [siteConfig.ogImage],
-			type: "website",
-			siteName: siteConfig.title,
-		},
-		twitter: {
-			card: "summary_large_image",
-			title,
-			description:
-				"Explore marketing insights, web development resources, and strategies designed to help your brand grow.",
-			images: [siteConfig.ogImage],
-			creator: "@",
-		},
-	};
+			"Read SEO, web design, and digital growth insights from ZironPro to help businesses in Dubai, Abu Dhabi, Sharjah, and the UAE convert more traffic.",
+		path: "/blogs",
+		keywords: ["SEO blogs UAE", "digital marketing insights Dubai", "web growth articles Abu Dhabi"],
+	});
 }
 
 export default async function BlogsPage() {
 	const blogs = getBlogs();
+	const webPageSchema = buildWebPageSchema(
+		`SEO & Growth Blogs in Dubai, UAE | ${siteConfig.shortName}`,
+		"Read SEO, web design, and digital growth insights from ZironPro to help businesses in Dubai, Abu Dhabi, Sharjah, and the UAE convert more traffic.",
+		"/blogs"
+	);
+	const breadcrumbSchema = buildBreadcrumbSchema([
+		{ name: "Home", path: "/" },
+		{ name: "Blogs", path: "/blogs" },
+	]);
 
 	return (
 		<main>
+			<Script id="schema-blogs-webpage" type="application/ld+json">
+				{JSON.stringify(webPageSchema)}
+			</Script>
+			<Script id="schema-blogs-breadcrumb" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
 			<section className="relative bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1400 bg-size-[16px_16px]">
 				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-16 md:py-20">
 					<div className="mx-auto max-w-5xl space-y-4 py-12 text-center">

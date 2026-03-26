@@ -5,9 +5,14 @@ import { Badge } from "@/components/ui/badge";
 
 import { IconWorld } from "@/assets/icons/world";
 
-import { ADDRESS } from "@/data/constant";
 import { siteConfig } from "@/data/site-config";
 import { FaqContent, FaqItem } from "@/features/services/components/faq";
+import {
+	buildBreadcrumbSchema,
+	buildFaqSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+} from "@/lib/seo";
 
 type FaqItemData = {
 	question: string;
@@ -22,77 +27,34 @@ type FaqCategory = {
 };
 
 function buildFaqPageSchema(items: FaqItemData[]) {
-	return {
-		"@context": "https://schema.org",
-		"@type": "FAQPage",
-		mainEntity: items.map((item) => ({
-			"@type": "Question",
-			name: item.question,
-			acceptedAnswer: {
-				"@type": "Answer",
-				text: item.answer,
-			},
-		})),
-	};
+	return buildFaqSchema(items);
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-	const title = `FAQs - ${siteConfig.shortName}`;
-	const description =
-		"Answers about SEO, Answer Engine Optimization (AEO), and web growth. Dubai-based, serving clients across the UAE.";
-
-	return {
-		title,
-		description,
+	return createPageMetadata({
+		title: `SEO FAQ in Dubai, UAE | ${siteConfig.shortName}`,
+		description:
+			"Get clear answers on SEO, AEO, and technical web performance for businesses in Dubai, Abu Dhabi, Sharjah, and the UAE.",
+		path: "/faqs",
 		keywords: [
-			"FAQs",
-			"SEO",
-			"AEO",
-			"Answer Engine Optimization",
-			"web design Dubai",
-			"digital marketing UAE",
+			"SEO FAQ UAE",
+			"AEO answers Dubai",
+			"technical SEO Abu Dhabi",
+			"web performance Sharjah",
 		],
-		alternates: {
-			canonical: "/faqs",
-		},
-		openGraph: {
-			title,
-			description,
-			url: `${siteConfig.url}/faqs`,
-			images: [siteConfig.ogImage],
-			type: "website",
-			siteName: siteConfig.title,
-		},
-		twitter: {
-			card: "summary_large_image",
-			title,
-			description,
-			images: [siteConfig.ogImage],
-			creator: "@",
-		},
-	};
+	});
 }
 
 export default async function FaqsPage() {
-	const localBusinessSchema = {
-		"@context": "https://schema.org",
-		"@type": "LocalBusiness",
-		name: siteConfig.shortName,
-		url: `${siteConfig.url}/faqs`,
-		telephone: siteConfig.contact,
-		address: {
-			"@type": "PostalAddress",
-			streetAddress: ADDRESS,
-			addressLocality: "Dubai",
-			addressRegion: "Dubai",
-			addressCountry: "AE",
-		},
-		sameAs: [
-			siteConfig.links.linkedin,
-			siteConfig.links.instagram,
-			siteConfig.links.facebook,
-		],
-	};
+	const webPageSchema = buildWebPageSchema(
+		`SEO FAQ in Dubai, UAE | ${siteConfig.shortName}`,
+		"Get clear answers on SEO, AEO, and technical web performance for businesses in Dubai, Abu Dhabi, Sharjah, and the UAE.",
+		"/faqs"
+	);
+	const breadcrumbSchema = buildBreadcrumbSchema([
+		{ name: "Home", path: "/" },
+		{ name: "FAQs", path: "/faqs" },
+	]);
 
 	const faqCategories: FaqCategory[] = [
 		{
@@ -283,8 +245,11 @@ export default async function FaqsPage() {
 				</header>
 			</section>
 
-			<Script id="localbusiness-schema" type="application/ld+json">
-				{JSON.stringify(localBusinessSchema)}
+			<Script id="schema-faqs-webpage" type="application/ld+json">
+				{JSON.stringify(webPageSchema)}
+			</Script>
+			<Script id="schema-faqs-breadcrumb" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
 			</Script>
 
 			<section className="dashed dashed-y">

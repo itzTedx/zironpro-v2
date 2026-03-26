@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 
 import MDXContent from "@/components/markdown/mdx-component";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,13 @@ import { PageTOC, PageTOCItems, TOCProvider } from "@/components/ui/toc";
 import { getBlogBySlug, getBlogs } from "@/features/articles/actions/query";
 import { Blogs } from "@/features/articles/views/blogs";
 import { Faq, FaqContent } from "@/features/services/components/faq";
+import {
+	buildArticleSchema,
+	buildBreadcrumbSchema,
+	buildFaqSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+} from "@/lib/seo";
 import { slugify } from "@/lib/slugify";
 import { cn } from "@/lib/utils";
 
@@ -25,19 +33,66 @@ export async function generateMetadata({
 	const { slug } = await params;
 	const blog = getBlogBySlug(slug);
 
-	return {
-		title: `${blog.metadata.title} - Ziron Media`,
-		description: blog.metadata.description,
-	};
+	return createPageMetadata({
+		title: `${blog.metadata.title} | ZironPro UAE`,
+		description:
+			`${blog.metadata.description} Insights for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
+		path: `/blogs/${blog.metadata.slug}`,
+		image: blog.metadata.image,
+		type: "article",
+		keywords: blog.metadata.tags,
+	});
 }
 
 export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 	const { slug } = await params;
 
 	const blog = getBlogBySlug(slug);
+	const canonicalPath = `/blogs/${blog.metadata.slug}`;
+	const webPageSchema = buildWebPageSchema(
+		`${blog.metadata.title} | ZironPro UAE`,
+		`${blog.metadata.description} Insights for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
+		canonicalPath
+	);
+	const breadcrumbSchema = buildBreadcrumbSchema([
+		{ name: "Home", path: "/" },
+		{ name: "Blogs", path: "/blogs" },
+		{ name: blog.metadata.title, path: canonicalPath },
+	]);
+	const articleSchema = buildArticleSchema({
+		title: blog.metadata.title,
+		description: blog.metadata.description,
+		path: canonicalPath,
+		image: blog.metadata.image,
+		datePublished: blog.metadata.date,
+		authorName: blog.metadata.author,
+	});
+	const hasFaq = blog.content.includes("FaqContent");
+	const faqSchema = hasFaq
+		? buildFaqSchema([
+				{
+					question: `What does ${blog.metadata.title} cover?`,
+					answer: blog.metadata.description,
+				},
+		  ])
+		: null;
 
 	return (
 		<main>
+			<Script id="schema-blog-webpage" type="application/ld+json">
+				{JSON.stringify(webPageSchema)}
+			</Script>
+			<Script id="schema-blog-breadcrumb" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
+			<Script id="schema-blog-article" type="application/ld+json">
+				{JSON.stringify(articleSchema)}
+			</Script>
+			{faqSchema ? (
+				<Script id="schema-blog-faq" type="application/ld+json">
+					{JSON.stringify(faqSchema)}
+				</Script>
+			) : null}
 			<header>
 				<div className="dashed dashed-x container mx-auto max-w-7xl space-y-12 py-12">
 					<div className="mx-auto grid max-w-4xl">
@@ -76,6 +131,7 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 								alt={blog.metadata.title}
 								className="object-cover"
 								fill
+								priority
 								sizes="(max-width: 1280px) 100vw, 1280px"
 								src={blog.metadata.image}
 							/>
@@ -100,7 +156,7 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 										)}
 									/>
 								),
-								h1: (props) => <h1 id={slugify(props.children)} {...props} />,
+								h1: (props) => <h2 id={slugify(props.children)} {...props} />,
 								h2: (props) => <h2 id={slugify(props.children)} {...props} />,
 								h3: (props) => <h3 id={slugify(props.children)} {...props} />,
 								h4: (props) => <h4 id={slugify(props.children)} {...props} />,

@@ -1,5 +1,7 @@
 import { Route } from "next";
 import Link from "next/link";
+import Script from "next/script";
+import type { Metadata } from "next";
 
 import { ContactList } from "@/components/layout/ui/contact-list";
 import { Socials } from "@/components/layout/ui/socials";
@@ -26,10 +28,35 @@ import { IconCheckmark } from "@/assets/icons/check";
 import { ADDRESS, OFFICE_HOURS } from "@/data/constant";
 import { ContactForm } from "@/features/contact/components/contact-form";
 import { SERVICES } from "@/features/services/constant";
+import { buildBreadcrumbSchema, buildWebPageSchema, createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+	title: "Contact ZironPro in Dubai, UAE | Book Strategy Call",
+	description:
+		"Speak with ZironPro in Dubai for web design, SEO, branding, and growth marketing across Abu Dhabi, Sharjah, and the UAE. Request your free strategy call.",
+	path: "/contact",
+	keywords: ["contact digital agency Dubai", "SEO consultation UAE", "web design call Abu Dhabi"],
+});
 
 export default function ContactPage() {
+	const webPageSchema = buildWebPageSchema(
+		"Contact ZironPro in Dubai, UAE | Book Strategy Call",
+		"Speak with ZironPro in Dubai for web design, SEO, branding, and growth marketing across Abu Dhabi, Sharjah, and the UAE. Request your free strategy call.",
+		"/contact"
+	);
+	const breadcrumbSchema = buildBreadcrumbSchema([
+		{ name: "Home", path: "/" },
+		{ name: "Contact", path: "/contact" },
+	]);
+
 	return (
 		<main>
+			<Script id="schema-contact-webpage" type="application/ld+json">
+				{JSON.stringify(webPageSchema)}
+			</Script>
+			<Script id="schema-contact-breadcrumb" type="application/ld+json">
+				{JSON.stringify(breadcrumbSchema)}
+			</Script>
 			<section className="dashed dashed-x mx-auto max-w-7xl py-4 md:py-12">
 				<div className="container grid gap-4 md:grid-cols-2">
 					<div className="space-y-9 py-4 md:py-6">

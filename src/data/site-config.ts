@@ -1,8 +1,11 @@
 export const BASE_URL =
-	process.env.BASE_URL ?? ("http://localhost:3000" as const);
+	process.env.NEXT_PUBLIC_SITE_URL ??
+	process.env.BASE_URL ??
+	"https://zironpro.ae";
 
 export const siteConfig = {
-	title: "ZironPro: Dubai Digital Marketing Agency for Growth",
+	title:
+		"Digital Marketing Agency in UAE | Website, SEO & Branding | Ziron Pro",
 	shortName: "ZironPro",
 	description:
 		"Dubai-based digital marketing agency for SEO, Digital & Offset Printing, Web design and development, and social media that drive leads and revenue. Book a free strategy call today.",
