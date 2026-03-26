@@ -6,17 +6,20 @@ import {
 	Growth,
 } from "../components/achievement-cards";
 
+const COMPANY_START_YEAR = 2019;
+const CURRENT_YEAR = new Date().getFullYear();
+
 export const ACHIEVEMENTS = [
 	{
 		id: 1,
-		title: "50+ Brands Served",
+		title: "2k+ Brands Served",
 		description:
 			"Helping businesses across various industries achieve their goals",
 		card: BrandServed,
 	},
 	{
 		id: 2,
-		title: "5 Years of Experience",
+		title: `${CURRENT_YEAR - COMPANY_START_YEAR} Years of Experience`,
 		description:
 			"Proven expertise in design, marketing & technology to every project",
 		card: Experience,
