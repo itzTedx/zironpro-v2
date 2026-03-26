@@ -51,10 +51,20 @@ Create `.env.local` in the project root:
 ```bash
 BASE_URL=http://localhost:3000
 GOOGLE_GENERATIVE_AI_API_KEY=your_key_here
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
+CONTACT_FORM_FROM_EMAIL=hello@zironpro.com
+CONTACT_FORM_TO_EMAIL=hello@zironpro.com
 ```
 
 - `BASE_URL` is used for canonical URLs, sitemap output, and metadata.
 - `GOOGLE_GENERATIVE_AI_API_KEY` enables AI-powered chat functionality.
+- `SMTP_*` values configure Nodemailer for contact form delivery.
+- `CONTACT_FORM_FROM_EMAIL` is the sender used by the app.
+- `CONTACT_FORM_TO_EMAIL` is where form submissions are delivered.
 
 ## Getting Started
 

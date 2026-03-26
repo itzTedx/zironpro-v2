@@ -164,6 +164,7 @@ export default async function ServicePage({
 								<Button
 									className="w-48 justify-between"
 									data-umami-event="Service page - Get started"
+									render={<Link href="/contact" />}
 									size="lg"
 								>
 									Get started

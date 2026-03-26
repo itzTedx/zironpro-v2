@@ -20,6 +20,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { toastManager } from "@/components/ui/toast";
 
 import { IconArrowRightTag } from "@/assets/icons/arrow";
 
@@ -56,7 +57,22 @@ export function ContactForm() {
 
 	async function onSubmit(data: ContactType) {
 		startTransition(async () => {
-			await submitContactForm(data);
+			const response = await submitContactForm(data);
+			if (response.error) {
+				toastManager.add({
+					type: "error",
+					title: "Message not sent",
+					description: response.error,
+				});
+				return;
+			}
+
+			toastManager.add({
+				type: "success",
+				title: "Message sent",
+				description: "Thanks for reaching out. We'll get back to you soon.",
+			});
+			form.reset();
 
 			// Identify session and track event with Umami
 			type Umami = {
