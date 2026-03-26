@@ -4,10 +4,10 @@ export const ADDRESS =
 export const OFFICE_HOURS = [
 	{
 		period: "Monday - Friday",
-		time: "9:30 AM – 6:30 PM (GST)",
+		time: "9:00 AM - 6:00 PM (GST)",
 	},
 	{
 		period: "Saturday",
-		time: "9:30 AM – 4:30 PM (GST)",
+		time: "9:00 AM - 4:00 PM (GST)",
 	},
 ];

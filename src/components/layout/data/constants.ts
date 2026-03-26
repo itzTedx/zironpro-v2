@@ -109,7 +109,7 @@ export const FOOTER_LINKS = [
 			},
 			{
 				label: "About",
-				href: "/",
+				href: "/about",
 			},
 			{
 				label: "Products",
@@ -159,11 +159,11 @@ export const FOOTER_LINKS = [
 		links: [
 			{
 				label: "Our works",
-				href: "/",
+				href: "/our-works",
 			},
 			{
 				label: "Blogs",
-				href: "/",
+				href: "/blogs",
 			},
 			{
 				label: "Enquiry",

@@ -111,7 +111,7 @@ export const ServicesLists = () => {
 		<ul className="relative z-10">
 			{SERVICES.map((service) => (
 				<li
-					className="group dashed dashed-t relative px-6 py-10 transition-all md:px-0"
+					className="group dashed dashed-t relative px-6 py-12 transition-colors duration-300 ease-out hover:bg-card md:px-0 md:py-16 lg:py-20"
 					key={service.id}
 				>
 					<ServiceList service={service} />

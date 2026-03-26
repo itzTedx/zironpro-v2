@@ -8,7 +8,11 @@ import { IconCalender } from "@/assets/icons/calender";
 import { siteConfig } from "@/data/site-config";
 import { getBlogs } from "@/features/articles/actions/query";
 import { BlogCard } from "@/features/articles/components/blog-card";
-import { buildBreadcrumbSchema, buildWebPageSchema, createPageMetadata } from "@/lib/seo";
+import {
+	buildBreadcrumbSchema,
+	buildWebPageSchema,
+	createPageMetadata,
+} from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const blogs = getBlogs();
@@ -75,8 +79,8 @@ export default async function BlogsPage() {
 				</header>
 
 				<div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-2 md:px-0 lg:grid-cols-3">
-					{blogs.map((blog, i) => (
-						<BlogCard blog={blog} index={i} key={blog.slug} />
+					{blogs.map((blog) => (
+						<BlogCard blog={blog} key={blog.slug} />
 					))}
 				</div>
 

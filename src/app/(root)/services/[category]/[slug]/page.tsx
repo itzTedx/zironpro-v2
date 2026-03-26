@@ -132,7 +132,7 @@ export default async function ServicePage({
 		: null;
 
 	return (
-		<div>
+		<main>
 			<Script id="schema-service-detail-webpage" type="application/ld+json">
 				{JSON.stringify(webPageSchema)}
 			</Script>
@@ -231,6 +231,6 @@ export default async function ServicePage({
 					source={service.content}
 				/>
 			</article>
-		</div>
+		</main>
 	);
 }
