@@ -1,12 +1,39 @@
+ "use client";
+
+import { useEffect, useRef, useState } from "react";
+
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import { IconCaretRight } from "@/assets/icons/caret";
 
 export const Video = () => {
+	const [isOpen, setIsOpen] = useState(false);
+	const [isPreviewReady, setIsPreviewReady] = useState(false);
+	const previewWrapperRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const element = previewWrapperRef.current;
+		if (!element) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries.some((entry) => entry.isIntersecting)) {
+					setIsPreviewReady(true);
+					observer.disconnect();
+				}
+			},
+			{ rootMargin: "200px" },
+		);
+
+		observer.observe(element);
+
+		return () => observer.disconnect();
+	}, []);
+
 	return (
-		<Dialog>
+		<Dialog onOpenChange={setIsOpen} open={isOpen}>
 			<DialogTrigger className="group fixed bottom-9 left-6 z-990 aspect-video h-32 cursor-pointer overflow-hidden rounded-xl shadow-lg transition-transform duration-300 ease-out hover:scale-105">
-				<div>
+				<div ref={previewWrapperRef}>
 					<div className="-translate-1/2 absolute top-1/2 left-1/2">
 						<div className="flex size-9 items-center justify-center gap-1.5 overflow-hidden rounded-md bg-card/20 px-3 backdrop-blur-lg transition-[width] group-hover:w-auto">
 							<span className="hidden font-medium text-sm group-hover:flex">
@@ -23,8 +50,9 @@ export const Video = () => {
 						loop
 						muted
 						playsInline
+						preload="none"
 						slot="media"
-						src="/videos/landing-intro-low.webm"
+						src={isPreviewReady ? "/videos/landing-intro-low.webm" : undefined}
 						title="Intro Video"
 					>
 						<track
@@ -43,8 +71,9 @@ export const Video = () => {
 					crossOrigin="anonymous"
 					loop
 					playsInline
+					preload="none"
 					slot="media"
-					src="/videos/landing-intro.webm"
+					src={isOpen ? "/videos/landing-intro.webm" : undefined}
 					title="Intro Video"
 				>
 					<track
