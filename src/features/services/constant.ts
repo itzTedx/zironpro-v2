@@ -63,7 +63,13 @@ export const SERVICES = [
 		image: "/images/services/web-dev.webp",
 		lists: [
 			{
-				title: "Website Design & Development",
+				title: "Web UI/UX Design",
+				slug: "design-and-dev",
+				image: "/images/services/web-dev.webp",
+				description: "Functional, beautiful website design.",
+			},
+			{
+				title: "Website Development",
 				slug: "design-and-dev",
 				image: "/images/services/web-dev.webp",
 				description: "Functional, beautiful website design.",
