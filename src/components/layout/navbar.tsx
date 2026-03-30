@@ -98,7 +98,9 @@ export const Navbar = () => {
 				<div className="flex items-center gap-2">
 					<Button
 						className="flex-row"
-						data-umami-event="Signup button"
+						data-label="Navbar - Start a project"
+						data-location="navbar_primary"
+						data-track="cta_click"
 						id="signup-button"
 						render={<Link href="/contact" />}
 					>

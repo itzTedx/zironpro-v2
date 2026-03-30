@@ -19,7 +19,12 @@ export const Footer = () => {
 			<section className="dashed dashed-x relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-4 px-6 py-6 md:px-px md:py-12 lg:grid-cols-[1fr_2fr]">
 				<div className="squircle relative inset-shadow-[0_3px_--theme(--color-white/36%)] isolate flex flex-col justify-between gap-4 overflow-hidden rounded-5xl bg-linear-[180deg,#B362FF_-8.23%,#401CD8_44.8%,#1A1162_100%] p-12 shadow-sm">
 					<Noise className="opacity-50" />
-					<Link data-umami-event="Footer - Logo" href="/">
+					<Link
+						data-label="Footer - Logo"
+						data-location="footer_brand"
+						data-track="cta_click"
+						href="/"
+					>
 						<Logo className="h-10 w-fit text-white" />
 					</Link>
 					<div className="space-y-8">
@@ -48,7 +53,9 @@ export const Footer = () => {
 												<li key={link.label}>
 													<Link
 														className="relative text-foreground transition-colors duration-300 ease-out before:pointer-events-none before:absolute before:top-[1.3em] before:left-0 before:h-[0.05em] before:w-full before:origin-right before:scale-x-0 before:bg-current before:transition-transform before:duration-300 before:ease-in-out before:content-[''] hover:text-primary hover:before:origin-left hover:before:scale-x-100"
-														data-umami-event={`Footer - ${link.label}`}
+														data-label={`Footer - ${link.label}`}
+														data-location="footer_links"
+														data-track="cta_click"
 														href={link.href}
 													>
 														{link.label}
@@ -89,7 +96,12 @@ export const Footer = () => {
 						<p className="w-full text-muted-foreground">
 							© {currentYear} Ziron Media. All rights reserved.
 						</p>
-						<Link data-umami-event="Footer - Wordmark" href="/">
+						<Link
+							data-label="Footer - Wordmark"
+							data-location="footer_brand"
+							data-track="cta_click"
+							href="/"
+						>
 							<LogoMono className="h-6 w-auto shrink-0 text-background/20 transition-colors duration-300 ease-out hover:text-primary" />
 						</Link>
 
@@ -103,7 +115,9 @@ export const Footer = () => {
 											"before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
 											"hover:before:origin-left hover:before:scale-x-100"
 										)}
-										data-umami-event={`Footer - ${meta.label}`}
+										data-label={`Footer - ${meta.label}`}
+										data-location="footer_meta"
+										data-track="cta_click"
 										href={meta.href}
 									>
 										{meta.label}

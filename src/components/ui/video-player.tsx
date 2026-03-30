@@ -149,9 +149,6 @@ export const Video = () => {
 			</AnimatePresence>
 			<div
 				onClick={() => {
-					// if (typeof window !== "undefined" && (window as { umami?: { track: (e: string) => void } }).umami) {
-					// 	(window as { umami: { track: (e: string) => void } }).umami.track("Hero - Play video");
-					// }
 					setShowVideoPopOver(true);
 				}}
 				onMouseLeave={() => {

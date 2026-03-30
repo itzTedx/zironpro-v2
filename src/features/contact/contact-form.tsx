@@ -5,6 +5,7 @@ import { useTransition } from "react";
 import Link from "next/link";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useOpenPanel } from "@openpanel/nextjs";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,7 @@ import { toastManager } from "@/components/ui/toast";
 import { IconArrowRightTag } from "@/assets/icons/arrow";
 
 import { SERVICES } from "@/features/services/constant";
+import { OP_EVENTS } from "@/lib/op-events";
 
 import { submitContactForm } from "./actions";
 import { ContactType, contactFormSchema } from "./actions/schema";
@@ -43,6 +45,7 @@ const SERVICE_ITEMS: { label: string; value: string }[] = [
 
 export function ContactForm() {
 	const [isPending, startTransition] = useTransition();
+	const openPanel = useOpenPanel();
 
 	const form = useForm<ContactType, unknown, ContactType>({
 		resolver: zodResolver(contactFormSchema),
@@ -59,6 +62,9 @@ export function ContactForm() {
 		startTransition(async () => {
 			const response = await submitContactForm(data);
 			if (response.error) {
+				openPanel.track(OP_EVENTS.contactFormError, {
+					source: "contact_page",
+				});
 				toastManager.add({
 					type: "error",
 					title: "Message not sent",
@@ -73,29 +79,10 @@ export function ContactForm() {
 				description: "Thanks for reaching out. We'll get back to you soon.",
 			});
 			form.reset();
-
-			// Identify session and track event with Umami
-			type Umami = {
-				identify: (id: string, data?: Record<string, string | number>) => void;
-				track: (e: string, d?: Record<string, string | number>) => void;
-			};
-			const umami =
-				typeof window !== "undefined"
-					? (window as Window & { umami?: Umami }).umami
-					: undefined;
-			if (umami) {
-				umami.identify(data.email, {
-					name: data.name,
-					service: data.service ?? "",
-				});
-				umami.track("Signup button", {
-					email: data.email,
-					id:
-						typeof crypto !== "undefined" && crypto.randomUUID
-							? crypto.randomUUID()
-							: Date.now().toString(36),
-				});
-			}
+			openPanel.track(OP_EVENTS.contactFormSubmitted, {
+				source: "contact_page",
+				service: data.service || "unspecified",
+			});
 		});
 	}
 

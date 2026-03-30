@@ -8,6 +8,8 @@ import { CONTACT } from "@/components/layout/data/constants";
 
 import { siteConfig } from "@/data/site-config";
 import { SERVICES } from "@/features/services/constant";
+import { op } from "@/lib/op";
+import { OP_EVENTS } from "@/lib/op-events";
 
 const google = createGoogleGenerativeAI();
 
@@ -121,6 +123,10 @@ export async function generateChatReplyAction(input: {
 	| { ok: false; error: string }
 > {
 	if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+		await op.track(OP_EVENTS.aiChatRequest, {
+			ok: false,
+			reason: "missing_api_key",
+		});
 		return { ok: false, error: "GOOGLE_GENERATIVE_AI_API_KEY is not set" };
 	}
 
@@ -167,11 +173,20 @@ Reply as the assistant to the latest user message and return structured output.`
 
 		const suggestions = normalizeSuggestions(object.suggestions, allowedRoutes);
 
+		await op.track(OP_EVENTS.aiChatRequest, {
+			ok: true,
+			messageCount: parsed.data.messages.length,
+		});
+
 		return { ok: true, reply, suggestions };
 	} catch (error) {
 		console.error("AI generateChatReplyAction error:", error);
 		const message =
 			error instanceof Error ? error.message : "Failed to generate chat reply";
+		await op.track(OP_EVENTS.aiChatRequest, {
+			ok: false,
+			reason: "exception",
+		});
 		return { ok: false, error: message };
 	}
 }
@@ -186,14 +201,17 @@ export async function captureLeadAction(input: {
 }): Promise<{ ok: true } | { ok: false; error: string }> {
 	const parsed = leadSchema.safeParse(input);
 	if (!parsed.success) {
+		await op.track(OP_EVENTS.aiLeadCaptured, {
+			ok: false,
+			reason: "invalid_payload",
+		});
 		return { ok: false, error: "Invalid lead payload." };
 	}
 
 	try {
 		// MVP capture sink: replace with CRM/email integration later.
-		console.log("[AI_LEAD_CAPTURED]", {
-			...parsed.data,
-			receivedAt: new Date().toISOString(),
+		await op.track(OP_EVENTS.aiLeadCaptured, {
+			ok: true,
 		});
 
 		return { ok: true };
@@ -201,6 +219,10 @@ export async function captureLeadAction(input: {
 		console.error("captureLeadAction error:", error);
 		const message =
 			error instanceof Error ? error.message : "Failed to capture lead";
+		await op.track(OP_EVENTS.aiLeadCaptured, {
+			ok: false,
+			reason: "exception",
+		});
 		return { ok: false, error: message };
 	}
 }

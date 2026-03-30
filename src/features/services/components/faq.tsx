@@ -123,7 +123,9 @@ function Faq({
 						</p>
 						<Button
 							className="text-foreground"
-							data-umami-event="FAQ - Book a call"
+							data-label="FAQ - Book a call"
+							data-location="services_faq"
+							data-track="cta_click"
 							variant="outline"
 						>
 							<IconCalender className="text-muted-foreground" />

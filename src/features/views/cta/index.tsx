@@ -30,7 +30,9 @@ export const Cta = ({ title, description, buttonText }: CtaProps) => {
 				</p>
 				<Button
 					className="mb-12 justify-between md:w-48"
-					data-umami-event="CTA - Get in touch"
+					data-label="CTA - Get in touch"
+					data-location="rich_cta_block"
+					data-track="cta_click"
 					render={<Link href="/contact" />}
 					variant="secondary"
 				>

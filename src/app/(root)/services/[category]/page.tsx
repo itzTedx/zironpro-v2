@@ -113,7 +113,9 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 						<div>
 							<Button
 								className="flex w-fit gap-2"
-								data-umami-event="Services category - Back to services"
+								data-label="Services category - Back to services"
+								data-location="services_category_header"
+								data-track="cta_click"
 								render={<Link href="/services" />}
 								variant="ghost"
 							>

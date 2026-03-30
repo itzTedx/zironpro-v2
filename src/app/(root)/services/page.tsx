@@ -129,7 +129,9 @@ export default function ServicesPage() {
 					<div className="dashed dashed-x container flex max-w-7xl items-center justify-center py-12">
 						<Button
 							className="gap-4 text-foreground/70 hover:text-foreground"
-							data-umami-event="Services - Build your vision"
+							data-label="Services - Build your vision"
+							data-location="services_hub"
+							data-track="cta_click"
 							render={<Link href="/contact" />}
 							size="xl"
 							variant="ghost"

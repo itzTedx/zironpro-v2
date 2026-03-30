@@ -41,7 +41,9 @@ export const Hero = () => {
 					<div className="relative z-99 flex w-full items-center gap-4 md:w-auto">
 						<Button
 							className="group w-full flex-1 justify-between gap-2 md:w-48"
-							data-umami-event="Hero - Get started"
+							data-label="Hero - Get started"
+							data-location="hero_primary"
+							data-track="cta_click"
 							render={<Link href="/services" />}
 							size="xl"
 						>
@@ -55,7 +57,9 @@ export const Hero = () => {
 						</Button>
 						<Button
 							className="group text-card hover:text-brand-900"
-							data-umami-event="Hero - See us in action"
+							data-label="Hero - See us in action"
+							data-location="hero_secondary"
+							data-track="cta_click"
 							render={<Link href="/our-works" />}
 							size="xl"
 							variant="outline"

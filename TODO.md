@@ -37,8 +37,6 @@ Prioritized ideas derived from a full-repo pass (`src/`, config, content). Adjus
 ## Analytics & environment
 
 - [ ] **Document env vars** — add `.env.example` with `BASE_URL`, `GOOGLE_GENERATIVE_AI_API_KEY` (AI chat), and any future mail/analytics keys. `site-config` defaults `BASE_URL` to localhost; production must set this for canonical URLs and OG.
-- [ ] **Verify Umami (or chosen analytics) in layout** — many `data-umami-event` attributes exist; confirm the script is injected in production layout (not verified in this pass) and that events match dashboard expectations.
-- [ ] **Normalize event names** — contact flow tracks “Signup button” in multiple places (navbar, form); rename for clarity (e.g. “Contact form submit” vs “Nav CTA”).
 
 ---
 

@@ -79,7 +79,9 @@ export default function WorksPage() {
 					</p>
 					<Button
 						className="group w-full flex-1 justify-between gap-2 md:w-60"
-						data-umami-event="Our works - Get started"
+						data-label="Our works - Get started"
+						data-location="works_header"
+						data-track="cta_click"
 						render={<Link href="/services" />}
 						size="lg"
 					>
@@ -117,7 +119,9 @@ export default function WorksPage() {
 										className="transition-colors duration-300 md:hidden"
 										render={
 											<Link
-												data-umami-event="Our works - Website Design & Dev"
+												data-label="Our works - Website Design & Dev"
+												data-location="works_tabs"
+												data-track="cta_click"
 												href="/services/websites"
 											/>
 										}
@@ -135,7 +139,9 @@ export default function WorksPage() {
 										className="hidden transition-colors duration-300 md:inline-flex"
 										render={
 											<Link
-												data-umami-event="Our works - Website Design & Dev"
+												data-label="Our works - Website Design & Dev"
+												data-location="works_tabs"
+												data-track="cta_click"
 												href="/services/websites"
 											/>
 										}
@@ -145,7 +151,9 @@ export default function WorksPage() {
 									</Badge>
 									<Button
 										className="w-full md:inline-flex md:w-auto"
-										data-umami-event="Our works - See case study"
+										data-label="Our works - See case study"
+										data-location="works_tabs"
+										data-track="cta_click"
 										variant="secondary"
 									>
 										See Case Study

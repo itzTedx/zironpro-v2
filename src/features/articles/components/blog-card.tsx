@@ -17,8 +17,10 @@ export const BlogCard = ({ blog }: { blog: BlogMetadata }) => {
 		>
 			<Link
 				className={cn("absolute inset-0 z-10")}
-				data-umami-event="Blog card"
-				data-umami-event-slug={blog.slug}
+				data-label="Blog card"
+				data-location="blogs_list"
+				data-slug={blog.slug}
+				data-track="cta_click"
 				href={`/blogs/${blog.slug}`}
 			/>
 			<div className={cn("relative aspect-5/4 overflow-hidden rounded-2xl")}>
