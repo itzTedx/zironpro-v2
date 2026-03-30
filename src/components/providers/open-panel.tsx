@@ -7,8 +7,8 @@ export default function OpenPanelProvider({
 	return (
 		<>
 			<OpenPanelComponent
-				apiUrl={process.env.OPENPANEL_API_URL ?? ""}
-				clientId={process.env.OPENPANEL_CLIENT_ID ?? ""}
+				apiUrl={process.env.NEXT_PUBLIC_OPENPANEL_API_URL ?? ""}
+				clientId={process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID ?? ""}
 				trackAttributes={true}
 				trackOutgoingLinks={true}
 				trackScreenViews={true}
