@@ -27,7 +27,7 @@ const baseMetadata = createPageMetadata({
 	title: siteConfig.title,
 	description: siteConfig.description,
 	path: "/",
-	keywords: siteConfig.keywords.split(",").map((keyword) => keyword.trim()),
+	keywords: [...siteConfig.keywords],
 });
 
 export const metadata: Metadata = {
