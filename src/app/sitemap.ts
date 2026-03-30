@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { getBlogs } from "@/features/articles/actions/query";
 import { SERVICES } from "@/features/services/constant";
+import { LOCATION_SLUGS, SERVICE_SLUGS } from "@/lib/location-seo";
 import { getBaseUrl } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -10,6 +11,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 	const services = SERVICES;
 	const blogs = getBlogs();
+
+	const locationEntries: MetadataRoute.Sitemap = LOCATION_SLUGS.map(
+		(location) => ({
+			url: `${baseURL}/${location}`,
+			lastModified: now,
+			changeFrequency: "monthly",
+			priority: 0.8,
+		})
+	);
+
+	const serviceLocationEntries: MetadataRoute.Sitemap = SERVICE_SLUGS.flatMap(
+		(service) =>
+			LOCATION_SLUGS.map((location) => ({
+				url: `${baseURL}/service/${service}/${location}`,
+				lastModified: now,
+				changeFrequency: "monthly",
+				priority: 0.8,
+			}))
+	);
 
 	const servicesCategoriesEntries: MetadataRoute.Sitemap = services.map(
 		({ slug }) => ({
@@ -92,6 +112,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency: "yearly",
 			priority: 0.3,
 		},
+		...locationEntries,
+		...serviceLocationEntries,
 		...servicesCategoriesEntries,
 		...servicesEntries,
 		...blogEntries,

@@ -8,8 +8,38 @@ import { IconArrowRightTag } from "@/assets/icons/arrow";
 
 import { Featured } from "./featured";
 
-export const Hero = () => {
+interface HeroProps {
+	badgeLabel?: string;
+	heading?: string;
+	subheading?: string;
+}
+
+export const Hero = ({ badgeLabel, heading, subheading }: HeroProps) => {
 	// const bg = "bg-[radial-gradient(ellipse_400%_240%_at_50%_100%,#fff,#fff_10%,15%,#c7c5fd_16%,rgba(154,103,250,.6)_17%,21%,#264cab_28%,35%,#00031d_45%,#00031d)]"
+	const badgeNode = badgeLabel ? (
+		badgeLabel
+	) : (
+		<>
+			UAE&apos;s Digital Marketing Agency{" "}
+			<span className="text-brand-400">Driving Revenue Growth</span>
+		</>
+	);
+
+	const headingNode = heading ?? "Turn your brand into a revenue machine";
+
+	const subheadingNode = subheading ? (
+		subheading
+	) : (
+		<>
+			We’re your full-stack creative & digital marketing partner from{" "}
+			<span className="text-card">
+				branding to websites, CRM software, social media, printing, corporate
+				gifts,
+			</span>{" "}
+			and everything in between.
+		</>
+	);
+
 	return (
 		<section className="relative bg-[radial-gradient(ellipse_400%_240%_at_50%_100%,#fff,#fff_10%,15%,#c7c5fd_16%,rgba(154,103,250,.6)_17%,21%,#264cab_28%,35%,#00031d_45%,#00031d)]">
 			<Noise className="opacity-20" />
@@ -17,25 +47,17 @@ export const Hero = () => {
 				<div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-16 md:px-0 lg:py-20">
 					<Badge className="gap-2">
 						<span className="size-1.5 rounded-full bg-brand-400" />{" "}
-						<h1 className="tracking-wide">
-							UAE's Digital Marketing Agency{" "}
-							<span className="text-brand-400">Driving Revenue Growth</span>
-						</h1>
+						<h1 className="tracking-wide">{badgeNode}</h1>
 					</Badge>
 					{/* <Badge className="gap-2 uppercase tracking-normal">
 						<div className="size-1.5 rounded-full bg-violet-500" /> Ready to grow?
 						We’re ready to go
 					</Badge> */}
 					<h2 className="text-center font-black font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
-						Turn your brand into a revenue machine
+						{headingNode}
 					</h2>
 					<p className="text-balance text-center font-medium text-muted leading-relaxed sm:text-lg md:text-xl">
-						We’re your full-stack creative & digital marketing partner from{" "}
-						<span className="text-card">
-							branding to websites, CRM software, social media, printing,
-							corporate gifts,
-						</span>{" "}
-						and everything in between.
+						{subheadingNode}
 					</p>
 
 					<div className="relative z-99 flex w-full items-center gap-4 md:w-auto">

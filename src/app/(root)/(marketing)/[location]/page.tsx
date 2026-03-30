@@ -1,21 +1,18 @@
-import type { Metadata, Route } from "next";
-import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
-import MDXContent from "@/components/markdown/mdx-component";
-
-import { Breadcrumbs } from "@/features/locations/components/breadcrumbs";
 import { CTASection } from "@/features/locations/components/cta-section";
-import { FAQSection } from "@/features/locations/components/faq-section";
-import { LocationHero } from "@/features/locations/components/location-hero";
+import { Achievements } from "@/features/views/home/achievements";
+import { Hero } from "@/features/views/home/hero";
+import { Products } from "@/features/views/home/products";
+import { Services } from "@/features/views/home/services";
+import { WhyUs } from "@/features/views/home/why-us";
 import {
 	formatLocation,
-	formatService,
 	getLocationContent,
 	isLocationSlug,
 	LOCATION_SLUGS,
-	SERVICE_SLUGS,
 } from "@/lib/location-seo";
 import {
 	buildBreadcrumbSchema,
@@ -82,15 +79,16 @@ export default async function LocationPage({
 			<Script id="schema-location-business" type="application/ld+json">
 				{JSON.stringify(localBusinessSchema)}
 			</Script>
-
-			<Breadcrumbs
-				items={[
-					{ label: "Home", href: "/" },
-					{ label: formattedLocation, href: `/${location}` as Route },
-				]}
+			<Hero
+				badgeLabel={`${formattedLocation} digital marketing partner`}
+				heading={`Turn your ${formattedLocation} brand into a revenue engine`}
+				subheading={
+					locationContent?.frontmatter.description ??
+					`We help ambitious companies in ${formattedLocation} grow with branding, websites, SEO, and performance marketing.`
+				}
 			/>
 
-			<LocationHero
+			{/* <LocationHero
 				description={
 					locationContent?.frontmatter.description ??
 					`High-performance marketing, branding, and web solutions in ${formattedLocation}.`
@@ -113,30 +111,25 @@ export default async function LocationPage({
 						available services below.
 					</p>
 				</section>
-			)}
+			)} */}
 
-			<section className="dashed dashed-y">
-				<div className="container max-w-7xl py-10">
-					<h2 className="font-semibold text-2xl text-primary">
-						Services in {formattedLocation}
-					</h2>
-					<ul className="mt-4 grid gap-3 md:grid-cols-3">
-						{SERVICE_SLUGS.map((service) => (
-							<li key={service}>
-								<Link
-									className="block rounded-lg border p-4 transition-colors hover:bg-card"
-									href={`/${service}/${location}` as Route}
-								>
-									{formatService(service)} in {formattedLocation}
-								</Link>
-							</li>
-						))}
-					</ul>
-				</div>
-			</section>
+			<Achievements />
 
-			<FAQSection items={locationContent?.frontmatter.faq} />
-			<CTASection />
+			<Services />
+
+			{/* <VideoReel /> */}
+
+			<WhyUs />
+
+			<Products />
+
+			<CTASection
+				description={
+					locationContent?.frontmatter.description ??
+					`Talk to our team about a practical, performance-focused strategy for your ${formattedLocation} business.`
+				}
+				title={`Ready to grow in ${formattedLocation}?`}
+			/>
 		</main>
 	);
 }

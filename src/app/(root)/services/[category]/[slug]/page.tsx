@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 
 import { IconArrowRightTag } from "@/assets/icons/arrow";
 
+import { siteConfig } from "@/data/site-config";
 import { getServiceBySlug } from "@/features/services/actions/query";
 import { Card } from "@/features/services/components/card";
 import { Faq, FaqContent } from "@/features/services/components/faq";
@@ -80,6 +81,7 @@ export async function generateMetadata({
 			`${service.metadata.title.toLowerCase()} in Abu Dhabi`,
 			`${service.metadata.title.toLowerCase()} in Dubai`,
 			`${service.metadata.title.toLowerCase()} UAE`,
+			...siteConfig.keywords,
 		],
 	});
 }
