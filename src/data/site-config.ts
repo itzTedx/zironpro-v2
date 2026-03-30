@@ -5,7 +5,7 @@ export const BASE_URL =
 
 export const siteConfig = {
 	title:
-		"Digital Marketing Agency in UAE | Website, SEO & Branding - Ziron Pro Digital Design",
+		"Digital Marketing Agency in UAE | Website, SEO & Branding - Ziron Pro",
 	shortName: "ZironPro",
 	description:
 		"UAE based digital marketing agency for SEO, Digital & Offset Printing, Web design and development, and social media that drive leads and revenue. Book a free strategy call today.",
