@@ -42,7 +42,7 @@ export const FEATURED_ITEMS = [
 	},
 	{
 		id: 2,
-		title: "Logo Design",
+		title: "Branding",
 		alt: "Logo Design for your Brand's Identity.",
 		image: "/images/featured/logo-design.webp",
 		icon: IconCheckmark,

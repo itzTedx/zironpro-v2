@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 
+import { Badge } from "@/components/ui/badge";
+
 import { siteConfig } from "@/data/site-config";
 import { Blogs } from "@/features/articles/views/blogs";
 import { Achievements } from "@/features/views/home/achievements";
@@ -41,6 +43,18 @@ export default function Home() {
 			<WhyUs />
 			<Products />
 			<Blogs />
+			<section className="relative bg-linear-to-b from-50% to-card">
+				<div className="mx-auto max-w-7xl">
+					<div className="rounded-2xl bg-primary p-12">
+						<Badge>Get Started</Badge>
+						<h5>Everything You Need to Grow - In One Place</h5>
+						<p>
+							Build, launch, and scale with tools designed to make things simple
+							- not complicated.
+						</p>
+					</div>
+				</div>
+			</section>
 		</main>
 	);
 }

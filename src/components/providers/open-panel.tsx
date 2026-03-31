@@ -20,7 +20,7 @@ export default function OpenPanelProvider({
 					globalProperties={{
 						environment: process.env.NODE_ENV,
 					}}
-					scriptUrl="https://test.zironmedia.com/op1.js"
+					scriptUrl="https://analytics.zironpro.ae/op1.js"
 					sessionReplay={{
 						enabled: true,
 						maskAllInputs: true,
