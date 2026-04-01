@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 
-import { Badge } from "@/components/ui/badge";
-
-import { IconCalender } from "@/assets/icons/calender";
-
 import { siteConfig } from "@/data/site-config";
 import { getBlogs } from "@/features/articles/actions/query";
 import { BlogCard } from "@/features/articles/components/blog-card";
@@ -42,27 +38,27 @@ export default async function BlogsPage() {
 	]);
 
 	return (
-		<main>
+		<main className="bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1400 bg-size-[16px_16px]">
 			<Script id="schema-blogs-webpage" type="application/ld+json">
 				{JSON.stringify(webPageSchema)}
 			</Script>
 			<Script id="schema-blogs-breadcrumb" type="application/ld+json">
 				{JSON.stringify(breadcrumbSchema)}
 			</Script>
-			<section className="relative bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1400 bg-size-[16px_16px]">
+			<section className="relative">
 				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-16 md:py-20">
-					<div className="mx-auto max-w-5xl space-y-4 py-12 text-center">
-						<Badge>
+					<div className="mx-auto max-w-5xl space-y-4 py-12">
+						{/* <Badge>
 							<IconCalender className="text-brand-600" /> Blogs
-						</Badge>
+						</Badge> */}
 
-						<h1 className="mx-auto font-black font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
-							Marketing Insights
+						<h1 className="mx-auto font-bold font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] md:text-6xl lg:text-7xl">
+							Insights
 						</h1>
 
 						<p className="text-balance text-2xl text-muted leading-relaxed tracking-tight">
-							Latest articles and resources to help you build, scale, and
-							convert.
+							Actionable strategies, expert insights, and proven ideas to help
+							your business grow smarter in the digital world.
 						</p>
 					</div>
 				</header>

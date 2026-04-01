@@ -1,15 +1,13 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 
 import MDXContent from "@/components/markdown/mdx-component";
-import { Badge } from "@/components/ui/badge";
-import { PageTOC, PageTOCItems, TOCProvider } from "@/components/ui/toc";
 
 import { getBlogBySlug, getBlogs } from "@/features/articles/actions/query";
 import { Blogs } from "@/features/articles/views/blogs";
 import { Faq, FaqContent } from "@/features/services/components/faq";
+import { SERVICES } from "@/features/services/constant";
 import {
 	buildArticleSchema,
 	buildBreadcrumbSchema,
@@ -19,6 +17,134 @@ import {
 } from "@/lib/seo";
 import { slugify } from "@/lib/slugify";
 import { cn } from "@/lib/utils";
+
+import { BlogContent } from "./blog-content";
+
+type RelatedBlog = {
+	slug: string;
+	title: string;
+};
+
+type RelatedService = {
+	href: string;
+	title: string;
+	image: string;
+	alt: string;
+};
+
+function extractInternalLinks(content: string) {
+	const hrefMatches = content.matchAll(/\[[^\]]+\]\(([^)\s]+)\)/g);
+	const uniqueLinks = new Set<string>();
+
+	for (const match of hrefMatches) {
+		const href = match[1]?.trim();
+
+		if (!href || href.startsWith("#")) {
+			continue;
+		}
+
+		if (
+			href.startsWith("http://") ||
+			href.startsWith("https://") ||
+			href.startsWith("mailto:") ||
+			href.startsWith("tel:")
+		) {
+			continue;
+		}
+
+		const cleanHref = href.split("#")[0]?.split("?")[0];
+		if (!cleanHref?.startsWith("/")) {
+			continue;
+		}
+
+		uniqueLinks.add(cleanHref);
+	}
+
+	return [...uniqueLinks];
+}
+
+function getRelatedBlogs(links: string[], currentSlug: string): RelatedBlog[] {
+	const blogSlugPattern = /^\/blogs\/([^/]+)$/;
+	const allBlogs = getBlogs();
+	const blogMap = new Map(allBlogs.map((entry) => [entry.slug, entry.title]));
+	const results: RelatedBlog[] = [];
+	const seen = new Set<string>();
+
+	for (const href of links) {
+		const match = href.match(blogSlugPattern);
+		const slug = match?.[1];
+
+		if (!slug || slug === currentSlug || seen.has(slug)) {
+			continue;
+		}
+
+		const title = blogMap.get(slug);
+		if (!title) {
+			continue;
+		}
+
+		seen.add(slug);
+		results.push({ slug, title });
+	}
+
+	return results;
+}
+
+function getRelatedServices(links: string[]): RelatedService[] {
+	const servicePattern = /^\/services\/([^/]+)\/([^/]+)$/;
+	const results: RelatedService[] = [];
+	const seen = new Set<string>();
+
+	for (const href of links) {
+		const match = href.match(servicePattern);
+		const category = match?.[1];
+		const slug = match?.[2];
+
+		if (!category || !slug || seen.has(href)) {
+			continue;
+		}
+
+		const categoryData = SERVICES.find((service) => service.slug === category);
+		const serviceItem = categoryData?.lists.find((item) => item.slug === slug);
+
+		if (!serviceItem) {
+			continue;
+		}
+
+		seen.add(href);
+		results.push({
+			href,
+			title: serviceItem.title,
+			image: serviceItem.image,
+			alt: serviceItem.description,
+		});
+	}
+
+	return results;
+}
+
+function getFallbackBlogs(currentSlug: string): RelatedBlog[] {
+	return getBlogs()
+		.filter((entry) => entry.slug !== currentSlug)
+		.slice(0, 3)
+		.map((entry) => ({
+			slug: entry.slug,
+			title: entry.title,
+		}));
+}
+
+function getFallbackServices(): RelatedService[] {
+	const items = SERVICES.flatMap((category) =>
+		category.lists.map((service) => ({
+			href: `/services/${category.slug}/${service.slug}`,
+			title: service.title,
+			image: service.image,
+			alt: service.description,
+		}))
+	);
+
+	return items.slice(0, 2);
+}
 
 export function generateStaticParams() {
 	const blogs = getBlogs();
@@ -47,6 +173,13 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 	const { slug } = await params;
 
 	const blog = getBlogBySlug(slug);
+	const internalLinks = extractInternalLinks(blog.content);
+	const detectedBlogs = getRelatedBlogs(internalLinks, slug);
+	const detectedServices = getRelatedServices(internalLinks);
+	const relatedBlogs =
+		detectedBlogs.length > 0 ? detectedBlogs : getFallbackBlogs(slug);
+	const relatedServices =
+		detectedServices.length > 0 ? detectedServices : getFallbackServices();
 	const canonicalPath = `/blogs/${blog.metadata.slug}`;
 	const webPageSchema = buildWebPageSchema(
 		`${blog.metadata.meta.title} | ZironPro UAE`,
@@ -92,7 +225,38 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 					{JSON.stringify(faqSchema)}
 				</Script>
 			) : null}
-			<header>
+			<BlogContent
+				data={blog}
+				relatedBlogs={relatedBlogs}
+				relatedServices={relatedServices}
+			>
+				<MDXContent
+					components={{
+						a: (props) => (
+							<Link
+								{...props}
+								className={cn(
+									"group no-underline! relative items-center",
+									"before:pointer-events-none before:absolute before:top-[1.3em] before:left-0 before:h-[0.072em] before:w-full before:bg-current before:content-['']",
+									"prose-headings:text-primary before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
+									"hover:before:origin-left hover:before:scale-x-100"
+								)}
+							/>
+						),
+						h1: (props) => <h2 id={slugify(props.children)} {...props} />,
+						h2: (props) => <h2 id={slugify(props.children)} {...props} />,
+						h3: (props) => <h3 id={slugify(props.children)} {...props} />,
+						h4: (props) => <h4 id={slugify(props.children)} {...props} />,
+						h5: (props) => <h5 id={slugify(props.children)} {...props} />,
+						h6: (props) => <h6 id={slugify(props.children)} {...props} />,
+						// Section: (props) => <Section {...props} />,
+						Faq: Faq,
+						FaqContent: FaqContent,
+					}}
+					source={blog.content}
+				/>
+			</BlogContent>
+			{/* <header>
 				<div className="dashed dashed-x container mx-auto max-w-7xl space-y-12 py-12">
 					<div className="mx-auto grid max-w-4xl">
 						<div className="col-span-2 space-y-3">
@@ -139,56 +303,38 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 					<div className="pointer-events-none absolute inset-0 mb-px bg-linear-0 from-white" />
 				</div>
 			</header>
-			<TOCProvider>
-				<section className="dashed dashed-x mx-auto grid max-w-7xl grid-cols-[auto_20rem]">
-					<article className="prose prose-stone prose-lg prose-headings:mt-0 max-w-none prose-hr:border-muted/60 prose-a:text-primary">
-						<MDXContent
-							components={{
-								a: (props) => (
-									<Link
-										{...props}
-										className={cn(
-											"group no-underline! relative items-center",
-											"before:pointer-events-none before:absolute before:top-[1.3em] before:left-0 before:h-[0.072em] before:w-full before:bg-current before:content-['']",
-											"prose-headings:text-primary before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
-											"hover:before:origin-left hover:before:scale-x-100"
-										)}
-									/>
-								),
-								h1: (props) => <h2 id={slugify(props.children)} {...props} />,
-								h2: (props) => <h2 id={slugify(props.children)} {...props} />,
-								h3: (props) => <h3 id={slugify(props.children)} {...props} />,
-								h4: (props) => <h4 id={slugify(props.children)} {...props} />,
-								h5: (props) => <h5 id={slugify(props.children)} {...props} />,
-								h6: (props) => <h6 id={slugify(props.children)} {...props} />,
-								Section: (props) => <Section {...props} />,
-								Faq,
-								FaqContent,
-							}}
-							source={blog.content}
-						/>
-					</article>
 
-					<aside className="dashed dashed-x dashed-r-0 h-full shrink-0 px-px">
-						<div className="h-full bg-floating px-6 py-12">
-							<PageTOC className="sticky top-20 h-fit">
-								<p className="font-medium text-sm">On This Page</p>
-								<PageTOCItems variant="clerk" />
-							</PageTOC>
-						</div>
-					</aside>
-				</section>
-			</TOCProvider>
+			<section className="dashed dashed-x mx-auto grid max-w-7xl grid-cols-[auto_20rem]">
+				<article className="prose prose-stone prose-lg prose-headings:mt-0 max-w-none prose-hr:border-muted/60 prose-a:text-primary">
+					<MDXContent
+						components={{
+							a: (props) => (
+								<Link
+									{...props}
+									className={cn(
+										"group no-underline! relative items-center",
+										"before:pointer-events-none before:absolute before:top-[1.3em] before:left-0 before:h-[0.072em] before:w-full before:bg-current before:content-['']",
+										"prose-headings:text-primary before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
+										"hover:before:origin-left hover:before:scale-x-100"
+									)}
+								/>
+							),
+							h1: (props) => <h2 id={slugify(props.children)} {...props} />,
+							h2: (props) => <h2 id={slugify(props.children)} {...props} />,
+							h3: (props) => <h3 id={slugify(props.children)} {...props} />,
+							h4: (props) => <h4 id={slugify(props.children)} {...props} />,
+							h5: (props) => <h5 id={slugify(props.children)} {...props} />,
+							h6: (props) => <h6 id={slugify(props.children)} {...props} />,
+							Section: (props) => <Section {...props} />,
+							Faq,
+							FaqContent,
+						}}
+						source={blog.content}
+					/>
+				</article>
+			</section> */}
 
 			<Blogs />
 		</main>
-	);
-}
-
-function Section(props: React.ComponentProps<"div">) {
-	return (
-		<section className="dashed last:dashed-b-0 dashed-t pt-9 pb-4">
-			<div {...props} className="mx-auto max-w-prose" />
-		</section>
 	);
 }

@@ -19,7 +19,7 @@ export const TagsCarousel = ({ tags }: { tags: string[] }) => {
 			<CarouselContent className="-ml-1">
 				{tags.map((tag) => (
 					<CarouselItem className="basis-auto pl-1" key={tag}>
-						<Badge key={tag} size="sm" variant="info">
+						<Badge key={tag} size="sm" variant="secondary">
 							{tag}
 						</Badge>
 					</CarouselItem>

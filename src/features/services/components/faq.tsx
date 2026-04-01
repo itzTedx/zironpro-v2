@@ -102,40 +102,34 @@ function Faq({
 				</Script>
 			)}
 			<section
-				className="dashed dashed-y"
+				className={cn(
+					"relative grid max-w-7xl gap-4",
+					compact ? "" : "dashed dashed-x"
+				)}
 				itemScope
 				itemType="https://schema.org/FAQPage"
 			>
-				<div
-					className={cn(
-						"container relative grid max-w-7xl gap-4 py-12",
-						compact ? "md:grid-cols-2" : "dashed dashed-x md:grid-cols-3"
-					)}
-				>
-					<div className="not-prose h-fit md:sticky md:top-24">
-						<Badge>Frequently Asked Questions</Badge>
-						<h2 className="my-3 font-semibold text-4xl text-foreground tracking-tight">
-							Still have questions?
-						</h2>
-						<p className="mb-6 text-balance text-lg text-muted-foreground leading-normal">
-							Have other questions or just want to chat? Book a call and let's
-							figure it out together.
-						</p>
-						<Button
-							className="text-foreground"
-							data-label="FAQ - Book a call"
-							data-location="services_faq"
-							data-track="cta_click"
-							variant="outline"
-						>
-							<IconCalender className="text-muted-foreground" />
-							Book a call
-						</Button>
-					</div>
-					<FaqItem className={cn(compact ? "md:col-span-1" : "md:col-span-2")}>
-						{children}
-					</FaqItem>
+				<div className="not-prose">
+					<Badge>Frequently Asked Questions</Badge>
+					<h2 className="my-3 font-semibold text-4xl text-foreground tracking-tight">
+						Still have questions?
+					</h2>
+					<p className="mb-6 text-balance text-lg text-muted-foreground leading-normal">
+						Have other questions or just want to chat? Book a call and let's
+						figure it out together.
+					</p>
+					<Button
+						className="text-foreground"
+						data-label="FAQ - Book a call"
+						data-location="services_faq"
+						data-track="cta_click"
+						variant="outline"
+					>
+						<IconCalender className="text-muted-foreground" />
+						Book a call
+					</Button>
 				</div>
+				<FaqItem>{children}</FaqItem>
 			</section>
 		</>
 	);
@@ -169,7 +163,9 @@ function FaqContent({
 				itemType="https://schema.org/Question"
 				value={slugify(title)}
 			>
-				<AccordionTrigger itemProp="name">{title}</AccordionTrigger>
+				<AccordionTrigger className="text-base!" itemProp="name">
+					{title}
+				</AccordionTrigger>
 				<AccordionPanel
 					itemProp="acceptedAnswer"
 					itemScope
