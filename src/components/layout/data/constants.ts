@@ -93,14 +93,14 @@ export const CONTACT = [
 		value: "growth@zironpro.ae",
 	},
 	{
-		label: "Phone",
-		href: "tel:+971 56 664 6539",
-		value: "+971 56 664 6539",
-	},
-	{
 		label: "landline",
 		href: "tel:+971 2 626 1200",
 		value: "+971 2 626 1205",
+	},
+	{
+		label: "Phone",
+		href: "tel:+971 56 664 6539",
+		value: "+971 56 664 6539",
 	},
 ] as const;
 
