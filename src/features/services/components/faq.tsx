@@ -157,7 +157,7 @@ function FaqContent({
 	children: React.ReactNode;
 }) {
 	return (
-		<FramePanel>
+		<FramePanel className="py-2">
 			<AccordionItem
 				itemScope
 				itemType="https://schema.org/Question"
@@ -180,4 +180,4 @@ function FaqContent({
 	);
 }
 
-export { Faq, FaqItem, FaqContent };
+export { Faq, FaqContent, FaqItem };

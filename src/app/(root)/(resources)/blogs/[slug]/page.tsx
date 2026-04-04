@@ -1,8 +1,22 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 
+import { SocialShareActions } from "@/components/blog/social-share-actions";
 import MDXContent from "@/components/markdown/mdx-component";
+import { Noise } from "@/components/shared/noise";
+import { Badge } from "@/components/ui/badge";
+import {
+	Frame,
+	FrameHeader,
+	FramePanel,
+	FrameTitle,
+} from "@/components/ui/frame";
+import { Item } from "@/components/ui/item";
+import { ScrollIndicator } from "@/components/ui/scroll-indicator";
+
+import { IconArrowLeft } from "@/assets/icons/arrow";
 
 import { getBlogBySlug, getBlogs } from "@/features/articles/actions/query";
 import { Blogs } from "@/features/articles/views/blogs";
@@ -17,8 +31,6 @@ import {
 } from "@/lib/seo";
 import { slugify } from "@/lib/slugify";
 import { cn } from "@/lib/utils";
-
-import { BlogContent } from "./blog-content";
 
 type RelatedBlog = {
 	slug: string;
@@ -211,6 +223,8 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 
 	return (
 		<main>
+			<ScrollIndicator />
+
 			<Script id="schema-blog-webpage" type="application/ld+json">
 				{JSON.stringify(webPageSchema)}
 			</Script>
@@ -220,16 +234,110 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 			<Script id="schema-blog-article" type="application/ld+json">
 				{JSON.stringify(articleSchema)}
 			</Script>
-			{faqSchema ? (
+			{faqSchema && (
 				<Script id="schema-blog-faq" type="application/ld+json">
 					{JSON.stringify(faqSchema)}
 				</Script>
-			) : null}
-			<BlogContent
+			)}
+
+			<section className="relative w-full bg-[radial-gradient(ellipse_400%_240%_at_50%_100%,#fff,#fff_10%,15%,#c7c5fd_16%,rgba(154,103,250,.6)_17%,21%,#264cab_28%,35%,#00031d_45%,#00031d)]">
+				<div className="dashed dashed-x container max-w-7xl py-16 text-center md:py-24">
+					<div className="mb-4 flex flex-wrap items-center justify-center gap-4">
+						<Badge>{blog.metadata.category}</Badge>
+						<div className="size-2 rounded-[2px] bg-primary" />
+						<p className="text-muted">{blog.metadata.date}</p>
+					</div>
+					<h1 className="text-balance font-display font-medium text-4xl text-primary md:text-5xl lg:text-5xl">
+						{blog.metadata.title}
+					</h1>
+					<p className="mx-auto mt-4 max-w-6xl text-balance text-2xl text-card leading-relaxed tracking-tight">
+						{blog.metadata.description}
+					</p>
+					<div className="relative mx-auto mt-9 aspect-video max-w-4xl overflow-hidden rounded-xl shadow-md">
+						<Image
+							alt={blog.metadata.title}
+							className="object-cover"
+							fill
+							src={blog.metadata.image}
+						/>
+					</div>
+				</div>
+				<Noise />
+			</section>
+
+			<div className="dashed dashed-t relative overflow-x-clip">
+				<div className="dashed dashed-x container flex max-w-7xl flex-col-reverse justify-between gap-5 overflow-x-clip py-16 lg:flex-row lg:gap-22 lg:py-20">
+					<aside className="sticky top-24 h-fit flex-1 space-y-6 md:max-w-[302px]">
+						<Item className="flex justify-between gap-2" variant="muted">
+							<Link
+								className="group inline-flex items-center gap-2"
+								href="/blogs"
+							>
+								<div className="pointer-events-none relative flex-none rotate-180 transition-colors duration-500">
+									<IconArrowLeft className="size-4 translate-x-0 rotate-180 scale-100 transform-gpu opacity-100 transition-[opacity,translate,scale] duration-500 ease-[cubic-bezier(0.36,0,0.114,0.92)] group-hover:translate-x-2 group-hover:scale-0 group-hover:opacity-0" />
+									<IconArrowLeft className="absolute inset-0 size-4 -translate-x-2 rotate-180 scale-0 transform-gpu opacity-0 transition-[opacity,translate,scale] duration-500 ease-[cubic-bezier(0.36,0,0.114,0.92)] group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100" />
+								</div>
+								Back
+							</Link>
+							<SocialShareActions />
+						</Item>
+						<Frame>
+							<FrameHeader className="px-2 py-0.5">
+								<FrameTitle className="text-base">Reading stack</FrameTitle>
+							</FrameHeader>
+							<FramePanel>
+								<ul className="space-y-2 text-muted-foreground text-sm">
+									{relatedBlogs.map((item) => (
+										<li className="flex items-center gap-2" key={item.slug}>
+											<span className="inline-block size-2 shrink-0 rounded-[2px] bg-primary" />
+											<Link
+												className="line-clamp-1 transition-colors hover:text-foreground"
+												href={`/blogs/${item.slug}`}
+												title={item.title}
+											>
+												{item.title}
+											</Link>
+										</li>
+									))}
+								</ul>
+							</FramePanel>
+						</Frame>
+					</aside>
+					<article className="prose prose-stone prose-lg mx-auto prose-headings:mt-0 max-w-none space-y-8 prose-hr:border-muted/60 prose-a:text-primary lg:max-w-[800px]">
+						<MDXContent
+							components={{
+								a: (props) => (
+									<Link
+										{...props}
+										className={cn(
+											"group no-underline! relative items-center",
+											"before:pointer-events-none before:absolute before:top-[1.3em] before:left-0 before:h-[0.072em] before:w-full before:bg-current before:content-['']",
+											"prose-headings:text-primary before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
+											"hover:before:origin-left hover:before:scale-x-100"
+										)}
+									/>
+								),
+								h1: (props) => <h2 id={slugify(props.children)} {...props} />,
+								h2: (props) => <h2 id={slugify(props.children)} {...props} />,
+								h3: (props) => <h3 id={slugify(props.children)} {...props} />,
+								h4: (props) => <h4 id={slugify(props.children)} {...props} />,
+								h5: (props) => <h5 id={slugify(props.children)} {...props} />,
+								h6: (props) => <h6 id={slugify(props.children)} {...props} />,
+								// Section: (props) => <Section {...props} />,
+								Faq: Faq,
+								FaqContent: FaqContent,
+							}}
+							source={blog.content}
+						/>
+					</article>
+				</div>
+				<div className="absolute inset-x-0 top-0 -z-10 h-1/4 bg-linear-180 from-white" />
+			</div>
+			{/* <BlogContent
 				data={blog}
 				relatedBlogs={relatedBlogs}
 				relatedServices={relatedServices}
-			>
+				>
 				<MDXContent
 					components={{
 						a: (props) => (
@@ -255,7 +363,7 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 					}}
 					source={blog.content}
 				/>
-			</BlogContent>
+			</BlogContent> */}
 			{/* <header>
 				<div className="dashed dashed-x container mx-auto max-w-7xl space-y-12 py-12">
 					<div className="mx-auto grid max-w-4xl">

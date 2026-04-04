@@ -248,14 +248,14 @@ function FieldError({
 
 export {
 	Field,
-	FieldLabel,
+	FieldAsterisk,
+	FieldContent,
 	FieldDescription,
 	FieldError,
 	FieldGroup,
+	FieldLabel,
 	FieldLegend,
 	FieldSeparator,
 	FieldSet,
-	FieldContent,
 	FieldTitle,
-	FieldAsterisk,
 };

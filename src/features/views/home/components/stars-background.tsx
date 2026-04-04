@@ -161,7 +161,7 @@ function StarsBackground({
 
 export {
 	StarLayer,
-	StarsBackground,
 	type StarLayerProps,
+	StarsBackground,
 	type StarsBackgroundProps,
 };

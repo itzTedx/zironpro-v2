@@ -38,7 +38,7 @@ export const Feedback = () => {
 							return (
 								<motion.div
 									className="mr-(--slide-spacing) flex h-(--slide-height) min-w-0 flex-none basis-(--slide-size)"
-									key={`Slide ${index + 1}`}
+									key={`Slide ${item.authorName}`}
 								>
 									<motion.div
 										animate={{
@@ -48,10 +48,7 @@ export const Feedback = () => {
 										initial={false}
 										transition={TRANSITION}
 									>
-										<Card
-											className="relative z-50 rounded-[calc(var(--radius-2xl)+calc(var(--spacing)*1))]"
-											key={`card-${index + 1}`}
-										>
+										<Card className="relative z-50 rounded-[calc(var(--radius-2xl)+--spacing(1))]">
 											<CardContent>
 												<div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-surface md:aspect-7/4">
 													<Noise className="opacity-20" />
@@ -123,7 +120,7 @@ export const Feedback = () => {
 					<div className="flex flex-wrap items-center justify-end gap-2 rounded-full bg-surface/80 p-1">
 						{scrollSnaps.map((_, index) => (
 							<DotButton
-								key={`Slide ${index + 1}`}
+								key={`Slide ${FEEDBACK_ITEMS[index].authorName}`}
 								onClick={() => onDotClick(index)}
 								selected={index === selectedIndex}
 							/>

@@ -35,4 +35,4 @@ function Group({ children, className, ...props }: React.ComponentProps<"div">) {
 	);
 }
 
-export { Section, SectionTitle, SectionContent, Group };
+export { Group, Section, SectionContent, SectionTitle };

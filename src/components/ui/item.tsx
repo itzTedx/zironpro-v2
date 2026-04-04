@@ -43,7 +43,7 @@ const itemVariants = cva(
 			variant: {
 				default: "border-transparent",
 				outline: "border-border",
-				muted: "border-border/20 bg-muted/30",
+				muted: "border-border/20 bg-muted/20",
 			},
 			size: {
 				default: "gap-2.5 px-3 py-2.5",
@@ -191,13 +191,13 @@ function ItemFooter({ className, ...props }: React.ComponentProps<"div">) {
 
 export {
 	Item,
-	ItemMedia,
-	ItemContent,
 	ItemActions,
+	ItemContent,
+	ItemDescription,
+	ItemFooter,
 	ItemGroup,
+	ItemHeader,
+	ItemMedia,
 	ItemSeparator,
 	ItemTitle,
-	ItemDescription,
-	ItemHeader,
-	ItemFooter,
 };

@@ -128,16 +128,16 @@ export const WhyUs = () => {
 						<TableBody>
 							{features.map((feature) => (
 								<TableRow className="border-0" key={feature.feature}>
-									<TableCell className="whitespace-nowrap bg-background! font-medium text-xs md:text-lg">
+									<TableCell className="whitespace-nowrap font-medium text-xs md:text-lg">
 										{feature.feature}
 									</TableCell>
-									<TableCell className="w-[290px] bg-floating! leading-snug">
+									<TableCell className="w-[290px] bg-card leading-snug">
 										<div className="flex items-center gap-2">
 											<IconCheck className="size-4 shrink-0 text-success" />
 											{feature.us}
 										</div>
 									</TableCell>
-									<TableCell className="w-[290px] bg-floating! leading-snug">
+									<TableCell className="w-[290px] bg-card leading-snug">
 										<div className="flex items-center gap-2 text-muted-foreground">
 											{feature.teamLevel === "success" ? (
 												<IconCheck className="size-4 shrink-0 text-success" />
@@ -154,7 +154,7 @@ export const WhyUs = () => {
 											{feature.team}
 										</div>
 									</TableCell>
-									<TableCell className="w-[290px] bg-floating! leading-snug">
+									<TableCell className="w-[290px] bg-card leading-snug">
 										<div className="flex items-center gap-2 text-muted-foreground">
 											{feature.otherLevel === "success" ? (
 												<IconCheck className="size-4 shrink-0 text-success" />

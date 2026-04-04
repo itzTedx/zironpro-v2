@@ -370,14 +370,14 @@ function DotButton({ selected = false, onClick }: DotButtonProps) {
 }
 
 export {
-	type CarouselApi,
 	Carousel,
+	type CarouselApi,
 	CarouselContent,
 	CarouselItem,
-	CarouselPrevious,
 	CarouselNext,
-	useCarousel,
-	useEmblaControls,
+	CarouselPrevious,
 	DotButton,
 	TRANSITION,
+	useCarousel,
+	useEmblaControls,
 };

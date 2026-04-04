@@ -42,25 +42,6 @@ export const metadata: Metadata = createPageMetadata({
 	],
 });
 
-const TRUST_METRICS = [
-	{
-		label: "Brands Served",
-		value: "2k+",
-		description: "From startups to established UAE companies.",
-	},
-	{
-		label: "Years in Market",
-		value: "6+",
-		description: "A proven track record since 2019.",
-	},
-
-	{
-		label: "Execution Standard",
-		value: "48h",
-		description: "Most requests move from brief to first draft quickly.",
-	},
-] as const;
-
 const PROCESS_STEPS = [
 	{
 		title: "Discover",

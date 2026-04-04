@@ -1,5 +1,5 @@
 export const ADDRESS =
-	"Al Moosa Tower 1, 19, 4th Floor,  Sheikh Zayed Rd, Trade Center First, Dubai, United Arab Emirates.";
+	"M03, Building 1852, Mushrif W24-01, Abu Dhabi, United Arab Emirates.";
 
 export const OFFICE_HOURS = [
 	{

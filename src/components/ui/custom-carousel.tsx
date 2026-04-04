@@ -186,4 +186,4 @@ function DotButton({ selected = false, onClick }: DotButtonProps) {
 	);
 }
 
-export { MotionCarousel, useEmblaControls, DotButton, TRANSITION };
+export { DotButton, MotionCarousel, TRANSITION, useEmblaControls };

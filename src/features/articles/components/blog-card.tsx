@@ -8,11 +8,18 @@ import { cn } from "@/lib/utils";
 import { BlogMetadata } from "../actions/types";
 import { TagsCarousel } from "./tags-carousel";
 
-export const BlogCard = ({ blog }: { blog: BlogMetadata }) => {
+export const BlogCard = ({
+	blog,
+	className,
+}: {
+	blog: BlogMetadata;
+	className?: string;
+}) => {
 	return (
 		<div
 			className={cn(
-				"group/blog relative min-w-0 rounded-[calc(var(--radius-2xl)+calc(var(--spacing)*1.5))] bg-card p-1.5 shadow-md transition-[box-shadow,translate] hover:-translate-y-4 hover:shadow-lg"
+				"group/blog relative min-w-0 rounded-[calc(var(--radius-2xl)+--spacing(1.5))] bg-card p-1.5 shadow-md transition-[box-shadow,translate] hover:-translate-y-4 hover:shadow-lg",
+				className
 			)}
 		>
 			<Link
@@ -23,7 +30,7 @@ export const BlogCard = ({ blog }: { blog: BlogMetadata }) => {
 				data-track="cta_click"
 				href={`/blogs/${blog.slug}`}
 			/>
-			<div className={cn("relative aspect-5/4 overflow-hidden rounded-2xl")}>
+			<div className={cn("relative aspect-video overflow-hidden rounded-2xl")}>
 				<Noise />
 				<Image
 					alt={`${blog.title} blog cover by Ziron Media`}

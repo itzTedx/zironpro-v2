@@ -23,10 +23,6 @@
 	--color-secondary: var(--secondary);
 	--color-secondary-foreground: var(--secondary-foreground);
 
-	--color-surface: var(--gray-200);
-	--color-elevated: var(--gray-50);
-	--color-floating: var(--white);
-
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
 
@@ -35,19 +31,16 @@
 
 	--color-background: var(--background);
 	--color-foreground: var(--black);
-	--color-surface: var(--gray-200);
-	--color-elevated: var(--gray-50);
-	--color-floating: var(--white);
 
-	--color-muted: var(--gray-500);
-	--color-muted-foreground: var(--gray-700);
+	--color-muted: var(--color-taupe-500);
+	--color-muted-foreground: var(--color-taupe-700);
 
 	--color-ring: var(--ring);
 	--color-input: var(--input);
 
-	--color-border: var(--gray-400);
-	--color-strong: var(--gray-500);
-	--color-dashed: --alpha(var(--gray-500) / 0.35);
+	--color-border: var(--color-taupe-400);
+	--color-strong: var(--color-taupe-500);
+	--color-dashed: --alpha(var(--color-taupe-500) / 0.35);
 
 	--color-card: var(--card);
 	--color-card-foreground: var(--card-foreground);
@@ -126,8 +119,8 @@
 	--primary: oklch(0.216 0.006 56.043);
 	--primary-foreground: oklch(0.985 0.001 106.423);
 
-	--secondary: var(--gray-1000);
-	--secondary-foreground: var(--gray-300);
+	--secondary: var(--color-taupe-900);
+	--secondary-foreground: var(--color-taupe-300);
 
 	--muted: oklch(0.97 0.001 106.424);
 	--muted-foreground: oklch(0.553 0.013 58.071);
@@ -136,7 +129,7 @@
 	--accent-foreground: oklch(34.303% 0.00541 55.984);
 
 	--border: oklch(0.923 0.003 48.717);
-	--input: var(--gray-100);
+	--input: var(--color-taupe-100);
 	--ring: var(--brand-400);
 
 	--white: oklch(1 0 0);

@@ -36,9 +36,9 @@ export default async function BlogsPage() {
 		{ name: "Home", path: "/" },
 		{ name: "Blogs", path: "/blogs" },
 	]);
-
+	// bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)]  bg-size-[16px_16px]
 	return (
-		<main className="bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1400 bg-size-[16px_16px]">
+		<main className="bg-taupe-900">
 			<Script id="schema-blogs-webpage" type="application/ld+json">
 				{JSON.stringify(webPageSchema)}
 			</Script>
@@ -46,8 +46,8 @@ export default async function BlogsPage() {
 				{JSON.stringify(breadcrumbSchema)}
 			</Script>
 			<section className="relative">
-				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-16 md:py-20">
-					<div className="mx-auto max-w-5xl space-y-4 py-12">
+				<header className="dashed dashed-x container relative z-10 mx-auto max-w-7xl py-16 md:py-20">
+					<div className="space-y-4 py-12">
 						{/* <Badge>
 							<IconCalender className="text-brand-600" /> Blogs
 						</Badge> */}
@@ -56,7 +56,7 @@ export default async function BlogsPage() {
 							Insights
 						</h1>
 
-						<p className="text-balance text-2xl text-muted leading-relaxed tracking-tight">
+						<p className="max-w-4xl text-balance text-2xl text-muted leading-relaxed tracking-tight">
 							Actionable strategies, expert insights, and proven ideas to help
 							your business grow smarter in the digital world.
 						</p>
@@ -66,7 +66,7 @@ export default async function BlogsPage() {
 
 			<section className="dashed dashed-y relative py-9 md:py-14">
 				<header className="mx-auto mb-6 flex max-w-7xl flex-col gap-2 px-6 md:mb-10 md:flex-row md:items-end md:justify-between md:px-0">
-					<h2 className="font-display font-semibold text-2xl tracking-tight md:text-3xl">
+					<h2 className="font-display font-semibold text-2xl text-card tracking-tight md:text-3xl">
 						All blog posts
 					</h2>
 					<p className="text-muted-foreground text-sm md:text-base">
@@ -76,7 +76,11 @@ export default async function BlogsPage() {
 
 				<div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-2 md:px-0 lg:grid-cols-3">
 					{blogs.map((blog) => (
-						<BlogCard blog={blog} key={blog.slug} />
+						<BlogCard
+							blog={blog}
+							className="bg-card/10 text-card"
+							key={blog.slug}
+						/>
 					))}
 				</div>
 
