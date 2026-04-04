@@ -89,13 +89,18 @@ export const NAV_LINKS: NavLink[] = [
 export const CONTACT = [
 	{
 		label: "Email",
-		href: "mailto:info@zironpro.ae",
-		value: "info@zironpro.ae",
+		href: "mailto:growth@zironpro.ae",
+		value: "growth@zironpro.ae",
 	},
 	{
 		label: "Phone",
-		href: "tel:+971 56 789 5432",
-		value: "+971 56 789 5432",
+		href: "tel:+971 56 664 6539",
+		value: "+971 56 664 6539",
+	},
+	{
+		label: "landline",
+		href: "tel:+971 2 626 1200",
+		value: "+971 2 626 1205",
 	},
 ] as const;
 
