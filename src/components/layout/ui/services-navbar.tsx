@@ -84,7 +84,7 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 								className="group relative z-10 flex items-center gap-2 rounded-xl p-1"
 								href={sub.href as Route}
 							>
-								<div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-input bg-floating">
+								<div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-input bg-card">
 									<Icon className={cn("size-6", sub.color)} />
 								</div>
 								<div className="space-y-1">

@@ -30,7 +30,7 @@ export const BrandServed = () => {
 			<Noise />
 			<Image
 				alt="Website redesign for Direct Logic Systems by Ziron Media in Dubai"
-				className="absolute top-14 left-1/2 z-30 -translate-x-1/2 rounded-lg border-4 border-floating object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:-translate-y-20 group-hover/card:scale-75"
+				className="absolute top-14 left-1/2 z-30 -translate-x-1/2 rounded-lg border-4 border-card object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:-translate-y-20 group-hover/card:scale-75"
 				height={280}
 				src="/images/direct.jpg"
 				width={290}
@@ -38,7 +38,7 @@ export const BrandServed = () => {
 
 			<Image
 				alt="Website redesign for Maxline Global Logistics by Ziron Media in Dubai"
-				className="absolute top-14 left-1/2 z-20 -translate-x-1/2 -rotate-3 rounded-lg border-4 border-floating object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:-translate-x-[calc(50%+5rem)] group-hover/card:-translate-y-20 group-hover/card:scale-60"
+				className="absolute top-14 left-1/2 z-20 -translate-x-1/2 -rotate-3 rounded-lg border-4 border-card object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:-translate-x-[calc(50%+5rem)] group-hover/card:-translate-y-20 group-hover/card:scale-60"
 				height={280}
 				src="/images/maxline.jpg"
 				width={290}
@@ -46,7 +46,7 @@ export const BrandServed = () => {
 
 			<Image
 				alt="Website design and development for Qordz by Ziron Media in Dubai"
-				className="absolute top-14 left-1/2 z-10 -translate-x-1/2 rotate-3 rounded-lg border-4 border-floating object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:translate-x-[calc(-50%+5rem)] group-hover/card:-translate-y-20 group-hover/card:scale-60"
+				className="absolute top-14 left-1/2 z-10 -translate-x-1/2 rotate-3 rounded-lg border-4 border-card object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:translate-x-[calc(-50%+5rem)] group-hover/card:-translate-y-20 group-hover/card:scale-60"
 				height={280}
 				src="/images/qordx.jpg"
 				width={290}
