@@ -1,5 +1,4 @@
 import { Header } from "@/components/shared/header";
-import { Frame } from "@/components/ui/frame";
 import {
 	Table,
 	TableBody,
@@ -112,32 +111,32 @@ export const WhyUs = () => {
 					</p>
 				</div>
 
-				<Frame className="mt-3">
+				<div className="mt-3 rounded-2xl bg-muted/20 p-3">
 					<Table>
 						<TableHeader className="md:sr-only">
 							<TableRow className="pb-6">
-								<TableHead className="w-[290px] opacity-0">Feature</TableHead>
+								<TableHead className="w-[280px] opacity-0">Feature</TableHead>
 								<TableHead className="flex w-[180px] items-center justify-center">
 									<Logo className="h-4 w-auto" />
 								</TableHead>
-								<TableHead className="w-[180px]">In-House Team</TableHead>
-								<TableHead className="w-[180px]">Other Agencies</TableHead>
+								<TableHead className="w-[190px]">In-House Team</TableHead>
+								<TableHead className="w-[190px]">Other Agencies</TableHead>
 							</TableRow>
 						</TableHeader>
 
-						<TableBody>
+						<TableBody className="overflow-hidden rounded-2xl! border bg-card shadow-md">
 							{features.map((feature) => (
-								<TableRow className="border-0" key={feature.feature}>
-									<TableCell className="whitespace-nowrap font-medium text-xs md:text-lg">
+								<TableRow key={feature.feature}>
+									<TableCell className="whitespace-nowrap bg-background/50 font-medium text-xs md:text-lg">
 										{feature.feature}
 									</TableCell>
-									<TableCell className="w-[290px] bg-card leading-snug">
+									<TableCell className="w-[300px] leading-snug">
 										<div className="flex items-center gap-2">
 											<IconCheck className="size-4 shrink-0 text-success" />
 											{feature.us}
 										</div>
 									</TableCell>
-									<TableCell className="w-[290px] bg-card leading-snug">
+									<TableCell className="w-[300px] leading-snug">
 										<div className="flex items-center gap-2 text-muted-foreground">
 											{feature.teamLevel === "success" ? (
 												<IconCheck className="size-4 shrink-0 text-success" />
@@ -154,7 +153,7 @@ export const WhyUs = () => {
 											{feature.team}
 										</div>
 									</TableCell>
-									<TableCell className="w-[290px] bg-card leading-snug">
+									<TableCell className="w-[300px] leading-snug">
 										<div className="flex items-center gap-2 text-muted-foreground">
 											{feature.otherLevel === "success" ? (
 												<IconCheck className="size-4 shrink-0 text-success" />
@@ -175,7 +174,7 @@ export const WhyUs = () => {
 							))}
 						</TableBody>
 					</Table>
-				</Frame>
+				</div>
 			</div>
 		</section>
 	);

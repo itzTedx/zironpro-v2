@@ -30,7 +30,7 @@ export const BlogCard = ({
 				data-track="cta_click"
 				href={`/blogs/${blog.slug}`}
 			/>
-			<div className={cn("relative aspect-video overflow-hidden rounded-2xl")}>
+			<div className={cn("relative aspect-4/3 overflow-hidden rounded-2xl")}>
 				<Noise />
 				<Image
 					alt={`${blog.title} blog cover by Ziron pro`}

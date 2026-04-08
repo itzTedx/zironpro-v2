@@ -32,15 +32,15 @@
 	--color-background: var(--background);
 	--color-foreground: var(--black);
 
-	--color-muted: var(--color-taupe-500);
-	--color-muted-foreground: var(--color-taupe-700);
+	--color-muted: var(--color-taupe-300);
+	--color-muted-foreground: var(--color-taupe-600);
 
 	--color-ring: var(--ring);
 	--color-input: var(--input);
 
-	--color-border: var(--color-taupe-400);
+	--color-border: var(--color-taupe-300);
 	--color-strong: var(--color-taupe-500);
-	--color-dashed: --alpha(var(--color-taupe-500) / 0.35);
+	--color-dashed: --alpha(var(--color-taupe-400) / 0.25);
 
 	--color-card: var(--card);
 	--color-card-foreground: var(--card-foreground);

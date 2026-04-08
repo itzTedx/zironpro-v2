@@ -73,8 +73,8 @@ export default function RootLayout({
 					)}
 				>
 					<Navbar />
-					<WhatsappPopover />
 					{children}
+					<WhatsappPopover />
 					<Script id="schema-organization" type="application/ld+json">
 						{JSON.stringify(organizationSchema)}
 					</Script>
