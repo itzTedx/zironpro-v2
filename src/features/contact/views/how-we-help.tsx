@@ -71,7 +71,7 @@ export const HowWeHelp = () => {
 																}
 															>
 																<PreviewLinkCardImage
-																	alt={`Service preview card for ${list.title} by Ziron Media`}
+																	alt={`Service preview card for ${list.title} by Ziron pro`}
 																/>
 															</PreviewLinkCardPopup>
 														</PreviewLinkCardPositioner>

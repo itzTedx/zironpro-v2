@@ -43,7 +43,7 @@ Prioritized ideas derived from a full-repo pass (`src/`, config, content). Adjus
 ## AI chat widget
 
 - [ ] **Graceful degradation when API key is missing** — server actions return an error if `GOOGLE_GENERATIVE_AI_API_KEY` is unset; ensure the widget hides or shows a static “Contact us” state instead of a broken chat in production misconfigurations.
-- [ ] **Review prompt branding** — system prompt references “Ziron Pro”; align naming with “Ziron Media” sitewide if that is the customer-facing brand.
+- [ ] **Review prompt branding** — system prompt references “Ziron Pro”; align naming with “Ziron pro” sitewide if that is the customer-facing brand.
 
 ---
 

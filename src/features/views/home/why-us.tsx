@@ -86,15 +86,15 @@ export const WhyUs = () => {
 	return (
 		<section className="dashed dashed-b-0 mx-auto max-w-7xl p-px">
 			<Header
-				description="Check out what Ziron Media offers vs employees and other agencies. It’s quite a lot!"
+				description="Check out what Ziron pro offers vs employees and other agencies. It’s quite a lot!"
 				title="Why choose us"
 			/>
 			{/* <header className="dashed dashed-b space-y-1.5 p-9 text-center md:space-y-3 md:p-14">
 				<h2 className="font-display font-semibold text-3xl text-primary tracking-tight md:text-6xl">
-					Why Choose Ziron Media
+					Why Choose Ziron pro
 				</h2>
 				<p className="mx-auto max-w-md text-balance">
-					Check out what Ziron Media offers vs employees and other agencies.
+					Check out what Ziron pro offers vs employees and other agencies.
 					It’s quite a lot!
 				</p>
 			</header> */}

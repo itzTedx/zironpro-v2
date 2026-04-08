@@ -124,7 +124,7 @@ export default function AboutPage() {
 	const reviewSchema = buildReviewSchema({
 		authorName: "Direct LS",
 		reviewBody:
-			"Ziron Media delivered a modern, fast, and professional website that reflects our brand and made the process smooth.",
+			"Ziron pro delivered a modern, fast, and professional website that reflects our brand and made the process smooth.",
 		reviewRatingValue: 5,
 		itemName: "Digital Agency Services",
 		itemPath: "/about",

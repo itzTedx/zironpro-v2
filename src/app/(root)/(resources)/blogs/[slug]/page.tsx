@@ -399,7 +399,7 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 					<div className="container max-w-7xl">
 						<div className="relative z-10 aspect-video overflow-hidden rounded-2xl shadow-sm">
 							<Image
-								alt={`${blog.metadata.title} blog header by Ziron Media`}
+								alt={`${blog.metadata.title} blog header by Ziron pro`}
 								className="object-cover"
 								fill
 								priority

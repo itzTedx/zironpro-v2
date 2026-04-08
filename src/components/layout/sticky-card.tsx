@@ -112,7 +112,7 @@ const StickyCard = ({
 				>
 					<Noise />
 					<Image
-						alt={`${title} service visual by Ziron Media`}
+						alt={`${title} service visual by Ziron pro`}
 						className="object-cover"
 						fill
 						sizes="(max-width: 768px) 100vw, 35vw"

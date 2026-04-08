@@ -80,7 +80,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Branding service showcase by Ziron Media"
+						alt="Branding service showcase by Ziron pro"
 						height={720}
 						src="/images/bento/branding.webp"
 						width={800}
@@ -104,7 +104,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Web design and development service showcase by Ziron Media"
+						alt="Web design and development service showcase by Ziron pro"
 						height={720}
 						src="/images/bento/web-dev-design.webp"
 						width={800}
@@ -128,7 +128,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Digital marketing campaign creatives by Ziron Media"
+						alt="Digital marketing campaign creatives by Ziron pro"
 						height={720}
 						src="/images/bento/social-media-creatives.webp"
 						width={800}
@@ -154,7 +154,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Printing and corporate gifts showcase by Ziron Media"
+						alt="Printing and corporate gifts showcase by Ziron pro"
 						height={720}
 						src="/images/bento/paid-ads.webp"
 						width={800}
@@ -178,7 +178,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Motion design and video service showcase by Ziron Media"
+						alt="Motion design and video service showcase by Ziron pro"
 						height={720}
 						src="/images/bento/paid-ads.webp"
 						width={800}
@@ -202,7 +202,7 @@ export const Services = () => {
 						</p>
 					</div>
 					<Image
-						alt="Conversion optimization service showcase by Ziron Media"
+						alt="Conversion optimization service showcase by Ziron pro"
 						height={720}
 						src="/images/bento/conversion.webp"
 						width={800}

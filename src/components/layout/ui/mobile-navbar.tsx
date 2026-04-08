@@ -48,8 +48,8 @@ export function MobileNav() {
 			</DrawerTrigger>
 			<DrawerContent data-scroll-locked={open ? true : false}>
 				<DrawerHeader className="sr-only">
-					<DrawerTitle>Ziron Media</DrawerTitle>
-					<DrawerDescription>Ziron Media</DrawerDescription>
+					<DrawerTitle>Ziron pro</DrawerTitle>
+					<DrawerDescription>Ziron pro</DrawerDescription>
 				</DrawerHeader>
 				<nav className="flex flex-col gap-12 overflow-auto px-6 py-6">
 					<div className="flex flex-col gap-6">

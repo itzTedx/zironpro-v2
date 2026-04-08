@@ -8,7 +8,7 @@ export const ARTICLES: Article[] = [
 		id: 2,
 		isFeatured: true,
 		image: "/images/blogs/blog-2.jpg",
-		title: "How Ziron Media Helps Brands Scale Digitally",
+		title: "How Ziron pro Helps Brands Scale Digitally",
 	},
 	{
 		id: 3,

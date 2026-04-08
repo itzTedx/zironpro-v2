@@ -182,17 +182,17 @@ export const PARTNERS = [
 	{
 		title: "Google Partner",
 		src: "/images/partner/google.svg",
-		alt: "Google Partner badge by Ziron Media in Dubai",
+		alt: "Google Partner badge by Ziron pro in Dubai",
 	},
 	{
 		title: "Meta Partner",
 		src: "/images/partner/meta.svg",
-		alt: "Meta Business Partner badge by Ziron Media in Dubai",
+		alt: "Meta Business Partner badge by Ziron pro in Dubai",
 	},
 	{
 		title: "Tiktok Partner",
 		src: "/images/partner/tiktok.svg",
-		alt: "TikTok Marketing Partner badge by Ziron Media in Dubai",
+		alt: "TikTok Marketing Partner badge by Ziron pro in Dubai",
 	},
 ] as const;
 

@@ -33,7 +33,7 @@ export const BlogCard = ({
 			<div className={cn("relative aspect-video overflow-hidden rounded-2xl")}>
 				<Noise />
 				<Image
-					alt={`${blog.title} blog cover by Ziron Media`}
+					alt={`${blog.title} blog cover by Ziron pro`}
 					className="object-cover transition-[scale] group-hover/blog:scale-105"
 					fill
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 400px"

@@ -17,10 +17,10 @@ export const FEEDBACK_ITEMS: FeedbackItem[] = [
 		image2: "/images/feedback/maxline-2.webp",
 		gradientImage: "/images/gradient.jpg",
 		quote1:
-			"Ziron Media has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
+			"Ziron pro has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
 		author1: "Arjun",
 		quote2: "We’ll love to work with you",
-		author2: "Ziron Media",
+		author2: "Ziron pro",
 		authorImage: "/images/feedback/maxline-1.webp", // Placeholder, will update later if needed
 		authorName: "Arjun Unnikrishnan",
 		authorRole: "It Support in Maxline Global",
@@ -30,10 +30,10 @@ export const FEEDBACK_ITEMS: FeedbackItem[] = [
 		image2: "/images/feedback/maxline-2.webp",
 		gradientImage: "/images/gradient.jpg",
 		quote1:
-			"Ziron Media has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
+			"Ziron pro has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
 		author1: "Arjun",
 		quote2: "We’ll love to work with you",
-		author2: "Ziron Media",
+		author2: "Ziron pro",
 		authorImage: "/images/feedback/maxline-1.webp", // Placeholder, will update later if needed
 		authorName: "Arjun Unnikrishnan",
 		authorRole: "It Support in Maxline Global",
@@ -43,10 +43,10 @@ export const FEEDBACK_ITEMS: FeedbackItem[] = [
 		image2: "/images/feedback/maxline-2.webp",
 		gradientImage: "/images/gradient.jpg",
 		quote1:
-			"Ziron Media has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
+			"Ziron pro has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
 		author1: "Arjun",
 		quote2: "We’ll love to work with you",
-		author2: "Ziron Media",
+		author2: "Ziron pro",
 		authorImage: "/images/feedback/maxline-1.webp", // Placeholder, will update later if needed
 		authorName: "Arjun Unnikrishnan",
 		authorRole: "It Support in Maxline Global",
@@ -56,10 +56,10 @@ export const FEEDBACK_ITEMS: FeedbackItem[] = [
 		image2: "/images/feedback/maxline-2.webp",
 		gradientImage: "/images/gradient.jpg",
 		quote1:
-			"Ziron Media has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
+			"Ziron pro has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
 		author1: "Arjun",
 		quote2: "We’ll love to work with you",
-		author2: "Ziron Media",
+		author2: "Ziron pro",
 		authorImage: "/images/feedback/maxline-1.webp", // Placeholder, will update later if needed
 		authorName: "Arjun Unnikrishnan",
 		authorRole: "It Support in Maxline Global",
@@ -69,10 +69,10 @@ export const FEEDBACK_ITEMS: FeedbackItem[] = [
 		image2: "/images/feedback/maxline-2.webp",
 		gradientImage: "/images/gradient.jpg",
 		quote1:
-			"Ziron Media has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
+			"Ziron pro has completely transformed our social media presence! Their striking posters and engaging motion reels have noticeably boosted our reach and engagement.",
 		author1: "Arjun",
 		quote2: "We’ll love to work with you",
-		author2: "Ziron Media",
+		author2: "Ziron pro",
 		authorImage: "/images/feedback/maxline-1.webp", // Placeholder, will update later if needed
 		authorName: "Arjun Unnikrishnan",
 		authorRole: "It Support in Maxline Global",

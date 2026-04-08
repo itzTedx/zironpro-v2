@@ -94,7 +94,8 @@ export const Footer = () => {
 				<div className="dashed dashed-x mx-auto max-w-7xl p-px">
 					<div className="flex flex-col items-center justify-between gap-4 bg-gray-1200 px-6 py-6 text-center md:flex-row md:gap-8 md:py-9 md:text-left">
 						<p className="w-full text-muted-foreground">
-							© {currentYear} Ziron Media. All rights reserved.
+							© {currentYear} Ziron Pro Digital Solutions LLC. All rights
+							reserved.
 						</p>
 						<Link
 							data-label="Footer - Wordmark"

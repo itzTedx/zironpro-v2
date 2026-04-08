@@ -50,7 +50,7 @@ export default function WorksPage() {
 	const reviewSchema = buildReviewSchema({
 		authorName: "Direct LS",
 		reviewBody:
-			"Ziron Media delivered a modern, fast, and professional website that reflects our brand and made the process smooth.",
+			"Ziron pro delivered a modern, fast, and professional website that reflects our brand and made the process smooth.",
 		reviewRatingValue: 5,
 		itemName: "Website Design and Development Service",
 		itemPath: "/services/websites",
@@ -164,7 +164,7 @@ export default function WorksPage() {
 							<FramePanel>
 								<div className="relative aspect-video w-full overflow-hidden rounded-xl">
 									<Image
-										alt="Direct Logic Systems website project by Ziron Media in Dubai"
+										alt="Direct Logic Systems website project by Ziron pro in Dubai"
 										className="object-cover"
 										fill
 										sizes="(max-width: 1280px) 100vw, 1280px"
@@ -174,10 +174,10 @@ export default function WorksPage() {
 							</FramePanel>
 							<FrameFooter className="px-1.5 py-2">
 								<p className="text-sm md:text-base">
-									"Ziron Media delivered a modern, fast, and professional
-									website that perfectly reflects our brand. Their attention to
-									detail and technical expertise made the entire process smooth
-									and efficient."
+									"Ziron pro delivered a modern, fast, and professional website
+									that perfectly reflects our brand. Their attention to detail
+									and technical expertise made the entire process smooth and
+									efficient."
 								</p>
 							</FrameFooter>
 						</Frame>

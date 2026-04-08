@@ -136,7 +136,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 						<div className="relative aspect-5/3 overflow-hidden rounded-xl">
 							<Noise />
 							<Image
-								alt={`${service.title} service cover by Ziron Media`}
+								alt={`${service.title} service cover by Ziron pro`}
 								className="object-cover"
 								fill
 								priority
@@ -196,7 +196,7 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 														}
 													>
 														<PreviewLinkCardImage
-															alt={`Service preview card for ${list.title} by Ziron Media`}
+															alt={`Service preview card for ${list.title} by Ziron pro`}
 														/>
 													</PreviewLinkCardPopup>
 												</PreviewLinkCardPositioner>

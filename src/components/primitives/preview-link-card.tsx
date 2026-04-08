@@ -172,7 +172,7 @@ type PreviewLinkCardImageProps = Omit<
 >;
 
 function PreviewLinkCardImage({
-	alt = "Website preview screenshot by Ziron Media",
+	alt = "Website preview screenshot by Ziron pro",
 	...props
 }: PreviewLinkCardImageProps) {
 	const { src, width, height } = usePreviewLinkCard();

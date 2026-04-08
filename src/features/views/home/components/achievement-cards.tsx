@@ -29,7 +29,7 @@ export const BrandServed = () => {
 		<Card>
 			<Noise />
 			<Image
-				alt="Website redesign for Direct Logic Systems by Ziron Media in Dubai"
+				alt="Website redesign for Direct Logic Systems by Ziron pro in Dubai"
 				className="absolute top-14 left-1/2 z-30 -translate-x-1/2 rounded-lg border-4 border-card object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:-translate-y-20 group-hover/card:scale-75"
 				height={280}
 				src="/images/direct.jpg"
@@ -37,7 +37,7 @@ export const BrandServed = () => {
 			/>
 
 			<Image
-				alt="Website redesign for Maxline Global Logistics by Ziron Media in Dubai"
+				alt="Website redesign for Maxline Global Logistics by Ziron pro in Dubai"
 				className="absolute top-14 left-1/2 z-20 -translate-x-1/2 -rotate-3 rounded-lg border-4 border-card object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:-translate-x-[calc(50%+5rem)] group-hover/card:-translate-y-20 group-hover/card:scale-60"
 				height={280}
 				src="/images/maxline.jpg"
@@ -45,7 +45,7 @@ export const BrandServed = () => {
 			/>
 
 			<Image
-				alt="Website design and development for Qordz by Ziron Media in Dubai"
+				alt="Website design and development for Qordz by Ziron pro in Dubai"
 				className="absolute top-14 left-1/2 z-10 -translate-x-1/2 rotate-3 rounded-lg border-4 border-card object-contain transition-[scale,translate] duration-300 ease-out group-hover/card:translate-x-[calc(-50%+5rem)] group-hover/card:-translate-y-20 group-hover/card:scale-60"
 				height={280}
 				src="/images/qordx.jpg"
@@ -53,7 +53,7 @@ export const BrandServed = () => {
 			/>
 
 			<Image
-				alt="Blue gradient background texture by Ziron Media"
+				alt="Blue gradient background texture by Ziron pro"
 				fill
 				src="/images/bg-grad-1.webp"
 			/>
@@ -117,7 +117,7 @@ export const Experience = () => {
 				<div className="relative z-50 flex size-20 items-center justify-center overflow-hidden rounded-lg shadow-lg transition-transform duration-500 ease-out group-hover/card:scale-125">
 					<Logo className="relative z-200 h-auto w-16" />
 					<Image
-						alt="Experience badge background by Ziron Media"
+						alt="Experience badge background by Ziron pro"
 						className="object-cover"
 						fill
 						src="/images/icon-box.png"
@@ -148,7 +148,7 @@ export const Experience = () => {
 				</div>
 			</div>
 			<Image
-				alt="Purple gradient background texture by Ziron Media"
+				alt="Purple gradient background texture by Ziron pro"
 				fill
 				src="/images/bg-grad-2.webp"
 			/>
@@ -167,7 +167,7 @@ export const Growth = () => {
 			<GrowthChart />
 
 			<Image
-				alt="Green gradient background texture by Ziron Media"
+				alt="Green gradient background texture by Ziron pro"
 				fill
 				src="/images/bg-grad-3.webp"
 			/>

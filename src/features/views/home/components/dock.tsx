@@ -68,7 +68,7 @@ export function DockIcon({
 					</span>
 					{src ? (
 						<Image
-							alt={`${name} icon by Ziron Media`}
+							alt={`${name} icon by Ziron pro`}
 							className="h-full w-full rounded-[inherit]"
 							height={iconSize ?? 52}
 							src={src}
