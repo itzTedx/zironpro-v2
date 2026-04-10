@@ -21,6 +21,8 @@ import {
 	captureLeadAction,
 	generateChatReplyAction,
 } from "@/features/ai/actions";
+import { pushGtmEvent } from "@/lib/gtm";
+import { OP_EVENTS } from "@/lib/op-events";
 import { cn } from "@/lib/utils";
 
 type ChatRole = "user" | "assistant";
@@ -196,6 +198,18 @@ export function AiChatWidget() {
 					content: message.content,
 				})),
 			});
+			if (result.ok) {
+				pushGtmEvent({
+					event: OP_EVENTS.aiChatRequest,
+					ok: true,
+					message_count: nextMessages.length,
+				});
+			} else {
+				pushGtmEvent({
+					event: OP_EVENTS.aiChatRequest,
+					ok: false,
+				});
+			}
 			const reply = result.ok
 				? result.reply
 				: "I can help, but I'm having trouble right now. You can still share your details and our team will contact you shortly.";
@@ -219,6 +233,10 @@ export function AiChatWidget() {
 				},
 			]);
 		} catch {
+			pushGtmEvent({
+				event: OP_EVENTS.aiChatRequest,
+				ok: false,
+			});
 			setMessages((current) => [
 				...current,
 				{
@@ -249,6 +267,10 @@ export function AiChatWidget() {
 			});
 			if (!result.ok) throw new Error(result.error);
 
+			pushGtmEvent({
+				event: OP_EVENTS.aiLeadCaptured,
+				ok: true,
+			});
 			setLeadSubmitted(true);
 			setShowLeadForm(false);
 			leadForm.reset();
@@ -262,6 +284,10 @@ export function AiChatWidget() {
 				},
 			]);
 		} catch {
+			pushGtmEvent({
+				event: OP_EVENTS.aiLeadCaptured,
+				ok: false,
+			});
 			setMessages((current) => [
 				...current,
 				{

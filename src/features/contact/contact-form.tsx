@@ -26,6 +26,7 @@ import { toastManager } from "@/components/ui/toast";
 import { IconArrowRightTag } from "@/assets/icons/arrow";
 
 import { SERVICES } from "@/features/services/constant";
+import { pushGtmEvent } from "@/lib/gtm";
 import { OP_EVENTS } from "@/lib/op-events";
 
 import { submitContactForm } from "./actions";
@@ -65,6 +66,10 @@ export function ContactForm() {
 				openPanel.track(OP_EVENTS.contactFormError, {
 					source: "contact_page",
 				});
+				pushGtmEvent({
+					event: OP_EVENTS.contactFormError,
+					source: "contact_page",
+				});
 				toastManager.add({
 					type: "error",
 					title: "Message not sent",
@@ -80,6 +85,11 @@ export function ContactForm() {
 			});
 			form.reset();
 			openPanel.track(OP_EVENTS.contactFormSubmitted, {
+				source: "contact_page",
+				service: data.service || "unspecified",
+			});
+			pushGtmEvent({
+				event: OP_EVENTS.contactFormSubmitted,
 				source: "contact_page",
 				service: data.service || "unspecified",
 			});

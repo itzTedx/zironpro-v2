@@ -64,7 +64,6 @@ export default function RootLayout({
 			<head>
 				<meta content="Ziron pro" name="apple-mobile-web-app-title" />
 			</head>
-			<GoogleTagManager gtmId="GTM-KQZM3Z58" />
 			<Providers>
 				<body
 					className={cn(
@@ -74,6 +73,7 @@ export default function RootLayout({
 						mono.variable
 					)}
 				>
+					<GoogleTagManager gtmId="GTM-KQZM3Z58" />
 					<Navbar />
 					{children}
 					<WhatsappPopover />
