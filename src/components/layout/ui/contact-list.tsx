@@ -7,7 +7,7 @@ export const ContactList = () => {
 		<ul className="space-y-6">
 			{CONTACT.map((contact) => (
 				<li className="flex items-center gap-3" key={contact.label}>
-					<span className="w-12 font-mono text-muted-foreground text-xs uppercase leading-none tracking-tight">
+					<span className="w-16 font-mono text-muted-foreground text-xs uppercase leading-none tracking-tight">
 						{contact.label}
 						<span className="font-bold text-brand-secondary">.</span>
 					</span>

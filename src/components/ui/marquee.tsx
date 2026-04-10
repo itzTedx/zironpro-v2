@@ -41,7 +41,10 @@ export function Marquee({
 							"group-hover:paused": pauseOnHover,
 							"direction-[reverse]": reverse,
 						})}
-						key={`item-${i + 1}`}
+						key={`item-${
+							// biome-ignore lint/suspicious/noArrayIndexKey: its a valid key
+							i + 1
+						}`}
 					>
 						{children}
 					</div>

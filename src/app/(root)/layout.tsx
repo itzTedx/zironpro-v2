@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "@/styles/globals.css";
-
 import { Suspense } from "react";
+
+import { GoogleTagManager } from "@next/third-parties/google";
 
 import { BreakpointIndicator } from "@/components/layout/breakpoint-indicator";
 import { Footer } from "@/components/layout/footer";
@@ -63,6 +64,7 @@ export default function RootLayout({
 			<head>
 				<meta content="Ziron pro" name="apple-mobile-web-app-title" />
 			</head>
+			<GoogleTagManager gtmId="GTM-KQZM3Z58" />
 			<Providers>
 				<body
 					className={cn(

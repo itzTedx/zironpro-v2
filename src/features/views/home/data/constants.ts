@@ -90,3 +90,46 @@ export const FEATURED_ITEMS = [
 	// 	icon: IconCheckmark,
 	// },
 ];
+
+export const CLIENTS = [
+	{
+		src: "/images/clients/maxline.png",
+		name: "Maxline Global Logistics",
+	},
+	{
+		src: "/images/clients/piptan.png",
+		name: "Piptan Investments",
+	},
+	{
+		src: "/images/clients/100-power.png",
+		name: "100 Power",
+	},
+	{
+		src: "/images/clients/qordz.svg",
+		name: "Qordz",
+	},
+	{
+		src: "/images/clients/direct-ls.svg",
+		name: "Direct Logic Systems",
+	},
+	{
+		src: "/images/clients/sphere-it.svg",
+		name: "Sphere IT Global",
+	},
+	{
+		src: "/images/clients/mc.svg",
+		name: "MC-Bauchemie",
+	},
+	{
+		src: "/images/clients/simply-kf.png",
+		name: "Simply KF",
+	},
+	{
+		src: "/images/clients/smart-kitchen.png",
+		name: "Smart Kitchen",
+	},
+	{
+		src: "/images/clients/m2mtek.png",
+		name: "M2MTek",
+	},
+] as const;

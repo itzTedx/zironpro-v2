@@ -8,38 +8,7 @@ import {
 } from "@/components/ui/card";
 
 import { Dock, DockIcon } from "./components/dock";
-import { ACHIEVEMENTS } from "./data/constants";
-
-const dockItems = [
-	{
-		src: "/images/clients/maxline.png",
-		name: "Maxline Global Logistics",
-	},
-	{
-		src: "/images/clients/piptan.png",
-		name: "Piptan Investments",
-	},
-	{
-		src: "/images/clients/100-power.png",
-		name: "100 Power",
-	},
-	{
-		src: "/images/clients/qordz.png",
-		name: "Qordz",
-	},
-	{
-		src: "/images/clients/simply-kf.png",
-		name: "Simply KF",
-	},
-	{
-		src: "/images/clients/smart-kitchen.png",
-		name: "Smart Kitchen",
-	},
-	{
-		src: "/images/clients/m2mtek.png",
-		name: "M2MTek",
-	},
-] as const;
+import { ACHIEVEMENTS, CLIENTS } from "./data/constants";
 
 export const Achievements = () => {
 	return (
@@ -63,7 +32,7 @@ export const Achievements = () => {
 					const AchievementCard = ach.card;
 					return (
 						<Card
-							className="squircle rounded-[calc(var(--radius-5xl)+calc(var(--spacing)*1))] transition-transform hover:-translate-y-3"
+							className="squircle rounded-[calc(var(--radius-5xl)+--spacing(1))] transition-transform hover:-translate-y-3"
 							key={`card-${ach.id}`}
 						>
 							<CardContent>
@@ -79,7 +48,7 @@ export const Achievements = () => {
 			</div>
 			<div className="dashed dashed-t-0 mx-auto flex max-w-7xl flex-col items-center gap-4 p-6 md:p-14">
 				<Dock className="w-fit">
-					{dockItems.map((item) => (
+					{CLIENTS.map((item) => (
 						<DockIcon key={item.name} name={item.name} src={item.src} />
 					))}
 				</Dock>
