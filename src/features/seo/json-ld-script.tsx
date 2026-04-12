@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import Script from "next/script";
 
 type JsonLdScriptProps = {
@@ -6,10 +5,9 @@ type JsonLdScriptProps = {
 	data: unknown;
 };
 
-export async function JsonLdScript({ id, data }: JsonLdScriptProps) {
-	const nonce = (await headers()).get("x-nonce") ?? undefined;
+export function JsonLdScript({ id, data }: JsonLdScriptProps) {
 	return (
-		<Script id={id} nonce={nonce} type="application/ld+json">
+		<Script id={id} type="application/ld+json">
 			{JSON.stringify(data)}
 		</Script>
 	);

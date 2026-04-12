@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import Script from "next/script";
 import "@/styles/globals.css";
 
@@ -53,15 +52,16 @@ export const metadata: Metadata = {
 		"msvalidate.01": "A8C503B4FF428B289DA437C18B34BBE3",
 	},
 };
+
 export const viewport: Viewport = {
 	themeColor: "#401CD8",
 };
-export default async function RootLayout({
+
+export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const nonce = (await headers()).get("x-nonce") ?? undefined;
 	const organizationSchema = buildOrganizationSchema();
 	const websiteSchema = buildWebsiteSchema();
 	const localBusinessSchema = buildLocalBusinessSchema();
@@ -80,34 +80,26 @@ export default async function RootLayout({
 				)}
 			>
 				<Providers>
-					<GoogleTagManager
-						gtmId={GOOGLE_TAG_MANAGER_CONTAINER_ID}
-						nonce={nonce}
-					/>
+					<GoogleTagManager gtmId={GOOGLE_TAG_MANAGER_CONTAINER_ID} />
 					<Navbar />
-					{children}
-					<WhatsappPopover />
-					<Script
-						id="schema-organization"
-						nonce={nonce}
-						type="application/ld+json"
-					>
-						{JSON.stringify(organizationSchema)}
-					</Script>
-					<Script id="schema-website" nonce={nonce} type="application/ld+json">
-						{JSON.stringify(websiteSchema)}
-					</Script>
-					<Script
-						id="schema-local-business"
-						nonce={nonce}
-						type="application/ld+json"
-					>
-						{JSON.stringify(localBusinessSchema)}
-					</Script>
 
+					{children}
+
+					<WhatsappPopover />
 					<AiChatWidget />
 					<Footer />
 					<BreakpointIndicator />
+
+					{/* JSON-LD schemas */}
+					<Script id="schema-organization" type="application/ld+json">
+						{JSON.stringify(organizationSchema)}
+					</Script>
+					<Script id="schema-website" type="application/ld+json">
+						{JSON.stringify(websiteSchema)}
+					</Script>
+					<Script id="schema-local-business" type="application/ld+json">
+						{JSON.stringify(localBusinessSchema)}
+					</Script>
 				</Providers>
 			</body>
 		</html>
