@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/ui/tabs";
 import { IconArrowRightTag } from "@/assets/icons/arrow";
 import { IconShapes } from "@/assets/icons/shapes";
 
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { SERVICES } from "@/features/services/constant";
 import {
 	buildBreadcrumbSchema,
@@ -58,15 +58,9 @@ export default function WorksPage() {
 
 	return (
 		<main className="pt-14">
-			<Script id="schema-works-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script id="schema-works-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
-			<Script id="schema-works-review" type="application/ld+json">
-				{JSON.stringify(reviewSchema)}
-			</Script>
+			<JsonLdScript data={webPageSchema} id="schema-works-webpage" />
+			<JsonLdScript data={breadcrumbSchema} id="schema-works-breadcrumb" />
+			<JsonLdScript data={reviewSchema} id="schema-works-review" />
 			<header className="dashed dashed-x container mx-auto grid max-w-7xl gap-6 py-9 sm:py-12 md:grid-cols-2 md:gap-12 md:py-16">
 				<h1 className="font-semibold text-4xl text-primary md:text-7xl">
 					A closer look at our recent work.

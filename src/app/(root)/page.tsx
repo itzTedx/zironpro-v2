@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Script from "next/script";
 
 import { Marquee } from "@/components/ui/marquee";
 
 import { siteConfig } from "@/data/site-config";
 import { Blogs } from "@/features/articles/views/blogs";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { Achievements } from "@/features/views/home/achievements";
 import { CLIENTS } from "@/features/views/home/data/constants";
 import { Hero } from "@/features/views/home/hero";
-import { Products } from "@/features/views/home/products";
 import { Services } from "@/features/views/home/services";
 import { VideoReel } from "@/features/views/home/video-reel";
 import { WhyUs } from "@/features/views/home/why-us";
@@ -31,9 +30,7 @@ export default function Home() {
 
 	return (
 		<main>
-			<Script id="schema-home-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
+			<JsonLdScript data={webPageSchema} id="schema-home-webpage" />
 			<Hero />
 			{/* <Feedback /> */}
 
@@ -43,7 +40,7 @@ export default function Home() {
 
 			<VideoReel />
 			<WhyUs />
-			<Products />
+			{/* <Products /> */}
 			<Blogs />
 			<section className="dashed dashed-y">
 				<div className="dashed dashed-x container mx-auto max-w-7xl">

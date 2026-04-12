@@ -1,7 +1,6 @@
 import type { Metadata, Route } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 
 import MDXContent from "@/components/markdown/mdx-component";
 
@@ -9,6 +8,7 @@ import { Breadcrumbs } from "@/features/locations/components/breadcrumbs";
 import { CTASection } from "@/features/locations/components/cta-section";
 import { FAQSection } from "@/features/locations/components/faq-section";
 import { ServiceHero } from "@/features/locations/components/service-hero";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import {
 	formatLocation,
 	formatService,
@@ -84,15 +84,14 @@ export default async function ServiceLocationBasedPage({
 
 	return (
 		<main>
-			<Script
+			<JsonLdScript
+				data={breadcrumbSchema}
 				id="schema-service-location-breadcrumb"
-				type="application/ld+json"
-			>
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
-			<Script id="schema-service-location-business" type="application/ld+json">
-				{JSON.stringify(localBusinessSchema)}
-			</Script>
+			/>
+			<JsonLdScript
+				data={localBusinessSchema}
+				id="schema-service-location-business"
+			/>
 
 			<Breadcrumbs
 				items={[

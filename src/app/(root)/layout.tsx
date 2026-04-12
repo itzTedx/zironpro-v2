@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import Script from "next/script";
 import "@/styles/globals.css";
 import { Suspense } from "react";
@@ -56,11 +57,12 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
 	themeColor: "#401CD8",
 };
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const nonce = (await headers()).get("x-nonce") ?? undefined;
 	const organizationSchema = buildOrganizationSchema();
 	const websiteSchema = buildWebsiteSchema();
 	const localBusinessSchema = buildLocalBusinessSchema();
@@ -70,26 +72,34 @@ export default function RootLayout({
 			<head>
 				<meta content="Ziron pro" name="apple-mobile-web-app-title" />
 			</head>
-			<Providers>
-				<body
-					className={cn(
-						"antialiased",
-						inter.variable,
-						interTight.className,
-						mono.variable
-					)}
-				>
-					<GoogleTagManager gtmId="GTM-KQZM3Z58" />
+			<body
+				className={cn(
+					"antialiased",
+					inter.variable,
+					interTight.className,
+					mono.variable
+				)}
+			>
+				<Providers>
+					<GoogleTagManager gtmId="GTM-KQZM3Z58" nonce={nonce} />
 					<Navbar />
 					{children}
 					<WhatsappPopover />
-					<Script id="schema-organization" type="application/ld+json">
+					<Script
+						id="schema-organization"
+						nonce={nonce}
+						type="application/ld+json"
+					>
 						{JSON.stringify(organizationSchema)}
 					</Script>
-					<Script id="schema-website" type="application/ld+json">
+					<Script id="schema-website" nonce={nonce} type="application/ld+json">
 						{JSON.stringify(websiteSchema)}
 					</Script>
-					<Script id="schema-local-business" type="application/ld+json">
+					<Script
+						id="schema-local-business"
+						nonce={nonce}
+						type="application/ld+json"
+					>
 						{JSON.stringify(localBusinessSchema)}
 					</Script>
 					<Suspense>
@@ -98,8 +108,8 @@ export default function RootLayout({
 					<AiChatWidget />
 					<Footer />
 					<BreakpointIndicator />
-				</body>
-			</Providers>
+				</Providers>
+			</body>
 		</html>
 	);
 }

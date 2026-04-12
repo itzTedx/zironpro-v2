@@ -2,7 +2,6 @@ import type { Metadata, Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 
 import {
 	PreviewLinkCard,
@@ -18,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { IconArrowLeft, IconArrowRightTag } from "@/assets/icons/arrow";
 
 import { siteConfig } from "@/data/site-config";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { findServiceBySlug } from "@/features/services/actions/query";
 import { SERVICES } from "@/features/services/constant";
 import { Cta } from "@/features/views/cta";
@@ -95,18 +95,12 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 
 	return (
 		<main>
-			<Script id="schema-service-category-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script
+			<JsonLdScript data={webPageSchema} id="schema-service-category-webpage" />
+			<JsonLdScript
+				data={breadcrumbSchema}
 				id="schema-service-category-breadcrumb"
-				type="application/ld+json"
-			>
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
-			<Script id="schema-service-category-service" type="application/ld+json">
-				{JSON.stringify(serviceSchema)}
-			</Script>
+			/>
+			<JsonLdScript data={serviceSchema} id="schema-service-category-service" />
 			<section className="dashed dashed-b relative">
 				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-12 md:py-16 md:pt-24">
 					<div className="container grid grid-cols-2 gap-6">

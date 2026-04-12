@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 
 import { Header } from "@/components/shared/header";
 import {
@@ -20,6 +19,7 @@ import {
 	FrameTitle,
 } from "@/components/ui/frame";
 
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { Achievements } from "@/features/views/home/achievements";
 import {
 	buildBreadcrumbSchema,
@@ -132,15 +132,9 @@ export default function AboutPage() {
 
 	return (
 		<main className="pb-16 md:pb-20">
-			<Script id="schema-about-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script id="schema-about-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
-			<Script id="schema-about-review" type="application/ld+json">
-				{JSON.stringify(reviewSchema)}
-			</Script>
+			<JsonLdScript data={webPageSchema} id="schema-about-webpage" />
+			<JsonLdScript data={breadcrumbSchema} id="schema-about-breadcrumb" />
+			<JsonLdScript data={reviewSchema} id="schema-about-review" />
 
 			<section className="dashed dashed-x container max-w-7xl py-12 md:py-16">
 				<div className="grid gap-6 md:grid-cols-2 md:gap-12">

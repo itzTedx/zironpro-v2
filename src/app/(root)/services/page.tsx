@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { IconArrowRightTag } from "@/assets/icons/arrow";
 import { IconGear } from "@/assets/icons/gear";
 
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { ServicesLists } from "@/features/services/components/service-list";
 import {
 	buildBreadcrumbSchema,
@@ -48,15 +48,9 @@ export default function ServicesPage() {
 
 	return (
 		<main>
-			<Script id="schema-services-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script id="schema-services-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
-			<Script id="schema-services-service" type="application/ld+json">
-				{JSON.stringify(serviceSchema)}
-			</Script>
+			<JsonLdScript data={webPageSchema} id="schema-services-webpage" />
+			<JsonLdScript data={breadcrumbSchema} id="schema-services-breadcrumb" />
+			<JsonLdScript data={serviceSchema} id="schema-services-service" />
 			<section className="relative bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)] bg-gray-1400 bg-size-[16px_16px]">
 				<header className="dashed dashed-x relative z-10 mx-auto max-w-7xl py-16 md:py-20">
 					<div className="mx-auto max-w-5xl space-y-4 py-12 text-center">

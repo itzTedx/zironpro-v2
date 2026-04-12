@@ -1,3 +1,5 @@
+"use client";
+
 import { OpenPanelComponent } from "@openpanel/nextjs";
 
 export default function OpenPanelProvider({

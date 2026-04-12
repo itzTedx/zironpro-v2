@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 
 import { CTASection } from "@/features/locations/components/cta-section";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { Achievements } from "@/features/views/home/achievements";
 import { Hero } from "@/features/views/home/hero";
 import { Products } from "@/features/views/home/products";
@@ -73,12 +73,8 @@ export default async function LocationPage({
 
 	return (
 		<main>
-			<Script id="schema-location-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
-			<Script id="schema-location-business" type="application/ld+json">
-				{JSON.stringify(localBusinessSchema)}
-			</Script>
+			<JsonLdScript data={breadcrumbSchema} id="schema-location-breadcrumb" />
+			<JsonLdScript data={localBusinessSchema} id="schema-location-business" />
 			<Hero
 				badgeLabel={`${formattedLocation} digital marketing partner`}
 				heading={`Turn your ${formattedLocation} brand into a revenue engine`}

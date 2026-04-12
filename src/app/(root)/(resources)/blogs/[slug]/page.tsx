@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 
 import { SocialShareActions } from "@/components/blog/social-share-actions";
 import MDXContent from "@/components/markdown/mdx-component";
@@ -20,6 +19,7 @@ import { IconArrowLeft } from "@/assets/icons/arrow";
 
 import { getBlogBySlug, getBlogs } from "@/features/articles/actions/query";
 import { Blogs } from "@/features/articles/views/blogs";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { Faq, FaqContent } from "@/features/services/components/faq";
 import { SERVICES } from "@/features/services/constant";
 import {
@@ -225,20 +225,12 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 		<main>
 			<ScrollIndicator />
 
-			<Script id="schema-blog-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script id="schema-blog-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
-			<Script id="schema-blog-article" type="application/ld+json">
-				{JSON.stringify(articleSchema)}
-			</Script>
-			{faqSchema && (
-				<Script id="schema-blog-faq" type="application/ld+json">
-					{JSON.stringify(faqSchema)}
-				</Script>
-			)}
+			<JsonLdScript data={webPageSchema} id="schema-blog-webpage" />
+			<JsonLdScript data={breadcrumbSchema} id="schema-blog-breadcrumb" />
+			<JsonLdScript data={articleSchema} id="schema-blog-article" />
+			{faqSchema ? (
+				<JsonLdScript data={faqSchema} id="schema-blog-faq" />
+			) : null}
 
 			<section className="relative w-full bg-[radial-gradient(ellipse_400%_240%_at_50%_100%,#fff,#fff_10%,15%,#c7c5fd_16%,rgba(154,103,250,.6)_17%,21%,#264cab_28%,35%,#00031d_45%,#00031d)]">
 				<div className="dashed dashed-x container max-w-7xl py-16 text-center md:py-24">

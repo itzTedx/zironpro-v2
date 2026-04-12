@@ -1,7 +1,5 @@
 import { Children, isValidElement } from "react";
 
-import Script from "next/script";
-
 import {
 	Accordion,
 	AccordionItem,
@@ -14,6 +12,7 @@ import { Frame, FramePanel } from "@/components/ui/frame";
 
 import { IconCalender } from "@/assets/icons/calender";
 
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { slugify } from "@/lib/slugify";
 import { cn } from "@/lib/utils";
 
@@ -51,7 +50,7 @@ function extractTextFromChildren(children: React.ReactNode): string {
 	return "";
 }
 
-function Faq({
+async function Faq({
 	children,
 	compact,
 }: {
@@ -96,11 +95,9 @@ function Faq({
 
 	return (
 		<>
-			{structuredData && (
-				<Script id="faq-structured-data" type="application/ld+json">
-					{JSON.stringify(structuredData)}
-				</Script>
-			)}
+			{structuredData ? (
+				<JsonLdScript data={structuredData} id="faq-structured-data" />
+			) : null}
 			<section
 				className={cn(
 					"relative grid max-w-7xl gap-4",

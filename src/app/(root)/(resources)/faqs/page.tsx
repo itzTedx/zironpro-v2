@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -7,6 +6,7 @@ import { IconWorld } from "@/assets/icons/world";
 
 import { FAQS, FaqItemData } from "@/data/faqs";
 import { siteConfig } from "@/data/site-config";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { FaqContent, FaqItem } from "@/features/services/components/faq";
 import {
 	buildBreadcrumbSchema,
@@ -66,12 +66,8 @@ export default async function FaqsPage() {
 				</header>
 			</section>
 
-			<Script id="schema-faqs-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script id="schema-faqs-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
+			<JsonLdScript data={webPageSchema} id="schema-faqs-webpage" />
+			<JsonLdScript data={breadcrumbSchema} id="schema-faqs-breadcrumb" />
 
 			<section className="dashed dashed-y">
 				<div className="dashed-b-0 dashed container grid max-w-7xl gap-6 py-12 md:grid-cols-2 md:py-16 lg:py-20">
@@ -93,12 +89,10 @@ export default async function FaqsPage() {
 								</p>
 							</header>
 
-							<Script
+							<JsonLdScript
+								data={buildFaqPageSchema(category.items)}
 								id={`faqpage-schema-${category.slug}`}
-								type="application/ld+json"
-							>
-								{JSON.stringify(buildFaqPageSchema(category.items))}
-							</Script>
+							/>
 
 							<FaqItem>
 								{category.items.map((item) => (

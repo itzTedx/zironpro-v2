@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 
 import { siteConfig } from "@/data/site-config";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import {
 	buildBreadcrumbSchema,
 	buildWebPageSchema,
@@ -31,12 +31,8 @@ export default function TermsOfServicePage() {
 
 	return (
 		<main className="container max-w-4xl space-y-8 py-12 md:py-16">
-			<Script id="schema-terms-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script id="schema-terms-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
+			<JsonLdScript data={webPageSchema} id="schema-terms-webpage" />
+			<JsonLdScript data={breadcrumbSchema} id="schema-terms-breadcrumb" />
 			<header className="space-y-3">
 				<h1 className="font-display font-semibold text-4xl text-primary md:text-5xl">
 					Terms of Service

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 
 import fs from "fs";
 import path from "path";
@@ -14,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { IconArrowRightTag } from "@/assets/icons/arrow";
 
 import { siteConfig } from "@/data/site-config";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { getServiceBySlug } from "@/features/services/actions/query";
 import { Card } from "@/features/services/components/card";
 import { Faq, FaqContent } from "@/features/services/components/faq";
@@ -135,22 +135,18 @@ export default async function ServicePage({
 
 	return (
 		<main>
-			<Script id="schema-service-detail-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script id="schema-service-detail-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
-			<Script id="schema-service-detail-service" type="application/ld+json">
-				{JSON.stringify(serviceSchema)}
-			</Script>
-			<Script id="schema-service-detail-rating" type="application/ld+json">
-				{JSON.stringify(aggregateRatingSchema)}
-			</Script>
+			<JsonLdScript data={webPageSchema} id="schema-service-detail-webpage" />
+			<JsonLdScript
+				data={breadcrumbSchema}
+				id="schema-service-detail-breadcrumb"
+			/>
+			<JsonLdScript data={serviceSchema} id="schema-service-detail-service" />
+			<JsonLdScript
+				data={aggregateRatingSchema}
+				id="schema-service-detail-rating"
+			/>
 			{faqSchema ? (
-				<Script id="schema-service-detail-faq" type="application/ld+json">
-					{JSON.stringify(faqSchema)}
-				</Script>
+				<JsonLdScript data={faqSchema} id="schema-service-detail-faq" />
 			) : null}
 			<header className="dashed dashed-b relative w-full">
 				<div className="md:dashed dashed-x container relative z-20 flex h-full max-w-7xl flex-col justify-end space-y-4 pt-12 pb-20">

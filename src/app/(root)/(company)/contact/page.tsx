@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 
 import {
 	CardContent,
@@ -21,6 +20,7 @@ import { ContactFaqs } from "@/features/contact/views/contact-faqs";
 import { ContactHeader } from "@/features/contact/views/contact-header";
 import { HowWeHelp } from "@/features/contact/views/how-we-help";
 import { LocationMap } from "@/features/contact/views/map";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import {
 	buildBreadcrumbSchema,
 	buildWebPageSchema,
@@ -52,12 +52,8 @@ export default function ContactPage() {
 
 	return (
 		<main className="pt-12">
-			<Script id="schema-contact-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script id="schema-contact-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
+			<JsonLdScript data={webPageSchema} id="schema-contact-webpage" />
+			<JsonLdScript data={breadcrumbSchema} id="schema-contact-breadcrumb" />
 			<section className="dashed dashed-x mx-auto max-w-7xl py-4 md:py-12">
 				<div className="container grid gap-4 md:grid-cols-2">
 					<ContactHeader />

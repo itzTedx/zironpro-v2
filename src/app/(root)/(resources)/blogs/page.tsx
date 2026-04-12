@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 
 import { siteConfig } from "@/data/site-config";
 import { getBlogs } from "@/features/articles/actions/query";
 import { BlogCard } from "@/features/articles/components/blog-card";
+import { JsonLdScript } from "@/features/seo/json-ld-script";
 import {
 	buildBreadcrumbSchema,
 	buildWebPageSchema,
@@ -39,12 +39,8 @@ export default async function BlogsPage() {
 	// bg-[radial-gradient(--alpha(var(--color-gray-500)/0.1)_1px,transparent_1px)]  bg-size-[16px_16px]
 	return (
 		<main className="bg-taupe-900">
-			<Script id="schema-blogs-webpage" type="application/ld+json">
-				{JSON.stringify(webPageSchema)}
-			</Script>
-			<Script id="schema-blogs-breadcrumb" type="application/ld+json">
-				{JSON.stringify(breadcrumbSchema)}
-			</Script>
+			<JsonLdScript data={webPageSchema} id="schema-blogs-webpage" />
+			<JsonLdScript data={breadcrumbSchema} id="schema-blogs-breadcrumb" />
 			<section className="relative">
 				<header className="dashed dashed-x container relative z-10 mx-auto max-w-7xl py-16 md:py-20">
 					<div className="space-y-4 py-12">
