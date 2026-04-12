@@ -8,6 +8,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { motion, type Transition } from "motion/react";
 
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 type PropType = {
@@ -96,11 +97,15 @@ const useEmblaControls = (
 
 function MotionCarousel(props: PropType) {
 	const { slides, options, children } = props;
+	const prefersReducedMotion = usePrefersReducedMotion();
 	const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-		Autoplay({
-			delay: 3000,
-		}),
-
+		...(prefersReducedMotion
+			? []
+			: [
+					Autoplay({
+						delay: 3000,
+					}),
+				]),
 		WheelGesturesPlugin(),
 	]);
 	const {
@@ -124,7 +129,7 @@ function MotionCarousel(props: PropType) {
 							>
 								<motion.div
 									animate={{
-										scale: isActive ? 1 : 0.9,
+										scale: prefersReducedMotion || isActive ? 1 : 0.9,
 									}}
 									className="size-full select-none"
 									initial={false}

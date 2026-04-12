@@ -1,0 +1,29 @@
+# ZironPro
+
+> UAE-based digital marketing agency (ZironPro Digital Design LLC): SEO, web design and development, branding, social media, paid ads, motion, and print—focused on leads and revenue for businesses in Dubai, Abu Dhabi, Sharjah, and the wider UAE.
+
+This site is the marketing website for ZironPro. Primary audience: businesses seeking digital marketing, web, and creative services in the United Arab Emirates. Contact and booking flows are available on the contact page.
+
+## Site
+
+- [Home](https://zironpro.ae/): Positioning, services overview, and primary calls to action.
+- [Services](https://zironpro.ae/services): Full service catalog and category landing pages.
+- [About](https://zironpro.ae/about): Company background and positioning.
+- [Contact](https://zironpro.ae/contact): Phone, form, and ways to reach the team for strategy or project inquiries.
+- [Blog](https://zironpro.ae/blogs): Articles on marketing, web, SEO, and UAE-relevant business topics.
+- [Our works](https://zironpro.ae/our-works): Portfolio and selected client work.
+- [FAQs](https://zironpro.ae/faqs): Common questions about services and process.
+
+## Machine-readable indexes
+
+- [Sitemap](https://zironpro.ae/sitemap.xml): Complete list of indexable URLs on this site.
+- [RSS feed](https://zironpro.ae/rss.xml): Blog posts in RSS format.
+
+## Optional
+
+- [Technologies](https://zironpro.ae/technologies): Tools and platforms referenced in marketing context.
+- [Privacy policy](https://zironpro.ae/privacy-policy): Data collection, cookies, analytics, and AI chat widget usage.
+- [Terms of service](https://zironpro.ae/terms-of-service): Legal terms for use of the website and services.
+- [LinkedIn](https://www.linkedin.com/company/zironpro): Official company profile.
+- [Instagram](https://www.instagram.com/zironpro/): Social presence.
+- [Facebook](https://www.facebook.com/zironpro): Social presence.

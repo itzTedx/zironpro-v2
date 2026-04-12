@@ -14,6 +14,7 @@ import { Button, ButtonProps } from "@/components/ui/button";
 
 import { IconCaretLeft, IconCaretRight } from "@/assets/icons/caret";
 
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
@@ -141,13 +142,16 @@ function Carousel({
 	children,
 	...props
 }: React.ComponentProps<"div"> & CarouselProps) {
+	const prefersReducedMotion = usePrefersReducedMotion();
+	const runAutoplay = autoplay && !prefersReducedMotion;
+
 	const [carouselRef, api] = useEmblaCarousel(
 		{
 			...opts,
 			axis: orientation === "horizontal" ? "x" : "y",
 		},
 		[
-			...(autoplay
+			...(runAutoplay
 				? [
 						Autoplay({
 							delay: autoplayOptions.delay,
@@ -155,7 +159,6 @@ function Carousel({
 						}),
 					]
 				: []),
-
 			WheelGesturesPlugin(),
 			...(plugins || []),
 		]

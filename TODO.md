@@ -132,7 +132,7 @@ Foundation (metadata, sitemap, JSON-LD, Twitter) is largely in place; remaining 
 
 ## Quality, DX & safety
 
-- [ ] **Pin `motion` version** — `package.json` uses `"latest"` for `motion`; pin to a semver range for reproducible builds.
+- [x] **Pin `motion` version** — `package.json` uses `"latest"` for `motion`; pin to a semver range for reproducible builds.
 - [ ] **Branded error surfaces** — add `not-found.tsx` and route-level or global `error.tsx` with clear recovery links (e.g. home, contact).
 - [ ] **Add automated tests & loading UX** — add `loading.tsx` skeletons for heavy routes where it helps; minimal e2e or integration tests for critical paths (home, contact, one service page, one blog).
 - [x] **Security headers (baseline)** — add `headers()` in `next.config.ts`: HSTS (production only, long `max-age` + `includeSubDomains` if appropriate), `Referrer-Policy` (e.g. `strict-origin-when-cross-origin`), `X-Content-Type-Options: nosniff`, `Permissions-Policy` for APIs you do not need.
@@ -147,8 +147,8 @@ Foundation (metadata, sitemap, JSON-LD, Twitter) is largely in place; remaining 
 ## Accessibility & UX polish
 
 - [x] **Preview link cards** — `how-we-help.tsx` sets preview image `alt` from each service list title; `preview-link-card.tsx` default alt is no longer a generic placeholder.
-- [ ] **Reduce motion / prefers-reduced-motion** — Lenis + GSAP + carousels: audit `prefers-reduced-motion` for scroll smoothing and autoplay.
-- [ ] **Keyboard and focus** — mega-menu, drawers, and AI chat: verify focus traps and ESC behavior (spot-check against Biome a11y rules already partially enabled).
+- [x] **Reduce motion / prefers-reduced-motion** — Lenis + GSAP + carousels: audit `prefers-reduced-motion` for scroll smoothing and autoplay.
+- [x] **Keyboard and focus** — mega-menu, drawers, and AI chat: verify focus traps and ESC behavior (spot-check against Biome a11y rules already partially enabled).
 
 ---
 

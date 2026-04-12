@@ -17,11 +17,12 @@ export const Featured = () => {
 				className="relative z-10 w-full"
 				opts={{
 					align: "center",
+					loop: true,
 				}}
 			>
 				<CarouselContent>
 					{FEATURED_ITEMS.map((item) => (
-						<CarouselItem className="basis-1/2 py-9 lg:basis-1/6" key={item.id}>
+						<CarouselItem className="basis-1/2 py-9 lg:basis-1/5" key={item.id}>
 							<div className="relative aspect-3/4 overflow-hidden rounded-2xl bg-surface transition-[translate_box-shadow] ease-out hover:-translate-y-4 hover:shadow-lg">
 								<div className="relative z-20 flex items-center gap-2 p-4 text-card">
 									<item.icon className="" />

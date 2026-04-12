@@ -1,5 +1,7 @@
 "use client";
 
+import { MotionConfig } from "motion/react";
+
 import { ToastProvider } from "@/components/ui/toast";
 
 import { GtmDataTrackListener } from "./gtm-data-track-listener";
@@ -11,9 +13,11 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
 		// <BProgressProvider>
 		<OpenPanelProvider>
 			<GtmDataTrackListener />
-			<LenisProvider>
-				<ToastProvider>{children}</ToastProvider>
-			</LenisProvider>
+			<MotionConfig reducedMotion="user">
+				<LenisProvider>
+					<ToastProvider>{children}</ToastProvider>
+				</LenisProvider>
+			</MotionConfig>
 		</OpenPanelProvider>
 		// </BProgressProvider>
 	);

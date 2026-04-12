@@ -15,14 +15,20 @@ import {
 	useEmblaControls,
 } from "@/components/ui/carousel";
 
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+
 import { FEEDBACK_ITEMS } from "./data/feedbacks";
 
 export const Feedback = () => {
+	const prefersReducedMotion = usePrefersReducedMotion();
 	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-		Autoplay({
-			delay: 3000,
-		}),
-
+		...(prefersReducedMotion
+			? []
+			: [
+					Autoplay({
+						delay: 3000,
+					}),
+				]),
 		WheelGesturesPlugin(),
 	]);
 	const { selectedIndex, scrollSnaps, onDotClick } = useEmblaControls(emblaApi);
@@ -42,7 +48,7 @@ export const Feedback = () => {
 								>
 									<motion.div
 										animate={{
-											scale: isActive ? 1 : 0.95,
+											scale: prefersReducedMotion || isActive ? 1 : 0.95,
 										}}
 										className="size-full select-none transition-transform duration-150 ease-out hover:-translate-y-4"
 										initial={false}
