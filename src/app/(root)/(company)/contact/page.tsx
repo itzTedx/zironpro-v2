@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import {
@@ -19,13 +20,18 @@ import { ContactForm } from "@/features/contact/contact-form";
 import { ContactFaqs } from "@/features/contact/views/contact-faqs";
 import { ContactHeader } from "@/features/contact/views/contact-header";
 import { HowWeHelp } from "@/features/contact/views/how-we-help";
-import { LocationMap } from "@/features/contact/views/map";
 import { JsonLdScript } from "@/features/seo/json-ld-script";
 import {
 	buildBreadcrumbSchema,
 	buildWebPageSchema,
 	createPageMetadata,
 } from "@/lib/seo";
+
+const LocationMap = dynamic(() =>
+	import("@/features/contact/views/map").then((mod) => ({
+		default: mod.LocationMap,
+	}))
+);
 
 const title = "Contact ZironPro | Web Design & Digital Agency in Dubai, UAE";
 const description =
@@ -74,7 +80,10 @@ export default function ContactPage() {
 							<FrameTitle>
 								<p className="text-muted-foreground">
 									Prefer to hop on a call?{" "}
-									<Link className="text-primary hover:underline" href="/">
+									<Link
+										className="text-primary hover:underline"
+										href="tel:+971566646539"
+									>
 										Book a call
 									</Link>{" "}
 									instead.

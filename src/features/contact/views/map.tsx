@@ -133,7 +133,7 @@ export const LocationMap = () => {
 
 	return (
 		<div
-			className="container h-[400px] max-w-7xl overflow-hidden bg-gray-1200 p-0"
+			className="squircle container h-[400px] max-w-7xl overflow-hidden rounded-2xl bg-gray-1200 p-0"
 			data-scroll-locked
 		>
 			<Map

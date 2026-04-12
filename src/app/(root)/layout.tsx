@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import Script from "next/script";
 import "@/styles/globals.css";
-import { Suspense } from "react";
 
 import { GoogleTagManager } from "@next/third-parties/google";
 
@@ -16,7 +15,7 @@ import { AiChatWidget } from "@/components/shared/ai-chat-widget";
 import { inter, interTight, mono } from "@/assets/fonts";
 
 import { siteConfig } from "@/data/site-config";
-import { Video } from "@/features/views/home/video";
+import { GOOGLE_TAG_MANAGER_CONTAINER_ID } from "@/data/site-tracking";
 import {
 	buildLocalBusinessSchema,
 	buildOrganizationSchema,
@@ -70,7 +69,7 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<head>
-				<meta content="Ziron pro" name="apple-mobile-web-app-title" />
+				<meta content="Ziron Pro" name="apple-mobile-web-app-title" />
 			</head>
 			<body
 				className={cn(
@@ -81,7 +80,10 @@ export default async function RootLayout({
 				)}
 			>
 				<Providers>
-					<GoogleTagManager gtmId="GTM-KQZM3Z58" nonce={nonce} />
+					<GoogleTagManager
+						gtmId={GOOGLE_TAG_MANAGER_CONTAINER_ID}
+						nonce={nonce}
+					/>
 					<Navbar />
 					{children}
 					<WhatsappPopover />
@@ -102,9 +104,7 @@ export default async function RootLayout({
 					>
 						{JSON.stringify(localBusinessSchema)}
 					</Script>
-					<Suspense>
-						<Video />
-					</Suspense>
+
 					<AiChatWidget />
 					<Footer />
 					<BreakpointIndicator />

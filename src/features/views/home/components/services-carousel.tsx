@@ -43,6 +43,7 @@ export const ServicesCarousel = () => {
 									alt={`${service.title} service visual by Ziron pro`}
 									className="object-cover transition-transform duration-500 ease-out group-hover:scale-125"
 									fill
+									sizes="(max-width: 767px) 50vw, (max-width: 1023px) 33vw, 20vw"
 									src={service.bg}
 								/>
 								<Noise />

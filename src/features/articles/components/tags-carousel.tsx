@@ -7,7 +7,13 @@ import {
 	CarouselItem,
 } from "@/components/ui/carousel";
 
-export const TagsCarousel = ({ tags }: { tags: string[] }) => {
+export const TagsCarousel = ({
+	tags,
+	className,
+}: {
+	tags: string[];
+	className?: string;
+}) => {
 	return (
 		<Carousel
 			className="z-40 w-full min-w-0 cursor-pointer overflow-hidden"
@@ -19,7 +25,12 @@ export const TagsCarousel = ({ tags }: { tags: string[] }) => {
 			<CarouselContent className="-ml-1">
 				{tags.map((tag) => (
 					<CarouselItem className="basis-auto pl-1" key={tag}>
-						<Badge key={tag} size="sm" variant="secondary">
+						<Badge
+							className={className}
+							key={tag}
+							size="sm"
+							variant="secondary"
+						>
 							{tag}
 						</Badge>
 					</CarouselItem>

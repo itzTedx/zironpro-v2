@@ -98,7 +98,7 @@ async function Faq({
 			{structuredData ? (
 				<JsonLdScript data={structuredData} id="faq-structured-data" />
 			) : null}
-			<section
+			<div
 				className={cn(
 					"relative grid max-w-7xl gap-4",
 					compact ? "" : "dashed dashed-x"
@@ -116,7 +116,7 @@ async function Faq({
 						figure it out together.
 					</p>
 					<Button
-						className="text-foreground"
+						className="border-border text-foreground"
 						data-label="FAQ - Book a call"
 						data-location="services_faq"
 						data-track="cta_click"
@@ -127,7 +127,7 @@ async function Faq({
 					</Button>
 				</div>
 				<FaqItem>{children}</FaqItem>
-			</section>
+			</div>
 		</>
 	);
 }

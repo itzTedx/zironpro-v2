@@ -43,6 +43,35 @@ export function getBlogs(limit?: number): BlogMetadata[] {
 	return products;
 }
 
+function normalizeSearchText(value: string): string {
+	return value.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+/** Filters blogs by `query` (space-separated tokens; all must match). Matches title, descriptions, tags, category, and author. */
+export function filterBlogsByQuery(
+	blogs: BlogMetadata[],
+	query: string
+): BlogMetadata[] {
+	const normalized = normalizeSearchText(query);
+	if (!normalized) return blogs;
+
+	const tokens = normalized.split(" ").filter(Boolean);
+	return blogs.filter((blog) => {
+		const haystack = normalizeSearchText(
+			[
+				blog.title,
+				blog.meta.title,
+				blog.description,
+				blog.meta.description,
+				blog.category,
+				blog.author,
+				...blog.tags,
+			].join(" ")
+		);
+		return tokens.every((token) => haystack.includes(token));
+	});
+}
+
 export function getBlogBySlug(slug: string): Blog {
 	// Validate slug to prevent path traversal
 	if (

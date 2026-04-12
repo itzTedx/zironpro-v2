@@ -1,7 +1,7 @@
 /**
  * Content-Security-Policy allowlists derived from this codebase:
  * - GTM: `@next/third-parties/google` (layout)
- * - OpenPanel: `open-panel.tsx` (script + API from NEXT_PUBLIC_OPENPANEL_API_URL)
+ * - OpenPanel: `open-panel.tsx` + `data/site-tracking.ts` (script host + API from env)
  * - MapLibre + Carto basemaps: `components/ui/map.tsx`
  * - OSRM routing: `features/contact/views/map.tsx`
  * - Microlink + demo CDN images: `preview-link-card.tsx`, `achievement-cards.tsx`
@@ -10,6 +10,11 @@
  * Toggle report-only: CSP_MODE=report-only
  * @see https://nextjs.org/docs/app/guides/content-security-policy
  */
+
+import {
+	OPENPANEL_SCRIPT_ORIGIN,
+	OPENPANEL_WEBSOCKET_ORIGIN,
+} from "@/data/site-tracking";
 
 function trimPolicy(value: string): string {
 	return value.replace(/\s{2,}/g, " ").trim();
@@ -41,7 +46,7 @@ export function buildContentSecurityPolicy(
 	const openPanelApiOrigin = tryOrigin(
 		process.env.NEXT_PUBLIC_OPENPANEL_API_URL
 	);
-	const openPanelScriptOrigin = "https://analytics.zironpro.ae";
+	const openPanelScriptOrigin = OPENPANEL_SCRIPT_ORIGIN;
 
 	const scriptSrc = [
 		"'self'",
@@ -57,11 +62,12 @@ export function buildContentSecurityPolicy(
 		...(isDev ? ["'unsafe-eval'"] : []),
 	];
 
+	// style-src: omit nonce. CSP3 ignores 'unsafe-inline' when a nonce/hash is present,
+	// which blocks next/font/google, third-party widgets, and libraries that set inline styles.
 	const styleSrc = [
 		"'self'",
-		`'nonce-${nonce}'`,
 		"https://fonts.googleapis.com",
-		...(isDev ? ["'unsafe-inline'"] : []),
+		"'unsafe-inline'",
 	];
 
 	const imgSrc = [
@@ -102,7 +108,7 @@ export function buildContentSecurityPolicy(
 		openPanelScriptOrigin,
 		"https://openpanel.dev",
 		...(openPanelApiOrigin ? [openPanelApiOrigin] : []),
-		"wss://analytics.zironpro.ae",
+		OPENPANEL_WEBSOCKET_ORIGIN,
 		...(isDev
 			? [
 					"http://localhost:*",

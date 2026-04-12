@@ -11,9 +11,11 @@ import { TagsCarousel } from "./tags-carousel";
 export const BlogCard = ({
 	blog,
 	className,
+	tagsClassName,
 }: {
 	blog: BlogMetadata;
 	className?: string;
+	tagsClassName?: string;
 }) => {
 	return (
 		<div
@@ -41,7 +43,9 @@ export const BlogCard = ({
 				/>
 			</div>
 			<div className="flex w-full min-w-0 flex-col space-y-2 p-3">
-				{blog.tags && <TagsCarousel tags={blog.tags} />}
+				{blog.tags && (
+					<TagsCarousel className={tagsClassName} tags={blog.tags} />
+				)}
 
 				<h3 className="line-clamp-2 font-medium text-lg tracking-tight transition-colors group-hover/blog:text-primary md:text-xl">
 					{blog.title}

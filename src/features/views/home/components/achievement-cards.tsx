@@ -1,6 +1,6 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 
-import { LogoItem } from "@/components/shared/logo-timeline";
 import { Noise } from "@/components/shared/noise";
 import { Badge } from "@/components/ui/badge";
 import { Marquee } from "@/components/ui/marquee";
@@ -10,7 +10,13 @@ import { Logo } from "@/assets/logo";
 
 import { cn } from "@/lib/utils";
 
-import { GrowthChart } from "./chart";
+const GrowthChart = dynamic(() =>
+	import("./chart").then((mod) => ({ default: mod.GrowthChart }))
+);
+
+/** Achievement cards grid: 1 col → 2 (sm) → 3 (lg) within max-w-7xl */
+const achievementCardFillSizes =
+	"(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw";
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
 	return (
@@ -55,6 +61,7 @@ export const BrandServed = () => {
 			<Image
 				alt="Blue gradient background texture by Ziron pro"
 				fill
+				sizes={achievementCardFillSizes}
 				src="/images/bg-grad-1.webp"
 			/>
 			{/* <div className="pointer-events-none absolute inset-0 bg-linear-0 from-brand-300 to-brand-100 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" /> */}
@@ -94,25 +101,6 @@ export const Experience = () => {
 		<Card>
 			<Noise className="opacity-20" />
 
-			{/* <div className="absolute top-12 left-1/2 z-20 -translate-x-1/2 transition-transform group-hover/card:-translate-y-6 group-hover/card:scale-90">
-				<svg
-					className="text-muted-foreground/60 transition-colors group-hover/card:text-muted-foreground/40"
-					fill="none"
-					height="282"
-					viewBox="0 0 237 282"
-					width="237"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M119.948 282C56.2513 282 13.6492 252.556 0 214.403L59.1466 165.468C67.4188 195.326 90.9948 207.768 117.052 207.768C140.215 207.768 155.105 196.156 155.105 172.103C155.105 150.953 142.696 137.682 117.052 137.682C100.094 137.682 86.445 143.074 81.0681 159.662L80.6544 160.906L10.3403 153.856L21.0942 0H218.801V66.3529H88.9267L83.5497 140.171C93.0628 115.288 117.052 95.3823 155.518 95.3823C200.602 95.3823 237 121.509 237 180.812C237 242.188 187.78 282 119.948 282Z"
-						fill="currentColor"
-					/>
-				</svg>
-			</div>
-
-			<div className="absolute -inset-1 z-10 opacity-10 transition-[opacity,z-index] group-hover/card:z-50 group-hover/card:opacity-100">
-				<Integrations />
-			</div> */}
 			<div className="flex h-full items-center justify-center">
 				<div className="relative z-50 flex size-20 items-center justify-center overflow-hidden rounded-lg shadow-lg transition-transform duration-500 ease-out group-hover/card:scale-125">
 					<Logo className="relative z-200 h-auto w-16" />
@@ -120,6 +108,7 @@ export const Experience = () => {
 						alt="Experience badge background by Ziron pro"
 						className="object-cover"
 						fill
+						sizes="80px"
 						src="/images/icon-box.png"
 					/>
 				</div>
@@ -150,6 +139,8 @@ export const Experience = () => {
 			<Image
 				alt="Purple gradient background texture by Ziron pro"
 				fill
+				priority
+				sizes={achievementCardFillSizes}
 				src="/images/bg-grad-2.webp"
 			/>
 			{/* <div className="pointer-events-none absolute inset-0 bg-linear-0 from-fuchsia-300 to-fuchsia-100 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" /> */}
@@ -169,6 +160,7 @@ export const Growth = () => {
 			<Image
 				alt="Green gradient background texture by Ziron pro"
 				fill
+				sizes={achievementCardFillSizes}
 				src="/images/bg-grad-3.webp"
 			/>
 			{/* <div className="pointer-events-none absolute inset-0 bg-linear-0 from-green-300 to-green-50 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" /> */}
@@ -176,7 +168,7 @@ export const Growth = () => {
 	);
 };
 
-export const logos: LogoItem[] = [
+export const logos = [
 	// Row 1 - Communication & Social (2 logos, 50s duration, spaced 25s apart)
 	{
 		label: "Discord",
@@ -296,4 +288,4 @@ export const logos: LogoItem[] = [
 		animationDuration: 50,
 		row: 7,
 	},
-];
+] as const;

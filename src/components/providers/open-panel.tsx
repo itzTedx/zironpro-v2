@@ -2,6 +2,8 @@
 
 import { OpenPanelComponent } from "@openpanel/nextjs";
 
+import { getOpenPanelScriptSrc } from "@/data/site-tracking";
+
 export default function OpenPanelProvider({
 	children,
 }: {
@@ -22,7 +24,7 @@ export default function OpenPanelProvider({
 					globalProperties={{
 						environment: process.env.NODE_ENV,
 					}}
-					scriptUrl="https://analytics.zironpro.ae/op1.js"
+					scriptUrl={getOpenPanelScriptSrc()}
 					sessionReplay={{
 						enabled: true,
 						maskAllInputs: true,

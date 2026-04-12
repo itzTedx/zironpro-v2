@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { siteConfig } from "@/data/site-config";
+import {
+	GOOGLE_TAG_MANAGER_CONTAINER_ID,
+	OPENPANEL_SCRIPT_ORIGIN,
+} from "@/data/site-tracking";
 import { JsonLdScript } from "@/features/seo/json-ld-script";
 import {
 	buildBreadcrumbSchema,
@@ -47,7 +51,7 @@ export default function PrivacyPage() {
 					us for digital services in the UAE.
 				</p>
 				<p className="text-muted-foreground text-sm">
-					Last updated: March 26, 2026
+					Last updated: April 12, 2026
 				</p>
 			</header>
 			<section className="space-y-8 text-muted-foreground">
@@ -85,8 +89,81 @@ export default function PrivacyPage() {
 						We collect information directly from you when you submit forms,
 						request a proposal, communicate with our team, or share project
 						content. We also collect limited technical information through
-						cookies and analytics tools used to understand website performance.
+						cookies, similar storage, and the analytics and tag tools described
+						under “Website technologies and third-party services” below.
 					</p>
+				</div>
+				<div className="space-y-3">
+					<h2 className="font-medium text-2xl text-primary">
+						Website technologies and third-party services
+					</h2>
+					<p>
+						The list below reflects tools wired into this website today. Public
+						identifiers and script hosts are defined in our codebase alongside
+						the implementation so they stay aligned with this page; when we
+						change containers, hosts, or materially add tracking, we update this
+						policy and the last updated date above.
+					</p>
+					<ul className="list-disc space-y-3 pl-6">
+						<li>
+							<span className="font-medium text-foreground">
+								Google Tag Manager
+							</span>{" "}
+							(container ID{" "}
+							<span className="font-mono text-foreground">
+								{GOOGLE_TAG_MANAGER_CONTAINER_ID}
+							</span>
+							): used to load and manage measurement and marketing tags. Tags
+							inside the container can change over time without a code deploy.
+							GTM and any third-party tags it fires may use cookies or similar
+							technologies and are subject to their providers’ policies. We also
+							send selected on-site events to the data layer (for example
+							tracked interactions, contact funnel events, and high-level AI
+							chat activity) according to configuration in the container.
+						</li>
+						<li>
+							<span className="font-medium text-foreground">OpenPanel</span>:
+							when the deployment is configured with OpenPanel, the browser
+							loads analytics from{" "}
+							<span className="font-mono text-foreground">
+								{OPENPANEL_SCRIPT_ORIGIN}
+							</span>{" "}
+							and sends data to the API endpoint set for that environment.
+							Depending on configuration, this can include page and screen
+							views, outbound link clicks, element attributes, and session
+							replay; replay is set up to mask form inputs. Some server-side
+							events (such as contact form outcomes or AI chat request success
+							and failure) may be recorded in OpenPanel without storing your
+							full chat transcript as analytics metadata.
+						</li>
+						<li>
+							<span className="font-medium text-foreground">WhatsApp</span>: the
+							site offers links and a QR code that open WhatsApp, which is
+							provided by Meta. Chatting happens on Meta’s services, not inside
+							our pages; Meta’s terms and privacy notices apply there.
+						</li>
+						<li>
+							<span className="font-medium text-foreground">AI assistant</span>:
+							the on-site assistant sends your messages to our servers, which
+							use{" "}
+							<span className="font-medium text-foreground">Google Gemini</span>{" "}
+							models to generate replies. Do not submit highly sensitive
+							personal data, financial details, passwords, or confidential
+							business secrets in the chat. If you choose to share contact
+							details for follow-up, we use them to respond to your request in
+							line with this policy. We may record operational or aggregated
+							telemetry about the feature (such as whether a request succeeded)
+							in our analytics tools.
+						</li>
+						<li>
+							<span className="font-medium text-foreground">
+								Future tags and integrations
+							</span>
+							: we may add or replace measurement through Google Tag Manager or
+							other vendors. When that materially changes what we collect, we
+							will revise this section and the last updated date.
+						</li>
+					</ul>
 				</div>
 				<div className="space-y-3">
 					<h2 className="font-medium text-2xl text-primary">How we use data</h2>
@@ -162,8 +239,11 @@ export default function PrivacyPage() {
 					</h2>
 					<p>
 						We use cookies and similar technologies to support core website
-						functions and understand traffic patterns. You can manage cookie
-						settings through your browser preferences.
+						functions, measure performance, and (where configured) support
+						advertising or remarketing tags loaded through Google Tag Manager.
+						OpenPanel may use its own storage or payloads as described above.
+						You can manage cookie and site data settings through your browser
+						(and any consent tools we enable in GTM, if present).
 					</p>
 				</div>
 				<div className="space-y-3">

@@ -11,7 +11,7 @@ Prioritized ideas derived from a full-repo pass (`src/`, config, content). Adjus
 - [x] **Give users feedback after submit** — `contact-form.tsx` shows success/error toasts and resets after success; client-side validation via RHF + Zod.
 - [ ] **Map server `fieldErrors` onto RHF fields** — surface per-field messages from `submitContactForm` on the matching inputs (not only a generic toast).
 - [x] **Fix legal links on the contact form** — Terms and Privacy point to `/terms-of-service` and `/privacy-policy` (`contact-form.tsx`).
-- [ ] **Fix “Book a call” on the contact page** — the Frame footer still links “Book a call” to `/` (`src/app/(root)/(company)/contact/page.tsx`); use a real calendar URL or `/contact` anchor.
+- [x] **Fix “Book a call” on the contact page** — the Frame footer still links “Book a call” to `/` (`src/app/(root)/(company)/contact/page.tsx`); use a real calendar URL or `/contact` anchor.
 - [x] **Make service detail CTAs actionable** — hero “Get started” uses `Button` with `render={<Link href="/contact" />}` (`services/[category]/[slug]/page.tsx`).
 
 ---
@@ -36,7 +36,7 @@ Foundation (metadata, sitemap, JSON-LD, Twitter) is largely in place; remaining 
 - [x] **`robots.txt` hygiene** — keep `disallow` aligned with real internal paths (`src/app/robots.ts`); after IA changes, re-check that nothing important is blocked and `sitemap` points at the same origin as the live site.
 - [ ] **404 and redirect policy** — branded `not-found` with strong internal links (see Quality section); 301 renamed service or blog slugs; fix or redirect broken internal links periodically (crawl export or GSC “Page with redirect” / “Not found” reports).
 - [ ] **Honest `lastModified` in `sitemap.ts`** — every entry currently uses `now` at build time; use blog `metadata.date` (and optional file/frontmatter `updated` when you add it) for posts and stable dates for static routes so freshness signals are not uniformly “today.”
-- [ ] **Web app manifest vs layout branding** — `src/app/manifest.json` still uses `short_name: "MySite"` and `#ffffff` theme/background while `layout.tsx` sets `viewport.themeColor` to `#401CD8` and `apple-mobile-web-app-title` to “Ziron pro”; align names, casing, and colors with `site-config` for install prompts and OS surfaces.
+- [x] **Web app manifest vs layout branding** — `src/app/manifest.json` still uses `short_name: "MySite"` and `#ffffff` theme/background while `layout.tsx` sets `viewport.themeColor` to `#401CD8` and `apple-mobile-web-app-title` to “Ziron pro”; align names, casing, and colors with `site-config` for install prompts and OS surfaces.
 
 ### On-page & content quality (global templates)
 
@@ -44,22 +44,21 @@ Foundation (metadata, sitemap, JSON-LD, Twitter) is largely in place; remaining 
 - [ ] **H1 and heading hierarchy** — one clear H1 per indexed view; H2/H3 reflect outline order (especially MDX service/blog bodies); avoid skipping levels for styling-only reasons.
 - [ ] **Image SEO** — meaningful `alt` when the image conveys information; empty `alt` for decorative assets; tighten `sizes` / dimensions (cross-link Performance section) so visuals support relevance without hurting CWV.
 - [ ] **Internal linking program** — from each service pillar, link to related services, 2–3 relevant blog posts, `/our-works`, and `/contact` with descriptive anchor text; avoid orphan MDX pages and “click here” anchors.
-- [ ] **Blog listing H1 vs title alignment** — `/blogs` uses `createPageMetadata` title “SEO & Growth Blogs…” but the visible H1 is “Insights”; consider matching primary keyword intent between `<title>`, H1, and intro copy for clearer relevance signals.
+- [x] **Blog listing H1 vs title alignment** — `/blogs` uses `createPageMetadata` title “SEO & Growth Blogs…” but the visible H1 is “Insights”; consider matching primary keyword intent between `<title>`, H1, and intro copy for clearer relevance signals.
 
 ### Rich results, schema QA & multimedia
 
 - [ ] **Validate JSON-LD on live URLs** — Google Rich Results Test + Schema.org validator on home, one service category + detail, one blog post, one FAQ category; resolve warnings (recommended properties, wrong `@type`, mismatched visible copy vs schema).
 - [ ] **FAQPage JSON-LD must match on-page FAQs** — when MDX includes `<FaqContent>`, `blogs/[slug]/page.tsx` and `services/[category]/[slug]/page.tsx` still inject a single generic FAQ (`buildFaqSchema` from title/description only). Parse real questions/answers from content or frontmatter, or omit FAQ schema until it matches what users see (avoids structured-data quality issues).
-- [ ] **WebSite `SearchAction` vs real behavior** — `buildWebsiteSchema()` in `src/lib/seo.ts` advertises `/blogs?query={search_term_string}`, but `/blogs` does not implement that search. Remove `potentialAction` until there is a working search results URL, or ship minimal blog search and keep the target in sync.
+- [x] **WebSite `SearchAction` vs real behavior** — `buildWebsiteSchema()` in `src/lib/seo.ts` advertises `/blogs?query={search_term_string}`, but `/blogs` does not implement that search. Remove `potentialAction` until there is a working search results URL, or ship minimal blog search and keep the target in sync.
 - [ ] **AggregateRating grounded in real reviews** — service detail JSON-LD includes hardcoded `AggregateRating` (e.g. 4.9 / 24 in `services/[category]/[slug]/page.tsx`). Replace with verifiable first-party review data or drop rating markup to stay within Google’s guidelines for review snippets.
 - [ ] **`VideoObject` where video is primary** — if `video-player` or embeds carry main message (hero, case study), add eligible structured data (thumbnail, duration, `uploadDate`); pair with captions/transcripts where feasible for accessibility and eligible SERP treatment.
-- [ ] **Default / fallback Open Graph image** — `createPageMetadata` already defaults `image` to `siteConfig.ogImage` (`/images/og.jpg`); verify the asset is 1200×630-safe and on-brand. Ensure any route that overrides `image` still resolves to an absolute URL via `metadataBase` (`src/app/(root)/layout.tsx`).
+- [x] **Default / fallback Open Graph image** — `createPageMetadata` already defaults `image` to `siteConfig.ogImage` (`/images/og.jpg`); verify the asset is 1200×630-safe and on-brand. Ensure any route that overrides `image` still resolves to an absolute URL via `metadataBase` (`src/app/(root)/layout.tsx`).
 
 ### Measurement & discovery (beyond GSC basics)
 
-- [ ] **Bing Webmaster Tools** — verify property and submit `sitemap.xml` for incremental coverage outside Google.
+- [x] **Bing Webmaster Tools** — verify property and submit `sitemap.xml` for incremental coverage outside Google.
 - [ ] **Link Search Console and GA4** — associate GSC with the GA4 property so organic landing pages can be read against engagement and conversion paths.
-- [ ] **Branded SERP and backlink baseline** — snapshot branded results and top referring domains once per quarter; track drift after major launches or PR.
 
 ### Regional / location pages & keyword strategy
 
@@ -67,39 +66,38 @@ Foundation (metadata, sitemap, JSON-LD, Twitter) is largely in place; remaining 
 - [ ] **Keyword universe & intent map** — build a sheet: primary head terms, mid-tail service + location combos, informational queries (how/what/why), and brand; tag each with intent (commercial, transactional, informational) and map 1 primary + 2–4 supporting keywords per URL (no two pages competing for the same primary term).
 - [ ] **Content differentiation per region** — each regional page needs unique copy (local context, industries served, regulations, time zones, contact paths); avoid thin template swaps (“CityName” only) that trigger duplicate-content risk.
 - [ ] **On-page checklist per regional URL** — unique `<title>` and meta description (primary keyword early, CTR-focused); one clear H1; logical H2/H3 hierarchy; body copy that answers local intent; internal links to relevant services, case studies, and contact; descriptive image `alt` where images carry meaning.
-- [ ] **Canonical & duplication policy** — if the same service exists at global + regional URLs, set explicit canonicals and/or consolidate; use `noindex` only for true alternates or parameterized junk, not for valid regional landers you want indexed.
-- [ ] **`hreflang` / locale signals (if multi-language or multi-country)** — add `alternates.languages` (or equivalent) only where you have true reciprocating equivalents; avoid incorrect cross-region hreflang that causes Search Console errors.
+- [x] **Canonical & duplication policy** — if the same service exists at global + regional URLs, set explicit canonicals and/or consolidate; use `noindex` only for true alternates or parameterized junk, not for valid regional landers you want indexed.
 - [ ] **LocalBusiness / Organization schema per location** — extend JSON-LD: `areaServed` (City/Region/Country), `address` where you have a real location, consistent `name`/`url`/`telephone`; align with what appears on the page and on Google Business Profile (if applicable).
-- [ ] **Regional entries in `sitemap.ts`** — new location/service combos should extend `LOCATION_SLUGS` / `SERVICE_SLUGS` and stay in sync with `sitemap.ts` (already wired); tune `changeFrequency`/`priority` and real `lastModified` when content updates.
+- [x] **Regional entries in `sitemap.ts`** — new location/service combos should extend `LOCATION_SLUGS` / `SERVICE_SLUGS` and stay in sync with `sitemap.ts` (already wired); tune `changeFrequency`/`priority` and real `lastModified` when content updates.
 - [ ] **Internal linking hub** — add a crawlable “Locations” or “Where we work” hub; link regional pages to service pillars and blog posts that mention those markets; avoid orphan regional URLs.
-- [ ] **Google Search Console** — verify property, submit sitemaps, monitor “Page indexing,” “Enhancements,” and queries per landing page; add regional URLs to a URL inspection checklist after deploy.
+- [x] **Google Search Console** — verify property, submit sitemaps, monitor “Page indexing,” “Enhancements,” and queries per landing page; add regional URLs to a URL inspection checklist after deploy.
 - [ ] **GBP & NAP consistency** — if you use Google Business Profile or local listings, match business name, address, phone, and categories with on-site footer/contact and schema; same spelling everywhere.
 - [ ] **E-E-A-T for YMYL-adjacent claims** — if regional pages mention results, clients, or guarantees, tie claims to verifiable work (case studies, logos, reviews) and keep legal/compliance copy accurate per jurisdiction.
 - [ ] **SERP feature opportunities** — FAQ blocks (with valid FAQPage schema where appropriate), comparison tables, and clear CTAs tuned to local buying stage; align FAQ copy with real “People also ask” style queries from research tools.
 - [ ] **Performance & CWV on regional templates** — regional pages often repeat heavy components; ensure LCP/CLS are not worse than global templates (images, fonts, above-the-fold content).
-- [ ] **Track rankings & conversions by region** — define KPIs (ranked keywords per page, impressions/clicks in GSC, form/call conversions); revisit keyword map quarterly as search volume and competition shift.
+- [x] **Track rankings & conversions by region** — define KPIs (ranked keywords per page, impressions/clicks in GSC, form/call conversions); revisit keyword map quarterly as search volume and competition shift.
 
 ---
 
 ## Navigation, IA & copy
 
-- [ ] **Replace placeholder submenu descriptions** — Company submenu items (About, FAQs, Blogs) in `src/components/layout/data/constants.ts` all use “Tap. Scan. Connect.”; write unique descriptions per item.
-- [ ] **Products section** — home “Products” block and `PRODUCTS` nav entries point to `/` with “Coming soon” mixed in; either build product landing pages or clarify CTAs so users are not sent to a generic home with no product detail.
-- [ ] **Re-enable or remove commented home sections** — `Feedback` carousel is commented out in `src/app/(root)/page.tsx`; `ServicesStickyCards` is commented in `services/page.tsx`. Decide: ship polished sections or delete dead code paths.
+- [x] **Replace placeholder submenu descriptions** — Company submenu items (About, FAQs, Blogs) in `src/components/layout/data/constants.ts` all use “Tap. Scan. Connect.”; write unique descriptions per item.
+- [x] **Products section** — home “Products” block and `PRODUCTS` nav entries point to `/` with “Coming soon” mixed in; either build product landing pages or clarify CTAs so users are not sent to a generic home with no product detail.
+- [x] **Re-enable or remove commented home sections** — `Feedback` carousel is commented out in `src/app/(root)/page.tsx`; `ServicesStickyCards` is commented in `services/page.tsx`. Decide: ship polished sections or delete dead code paths.
 
 ---
 
-## Analytics & environment
+## Environment Variables
 
-- [ ] **Document env vars** — add `.env.example` with `BASE_URL`, `GOOGLE_GENERATIVE_AI_API_KEY` (AI chat), database URL, and any future mail/analytics keys. `site-config` defaults `BASE_URL` to localhost; production must set this for canonical URLs and OG.
-- [ ] **Real-user Web Vitals & uptime** — e.g. Vercel Analytics or `web-vitals` reporting; basic uptime checks on `/` and `/contact`.
+- [x] **Document env vars** — add `.env.example` with `BASE_URL`, `GOOGLE_GENERATIVE_AI_API_KEY` (AI chat), database URL, and any future mail/analytics keys. `site-config` defaults `BASE_URL` to localhost; production must set this for canonical URLs and OG.
+
 
 ---
 
 ## Privacy, compliance & trust
 
 - [ ] **Cookie / consent** — `GoogleTagManager` is in the root layout; add a CMP or consent banner if you target EU/UK or add non-essential tags beyond strictly necessary.
-- [ ] **Privacy copy vs actual stack** — keep `/privacy-policy` accurate for GTM, OpenPanel, WhatsApp widget, AI chat, and any future trackers; update when tags change.
+- [x] **Privacy copy vs actual stack** — keep `/privacy-policy` accurate for GTM, OpenPanel, WhatsApp widget, AI chat, and any future trackers; update when tags change.
 
 ---
 
@@ -157,7 +155,7 @@ Foundation (metadata, sitemap, JSON-LD, Twitter) is largely in place; remaining 
 ## Performance & assets
 
 - [ ] **Image audit** — service MDX `Image` wrapper uses fixed `1000×1000`; ensure `sizes` and dimensions match real assets to avoid layout shift and overserving bytes.
-- [ ] **Third-party weight** — MapLibre, Recharts, media-chrome: confirm each is only loaded on routes that need it (dynamic imports where applicable).
+- [x] **Third-party weight** — MapLibre, Recharts, media-chrome: confirm each is only loaded on routes that need it (dynamic imports where applicable).
 
 ---
 

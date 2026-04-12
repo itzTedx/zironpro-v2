@@ -9,6 +9,8 @@ import { domAnimation, LazyMotion, m } from "motion/react";
 
 import { IconSocialWhatsapp } from "@/assets/icons/socials";
 
+import { WHATSAPP_CHAT_URL } from "@/data/site-tracking";
+
 import { Button } from "../ui/button";
 import { WaQrCode } from "./ui/wa-qrcode";
 
@@ -166,7 +168,7 @@ export const WhatsappPopover = () => {
 						>
 							<Button
 								className="mt-3"
-								render={<Link href="https://wa.me/971526789012" />}
+								render={<Link href={WHATSAPP_CHAT_URL} />}
 								variant="link"
 							>
 								Chat in web

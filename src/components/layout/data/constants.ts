@@ -63,19 +63,21 @@ export const NAV_LINKS: NavLink[] = [
 			{
 				id: "1",
 				title: "About us",
-				description: "Tap. Scan. Connect.",
+				description: "Learn more about Ziron Pro and our mission.",
 				href: "/about",
 			},
 			{
 				id: "2",
 				title: "FAQs",
-				description: "Tap. Scan. Connect.",
+				description:
+					"Frequently asked questions about Ziron Pro and our services.",
 				href: "/faqs",
 			},
 			{
 				id: "3",
 				title: "Blogs",
-				description: "Tap. Scan. Connect.",
+				description:
+					"Read our latest blogs and stay updated with the latest trends in the industry.",
 				href: "/blogs",
 			},
 		],

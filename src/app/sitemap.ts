@@ -2,7 +2,13 @@ import type { MetadataRoute } from "next";
 
 import { getBlogs } from "@/features/articles/actions/query";
 import { SERVICES } from "@/features/services/constant";
-import { LOCATION_SLUGS, SERVICE_SLUGS } from "@/lib/location-seo";
+import {
+	getLocationSitemapLastModified,
+	getServiceLocationSitemapLastModified,
+	LOCATION_SLUGS,
+	REGIONAL_SITEMAP,
+	SERVICE_SLUGS,
+} from "@/lib/location-seo";
 import { getBaseUrl } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -15,9 +21,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const locationEntries: MetadataRoute.Sitemap = LOCATION_SLUGS.map(
 		(location) => ({
 			url: `${baseURL}/${location}`,
-			lastModified: now,
-			changeFrequency: "monthly",
-			priority: 0.8,
+			lastModified: getLocationSitemapLastModified(location),
+			changeFrequency: REGIONAL_SITEMAP.locationPage.changeFrequency,
+			priority: REGIONAL_SITEMAP.locationPage.priority,
 		})
 	);
 
@@ -25,9 +31,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		(service) =>
 			LOCATION_SLUGS.map((location) => ({
 				url: `${baseURL}/service/${service}/${location}`,
-				lastModified: now,
-				changeFrequency: "monthly",
-				priority: 0.8,
+				lastModified: getServiceLocationSitemapLastModified(service, location),
+				changeFrequency: REGIONAL_SITEMAP.serviceLocationPage.changeFrequency,
+				priority: REGIONAL_SITEMAP.serviceLocationPage.priority,
 			}))
 	);
 
