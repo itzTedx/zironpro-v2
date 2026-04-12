@@ -236,4 +236,8 @@ export const FOOTER_META: FooterMeta[] = [
 		label: "Sitemap",
 		href: "/sitemap.xml" as Route,
 	},
+	{
+		label: "RSS",
+		href: "/rss.xml" as Route,
+	},
 ];

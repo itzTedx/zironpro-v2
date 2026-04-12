@@ -73,9 +73,9 @@ Prioritized ideas derived from a full-repo pass (`src/`, config, content). Adjus
 
 ## Optional growth experiments
 
-- [ ] **RSS feed for blogs** — `app/rss.xml` route for subscribers and syndication.
+- [x] **RSS feed for blogs** — `app/rss.xml` route for subscribers and syndication.
 - [ ] **Case study deep links** — `our-works` references case studies; ensure internal links and metadata align with blog or service pages for cross-linking SEO.
-;ll
+
 ---
 
 *Last reviewed from repository state (Next.js app router, MDX content, Biome). Update this file as items ship.*

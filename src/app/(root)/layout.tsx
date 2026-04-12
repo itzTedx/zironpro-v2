@@ -33,6 +33,12 @@ const baseMetadata = createPageMetadata({
 
 export const metadata: Metadata = {
 	...baseMetadata,
+	alternates: {
+		...baseMetadata.alternates,
+		types: {
+			"application/rss+xml": new URL("/rss.xml", siteConfig.url).href,
+		},
+	},
 	authors: [{ name: siteConfig.shortName, url: siteConfig.url }],
 	creator: siteConfig.shortName,
 	robots: {
