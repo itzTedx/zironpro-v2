@@ -25,10 +25,10 @@ export default function OpenPanelProvider({
 						environment: process.env.NODE_ENV,
 					}}
 					scriptUrl={getOpenPanelScriptSrc()}
-					sessionReplay={{
-						enabled: true,
-						maskAllInputs: true,
-					}}
+					// sessionReplay={{
+					// 	enabled: true,
+					// 	maskAllInputs: true,
+					// }}
 					trackAttributes={true}
 					trackOutgoingLinks={true}
 					trackScreenViews={true}
