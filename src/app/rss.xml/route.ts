@@ -1,7 +1,8 @@
+import { marked } from "marked";
 import RSS from "rss";
 
 import { siteConfig } from "@/data/site-config";
-import { getBlogs } from "@/features/articles/actions/query";
+import { getBlogBySlug, getBlogs } from "@/features/articles/actions/query";
 import { absoluteUrl, getBaseUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -14,6 +15,31 @@ function mimeFromImagePath(imagePath: string): string | undefined {
 	if (lower.endsWith(".gif")) return "image/gif";
 	if (lower.endsWith(".avif")) return "image/avif";
 	return undefined;
+}
+
+/** MDX FAQ blocks are app components; omit them from feed HTML */
+function stripInteractiveMdx(source: string): string {
+	return source.replace(/<Faq\b[\s\S]*?<\/Faq>\s*/gi, "");
+}
+
+function absolutizeResourceUrls(html: string, baseUrl: string): string {
+	const origin = baseUrl.replace(/\/$/, "");
+	return html
+		.replace(/href="\/(?!\/)/g, `href="${origin}/`)
+		.replace(/href='\/(?!\/)/g, `href='${origin}/`)
+		.replace(/src="\/(?!\/)/g, `src="${origin}/`)
+		.replace(/src='\/(?!\/)/g, `src='${origin}/`);
+}
+
+/** CDATA sections cannot contain the literal sequence `]]>` */
+function escapeCdata(html: string): string {
+	return html.replace(/]]>/g, "]]]]><![CDATA[>");
+}
+
+function blogMarkdownToHtml(rawMdx: string, baseUrl: string): string {
+	const md = stripInteractiveMdx(rawMdx).trim();
+	const html = marked.parse(md, { async: false, gfm: true });
+	return escapeCdata(absolutizeResourceUrls(html, baseUrl));
 }
 
 export async function GET() {
@@ -32,20 +58,23 @@ export async function GET() {
 	});
 
 	for (const blog of getBlogs()) {
-		const url = `${baseUrl}/blogs/${blog.slug}`;
-		const imageUrl = blog.image ? absoluteUrl(blog.image) : undefined;
-		const mime = blog.image ? mimeFromImagePath(blog.image) : undefined;
+		const { metadata, content } = getBlogBySlug(blog.slug);
+		const url = `${baseUrl}/blogs/${metadata.slug}`;
+		const contentEncoded = blogMarkdownToHtml(content, baseUrl);
+		const imageUrl = metadata.image ? absoluteUrl(metadata.image) : undefined;
+		const mime = metadata.image ? mimeFromImagePath(metadata.image) : undefined;
 		const enclosure =
 			imageUrl && mime ? { url: imageUrl, type: mime } : undefined;
 
 		feed.item({
-			title: blog.meta.title ?? blog.title,
-			description: blog.meta.description ?? blog.description,
+			title: metadata.meta.title ?? metadata.title,
+			description: metadata.meta.description ?? metadata.description,
 			url,
 			guid: url,
-			date: blog.date,
-			categories: blog.tags,
-			author: blog.author,
+			date: metadata.date,
+			categories: metadata.tags,
+			author: metadata.author,
+			custom_elements: [{ "content:encoded": { _cdata: contentEncoded } }],
 			...(enclosure ? { enclosure } : {}),
 		});
 	}
