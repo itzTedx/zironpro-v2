@@ -40,7 +40,7 @@ export function cspHeaderName():
 }
 
 export function buildContentSecurityPolicy(
-	nonce: string,
+	_nonce: string,
 	isDev: boolean
 ): string {
 	const openPanelApiOrigin = tryOrigin(
@@ -48,10 +48,11 @@ export function buildContentSecurityPolicy(
 	);
 	const openPanelScriptOrigin = OPENPANEL_SCRIPT_ORIGIN;
 
+	// Use origin allowlists + inline scripts because this app is primarily statically rendered.
+	// Nonce + strict-dynamic requires per-request dynamic HTML, otherwise Next scripts are blocked.
 	const scriptSrc = [
 		"'self'",
-		`'nonce-${nonce}'`,
-		"'strict-dynamic'",
+		"'unsafe-inline'",
 		"https://www.googletagmanager.com",
 		"https://www.google-analytics.com",
 		"https://ssl.google-analytics.com",
