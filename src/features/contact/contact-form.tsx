@@ -29,6 +29,7 @@ import { SERVICES } from "@/features/services/constant";
 import { pushGtmEvent } from "@/lib/gtm";
 import { OP_EVENTS } from "@/lib/op-events";
 
+import { submitContactForm } from "./actions";
 import { ContactType, contactFormSchema } from "./actions/schema";
 import { ContactFormField } from "./components/controller";
 
@@ -42,12 +43,6 @@ const SERVICE_ITEMS: { label: string; value: string }[] = [
 		value: "Not sure yet, let's talk",
 	},
 ];
-
-type ContactFormResponse = {
-	success?: true;
-	error?: string;
-	fieldErrors?: unknown;
-};
 
 export function ContactForm() {
 	const [isPending, startTransition] = useTransition();
@@ -66,21 +61,7 @@ export function ContactForm() {
 
 	async function onSubmit(data: ContactType) {
 		startTransition(async () => {
-			let response: ContactFormResponse;
-			try {
-				const apiResponse = await fetch("/api/contact", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(data),
-				});
-				response = (await apiResponse.json()) as ContactFormResponse;
-			} catch {
-				response = {
-					error: "Something went wrong. Please try again later.",
-				};
-			}
+			const response = await submitContactForm(data);
 			if (response.error) {
 				openPanel.track(OP_EVENTS.contactFormError, {
 					source: "contact_page",

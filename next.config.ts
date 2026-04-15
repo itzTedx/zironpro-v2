@@ -23,17 +23,15 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-	output: "export",
-	trailingSlash: true,
-	skipTrailingSlashRedirect: true,
-	// async headers() {
-	// 	return [
-	// 		{
-	// 			source: "/:path*",
-	// 			headers: securityHeaders,
-	// 		},
-	// 	];
-	// },
+	/* config options here */
+	async headers() {
+		return [
+			{
+				source: "/:path*",
+				headers: securityHeaders,
+			},
+		];
+	},
 	reactCompiler: true,
 	typedRoutes: true,
 	experimental: {

@@ -11,8 +11,6 @@ import {
 } from "@/lib/location-seo";
 import { getBaseUrl } from "@/lib/seo";
 
-export const dynamic = "force-static";
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const baseURL = getBaseUrl();
 	const now = new Date();

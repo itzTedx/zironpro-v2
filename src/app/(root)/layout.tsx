@@ -9,6 +9,7 @@ import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { WhatsappPopover } from "@/components/layout/whatsapp";
 import { Providers } from "@/components/providers";
+import { AiChatWidget } from "@/components/shared/ai-chat-widget";
 
 import { inter, interTight, mono } from "@/assets/fonts";
 
@@ -86,7 +87,7 @@ export default function RootLayout({
 					{children}
 
 					<WhatsappPopover />
-					{/* <AiChatWidget /> */}
+					<AiChatWidget />
 					<Footer />
 					<BreakpointIndicator />
 
