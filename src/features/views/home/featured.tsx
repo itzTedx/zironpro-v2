@@ -32,6 +32,7 @@ export const Featured = () => {
 									alt={`${item.title} featured work by Ziron pro`}
 									className="object-cover"
 									fill
+									loading="eager"
 									sizes="(max-width: 1024px) 50vw, 17vw"
 									src={item.image}
 								/>

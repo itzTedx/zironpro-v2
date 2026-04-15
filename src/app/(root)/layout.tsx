@@ -50,6 +50,7 @@ export const metadata: Metadata = {
 	},
 	other: {
 		"msvalidate.01": "A8C503B4FF428B289DA437C18B34BBE3",
+		"facebook-domain-verification": "w3sxzbzlae0fqx6z7wyidmmc6xvqbm",
 	},
 };
 
