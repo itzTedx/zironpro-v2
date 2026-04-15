@@ -63,7 +63,7 @@ export const WhatsappPopover = () => {
 	return (
 		<LazyMotion features={domAnimation}>
 			<div
-				className="group fixed right-3 bottom-6 z-999 md:bottom-16"
+				className="group fixed right-3 bottom-6 z-999 md:bottom-6"
 				ref={popoverRef}
 			>
 				<m.div
