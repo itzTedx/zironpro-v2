@@ -49,8 +49,11 @@ export const metadata: Metadata = {
 		google: "dzIViUIENzLsewEaXsHL9bvl5Is7CucMXMDlZT92HEI",
 	},
 	other: {
+		"msapplication-TileImage": "/og.png",
 		"msvalidate.01": "A8C503B4FF428B289DA437C18B34BBE3",
 		"facebook-domain-verification": "w3sxzbzlae0fqx6z7wyidmmc6xvqbm",
+		category: siteConfig.siteCategory,
+		classification: siteConfig.siteClassification,
 	},
 };
 

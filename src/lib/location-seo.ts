@@ -109,6 +109,14 @@ export function isServiceSlug(value: string): value is ServiceSlug {
 	return SERVICE_SLUGS.includes(value as ServiceSlug);
 }
 
+/** Canonical path for `/service/[service]/[location]` (must match App Router segment). */
+export function serviceLocationPath(
+	service: ServiceSlug,
+	location: LocationSlug
+): `/service/${ServiceSlug}/${LocationSlug}` {
+	return `/service/${service}/${location}`;
+}
+
 export function formatLocation(slug: string): string {
 	return slug
 		.split("-")

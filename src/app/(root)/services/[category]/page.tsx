@@ -16,7 +16,6 @@ import { Button } from "@/components/ui/button";
 
 import { IconArrowLeft, IconArrowRightTag } from "@/assets/icons/arrow";
 
-import { siteConfig } from "@/data/site-config";
 import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { findServiceBySlug } from "@/features/services/actions/query";
 import { SERVICES } from "@/features/services/constant";
@@ -26,7 +25,7 @@ import {
 	buildServiceSchema,
 	buildWebPageSchema,
 	createPageMetadata,
-	makeUaeTitle,
+	makeNationalServiceTitle,
 } from "@/lib/seo";
 
 type PageProps = {
@@ -51,11 +50,11 @@ export async function generateMetadata({
 		};
 	}
 
-	const title = `${service.title} - ${siteConfig.shortName}`;
 	const description = `${service.description} We serve businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`;
+	const pageTitle = makeNationalServiceTitle(service.title);
 
 	return createPageMetadata({
-		title: makeUaeTitle(service.title, "Dubai") || title,
+		title: pageTitle,
 		description,
 		path: `/services/${service.slug}`,
 		image: service.image,
@@ -75,8 +74,9 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
 		notFound();
 	}
 	const canonicalPath = `/services/${service.slug}`;
+	const pageTitle = makeNationalServiceTitle(service.title);
 	const webPageSchema = buildWebPageSchema(
-		makeUaeTitle(service.title, "Dubai"),
+		pageTitle,
 		`${service.description} We serve businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
 		canonicalPath
 	);

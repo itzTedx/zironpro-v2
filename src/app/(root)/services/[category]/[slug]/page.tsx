@@ -22,13 +22,11 @@ import { LogoVariants } from "@/features/services/components/logo-variants";
 import { Group, Section } from "@/features/services/components/section";
 import { Cta } from "@/features/views/cta";
 import {
-	buildAggregateRatingSchema,
 	buildBreadcrumbSchema,
-	buildFaqSchema,
 	buildServiceSchema,
 	buildWebPageSchema,
 	createPageMetadata,
-	makeUaeTitle,
+	makeNationalServiceTitle,
 } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
@@ -66,7 +64,8 @@ export async function generateMetadata({
 	const metaTitle = service.metadata.meta?.title;
 	const metaDescription = service.metadata.meta?.description;
 
-	const title = metaTitle ?? makeUaeTitle(service.metadata.title, "Abu Dhabi");
+	const title =
+		metaTitle ?? makeNationalServiceTitle(service.metadata.title);
 	const description =
 		(metaDescription ?? service.metadata.description) +
 		" Delivered for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.";
@@ -94,9 +93,13 @@ export default async function ServicePage({
 
 	if (!service) return notFound();
 	const canonicalPath = `/services/${category}/${slug}`;
+	const pageTitle =
+		service.metadata.meta?.title ??
+		makeNationalServiceTitle(service.metadata.title);
+	const pageDescription = `${service.metadata.description} Delivered for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`;
 	const webPageSchema = buildWebPageSchema(
-		makeUaeTitle(service.metadata.title, "Abu Dhabi"),
-		`${service.metadata.description} Delivered for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
+		pageTitle,
+		pageDescription,
 		canonicalPath
 	);
 	const breadcrumbSchema = buildBreadcrumbSchema([
@@ -105,34 +108,13 @@ export default async function ServicePage({
 		{ name: category, path: `/services/${category}` },
 		{ name: service.metadata.title, path: canonicalPath },
 	]);
-	const aggregateRatingSchema = buildAggregateRatingSchema(
-		service.metadata.title,
-		canonicalPath,
-		4.9,
-		24
-	);
 	const serviceSchema = buildServiceSchema({
 		name: service.metadata.title,
 		description: service.metadata.description,
 		path: canonicalPath,
 		image: service.metadata.image,
 		serviceType: service.metadata.category,
-		aggregateRating: {
-			"@type": "AggregateRating",
-			ratingValue: 4.9,
-			ratingCount: 24,
-		},
 	});
-	const hasFaq = service.content.includes("FaqContent");
-	const faqSchema = hasFaq
-		? buildFaqSchema([
-				{
-					question: `What is included in ${service.metadata.title}?`,
-					answer: service.metadata.description,
-				},
-			])
-		: null;
-
 	return (
 		<main>
 			<JsonLdScript data={webPageSchema} id="schema-service-detail-webpage" />
@@ -141,13 +123,6 @@ export default async function ServicePage({
 				id="schema-service-detail-breadcrumb"
 			/>
 			<JsonLdScript data={serviceSchema} id="schema-service-detail-service" />
-			<JsonLdScript
-				data={aggregateRatingSchema}
-				id="schema-service-detail-rating"
-			/>
-			{faqSchema ? (
-				<JsonLdScript data={faqSchema} id="schema-service-detail-faq" />
-			) : null}
 			<header className="dashed dashed-b relative w-full">
 				<div className="md:dashed dashed-x container relative z-20 flex h-full max-w-7xl flex-col justify-end space-y-4 pt-12 pb-20">
 					<div className="mx-auto max-w-5xl space-y-4">

@@ -23,4 +23,7 @@ export const siteConfig = {
 		facebook: "https://www.facebook.com/zironpro",
 	},
 	contact: "+971 58 171 1486",
+	/** Custom meta for crawlers / internal tooling */
+	siteCategory: "technology",
+	siteClassification: "Digital Marketing Agency",
 } as const;

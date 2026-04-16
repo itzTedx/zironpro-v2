@@ -25,7 +25,6 @@ import { SERVICES } from "@/features/services/constant";
 import {
 	buildArticleSchema,
 	buildBreadcrumbSchema,
-	buildFaqSchema,
 	buildWebPageSchema,
 	createPageMetadata,
 } from "@/lib/seo";
@@ -165,11 +164,18 @@ export function generateStaticParams() {
 	}));
 }
 
+function blogDateToIso(dateStr: string): string | undefined {
+	const t = Date.parse(dateStr);
+	if (Number.isNaN(t)) return undefined;
+	return new Date(t).toISOString();
+}
+
 export async function generateMetadata({
 	params,
 }: PageProps<"/blogs/[slug]">): Promise<Metadata> {
 	const { slug } = await params;
 	const blog = getBlogBySlug(slug);
+	const publishedIso = blogDateToIso(blog.metadata.date);
 
 	return createPageMetadata({
 		title: `${blog.metadata.meta.title} | ZironPro UAE`,
@@ -178,6 +184,9 @@ export async function generateMetadata({
 		image: blog.metadata.image,
 		type: "article",
 		keywords: blog.metadata.tags,
+		...(publishedIso
+			? { publishedTime: publishedIso, modifiedTime: publishedIso }
+			: {}),
 	});
 }
 
@@ -211,16 +220,6 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 		datePublished: blog.metadata.date,
 		authorName: blog.metadata.author,
 	});
-	const hasFaq = blog.content.includes("FaqContent");
-	const faqSchema = hasFaq
-		? buildFaqSchema([
-				{
-					question: `What does ${blog.metadata.meta.title} cover?`,
-					answer: blog.metadata.meta.description,
-				},
-			])
-		: null;
-
 	return (
 		<main>
 			<ScrollIndicator />
@@ -228,9 +227,6 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 			<JsonLdScript data={webPageSchema} id="schema-blog-webpage" />
 			<JsonLdScript data={breadcrumbSchema} id="schema-blog-breadcrumb" />
 			<JsonLdScript data={articleSchema} id="schema-blog-article" />
-			{faqSchema ? (
-				<JsonLdScript data={faqSchema} id="schema-blog-faq" />
-			) : null}
 
 			<section className="relative w-full bg-[radial-gradient(ellipse_400%_240%_at_50%_100%,#fff,#fff_10%,15%,#c7c5fd_16%,rgba(154,103,250,.6)_17%,21%,#264cab_28%,35%,#00031d_45%,#00031d)]">
 				<div className="dashed dashed-x container max-w-7xl py-16 text-center md:py-24">

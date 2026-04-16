@@ -12,6 +12,9 @@ type CreateMetadataParams = {
 	image?: string;
 	keywords?: string[];
 	type?: PageType;
+	/** ISO 8601 — used for Open Graph when `type` is `article`. */
+	publishedTime?: string;
+	modifiedTime?: string;
 };
 
 type BreadcrumbItem = {
@@ -85,11 +88,21 @@ export function createPageMetadata({
 	image = siteConfig.ogImage,
 	keywords = [],
 	type = "website",
+	publishedTime,
+	modifiedTime,
 }: CreateMetadataParams): Metadata {
-	const finalTitle = clampText(title, 60);
-	const finalDescription = clampText(description, 160);
+	const finalTitle = clampText(title, 90);
+	const finalDescription = clampText(description, 200);
 	const canonical = path.startsWith("/") ? path : `/${path}`;
 	const absoluteImage = image.startsWith("http") ? image : absoluteUrl(image);
+
+	const articleOg =
+		type === "article" && publishedTime
+			? {
+					publishedTime,
+					modifiedTime: modifiedTime ?? publishedTime,
+				}
+			: {};
 
 	return {
 		title: finalTitle,
@@ -106,6 +119,7 @@ export function createPageMetadata({
 			description: finalDescription,
 			siteName: siteConfig.title,
 			images: [absoluteImage],
+			...articleOg,
 		},
 		twitter: {
 			card: "summary_large_image",
@@ -122,6 +136,11 @@ export function makeUaeTitle(
 	city: "Abu Dhabi" | "Dubai" | "Sharjah"
 ): string {
 	return `${service} in ${city}, UAE | ${siteConfig.shortName}`;
+}
+
+/** National service listing title (no single emirate) — use for non-location service URLs. */
+export function makeNationalServiceTitle(service: string): string {
+	return `${service} in UAE | ${siteConfig.shortName}`;
 }
 
 export function buildOrganizationSchema(): Record<string, unknown> {

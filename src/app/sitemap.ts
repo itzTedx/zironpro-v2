@@ -1,15 +1,58 @@
 import type { MetadataRoute } from "next";
+import fs from "fs";
+import path from "path";
 
 import { getBlogs } from "@/features/articles/actions/query";
 import { SERVICES } from "@/features/services/constant";
+import { root } from "@/lib/root-mdx";
 import {
 	getLocationSitemapLastModified,
 	getServiceLocationSitemapLastModified,
 	LOCATION_SLUGS,
 	REGIONAL_SITEMAP,
 	SERVICE_SLUGS,
+	serviceLocationPath,
 } from "@/lib/location-seo";
 import { getBaseUrl } from "@/lib/seo";
+
+function fileMtime(filePath: string): Date | null {
+	try {
+		return fs.statSync(filePath).mtime;
+	} catch {
+		return null;
+	}
+}
+
+function blogLastModified(slug: string): Date {
+	const filePath = path.join(root("blogs"), `${slug}.mdx`);
+	return fileMtime(filePath) ?? new Date();
+}
+
+function serviceDetailLastModified(category: string, slug: string): Date {
+	const filePath = path.join(
+		process.cwd(),
+		"src/content/services",
+		category,
+		`${slug}.mdx`
+	);
+	return fileMtime(filePath) ?? new Date();
+}
+
+function serviceCategoryDirMaxMtime(categorySlug: string): Date {
+	const dir = path.join(process.cwd(), "src/content/services", categorySlug);
+	try {
+		const files = fs.readdirSync(dir);
+		let latest: Date | null = null;
+		for (const file of files) {
+			if (!file.endsWith(".mdx")) continue;
+			const m = fileMtime(path.join(dir, file));
+			if (m && (!latest || m > latest)) latest = m;
+		}
+		return latest ?? new Date();
+	} catch {
+		return new Date();
+	}
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const baseURL = getBaseUrl();
@@ -30,7 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const serviceLocationEntries: MetadataRoute.Sitemap = SERVICE_SLUGS.flatMap(
 		(service) =>
 			LOCATION_SLUGS.map((location) => ({
-				url: `${baseURL}/service/${service}/${location}`,
+				url: `${baseURL}${serviceLocationPath(service, location)}`,
 				lastModified: getServiceLocationSitemapLastModified(service, location),
 				changeFrequency: REGIONAL_SITEMAP.serviceLocationPage.changeFrequency,
 				priority: REGIONAL_SITEMAP.serviceLocationPage.priority,
@@ -40,7 +83,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const servicesCategoriesEntries: MetadataRoute.Sitemap = services.map(
 		({ slug }) => ({
 			url: `${baseURL}/services/${slug}`,
-			lastModified: now,
+			lastModified: serviceCategoryDirMaxMtime(slug),
 			changeFrequency: "weekly",
 			priority: 0.9,
 		})
@@ -49,7 +92,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const servicesEntries: MetadataRoute.Sitemap = services.flatMap((s) =>
 		s.lists.map((service) => ({
 			url: `${baseURL}/services/${s.slug}/${service.slug}`,
-			lastModified: now,
+			lastModified: serviceDetailLastModified(s.slug, service.slug),
 			changeFrequency: "weekly",
 			priority: 0.9,
 		}))
@@ -57,7 +100,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 	const blogEntries: MetadataRoute.Sitemap = blogs.map((b) => ({
 		url: `${baseURL}/blogs/${b.slug}`,
-		lastModified: now,
+		lastModified: blogLastModified(b.slug),
 		priority: 0.7,
 		changeFrequency: "monthly",
 	}));

@@ -1,4 +1,4 @@
-import type { Metadata, Route } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -17,9 +17,11 @@ import {
 	isServiceSlug,
 	LOCATION_SLUGS,
 	SERVICE_SLUGS,
+	serviceLocationPath,
 } from "@/lib/location-seo";
 import {
 	buildBreadcrumbSchema,
+	buildFaqSchema,
 	createPageMetadata,
 	getBaseUrl,
 } from "@/lib/seo";
@@ -40,6 +42,7 @@ export async function generateMetadata({
 	const content = getServiceLocationContent(service, location);
 	const serviceLabel = formatService(service);
 	const locationLabel = formatLocation(location);
+	const canonicalPath = serviceLocationPath(service, location);
 
 	return createPageMetadata({
 		title:
@@ -48,7 +51,7 @@ export async function generateMetadata({
 		description:
 			content?.frontmatter.description ??
 			`${serviceLabel} solutions delivered for businesses in ${locationLabel}.`,
-		path: `/${service}/${location}`,
+		path: canonicalPath,
 		keywords: content?.frontmatter.keywords ?? [
 			`${service} ${location}`,
 			`${serviceLabel} UAE`,
@@ -66,21 +69,26 @@ export default async function ServiceLocationBasedPage({
 	const content = getServiceLocationContent(service, location);
 	const serviceLabel = formatService(service);
 	const locationLabel = formatLocation(location);
+	const canonicalPath = serviceLocationPath(service, location);
 
 	const breadcrumbItems = [
 		{ name: "Home", path: "/" },
 		{ name: serviceLabel, path: "/services" },
-		{ name: locationLabel, path: `/${service}/${location}` },
+		{ name: locationLabel, path: canonicalPath },
 	];
 	const breadcrumbSchema = buildBreadcrumbSchema(breadcrumbItems);
 	const localBusinessSchema = {
 		"@context": "https://schema.org",
 		"@type": "LocalBusiness",
 		name: "ZironPro",
-		url: `${getBaseUrl()}/${service}/${location}`,
+		url: `${getBaseUrl()}${canonicalPath}`,
 		areaServed: locationLabel,
 		serviceType: content?.frontmatter.serviceType ?? serviceLabel,
 	};
+
+	const faqItems = content?.frontmatter.faq;
+	const faqSchema =
+		faqItems && faqItems.length > 0 ? buildFaqSchema(faqItems) : null;
 
 	return (
 		<main>
@@ -92,12 +100,15 @@ export default async function ServiceLocationBasedPage({
 				data={localBusinessSchema}
 				id="schema-service-location-business"
 			/>
+			{faqSchema ? (
+				<JsonLdScript data={faqSchema} id="schema-service-location-faq" />
+			) : null}
 
 			<Breadcrumbs
 				items={[
 					{ label: "Home", href: "/" },
 					{ label: serviceLabel, href: "/services" },
-					{ label: locationLabel, href: `/${service}/${location}` as Route },
+					{ label: locationLabel, href: canonicalPath },
 				]}
 			/>
 
@@ -137,7 +148,7 @@ export default async function ServiceLocationBasedPage({
 							<li key={item}>
 								<Link
 									className="block rounded-lg border p-4 transition-colors hover:bg-card"
-									href={`/${service}/${item}` as Route}
+									href={serviceLocationPath(service, item)}
 								>
 									{serviceLabel} in {formatLocation(item)}
 								</Link>
