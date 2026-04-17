@@ -52,10 +52,7 @@ export const NAV_LINKS: NavLink[] = [
 			lists: ser.lists ? [...ser.lists] : undefined,
 		})),
 	},
-	{
-		label: "Industries",
-		href: "/industry",
-	},
+
 	{
 		label: "Our works",
 		href: "/our-works",

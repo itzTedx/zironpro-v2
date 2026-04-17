@@ -79,10 +79,6 @@ export default async function BlogsPage({
 			<section className="relative">
 				<header className="dashed dashed-x container relative z-10 mx-auto max-w-7xl py-16 md:py-20">
 					<div className="space-y-4 py-12">
-						{/* <Badge>
-							<IconCalender className="text-brand-600" /> Blogs
-						</Badge> */}
-
 						<h1 className="mx-auto text-balance font-bold font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] md:text-6xl lg:text-7xl">
 							Marketing & Business Growth Insights
 						</h1>
