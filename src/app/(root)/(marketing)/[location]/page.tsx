@@ -117,9 +117,7 @@ export default async function LocationPage({
 							<li key={serviceSlug}>
 								<Link
 									className="block rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary hover:bg-card/80"
-									href={
-										serviceLocationPath(serviceSlug, locationSlug) as Route
-									}
+									href={serviceLocationPath(serviceSlug, locationSlug) as Route}
 								>
 									<span className="font-medium text-foreground">
 										{formatService(serviceSlug)}

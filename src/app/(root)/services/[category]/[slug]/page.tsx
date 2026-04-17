@@ -64,8 +64,7 @@ export async function generateMetadata({
 	const metaTitle = service.metadata.meta?.title;
 	const metaDescription = service.metadata.meta?.description;
 
-	const title =
-		metaTitle ?? makeNationalServiceTitle(service.metadata.title);
+	const title = metaTitle ?? makeNationalServiceTitle(service.metadata.title);
 	const description =
 		(metaDescription ?? service.metadata.description) +
 		" Delivered for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.";

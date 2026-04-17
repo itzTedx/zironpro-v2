@@ -53,6 +53,10 @@ export const NAV_LINKS: NavLink[] = [
 		})),
 	},
 	{
+		label: "Industries",
+		href: "/industry",
+	},
+	{
 		label: "Our works",
 		href: "/our-works",
 	},
@@ -167,6 +171,10 @@ export const FOOTER_LINKS = [
 			{
 				label: "Our works",
 				href: "/our-works",
+			},
+			{
+				label: "Industries",
+				href: "/industry",
 			},
 			{
 				label: "Blogs",

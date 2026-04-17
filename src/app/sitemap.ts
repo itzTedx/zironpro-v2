@@ -6,6 +6,11 @@ import { getBlogs } from "@/features/articles/actions/query";
 import { SERVICES } from "@/features/services/constant";
 import { root } from "@/lib/root-mdx";
 import {
+	INDUSTRY_SITEMAP,
+	INDUSTRY_SLUGS,
+	getIndustrySitemapLastModified,
+} from "@/lib/industry-seo";
+import {
 	getLocationSitemapLastModified,
 	getServiceLocationSitemapLastModified,
 	LOCATION_SLUGS,
@@ -105,6 +110,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		changeFrequency: "monthly",
 	}));
 
+	const industryEntries: MetadataRoute.Sitemap = INDUSTRY_SLUGS.map((slug) => ({
+		url: `${baseURL}/industry/${slug}`,
+		lastModified: getIndustrySitemapLastModified(slug),
+		changeFrequency: INDUSTRY_SITEMAP.detailPage.changeFrequency,
+		priority: INDUSTRY_SITEMAP.detailPage.priority,
+	}));
+
 	return [
 		{
 			url: baseURL,
@@ -161,6 +173,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			changeFrequency: "yearly",
 			priority: 0.3,
 		},
+		{
+			url: `${baseURL}/industry`,
+			lastModified: now,
+			changeFrequency: INDUSTRY_SITEMAP.hubPage.changeFrequency,
+			priority: INDUSTRY_SITEMAP.hubPage.priority,
+		},
+		...industryEntries,
 		...locationEntries,
 		...serviceLocationEntries,
 		...servicesCategoriesEntries,
