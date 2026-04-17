@@ -155,22 +155,10 @@ function FaqContent({
 }) {
 	return (
 		<FramePanel className="py-2">
-			<AccordionItem
-				itemScope
-				itemType="https://schema.org/Question"
-				value={slugify(title)}
-			>
-				<AccordionTrigger className="text-base!" itemProp="name">
-					{title}
-				</AccordionTrigger>
-				<AccordionPanel
-					itemProp="acceptedAnswer"
-					itemScope
-					itemType="https://schema.org/Answer"
-				>
-					<div className="[&_a]:text-primary [&_a]:underline" itemProp="text">
-						{children}
-					</div>
+			<AccordionItem value={slugify(title)}>
+				<AccordionTrigger className="text-base!">{title}</AccordionTrigger>
+				<AccordionPanel>
+					<div className="[&_a]:text-primary [&_a]:underline">{children}</div>
 				</AccordionPanel>
 			</AccordionItem>
 		</FramePanel>
