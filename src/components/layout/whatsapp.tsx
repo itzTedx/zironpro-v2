@@ -10,6 +10,7 @@ import { domAnimation, LazyMotion, m } from "motion/react";
 import { IconSocialWhatsapp } from "@/assets/icons/socials";
 
 import { WHATSAPP_CHAT_URL } from "@/data/site-tracking";
+import { useIsMobile } from "@/hooks/use-media-query";
 
 import { Button } from "../ui/button";
 import { WaQrCode } from "./ui/wa-qrcode";
@@ -40,6 +41,7 @@ export const WhatsappPopover = () => {
 	const [isContentHovered, setIsContentHovered] = useState(false);
 	const [isFocused, setIsFocused] = useState(false);
 	const [isPinnedOpen, setIsPinnedOpen] = useState(false);
+	const isMobile = useIsMobile();
 
 	const isOpen = isHovered || isContentHovered || isFocused || isPinnedOpen;
 
@@ -59,6 +61,18 @@ export const WhatsappPopover = () => {
 			window.removeEventListener("pointerdown", handlePointerDown);
 		};
 	}, [isPinnedOpen]);
+
+	if (isMobile) {
+		return (
+			<Link
+				className="fixed right-4 bottom-4 z-10 cursor-pointer rounded-md bg-primary p-2 before:absolute before:inset-[-6px] before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+				href={WHATSAPP_CHAT_URL}
+				target="_blank"
+			>
+				<IconSocialWhatsapp className="text-muted-foreground transition-colors duration-300 ease-out group-hover:text-[#009236]" />
+			</Link>
+		);
+	}
 
 	return (
 		<LazyMotion features={domAnimation}>

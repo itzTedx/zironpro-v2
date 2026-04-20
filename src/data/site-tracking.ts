@@ -21,4 +21,9 @@ export function getOpenPanelScriptSrc(): string {
 }
 
 /** WhatsApp deep link shown in the site widget (Meta processes activity on their side). */
-export const WHATSAPP_CHAT_URL = "https://wa.me/971566646539" as const;
+export const WHATSAPP_CHAT_MESSAGE =
+	"Hi Ziron Pro, I would like to discuss my project." as const;
+export const WHATSAPP_CHAT_URL =
+	`https://wa.me/971542588446?text=${encodeURIComponent(
+		WHATSAPP_CHAT_MESSAGE
+	)}` as const;
