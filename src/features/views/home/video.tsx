@@ -6,10 +6,13 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import { IconCaretRight } from "@/assets/icons/caret";
 
+import { useIsMobile } from "@/hooks/use-media-query";
+
 export const Video = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isPreviewReady, setIsPreviewReady] = useState(false);
 	const previewWrapperRef = useRef<HTMLDivElement>(null);
+	const isMobile = useIsMobile();
 
 	useEffect(() => {
 		const element = previewWrapperRef.current;
@@ -29,6 +32,8 @@ export const Video = () => {
 
 		return () => observer.disconnect();
 	}, []);
+
+	if (isMobile) return null;
 
 	return (
 		<Dialog onOpenChange={setIsOpen} open={isOpen}>

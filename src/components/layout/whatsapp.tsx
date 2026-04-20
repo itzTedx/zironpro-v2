@@ -79,7 +79,7 @@ export const WhatsappPopover = () => {
 					animate={isOpen ? { x: -9, y: -9 } : { x: 0, y: 0 }}
 					aria-expanded={isOpen}
 					aria-haspopup="dialog"
-					className="relative z-10 cursor-pointer rounded-full p-2 before:absolute before:inset-[-6px] before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+					className="relative z-10 cursor-pointer rounded-md bg-primary p-2 before:absolute before:inset-[-6px] before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
 					data-popover-trigger
 					onBlur={() => setIsFocused(false)}
 					onClick={() => setIsPinnedOpen((prev) => !prev)}

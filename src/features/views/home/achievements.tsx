@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Header } from "@/components/shared/header";
 import {
 	Card,
@@ -6,8 +8,8 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import { Marquee } from "@/components/ui/marquee";
 
-import { Dock, DockIcon } from "./components/dock";
 import { ACHIEVEMENTS, CLIENTS } from "./data/constants";
 
 export const Achievements = () => {
@@ -32,7 +34,7 @@ export const Achievements = () => {
 					const AchievementCard = ach.card;
 					return (
 						<Card
-							className="squircle rounded-[calc(var(--radius-5xl)+--spacing(1))] transition-transform hover:-translate-y-3"
+							className="squircle rounded-[calc(var(--radius-4xl)+--spacing(1))] transition-transform hover:-translate-y-3"
 							key={`card-${ach.id}`}
 						>
 							<CardContent>
@@ -46,7 +48,30 @@ export const Achievements = () => {
 					);
 				})}
 			</div>
-			<div className="dashed dashed-t-0 mx-auto flex max-w-7xl flex-col items-center gap-4 p-6 md:p-14">
+			<section className="dashed dashed-y">
+				<div className="dashed dashed-x container mx-auto max-w-7xl">
+					<div className="group flex flex-col gap-4 py-12 md:grid md:grid-cols-5">
+						<h2 className="shrink-0 text-balance font-medium text-muted-foreground">
+							Trusted by fast-growing companies around the world
+						</h2>
+						<div className="mask-[linear-gradient(to_right,transparent_0%,black_4%,black_96%,transparent_100%)] md:col-span-4">
+							<Marquee className="[--duration:25s] [--gap:3.5rem]">
+								{CLIENTS.map((client) => (
+									<Image
+										alt={client.name}
+										className="h-8 w-auto object-contain saturate-0 transition-[filter] group-hover:saturate-100"
+										height={100}
+										key={client.name}
+										src={client.src}
+										width={100}
+									/>
+								))}
+							</Marquee>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/* <div className="dashed dashed-t-0 mx-auto flex max-w-7xl flex-col items-center gap-4 p-6 md:p-14">
 				<Dock className="w-fit">
 					{CLIENTS.map((item) => (
 						<DockIcon key={item.name} name={item.name} src={item.src} />
@@ -58,7 +83,7 @@ export const Achievements = () => {
 						vision <br /> from kickoff to launch
 					</span>
 				</h3>
-			</div>
+			</div> */}
 			<div className="dashed dashed-t-0 mx-auto max-w-7xl p-6 md:p-9" />
 		</section>
 	);

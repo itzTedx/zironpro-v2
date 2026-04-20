@@ -14,7 +14,6 @@ const GrowthChart = dynamic(() =>
 	import("./chart").then((mod) => ({ default: mod.GrowthChart }))
 );
 
-/** Achievement cards grid: 1 col → 2 (sm) → 3 (lg) within max-w-7xl */
 const achievementCardFillSizes =
 	"(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw";
 
@@ -22,7 +21,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
 	return (
 		<div
 			className={cn(
-				"squircle relative aspect-4/3 overflow-hidden rounded-5xl bg-linear-0 from-gray-100 to-gray-50 transition",
+				"squircle relative aspect-4/3 overflow-hidden rounded-4xl bg-linear-0 from-gray-100 to-gray-50 transition",
 				className
 			)}
 			{...props}
