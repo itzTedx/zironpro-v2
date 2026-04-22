@@ -5,14 +5,17 @@ import { cn } from "@/lib/utils";
 import { SOCIALS } from "../data/constants";
 
 export const Socials = ({
+	hasTitle = true,
 	className,
 	...props
-}: React.ComponentProps<"div">) => {
+}: React.ComponentProps<"div"> & { hasTitle?: boolean }) => {
 	return (
 		<div className="space-y-3" {...props}>
-			<p className={cn("font-medium text-brand-50", className)}>
-				Stay Connected
-			</p>
+			{hasTitle ? (
+				<p className={cn("font-medium text-brand-50", className)}>
+					Stay Connected
+				</p>
+			) : null}
 			<ul className="flex items-center gap-4">
 				{SOCIALS.map((social) => (
 					<Social key={social.label} social={social} />

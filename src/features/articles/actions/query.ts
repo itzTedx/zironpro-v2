@@ -43,6 +43,20 @@ export function getBlogs(limit?: number): BlogMetadata[] {
 	return products;
 }
 
+export function getFeaturedBlogs(limit?: number): BlogMetadata[] {
+	const featuredBlogs = getBlogs().filter((blog) => blog.isFeatured);
+
+	if (limit) {
+		return featuredBlogs.slice(0, limit);
+	}
+
+	return featuredBlogs;
+}
+
+export function getFeaturedBlog(): BlogMetadata | null {
+	return getFeaturedBlogs(1)[0] ?? null;
+}
+
 function normalizeSearchText(value: string): string {
 	return value.toLowerCase().replace(/\s+/g, " ").trim();
 }

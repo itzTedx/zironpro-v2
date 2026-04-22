@@ -223,7 +223,14 @@ function FieldError({
 				{uniqueErrors.map(
 					(error, index) =>
 						error?.message && (
-							<li key={`error-${index + 1}`}>{error.message}</li>
+							<li
+								key={`error-${
+									// biome-ignore lint/suspicious/noArrayIndexKey: Not needed
+									index + 1
+								}`}
+							>
+								{error.message}
+							</li>
 						)
 				)}
 			</ul>

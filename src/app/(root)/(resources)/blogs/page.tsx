@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { SOCIALS } from "@/components/layout/data/constants";
 
 import { siteConfig } from "@/data/site-config";
 import {
 	filterBlogsByQuery,
 	getBlogs,
+	getFeaturedBlog,
 } from "@/features/articles/actions/query";
 import { BlogCard } from "@/features/articles/components/blog-card";
+import { NewsletterSubscription } from "@/features/articles/components/newsletter-subscription";
 import { JsonLdScript } from "@/features/seo/json-ld-script";
 import {
 	buildBreadcrumbSchema,
@@ -61,6 +63,7 @@ export default async function BlogsPage({
 }) {
 	const query = pickSearchQuery(await searchParams);
 	const allBlogs = getBlogs();
+	const featuredBlog = getFeaturedBlog();
 	const blogs = filterBlogsByQuery(allBlogs, query);
 	const webPageSchema = buildWebPageSchema(
 		`Marketing, Tech & Business Growth Insights for UAE | ${siteConfig.shortName}`,
@@ -77,17 +80,49 @@ export default async function BlogsPage({
 			<JsonLdScript data={webPageSchema} id="schema-blogs-webpage" />
 			<JsonLdScript data={breadcrumbSchema} id="schema-blogs-breadcrumb" />
 			<section className="relative">
-				<header className="dashed dashed-x container relative z-10 mx-auto max-w-7xl py-16 md:py-20">
-					<div className="space-y-4 py-12">
-						<h1 className="mx-auto text-balance font-bold font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] md:text-6xl lg:text-7xl">
-							Marketing & Business Growth Insights
+				<header className="dashed dashed-x container relative z-10 mx-auto grid max-w-7xl grid-cols-1 gap-6 py-16 md:grid-cols-2 md:py-20">
+					<div className="space-y-6 py-12">
+						<h1 className="mx-auto text-balance font-display font-semibold text-4xl text-primary leading-[1.2] md:text-6xl">
+							Marketing & Business Growth Tips & Insights
 						</h1>
 
-						<p className="max-w-4xl text-balance text-2xl text-muted leading-relaxed tracking-tight">
+						<p className="max-w-4xl text-balance text-muted text-xl leading-relaxed tracking-tight">
 							Real strategies. Proven ideas. From marketing and web to tech and
 							business growth. Built for UAE brands that mean business.
 						</p>
+						<NewsletterSubscription />
+
+						<div className="flex items-center gap-6 text-muted/60">
+							<span>Follow us on:</span>
+							<ul className="flex items-center gap-4">
+								{SOCIALS.map((social) => (
+									<li key={social.label}>
+										<Link href={social.href}>
+											<social.icon className="size-6 hover:text-primary" />
+										</Link>
+									</li>
+								))}
+							</ul>
+						</div>
 					</div>
+					{featuredBlog ? (
+						<Link
+							className="relative rounded-2xl p-4 hover:bg-muted/10"
+							href={`/blogs/${featuredBlog.slug}`}
+						>
+							<div className="relative aspect-6/4 overflow-hidden rounded-2xl border border-muted-foreground/50 shadow-lg">
+								<Image
+									alt={`${featuredBlog.title} blog cover by Ziron pro`}
+									className="object-cover"
+									fill
+									src={featuredBlog.image}
+								/>
+							</div>
+							<h2 className="mt-4 font-semibold text-card text-xl">
+								{featuredBlog.title}
+							</h2>
+						</Link>
+					) : null}
 				</header>
 			</section>
 
@@ -103,39 +138,6 @@ export default async function BlogsPage({
 								: `${blogs.length} posts`}
 						</p>
 					</div>
-
-					<form
-						action="/blogs"
-						className="flex w-full max-w-xl flex-col gap-2 sm:flex-row sm:items-center"
-						method="get"
-						role="search"
-					>
-						<label className="sr-only" htmlFor="blogs-search-query">
-							Search blog posts
-						</label>
-						<Input
-							className="bg-card/10 text-card placeholder:text-muted"
-							defaultValue={query}
-							id="blogs-search-query"
-							name="query"
-							placeholder="Search by topic, tag, or keyword…"
-							type="search"
-						/>
-						<div className="flex shrink-0 gap-2">
-							<Button
-								className="border-border/50 text-card hover:text-foreground"
-								type="submit"
-								variant="outline"
-							>
-								Search
-							</Button>
-							{query ? (
-								<Button render={<Link href="/blogs" />} variant="ghost">
-									Clear
-								</Button>
-							) : null}
-						</div>
-					</form>
 				</header>
 
 				{blogs.length === 0 ? (
