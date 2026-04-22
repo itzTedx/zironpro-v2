@@ -92,19 +92,21 @@ async function Faq({
 					})),
 				}
 			: null;
+	const faqSchemaId =
+		faqItems.length > 0
+			? `faq-structured-data-${slugify(faqItems[0].question)}-${faqItems.length}`
+			: "faq-structured-data";
 
 	return (
 		<>
 			{structuredData ? (
-				<JsonLdScript data={structuredData} id="faq-structured-data" />
+				<JsonLdScript data={structuredData} id={faqSchemaId} />
 			) : null}
 			<div
 				className={cn(
 					"relative grid max-w-7xl gap-4",
 					compact ? "" : "dashed dashed-x"
 				)}
-				itemScope
-				itemType="https://schema.org/FAQPage"
 			>
 				<div className="not-prose">
 					<Badge>Frequently Asked Questions</Badge>
