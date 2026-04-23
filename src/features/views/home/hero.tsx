@@ -49,10 +49,7 @@ export const Hero = ({ badgeLabel, heading, subheading }: HeroProps) => {
 						<span className="size-1.5 rounded-full bg-brand-400" />{" "}
 						<h1 className="tracking-wide">{badgeNode}</h1>
 					</Badge>
-					{/* <Badge className="gap-2 uppercase tracking-normal">
-						<div className="size-1.5 rounded-full bg-violet-500" /> Ready to grow?
-						We’re ready to go
-					</Badge> */}
+
 					<h2 className="text-center font-black font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
 						{headingNode}
 					</h2>
@@ -69,12 +66,7 @@ export const Hero = ({ badgeLabel, heading, subheading }: HeroProps) => {
 							render={<Link href="/services" />}
 							size="xl"
 						>
-							<span>
-								Get started{" "}
-								{/* <span className="hidden font-normal text-primary-secondary md:inline">
-									- it’s free
-								</span> */}
-							</span>
+							<span>Get started </span>
 							<IconArrowRightTag className="size-5 transition-transform duration-300 ease-in group-hover:translate-x-1" />
 						</Button>
 						<Button
@@ -91,27 +83,6 @@ export const Hero = ({ badgeLabel, heading, subheading }: HeroProps) => {
 						</Button>
 					</div>
 				</div>
-
-				{/* <ul className="dashed dashed-t flex flex-col items-center text-lg md:flex-row">
-					<li className="dashed dashed-b md:dashed-b-0 flex w-full items-center justify-center gap-2 p-6">
-						<div className="flex size-12 items-center justify-center rounded-lg bg-muted/20">
-							<IconClock className="size-8" />
-						</div>
-						<p>48 Hours Delivery</p>
-					</li>
-					<li className="dashed dashed-b md:dashed-b-0 md:dashed-x flex w-full items-center justify-center gap-2 p-6">
-						<div className="flex size-12 items-center justify-center rounded-lg bg-muted/20">
-							<IconClock className="size-8" />
-						</div>
-						<p>One Partner for Digital & Print</p>
-					</li>
-					<li className="flex w-full items-center justify-center gap-2 p-6">
-					<div className="flex size-12 items-center justify-center rounded-lg bg-muted/20">
-					<IconClock className="size-8" />
-					</div>
-						<p>Scalable Creative Support</p>
-						</li>
-						</ul> */}
 			</div>
 			<Featured />
 		</section>

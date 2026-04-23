@@ -160,7 +160,6 @@ export function ContactForm() {
 					control={form.control}
 					disabled={isPending}
 					id="contact-form-subject"
-					isRequired
 					label="What service are you interested in?"
 					name="service"
 					renderControl={({ field, fieldState, disabled, id }) => (
@@ -191,7 +190,6 @@ export function ContactForm() {
 					control={form.control}
 					disabled={isPending}
 					id="contact-form-message"
-					isRequired
 					label="Message"
 					name="message"
 					renderControl={({ field, fieldState, disabled, id }) => (

@@ -32,13 +32,10 @@ export const contactFormSchema = z.object({
 				value === "" ||
 				SERVICE_OPTIONS.some((serviceOption) => serviceOption === value),
 			"Please select a valid service."
-		),
-	message: z
-		.string()
-		.trim()
-		.min(1, "Please write a message.")
-		.min(10, "Message should be at least 10 characters.")
-		.max(1000, "Message can be up to 1000 characters."),
+		)
+		.default("Not sure yet, let's talk")
+		.optional(),
+	message: z.string().trim().max(1000, "Message can be up to 1000 characters."),
 });
 
 export type ContactType = z.infer<typeof contactFormSchema>;

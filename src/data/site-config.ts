@@ -10,7 +10,7 @@ export const siteConfig = {
 	description:
 		"UAE based digital marketing agency for SEO, Digital & Offset Printing, Web design and development, and social media that drive leads and revenue. Book a free strategy call today.",
 	keywords: [
-		"digital marketing agency Dubai, SEO services Dubai, PPC management, web design Dubai, social media marketing, web development, website, digital printing, nfc card",
+		"digital marketing agency Dubai, SEO services Dubai, PPC management, web design Dubai, web ui,  social media marketing, web development, website, digital printing, nfc card",
 	],
 	companyName: "ZironPro Digital Design LLC",
 	url: BASE_URL,
@@ -19,8 +19,8 @@ export const siteConfig = {
 	links: {
 		// twitter: "https://x.com/itzTedx_",
 		linkedin: "https://www.linkedin.com/company/zironpro",
-		instagram: "https://www.instagram.com/zironpro/",
-		facebook: "https://www.facebook.com/zironpro",
+		instagram: "https://www.instagram.com/ziron_pro",
+		facebook: "https://www.facebook.com/profile.php?id=61574382451601",
 	},
 	contact: "+971 58 171 1486",
 	/** Custom meta for crawlers / internal tooling */

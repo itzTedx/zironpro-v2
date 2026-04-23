@@ -39,6 +39,7 @@ export const metadata: Metadata = {
 	},
 	authors: [{ name: siteConfig.shortName, url: siteConfig.url }],
 	creator: siteConfig.shortName,
+
 	robots: {
 		"max-image-preview": "large",
 		"max-snippet": -1,
@@ -47,6 +48,7 @@ export const metadata: Metadata = {
 	verification: {
 		google: "dzIViUIENzLsewEaXsHL9bvl5Is7CucMXMDlZT92HEI",
 	},
+
 	other: {
 		"msapplication-TileImage": "/og.png",
 		"msvalidate.01": "A8C503B4FF428B289DA437C18B34BBE3",
