@@ -1,0 +1,50 @@
+---
+description: Commit message format, branch naming, and pull request expectations
+alwaysApply: true
+---
+
+# Git and Commit Standards
+
+## Commit Message Format
+
+Use:
+
+```text
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer]
+```
+
+Allowed types:
+- `feat` new features
+- `fix` bug fixes
+- `docs` documentation
+- `style` formatting or non-functional style changes
+- `refactor` internal code restructuring without behavior changes
+- `perf` performance improvements
+- `test` test updates
+- `chore` tooling/dependencies/maintenance
+- `ci` CI/CD changes
+- `revert` commit reverts
+
+Examples:
+- `feat(auth): add OAuth login with Google`
+- `fix(ui): resolve button alignment in mobile view`
+- `docs(readme): update installation instructions`
+- `refactor(api): simplify user data fetching logic`
+
+## Branch Naming
+
+- `feature/<feature-name>`
+- `fix/<bug-description>`
+- `docs/<documentation-update>`
+- `refactor/<component-or-area>`
+
+## Pull Request Expectations
+
+- Use descriptive PR titles.
+- Include screenshots for UI changes.
+- Link related issues when relevant.
+- Request review from the right team members.

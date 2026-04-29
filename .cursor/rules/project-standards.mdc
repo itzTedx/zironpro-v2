@@ -1,0 +1,131 @@
+---
+description: Core engineering standards for TypeScript, React, Next.js, architecture, performance, security, and accessibility
+alwaysApply: true
+---
+
+# Project Standards
+
+You are an expert in TypeScript, Node.js, Next.js App Router, React, shadcn/ui, Radix UI, and Tailwind CSS.
+
+## Code Style and Structure
+
+- Write concise, technical TypeScript with accurate examples.
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over duplication.
+- Use descriptive variable names with auxiliary verbs (for example: `isLoading`, `hasError`).
+- Structure files as: exported component, subcomponents, helpers, static content, and types.
+- Use the `function` keyword for pure functions.
+- Use declarative JSX.
+
+## Naming Conventions
+
+- Use lowercase with dashes for directories and component file names.
+- Favor named exports for components.
+- Use camelCase for variables and functions.
+- Use PascalCase for React component names.
+- Use UPPER_SNAKE_CASE for constants.
+- Use snake_case for database tables and columns.
+- Use kebab-case for API endpoints and URL slugs.
+
+## TypeScript and React
+
+- Use TypeScript for all code.
+- Prefer interfaces over type aliases for object shapes.
+- Avoid enums; use const maps/objects.
+- Use functional components with TypeScript interfaces.
+- Prefer server components by default.
+- Minimize `use client`, `useEffect`, and client-side state when server rendering is sufficient.
+- Use `use client` only for Web APIs or explicit interactivity.
+
+## Next.js Conventions
+
+- Use server actions instead of route handlers when appropriate.
+- Follow official Next.js documentation for data fetching, rendering, and routing.
+- Favor server-side rendering and React Server Components.
+- Use `nuqs` for URL search parameter state management.
+
+## UI and Styling
+
+- Use Tailwind CSS with a mobile-first approach.
+- Use shadcn/ui and Radix UI components when available.
+- Prefer utility classes over custom CSS.
+- Use CSS custom properties for theme values.
+- In shadcn `Button` components, do not manually set icon size or margin.
+
+## Project Organization
+
+Expected directories:
+- `src/app` for Next.js App Router pages
+- `src/components` for reusable UI
+- `src/lib` for utilities and configuration
+- `src/hooks` for custom hooks
+- `src/types` for shared types
+- `src/styles` for global styles
+- `src/utils` for helper functions
+
+## Performance and Web Vitals
+
+- Use dynamic imports for large or non-critical components.
+- Wrap client components in Suspense with useful fallbacks when needed.
+- Use Next.js `Image` for images.
+- Prefer WebP images, include dimensions, and lazy-load when appropriate.
+- Optimize Core Web Vitals (LCP, CLS, FID/INP).
+- Implement loading states and error boundaries.
+
+## Data Fetching
+
+- Use server-first data fetching where possible.
+- Apply appropriate caching strategies.
+- Use SWR or React Query for client-side data when needed.
+- Handle loading and error states gracefully.
+
+## Security
+
+- Use Better Auth for authentication and session management.
+- Validate and sanitize all user input.
+- Validate request bodies.
+- Implement rate limiting.
+- Use HTTPS in production.
+- Use environment variables for sensitive data.
+
+## Accessibility
+
+- Follow WCAG 2.1 AA guidelines.
+- Use semantic HTML.
+- Provide alt text for images.
+- Ensure keyboard accessibility and proper focus management.
+- Use ARIA labels and live regions where appropriate.
+- Test with screen readers.
+
+## Error Handling
+
+- Use error boundaries on the client where appropriate.
+- Provide user-friendly error states and messages.
+- Use try/catch on server operations.
+- Return appropriate HTTP status codes.
+- Log errors with enough context for debugging.
+
+## Documentation
+
+- Comment complex business logic.
+- Explain non-obvious decisions.
+- Keep README setup instructions up to date.
+- Document environment variables and relevant API behavior.
+
+## Environment and Tooling
+
+- Use pnpm for package management.
+- Keep dependencies reasonably up to date.
+- Use exact versions for critical packages when necessary.
+- Use Biome for linting and formatting.
+- Use TypeScript strict mode.
+- Use Next.js with Turbopack for development.
+- Use Docker when consistency is needed across environments.
+
+## Workflow and Agent Constraints
+
+- Always search the codebase and gather context before making changes.
+- Do not run type checks in terminal unless explicitly requested.
+- Do not create temporary test files unless explicitly requested.
+
+Always prioritize readability, maintainability, and user experience over clever solutions.

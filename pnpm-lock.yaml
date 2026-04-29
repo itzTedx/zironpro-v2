@@ -65,9 +65,6 @@ importers:
       maplibre-gl:
         specifier: ^5.21.1
         version: 5.21.1
-      marked:
-        specifier: ^18.0.0
-        version: 18.0.0
       motion:
         specifier: 12.38.0
         version: 12.38.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -1634,11 +1631,6 @@ packages:
   marked@15.0.12:
     resolution: {integrity: sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA==}
     engines: {node: '>= 18'}
-    hasBin: true
-
-  marked@18.0.0:
-    resolution: {integrity: sha512-2e7Qiv/HJSXj8rDEpgTvGKsP8yYtI9xXHKDnrftrmnrJPaFNM7VRb2YCzWaX4BP1iCJ/XPduzDJZMFoqTCcIMA==}
-    engines: {node: '>= 20'}
     hasBin: true
 
   mdast-util-find-and-replace@3.0.2:
@@ -3582,8 +3574,6 @@ snapshots:
   markdown-table@3.0.4: {}
 
   marked@15.0.12: {}
-
-  marked@18.0.0: {}
 
   mdast-util-find-and-replace@3.0.2:
     dependencies:
