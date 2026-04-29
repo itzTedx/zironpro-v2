@@ -1,5 +1,14 @@
 # ZironPro Website (v2)
 
+![Package mgr · pnpm](https://www.shieldcn.dev/badge/Package_mgr-pnpm-F69220.svg?logo=pnpm&variant=branded&size=sm)
+![TypeScript](https://www.shieldcn.dev/badge/TypeScript-3178C6.svg?logo=typescript&variant=branded&size=sm)
+![Lint · Biome](https://www.shieldcn.dev/badge/Lint-Biome-60A5FA.svg?logo=biome&variant=branded&size=sm)
+![Next.js](https://www.shieldcn.dev/badge/Framework-Next.js-000000.svg?logo=nextdotjs&variant=branded&size=sm)
+![AI SDK · OpenAI](https://www.shieldcn.dev/badge/AI_SDK_%C2%B7_OpenAI-412991.svg?logo=openai&variant=branded&size=sm)
+![React](https://www.shieldcn.dev/badge/React-61DAFB.svg?logo=react&variant=branded&size=sm)
+![Zod](https://www.shieldcn.dev/badge/Zod-3E67B1.svg?logo=zod&variant=branded&size=sm)
+![Tailwind CSS](https://www.shieldcn.dev/badge/Tailwind_CSS-06B6D4.svg?logo=tailwindcss&variant=branded&size=sm)
+
 [![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-20232A?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
