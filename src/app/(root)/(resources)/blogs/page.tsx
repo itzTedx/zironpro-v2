@@ -110,7 +110,7 @@ export default async function BlogsPage({
 							className="relative rounded-2xl p-4 hover:bg-muted/10"
 							href={`/blogs/${featuredBlog.slug}`}
 						>
-							<div className="relative aspect-6/4 overflow-hidden rounded-2xl border border-muted-foreground/50 shadow-lg">
+							<div className="relative aspect-16/10 overflow-hidden rounded-2xl border border-muted-foreground/50 shadow-lg">
 								<Image
 									alt={`${featuredBlog.title} blog cover by Ziron pro`}
 									className="object-cover"

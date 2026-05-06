@@ -241,7 +241,7 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 					<p className="mx-auto mt-4 max-w-6xl text-balance text-2xl text-card leading-relaxed tracking-tight">
 						{blog.metadata.description}
 					</p>
-					<div className="relative mx-auto mt-9 aspect-video max-w-4xl overflow-hidden rounded-xl shadow-md">
+					<div className="relative mx-auto mt-9 aspect-16/10 max-w-4xl overflow-hidden rounded-xl shadow-md">
 						<Image
 							alt={blog.metadata.title}
 							className="object-cover"
