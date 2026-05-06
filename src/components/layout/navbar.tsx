@@ -10,20 +10,8 @@ import { useIsScrolled } from "@/hooks/use-is-scrolled";
 import { cn } from "@/lib/utils";
 
 import { Button } from "../ui/button";
-import {
-	NavigationMenu,
-	NavigationMenuContent,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuList,
-	NavigationMenuTrigger,
-	navigationMenuTriggerStyle,
-} from "../ui/navigation-menu";
-import { NAV_LINKS } from "./data/constants";
-import { ListItem } from "./ui/list-item";
+import { DesktopNav } from "./ui/desktop-nav";
 import { MobileNav } from "./ui/mobile-navbar";
-import { ProductsNavbar } from "./ui/products-navbar";
-import { ServicesNavbar } from "./ui/services-navbar";
 
 export const Navbar = () => {
 	const router = usePathname();
@@ -51,52 +39,7 @@ export const Navbar = () => {
 						<Logo className="h-6 w-auto md:h-7" />
 						{/* <Wordmark className="mt-1 h-4 w-fit text-white md:h-5" isMono /> */}
 					</Link>
-					<NavigationMenu className="hidden md:flex">
-						<NavigationMenuList>
-							{NAV_LINKS.map((link) =>
-								link.submenu ? (
-									<NavigationMenuItem key={link.label}>
-										<NavigationMenuTrigger>
-											{link.href ? (
-												<Link href={link.href}>{link.label}</Link>
-											) : (
-												link.label
-											)}
-										</NavigationMenuTrigger>
-										<NavigationMenuContent>
-											{link.label === "Products" ? (
-												<ProductsNavbar submenu={link.submenu} />
-											) : link.label === "Services" ? (
-												<ServicesNavbar submenu={link.submenu} />
-											) : (
-												<ul className="w-96">
-													{link.submenu.map((sub) => (
-														<ListItem
-															href={sub.href}
-															id={sub.id}
-															key={sub.title}
-															title={sub.title}
-														>
-															{sub.description}
-														</ListItem>
-													))}
-												</ul>
-											)}
-										</NavigationMenuContent>
-									</NavigationMenuItem>
-								) : (
-									<NavigationMenuItem key={link.label}>
-										<NavigationMenuLink
-											className={navigationMenuTriggerStyle()}
-											render={<Link href={link.href!} />}
-										>
-											{link.label}
-										</NavigationMenuLink>
-									</NavigationMenuItem>
-								)
-							)}
-						</NavigationMenuList>
-					</NavigationMenu>
+					<DesktopNav />
 				</div>
 				<div className="flex items-center gap-2">
 					<Button
