@@ -120,7 +120,7 @@ export const ServicesNavbar = ({ submenu }: { submenu: Submenu[] }) => {
 					);
 				})}
 			</ul>
-			<div className="rounded-xl bg-gray-100/60 px-4 py-2">
+			<div className="rounded-xl bg-card px-4 py-2">
 				<AnimatePresence mode="wait">
 					{hoveredSubmenu && (
 						<motion.ul

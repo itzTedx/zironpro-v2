@@ -1,4 +1,7 @@
+import { Route } from "next";
 import Link from "next/link";
+
+import { Building2Icon, SmilePlusIcon } from "lucide-react";
 
 import {
 	NavigationMenu,
@@ -20,7 +23,7 @@ import { ProductsNavbar } from "./products-navbar";
 import { ServicesNavbar } from "./services-navbar";
 export type LinkItemType = {
 	label: string;
-	href: string;
+	href: Route;
 	icon: React.ReactNode;
 	description?: string;
 };
@@ -28,15 +31,15 @@ export type LinkItemType = {
 export const companyLinks: LinkItemType[] = [
 	{
 		label: "About Us",
-		href: "#",
+		href: "/about",
 		description: "Learn more about our story and team",
-		icon: <IconCalender />,
+		icon: <Building2Icon />,
 	},
 	{
 		label: "Customer Stories",
 		href: "#",
 		description: "See how we've helped our clients succeed",
-		icon: <IconCalender />,
+		icon: <SmilePlusIcon />,
 	},
 	{
 		label: "Partnerships",
