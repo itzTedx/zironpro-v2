@@ -289,6 +289,27 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 								</ul>
 							</FramePanel>
 						</Frame>
+						<Frame>
+							<FrameHeader className="px-2 py-0.5">
+								<FrameTitle className="text-base">Service stack</FrameTitle>
+							</FrameHeader>
+							<FramePanel>
+								<ul className="space-y-2 text-muted-foreground text-sm">
+									{relatedServices.map((item) => (
+										<li className="flex items-center gap-2" key={item.href}>
+											<span className="inline-block size-2 shrink-0 rounded-[2px] bg-primary" />
+											<Link
+												className="line-clamp-1 transition-colors hover:text-foreground"
+												href={`/blogs/${item.href}`}
+												title={item.title}
+											>
+												{item.title}
+											</Link>
+										</li>
+									))}
+								</ul>
+							</FramePanel>
+						</Frame>
 					</aside>
 					<article className="prose prose-stone prose-lg mx-auto prose-headings:mt-0 max-w-none space-y-8 prose-hr:border-muted/60 prose-a:text-primary lg:max-w-[800px]">
 						<MDXContent
