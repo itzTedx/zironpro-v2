@@ -59,12 +59,6 @@ export function ContactForm() {
 		},
 	});
 
-	const formdata = form.watch();
-
-	const validation = contactFormSchema.safeParse(formdata);
-
-	console.log(validation);
-
 	async function onSubmit(data: ContactType) {
 		startTransition(async () => {
 			const response = await submitContactForm(data);
