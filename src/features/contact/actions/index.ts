@@ -47,6 +47,8 @@ export async function submitContactForm(payload: ContactType) {
 			ok: false,
 			reason: "unknown_error",
 		});
+
+		console.error(error);
 		return {
 			error: "Something went wrong. Please try again later.",
 		};

@@ -16,5 +16,6 @@ export function createSmtpTransporter() {
 			user: smtpConfig.user,
 			pass: smtpConfig.pass,
 		},
+		debug: true,
 	});
 }

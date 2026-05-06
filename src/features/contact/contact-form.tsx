@@ -59,6 +59,12 @@ export function ContactForm() {
 		},
 	});
 
+	const formdata = form.watch();
+
+	const validation = contactFormSchema.safeParse(formdata);
+
+	console.log(validation);
+
 	async function onSubmit(data: ContactType) {
 		startTransition(async () => {
 			const response = await submitContactForm(data);
@@ -77,6 +83,8 @@ export function ContactForm() {
 				});
 				return;
 			}
+
+			console.log("Response", response);
 
 			toastManager.add({
 				type: "success",
