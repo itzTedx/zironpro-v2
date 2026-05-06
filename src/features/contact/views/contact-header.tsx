@@ -10,7 +10,7 @@ export const ContactHeader = () => {
 		<div className="h-fit space-y-9 md:sticky md:top-24">
 			<div className="space-y-2">
 				<Badge>The right partner for your next project</Badge>
-				<h1 className="text-balance font-black font-display text-4xl text-primary uppercase tracking-tight md:text-6xl">
+				<h1 className="text-balance font-display font-extrabold text-4xl text-primary uppercase md:text-6xl">
 					Let's Build Something That Works for Your Brand
 				</h1>
 				<p className="text-balance font-medium text-lg text-muted-foreground leading-relaxed *:text-foreground md:text-xl">
