@@ -1,7 +1,15 @@
 import { Route } from "next";
 import Link from "next/link";
 
-import { Building2Icon, SmilePlusIcon } from "lucide-react";
+import {
+	Building2Icon,
+	FileBadgeIcon,
+	LeafIcon,
+	MessageSquareTextIcon,
+	ShieldCheckIcon,
+	SmilePlusIcon,
+	StarIcon,
+} from "lucide-react";
 
 import {
 	NavigationMenu,
@@ -12,8 +20,6 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-
-import { IconCalender } from "@/assets/icons/calender";
 
 import { cn } from "@/lib/utils";
 
@@ -37,43 +43,38 @@ export const companyLinks: LinkItemType[] = [
 	},
 	{
 		label: "Customer Stories",
-		href: "#",
+		href: "/our-works",
 		description: "See how we've helped our clients succeed",
 		icon: <SmilePlusIcon />,
 	},
 	{
 		label: "Partnerships",
 		href: "#",
-		icon: <IconCalender />,
+		icon: <StarIcon />,
 		description: "Collaborate with us for mutual growth",
 	},
 ];
 
 export const companyLinks2: LinkItemType[] = [
 	{
+		label: "FAQs",
+		href: "/faqs",
+		icon: <MessageSquareTextIcon />,
+	},
+	{
+		label: "Blogs",
+		href: "/blogs",
+		icon: <LeafIcon />,
+	},
+	{
 		label: "Terms of Service",
-		href: "#",
-		icon: <IconCalender />,
+		href: "/terms-of-service",
+		icon: <FileBadgeIcon />,
 	},
 	{
 		label: "Privacy Policy",
-		href: "#",
-		icon: <IconCalender />,
-	},
-	{
-		label: "Refund Policy",
-		href: "#",
-		icon: <IconCalender />,
-	},
-	{
-		label: "Blog",
-		href: "#",
-		icon: <IconCalender />,
-	},
-	{
-		label: "Help Center",
-		href: "#",
-		icon: <IconCalender />,
+		href: "/privacy-policy",
+		icon: <ShieldCheckIcon />,
 	},
 ];
 
@@ -97,17 +98,17 @@ export const DesktopNav = () => {
 								) : link.label === "Services" ? (
 									<ServicesNavbar submenu={link.submenu} />
 								) : link.label === "Company" ? (
-									<div className="grid w-lg grid-cols-2 gap-2">
-										<div className="space-y-2 rounded-lg border bg-card p-2 shadow">
+									<div className="grid w-lg grid-cols-[1fr_.75fr] gap-2">
+										<div className="space-y-3 rounded-lg border bg-card p-2 shadow">
 											{companyLinks.map((item, i) => (
 												<NavigationMenuLink
-													className="rounded-sm"
+													className="rounded-sm p-0"
 													key={`item-${item.label}-${Number(i)}`}
 													render={<LinkItem {...item} />}
 												/>
 											))}
 										</div>
-										<div className="space-y-2 p-3">
+										<div className="space-y-2 py-3">
 											{companyLinks2.map((item, i) => (
 												<NavigationMenuLink
 													href={item.href}
@@ -160,15 +161,14 @@ export function LinkItem({
 	...props
 }: React.ComponentProps<"a"> & LinkItemType) {
 	return (
-		<a
+		<Link
 			className={cn("flex items-center gap-x-2", className)}
 			href={href}
 			{...props}
 		>
 			<div
 				className={cn(
-					"flex aspect-square size-12 items-center justify-center rounded-md border bg-card text-sm shadow-sm",
-					"[&_svg:not([class*='size-'])]:size-5 [&_svg:not([class*='size-'])]:text-foreground"
+					"inset-shadow-[0_1px_--theme(--color-white/56%)] flex aspect-square size-12 items-center justify-center rounded-md border border-primary bg-linear-to-t from-primary to-brand-400 text-brand-950 text-sm shadow-primary/24 shadow-xs [&_svg:not([class*='size-'])]:size-5 [&_svg:not([class*='size-'])]:text-yellow-950"
 				)}
 			>
 				{icon}
@@ -179,6 +179,6 @@ export function LinkItem({
 					{description}
 				</span>
 			</div>
-		</a>
+		</Link>
 	);
 }
