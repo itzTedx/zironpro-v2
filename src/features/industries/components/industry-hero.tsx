@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { Route } from "next";
+import Link from "next/link";
 
 import { Noise } from "@/components/shared/noise";
 import { Badge } from "@/components/ui/badge";
@@ -27,7 +27,7 @@ export function IndustryHero({ frontmatter, industrySlug }: IndustryHeroProps) {
 							{frontmatter.heroBadge ?? frontmatter.title}
 						</h1>
 					</Badge>
-					<h2 className="text-center font-black font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
+					<h2 className="text-center font-bold font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
 						{frontmatter.heroHeading}
 					</h2>
 					<p className="text-balance text-center font-medium text-muted leading-relaxed sm:text-lg md:text-xl">

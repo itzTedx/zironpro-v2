@@ -57,7 +57,7 @@ export default function ServicesPage() {
 						<Badge>
 							<IconGear className="text-brand-600" /> Services
 						</Badge>
-						<h1 className="mx-auto font-black font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
+						<h1 className="mx-auto font-bold font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
 							Delivering results is really all that matters.
 						</h1>
 						<p className="text-balance text-2xl text-muted leading-relaxed tracking-tight *:text-card">

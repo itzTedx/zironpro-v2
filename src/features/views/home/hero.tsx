@@ -50,7 +50,7 @@ export const Hero = ({ badgeLabel, heading, subheading }: HeroProps) => {
 						<h1 className="tracking-wide">{badgeNode}</h1>
 					</Badge>
 
-					<h2 className="text-center font-black font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
+					<h2 className="text-center font-bold font-display text-4xl text-primary text-shadow-[-1px_-1px_var(--color-brand-600)] uppercase md:text-6xl lg:text-7xl">
 						{headingNode}
 					</h2>
 					<p className="text-balance text-center font-medium text-muted leading-relaxed sm:text-lg md:text-xl">

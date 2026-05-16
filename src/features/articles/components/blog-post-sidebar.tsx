@@ -1,7 +1,6 @@
 import { Route } from "next";
 import Link from "next/link";
 
-import { SocialShareActions } from "@/components/blog/social-share-actions";
 import {
 	Frame,
 	FrameHeader,
@@ -16,6 +15,7 @@ import type {
 	RelatedBlog,
 	RelatedService,
 } from "@/features/articles/actions/types";
+import { SocialShareActions } from "@/features/articles/components/social-share-actions";
 
 interface BlogPostSidebarProps {
 	shareTitle: string;

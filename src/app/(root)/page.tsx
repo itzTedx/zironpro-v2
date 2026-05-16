@@ -38,9 +38,7 @@ export default function Home() {
 			<VideoReel />
 			<WhyUs />
 			{/* <Products /> */}
-			{/* <button className="group inset-shadow-2xs inset-shadow-white/25 inline-flex h-10 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border border-zinc-950/35 bg-linear-to-b from-blue-600/85 to-blue-600 px-4 font-medium text-base text-white tracking-tight shadow-sm shadow-zinc-950/20 ring-0 transition-transform duration-150 ease-out will-change-transform hover:brightness-110 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring active:scale-[0.97] active:brightness-95 disabled:pointer-events-none disabled:opacity-50 dark:border-0 dark:border-zinc-950/50 dark:bg-linear-to-t dark:from-blue-600/75 [&_svg]:pointer-events-none [&_svg]:size-4.5 [&_svg]:shrink-0">
-				Test Button
-			</button> */}
+
 			<Blogs />
 
 			{/* TODO: Add CTA section */}

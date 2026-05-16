@@ -10,7 +10,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { WhatsappPopover } from "@/components/layout/whatsapp";
 import { Providers } from "@/components/providers";
 
-import { inter, interTight, mono } from "@/assets/fonts";
+import { clash, inter, mono } from "@/assets/fonts";
 
 import { siteConfig } from "@/data/site-config";
 import { GOOGLE_TAG_MANAGER_CONTAINER_ID } from "@/data/site-tracking";
@@ -79,8 +79,8 @@ export default function RootLayout({
 			<body
 				className={cn(
 					"antialiased",
-					inter.variable,
-					interTight.className,
+					clash.variable,
+					inter.className,
 					mono.variable
 				)}
 			>
