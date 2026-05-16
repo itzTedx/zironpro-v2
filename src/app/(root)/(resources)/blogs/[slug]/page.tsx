@@ -2,27 +2,26 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { SocialShareActions } from "@/components/blog/social-share-actions";
 import MDXContent from "@/components/markdown/mdx-component";
 import { Noise } from "@/components/shared/noise";
 import { Badge } from "@/components/ui/badge";
-import {
-	Frame,
-	FrameHeader,
-	FramePanel,
-	FrameTitle,
-} from "@/components/ui/frame";
-import { Item } from "@/components/ui/item";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 
-import { IconArrowLeft } from "@/assets/icons/arrow";
-
 import { getBlogBySlug, getBlogs } from "@/features/articles/actions/query";
+import { BlogPostSidebar } from "@/features/articles/components/blog-post-sidebar";
+import {
+	blogDateToIso,
+	extractInternalLinks,
+	getFallbackBlogs,
+	getFallbackServices,
+	getRelatedBlogs,
+	getRelatedServices,
+} from "@/features/articles/lib/blog-related";
 import { Blogs } from "@/features/articles/views/blogs";
 import { JsonLdScript } from "@/features/seo/json-ld-script";
 import { Faq, FaqContent } from "@/features/services/components/faq";
-import { SERVICES } from "@/features/services/constant";
 import {
+	absoluteUrl,
 	buildArticleSchema,
 	buildBreadcrumbSchema,
 	buildWebPageSchema,
@@ -30,143 +29,11 @@ import {
 } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
-type RelatedBlog = {
-	slug: string;
-	title: string;
-};
-
-type RelatedService = {
-	href: string;
-	title: string;
-	image: string;
-	alt: string;
-};
-
-function extractInternalLinks(content: string) {
-	const hrefMatches = content.matchAll(/\[[^\]]+\]\(([^)\s]+)\)/g);
-	const uniqueLinks = new Set<string>();
-
-	for (const match of hrefMatches) {
-		const href = match[1]?.trim();
-
-		if (!href || href.startsWith("#")) {
-			continue;
-		}
-
-		if (
-			href.startsWith("http://") ||
-			href.startsWith("https://") ||
-			href.startsWith("mailto:") ||
-			href.startsWith("tel:")
-		) {
-			continue;
-		}
-
-		const cleanHref = href.split("#")[0]?.split("?")[0];
-		if (!cleanHref?.startsWith("/")) {
-			continue;
-		}
-
-		uniqueLinks.add(cleanHref);
-	}
-
-	return [...uniqueLinks];
-}
-
-function getRelatedBlogs(links: string[], currentSlug: string): RelatedBlog[] {
-	const blogSlugPattern = /^\/blogs\/([^/]+)$/;
-	const allBlogs = getBlogs();
-	const blogMap = new Map(allBlogs.map((entry) => [entry.slug, entry.title]));
-	const results: RelatedBlog[] = [];
-	const seen = new Set<string>();
-
-	for (const href of links) {
-		const match = href.match(blogSlugPattern);
-		const slug = match?.[1];
-
-		if (!slug || slug === currentSlug || seen.has(slug)) {
-			continue;
-		}
-
-		const title = blogMap.get(slug);
-		if (!title) {
-			continue;
-		}
-
-		seen.add(slug);
-		results.push({ slug, title });
-	}
-
-	return results;
-}
-
-function getRelatedServices(links: string[]): RelatedService[] {
-	const servicePattern = /^\/services\/([^/]+)\/([^/]+)$/;
-	const results: RelatedService[] = [];
-	const seen = new Set<string>();
-
-	for (const href of links) {
-		const match = href.match(servicePattern);
-		const category = match?.[1];
-		const slug = match?.[2];
-
-		if (!category || !slug || seen.has(href)) {
-			continue;
-		}
-
-		const categoryData = SERVICES.find((service) => service.slug === category);
-		const serviceItem = categoryData?.lists.find((item) => item.slug === slug);
-
-		if (!serviceItem) {
-			continue;
-		}
-
-		seen.add(href);
-		results.push({
-			href,
-			title: serviceItem.title,
-			image: serviceItem.image,
-			alt: serviceItem.description,
-		});
-	}
-
-	return results;
-}
-
-function getFallbackBlogs(currentSlug: string): RelatedBlog[] {
-	return getBlogs()
-		.filter((entry) => entry.slug !== currentSlug)
-		.slice(0, 3)
-		.map((entry) => ({
-			slug: entry.slug,
-			title: entry.title,
-		}));
-}
-
-function getFallbackServices(): RelatedService[] {
-	const items = SERVICES.flatMap((category) =>
-		category.lists.map((service) => ({
-			href: `/services/${category.slug}/${service.slug}`,
-			title: service.title,
-			image: service.image,
-			alt: service.description,
-		}))
-	);
-
-	return items.slice(0, 2);
-}
-
 export function generateStaticParams() {
 	const blogs = getBlogs();
 	return blogs.map((b) => ({
 		slug: b.slug,
 	}));
-}
-
-function blogDateToIso(dateStr: string): string | undefined {
-	const t = Date.parse(dateStr);
-	if (Number.isNaN(t)) return undefined;
-	return new Date(t).toISOString();
 }
 
 export async function generateMetadata({
@@ -178,11 +45,16 @@ export async function generateMetadata({
 
 	return createPageMetadata({
 		title: `${blog.metadata.meta.title} | ZironPro UAE`,
-		description: `${blog.metadata.meta.description} Insights for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE.`,
+		description: blog.metadata.meta.description,
 		path: `/blogs/${blog.metadata.slug}`,
 		image: blog.metadata.image,
+		imageAlt: blog.metadata.alt ?? blog.metadata.title,
+		imageWidth: 1200,
+		imageHeight: 675,
 		type: "article",
 		keywords: blog.metadata.tags,
+		authors: [blog.metadata.author],
+		section: blog.metadata.category,
 		...(publishedIso
 			? { publishedTime: publishedIso, modifiedTime: publishedIso }
 			: {}),
@@ -240,7 +112,7 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 					<p className="mx-auto mt-4 max-w-6xl text-balance text-2xl text-card leading-relaxed tracking-tight">
 						{blog.metadata.description}
 					</p>
-					<div className="relative mx-auto mt-9 aspect-16/10 max-w-4xl overflow-hidden rounded-xl shadow-md">
+					<div className="relative mx-auto mt-9 aspect-video max-w-4xl overflow-hidden rounded-xl shadow-md">
 						<Image
 							alt={blog.metadata.title}
 							className="object-cover"
@@ -254,63 +126,12 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 
 			<div className="dashed dashed-t relative overflow-x-clip">
 				<div className="dashed dashed-x container flex max-w-7xl flex-col-reverse justify-between gap-5 overflow-x-clip py-16 lg:flex-row lg:gap-22 lg:py-20">
-					<aside className="sticky top-24 h-fit flex-1 space-y-6 md:max-w-[302px]">
-						<Item className="flex justify-between gap-2" variant="muted">
-							<Link
-								className="group inline-flex items-center gap-2"
-								href="/blogs"
-							>
-								<div className="pointer-events-none relative flex-none rotate-180 transition-colors duration-500">
-									<IconArrowLeft className="size-4 translate-x-0 rotate-180 scale-100 transform-gpu opacity-100 transition-[opacity,translate,scale] duration-500 ease-[cubic-bezier(0.36,0,0.114,0.92)] group-hover:translate-x-2 group-hover:scale-0 group-hover:opacity-0" />
-									<IconArrowLeft className="absolute inset-0 size-4 -translate-x-2 rotate-180 scale-0 transform-gpu opacity-0 transition-[opacity,translate,scale] duration-500 ease-[cubic-bezier(0.36,0,0.114,0.92)] group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100" />
-								</div>
-								Back
-							</Link>
-							<SocialShareActions />
-						</Item>
-						<Frame>
-							<FrameHeader className="px-2 py-0.5">
-								<FrameTitle className="text-base">Reading stack</FrameTitle>
-							</FrameHeader>
-							<FramePanel>
-								<ul className="space-y-2 text-muted-foreground text-sm">
-									{relatedBlogs.map((item) => (
-										<li className="flex items-center gap-2" key={item.slug}>
-											<span className="inline-block size-2 shrink-0 rounded-[2px] bg-primary" />
-											<Link
-												className="line-clamp-1 transition-colors hover:text-foreground"
-												href={`/blogs/${item.slug}`}
-												title={item.title}
-											>
-												{item.title}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</FramePanel>
-						</Frame>
-						<Frame>
-							<FrameHeader className="px-2 py-0.5">
-								<FrameTitle className="text-base">Service stack</FrameTitle>
-							</FrameHeader>
-							<FramePanel>
-								<ul className="space-y-2 text-muted-foreground text-sm">
-									{relatedServices.map((item) => (
-										<li className="flex items-center gap-2" key={item.href}>
-											<span className="inline-block size-2 shrink-0 rounded-[2px] bg-primary" />
-											<Link
-												className="line-clamp-1 transition-colors hover:text-foreground"
-												href={`/blogs/${item.href}`}
-												title={item.title}
-											>
-												{item.title}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</FramePanel>
-						</Frame>
-					</aside>
+					<BlogPostSidebar
+						relatedBlogs={relatedBlogs}
+						relatedServices={relatedServices}
+						shareTitle={blog.metadata.title}
+						shareUrl={absoluteUrl(canonicalPath)}
+					/>
 					<article className="prose prose-stone prose-lg mx-auto prose-headings:mt-0 max-w-none space-y-8 prose-hr:border-muted/60 prose-a:text-primary lg:max-w-[800px]">
 						<MDXContent
 							components={{
@@ -332,8 +153,8 @@ export default async function BlogPage({ params }: PageProps<"/blogs/[slug]">) {
 								// h5: (props) => <h5 id={slugify(props.children)} {...props} />,
 								// h6: (props) => <h6 id={slugify(props.children)} {...props} />,
 								// Section: (props) => <Section {...props} />,
-								Faq: Faq,
-								FaqContent: FaqContent,
+								Faq,
+								FaqContent,
 							}}
 							source={blog.content}
 						/>

@@ -8,7 +8,7 @@ import { getBlogs } from "../actions/query";
 import { BlogCard } from "../components/blog-card";
 
 export const Blogs = () => {
-	const blogs = getBlogs(8);
+	const blogs = getBlogs(4);
 
 	return (
 		<section className="dashed dashed-y relative py-9 md:py-14">

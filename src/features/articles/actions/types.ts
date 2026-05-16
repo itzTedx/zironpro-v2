@@ -5,16 +5,8 @@ export type BlogMetadata = {
 		title: string;
 		description: string;
 	};
-	engagement?: {
-		panelTitle?: string;
-		prompts?: string[];
-		closingNote?: string;
-		cta?: {
-			label: string;
-			href: string;
-		};
-	};
 	image: string;
+	alt?: string;
 	isFeatured?: boolean;
 	slug: string;
 	date: string;
@@ -26,4 +18,16 @@ export type BlogMetadata = {
 export type Blog = {
 	metadata: BlogMetadata;
 	content: string;
+};
+
+export type RelatedBlog = {
+	slug: string;
+	title: string;
+};
+
+export type RelatedService = {
+	href: string;
+	title: string;
+	image: string;
+	alt: string;
 };

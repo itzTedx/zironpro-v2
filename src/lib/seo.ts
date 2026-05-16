@@ -10,12 +10,61 @@ type CreateMetadataParams = {
 	description: string;
 	path: string;
 	image?: string;
+	imageAlt?: string;
+	imageWidth?: number;
+	imageHeight?: number;
 	keywords?: string[];
 	type?: PageType;
 	/** ISO 8601 — used for Open Graph when `type` is `article`. */
 	publishedTime?: string;
 	modifiedTime?: string;
+	authors?: string[];
+	section?: string;
 };
+
+const DEFAULT_OG_IMAGE_WIDTH = 1200;
+const DEFAULT_OG_IMAGE_HEIGHT = 630;
+
+function resolveAbsoluteImage(image: string): string {
+	return image.startsWith("http") ? image : absoluteUrl(image);
+}
+
+function getImageMimeType(url: string): string | undefined {
+	const path = url.split("?")[0]?.toLowerCase() ?? "";
+	if (path.endsWith(".webp")) return "image/webp";
+	if (path.endsWith(".jpg") || path.endsWith(".jpeg")) return "image/jpeg";
+	if (path.endsWith(".png")) return "image/png";
+	if (path.endsWith(".gif")) return "image/gif";
+	return undefined;
+}
+
+function buildSocialImages({
+	image,
+	imageAlt,
+	imageWidth = DEFAULT_OG_IMAGE_WIDTH,
+	imageHeight = DEFAULT_OG_IMAGE_HEIGHT,
+	title,
+}: {
+	image: string;
+	imageAlt?: string;
+	imageWidth?: number;
+	imageHeight?: number;
+	title: string;
+}) {
+	const url = resolveAbsoluteImage(image);
+	const alt = imageAlt ?? title;
+	const type = getImageMimeType(url);
+
+	return [
+		{
+			url,
+			width: imageWidth,
+			height: imageHeight,
+			alt,
+			...(type ? { type } : {}),
+		},
+	];
+}
 
 type BreadcrumbItem = {
 	name: string;
@@ -86,28 +135,55 @@ export function createPageMetadata({
 	description,
 	path,
 	image = siteConfig.ogImage,
+	imageAlt,
+	imageWidth,
+	imageHeight,
 	keywords = [],
 	type = "website",
 	publishedTime,
 	modifiedTime,
+	authors = [],
+	section,
 }: CreateMetadataParams): Metadata {
 	const finalTitle = clampText(title, 90);
 	const finalDescription = clampText(description, 200);
 	const canonical = path.startsWith("/") ? path : `/${path}`;
-	const absoluteImage = image.startsWith("http") ? image : absoluteUrl(image);
+	const socialImages = buildSocialImages({
+		image,
+		imageAlt,
+		imageWidth,
+		imageHeight,
+		title: finalTitle,
+	});
 
 	const articleOg =
-		type === "article" && publishedTime
+		type === "article"
 			? {
-					publishedTime,
-					modifiedTime: modifiedTime ?? publishedTime,
+					...(publishedTime
+						? {
+								publishedTime,
+								modifiedTime: modifiedTime ?? publishedTime,
+							}
+						: {}),
+					...(authors.length > 0 ? { authors } : {}),
+					...(section ? { section } : {}),
+					...(keywords.length > 0 ? { tags: keywords } : {}),
 				}
 			: {};
+
+	const metadataAuthors =
+		authors.length > 0
+			? authors.map((name) => ({
+					name,
+					url: getBaseUrl(),
+				}))
+			: undefined;
 
 	return {
 		title: finalTitle,
 		description: finalDescription,
 		keywords,
+		...(metadataAuthors ? { authors: metadataAuthors } : {}),
 		alternates: {
 			canonical,
 		},
@@ -118,14 +194,18 @@ export function createPageMetadata({
 			title: finalTitle,
 			description: finalDescription,
 			siteName: siteConfig.title,
-			images: [absoluteImage],
+			images: socialImages,
 			...articleOg,
 		},
 		twitter: {
 			card: "summary_large_image",
 			title: finalTitle,
 			description: finalDescription,
-			images: [absoluteImage],
+			images: socialImages.map(({ url, alt, type }) => ({
+				url,
+				alt,
+				...(type ? { type } : {}),
+			})),
 			creator: "@zironpro",
 		},
 	};

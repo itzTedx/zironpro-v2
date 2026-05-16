@@ -45,9 +45,9 @@ function FrameHeader({ className, ...props }: React.ComponentProps<"header">) {
 	);
 }
 
-function FrameTitle({ className, ...props }: React.ComponentProps<"h3">) {
+function FrameTitle({ className, ...props }: React.ComponentProps<"div">) {
 	return (
-		<h3
+		<div
 			className={cn("font-medium text-xl", className)}
 			data-slot="frame-panel-title"
 			{...props}
