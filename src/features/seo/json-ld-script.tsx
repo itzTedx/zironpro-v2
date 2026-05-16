@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 type JsonLdScriptProps = {
 	id: string;
 	data: unknown;
@@ -5,8 +7,8 @@ type JsonLdScriptProps = {
 
 export function JsonLdScript({ id, data }: JsonLdScriptProps) {
 	return (
-		<script id={id} type="application/ld+json">
+		<Script id={id} type="application/ld+json">
 			{JSON.stringify(data)}
-		</script>
+		</Script>
 	);
 }
